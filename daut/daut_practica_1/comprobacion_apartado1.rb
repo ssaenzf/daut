@@ -8,6 +8,10 @@ socio2 = Socio.new('Jose', '1234567b', 123456788)
 puts "Socio 2:\n"
 socio2.to_s
 
-for i in 1..10000
-  Socio.new('Jose', i.to_s, i)
+begin
+  for i in 1..10000
+    Socio.new('Jose', i.to_s, i)
+  end
+rescue Numero_socios_error => error
+  print error
 end
