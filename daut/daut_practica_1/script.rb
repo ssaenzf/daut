@@ -15,9 +15,6 @@ socio1.to_s
 socio2 = Socio.new('Jose', '1234567b', 123456788)
 puts "Socio 2:\n"
 socio2.to_s
-socio2 = Socio.new('Laura', '1234567c', 123456787)
-puts "Socio 3:\n"
-socio2.to_s
 
 # Apartado 2
 puts "****************** APARTADO 2 ******************\n"
