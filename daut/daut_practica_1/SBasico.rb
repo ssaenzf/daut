@@ -1,6 +1,6 @@
 require_relative 'Servicio'
 class SBasico < Servicio
-  def initialize(descripcion, categoria, *disponiblidad)
+  def initialize(descripcion, categoria, disponiblidad)
     super(descripcion)
     @categoria = categoria
     @disponibilidad = disponiblidad
@@ -9,7 +9,7 @@ class SBasico < Servicio
   attr_accessor :categoria, :descripcion
 
   def to_s()
-    puts super.to_s + "Categoria: " + @categoria.codigo + "\nDisponibilidad: " + @disponibilidad.to_s + "\n"
+    puts super.to_s + "Categoria: " + @categoria.descripcion + "\nDisponibilidad: " + @disponibilidad
 
   end
 end

@@ -3,8 +3,12 @@ require_relative 'Categoria'
 require_relative 'Codigo_categoria_error'
 require_relative 'Codigo_subcategoria_error'
 require_relative 'Descripcion_subcategoria_error'
+require_relative 'SBasico'
+require_relative 'SCombo'
+require_relative 'ActGrupal'
 
 # Apartado 1
+puts "****************** APARTADO 1 ******************\n"
 socio1 = Socio.new('Pepito', '1234567a', 123456789)
 puts "Socio 1:\n"
 socio1.to_s
@@ -16,6 +20,7 @@ puts "Socio 3:\n"
 socio2.to_s
 
 # Apartado 2
+puts "****************** APARTADO 2 ******************\n"
 # Salida normal
 categoria_fon = Categoria.new('FON', 'Fontaneria')
 categoria_fon.to_s
@@ -57,3 +62,30 @@ begin
 rescue Descripcion_subcategoria_error => error
   print error
 end
+
+#Apartado 3
+puts "****************** APARTADO 3 ******************\n"
+sbasico = SBasico.new('Inglés', categoria_cla, 'Lunes y miércoles de 16 a 18')
+sbasico.to_s
+puts "\n"
+sbasico2 = SBasico.new('Carpinteria', categoria_car, 'Jueves de 16 a 18')
+sbasico2.to_s
+puts "\n"
+sbasico3 = SBasico.new('Yoga', categoria_cla_y, 'Lunes de 16 a 18')
+sbasico3.to_s
+puts "\n"
+scombo = SCombo.new('Combo1', sbasico, sbasico2)
+scombo.to_s
+#Combo incorrecto
+scombo2 = SCombo.new('Combo2', sbasico, scombo)
+scombo2.to_s
+#Combo correcto compuesto
+scombo3 = SCombo.new('Combo3', scombo, sbasico3)
+scombo3.to_s
+
+actGrupal = ActGrupal.new('Yoga', categoria_cla_y, 'Jueves de 16 a 18', 15, socio1, socio2)
+actGrupal.to_s
+puts("\n")
+#Error actividad grupal
+scombo4 = SCombo.new('Combo4', sbasico3, actGrupal, scombo)
+scombo4.to_s
