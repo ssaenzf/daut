@@ -76,10 +76,10 @@ sbasico3.to_s
 puts "\n"
 scombo = SCombo.new('Combo1', socio1, sbasico3)
 scombo.to_s
-#Combo incorrecto
+#Combo correcto
 scombo2 = SCombo.new('Combo2', socio1, sbasico, scombo)
 scombo2.to_s
-#Combo correcto compuesto
+#Combo incorrecto
 scombo3 = SCombo.new('Combo3', socio1, sbasico3, scombo2)
 scombo3.to_s
 
