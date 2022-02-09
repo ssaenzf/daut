@@ -1,10 +1,12 @@
 require_relative 'Servicio'
 class ActGrupal < Servicio
-  def initialize(descripcion, categoria, fecha, min_asistentes, *colaboradores)
-    super(descripcion)
+  def initialize(descripcion, socio, categoria, min_asistentes, horaIni, horaFin, dia, *colaboradores)
+    super(descripcion, socio)
     @categoria = categoria
-    @fecha = fecha
     @minimo = min_asistentes
+    @horaIni = horaIni
+    @horaFin = horaFin
+    @dia = dia
     @colaboradores = colaboradores
   end
 
@@ -15,8 +17,9 @@ class ActGrupal < Servicio
     @colaboradores.each do |x|
       nombres.append(x.nombre)
     end
-    puts (super.to_s + "Categoria: " + @categoria.descripcion + "\nFecha: " + @fecha + "\nMin Participantes: " +
-    @minimo.to_s + "\nColaboradores: " + nombres.to_s)
+    puts (super.to_s + "Categoria: " + @categoria.descripcion + "\nMin Participantes: " +
+    @minimo.to_s + "\nDisponibilidad: \n" + "\tDía: " + @dia + "\n\tHora Inicio: " + @horaIni.to_s + "\n\tHora Fin: " +
+     @horaFin.to_s + "\nColaboradores: " + nombres.to_s)
   end
 
 end

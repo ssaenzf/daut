@@ -15,6 +15,9 @@ socio1.to_s
 socio2 = Socio.new('Jose', '1234567b', 123456788)
 puts "Socio 2:\n"
 socio2.to_s
+socio2 = Socio.new('Laura', '1234567c', 123456787)
+puts "Socio 3:\n"
+socio2.to_s
 
 # Apartado 2
 puts "****************** APARTADO 2 ******************\n"
@@ -62,27 +65,27 @@ end
 
 #Apartado 3
 puts "****************** APARTADO 3 ******************\n"
-sbasico = SBasico.new('Inglés', categoria_cla, 'Lunes y miércoles de 16 a 18')
+sbasico = SBasico.new('Inglés', socio1, categoria_cla, 16, 18, 'Lunes', 'Miércoles')
 sbasico.to_s
 puts "\n"
-sbasico2 = SBasico.new('Carpinteria', categoria_car, 'Jueves de 16 a 18')
+sbasico2 = SBasico.new('Carpinteria', socio1, categoria_car, 16, 18, 'Lunes')
 sbasico2.to_s
 puts "\n"
-sbasico3 = SBasico.new('Yoga', categoria_cla_y, 'Lunes de 16 a 18')
+sbasico3 = SBasico.new('Yoga', socio1, categoria_cla_y, 18, 20, 'Martes')
 sbasico3.to_s
 puts "\n"
-scombo = SCombo.new('Combo1', sbasico, sbasico2)
+scombo = SCombo.new('Combo1', socio1, sbasico3)
 scombo.to_s
 #Combo incorrecto
-scombo2 = SCombo.new('Combo2', sbasico, scombo)
+scombo2 = SCombo.new('Combo2', socio1, sbasico, scombo)
 scombo2.to_s
 #Combo correcto compuesto
-scombo3 = SCombo.new('Combo3', scombo, sbasico3)
+scombo3 = SCombo.new('Combo3', socio1, sbasico3, scombo2)
 scombo3.to_s
 
-actGrupal = ActGrupal.new('Yoga', categoria_cla_y, 'Jueves de 16 a 18', 15, socio1, socio2)
+actGrupal = ActGrupal.new('Yoga', socio1, categoria_cla_y, 15, 15, 17, 'Viernes', socio1, socio2)
 actGrupal.to_s
 puts("\n")
 #Error actividad grupal
-scombo4 = SCombo.new('Combo4', sbasico3, actGrupal, scombo)
+scombo4 = SCombo.new('Combo4', socio1, sbasico, actGrupal, scombo)
 scombo4.to_s

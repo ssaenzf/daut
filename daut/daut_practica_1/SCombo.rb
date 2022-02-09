@@ -1,36 +1,30 @@
 require_relative 'Servicio'
 class SCombo < Servicio
-  def initialize(descripcion, *servicios)
-    super(descripcion)
+  def initialize(descripcion, socio, *servicios)
+    super(descripcion, socio)
     @listServicios = Array.new
+    @listNombresServicios = Array.new
     setServicios(servicios)
   end
 
-  attr_accessor :listServicios, :descripcion
+  attr_accessor :listServicios, :descripcion, :listNombresServicios
 
   def setServicios(servicios)
-    listServicios = Array.new
     servicios.each do |s|
       if s.instance_of? ActGrupal
         puts("No se pueden añadir actividades grupales a un combo\n")
       elsif s.instance_of?SCombo
-        combo_ok = true
-        s.listServicios.each do |scombo|
-          if listServicios.index(scombo.descripcion) != nil
-            puts("Servicio #{scombo.descripcion} repetido\n")
-            combo_ok = false
-          else
-            listServicios.append(scombo.descripcion)
-          end
-        end
-        if combo_ok
+        if (@listNombresServicios & s.listNombresServicios).size == 0
           @listServicios.append(s)
+          @listNombresServicios = @listNombresServicios + s.listNombresServicios
+        else
+          puts "Servicios #{(@listNombresServicios & s.listNombresServicios).to_s} repetidos. No se añade combo: #{s.descripcion}\n"
         end
       else
-        if listServicios.index(s.descripcion) != nil
+        if @listNombresServicios.index(s.descripcion) != nil
           puts("Servicio #{s.descripcion} repetido\n")
         else
-          listServicios.append(s.descripcion)
+          @listNombresServicios.append(s.descripcion)
           @listServicios.append(s)
         end
       end
