@@ -8,7 +8,7 @@ class SBasico < Servicio
     @dias = dias
   end
 
-  attr_accessor :categoria, :descripcion
+  attr_accessor :categoria, :descripcion, :horaIni, :horaFin, :dias
 
   def to_s()
     puts super.to_s + "Categoria: " + @categoria.descripcion + "\nDisponibilidad: \n" +

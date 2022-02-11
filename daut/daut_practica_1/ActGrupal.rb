@@ -10,7 +10,7 @@ class ActGrupal < Servicio
     @colaboradores = colaboradores
   end
 
-  attr_accessor :descripcion
+  attr_accessor :descripcion, :horaIni, :horaFin, :dia, :colaboradores, :minimo, :categoria
 
   def to_s()
     nombres = Array.new

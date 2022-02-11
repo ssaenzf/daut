@@ -6,6 +6,7 @@ require_relative 'Descripcion_subcategoria_error'
 require_relative 'SBasico'
 require_relative 'SCombo'
 require_relative 'ActGrupal'
+require_relative 'Intercambio'
 
 # Apartado 1
 puts "****************** APARTADO 1 ******************\n"
@@ -15,12 +16,15 @@ socio1.to_s
 socio2 = Socio.new('Jose', '1234567b', 123456788)
 puts "Socio 2:\n"
 socio2.to_s
-socio2 = Socio.new('Laura', '1234567c', 123456787)
+socio3 = Socio.new('Javier', '1234567c', 123456787)
 puts "Socio 3:\n"
-socio2.to_s
+socio3.to_s
+
+listSocios = Array.new
+listSocios.append(socio1, socio2, socio3)
 
 # Apartado 2
-puts "****************** APARTADO 2 ******************\n"
+puts "\n****************** APARTADO 2 ******************\n"
 # Salida normal
 categoria_fon = Categoria.new('FON', 'Fontaneria')
 categoria_fon.to_s
@@ -64,11 +68,11 @@ rescue Descripcion_subcategoria_error => error
 end
 
 #Apartado 3
-puts "****************** APARTADO 3 ******************\n"
+puts "\n****************** APARTADO 3 ******************\n"
 sbasico = SBasico.new('Inglés', socio1, categoria_cla, 16, 18, 'Lunes', 'Miércoles')
 sbasico.to_s
 puts "\n"
-sbasico2 = SBasico.new('Carpinteria', socio1, categoria_car, 16, 18, 'Lunes')
+sbasico2 = SBasico.new('Carpinteria', socio1, categoria_car, 17, 18, 'Lunes')
 sbasico2.to_s
 puts "\n"
 sbasico3 = SBasico.new('Yoga', socio1, categoria_cla_y, 18, 20, 'Martes')
@@ -83,9 +87,31 @@ scombo2.to_s
 scombo3 = SCombo.new('Combo3', socio1, sbasico3, scombo2)
 scombo3.to_s
 
-actGrupal = ActGrupal.new('Yoga', socio1, categoria_cla_y, 15, 15, 17, 'Viernes', socio1, socio2)
+actGrupal = ActGrupal.new('Yoga', socio1, categoria_cla_y, 15, 16, 17, 'Viernes', socio2, socio3)
 actGrupal.to_s
 puts("\n")
 #Error actividad grupal
 scombo4 = SCombo.new('Combo4', socio1, sbasico, actGrupal, scombo)
 scombo4.to_s
+
+scombo5 = SCombo.new('Combo3', socio1, sbasico2, scombo2)
+scombo5.to_s
+
+#Apartado 4
+puts "****************** APARTADO 4 ******************\n"
+puts "--> Intercambio 1\n"
+int = Intercambio.new(socio2, sbasico)
+int.to_s
+
+puts "--> Intercambio 2\n"
+int2 = Intercambio.new(socio2, scombo5)
+int2.to_s
+
+puts "--> Intercambio 3\n"
+int3 = Intercambio.new(socio1, actGrupal)
+int3.to_s
+
+puts "\n****** Socios ******\n"
+listSocios.each do |s|
+  puts("Saldo actual de #{s.nombre}: #{s.saldo}\n")
+end

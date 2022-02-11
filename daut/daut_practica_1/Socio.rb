@@ -21,7 +21,7 @@ end
 
 class Socio
   def initialize (nombre, nif, telefono)
-    @saldo = 2
+    @saldo = 120 # 2 horas inciales
     @nombre = nombre
     @nif = nif
     @telefono = telefono

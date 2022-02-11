@@ -4,7 +4,7 @@ class Servicio
     @socio = socio
   end
 
-  attr_accessor :descripcion
+  attr_accessor :descripcion, :socio
 
   def to_s()
     puts ("******* Servicio #{@descripcion} *******")

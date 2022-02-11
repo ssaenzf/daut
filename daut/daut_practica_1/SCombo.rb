@@ -18,10 +18,10 @@ class SCombo < Servicio
           @listServicios.append(s)
           @listNombresServicios = @listNombresServicios + s.listNombresServicios
         else
-          puts "Servicios #{(@listNombresServicios & s.listNombresServicios).to_s} repetidos. No se añade combo: #{s.descripcion}\n"
+          puts "Servicios #{(@listNombresServicios & s.listNombresServicios)} repetidos. No se añade combo: #{s.descripcion}\n"
         end
       else
-        if @listNombresServicios.index(s.descripcion) != nil
+        if @listServicios.index(s.descripcion) != nil
           puts("Servicio #{s.descripcion} repetido\n")
         else
           @listNombresServicios.append(s.descripcion)
