@@ -4,6 +4,7 @@ b = Banco.new
 socio1 = b.crearSocio('Pepito', '1234567a', 123456789)
 socio2 = b.crearSocio('Jose', '1234567b', 123456788)
 socio3 = b.crearSocio('Javier', '1234567c', 123456787)
+socio4 = b.crearSocio('Luis', '1234567d', 123456786)
 
 b.mostrarSocios
 
@@ -26,16 +27,16 @@ b.mostrarCategorias
 puts "\n"
 # Crear Servicios
 sbasico = b.crearServicoBasico('Inglés', socio1, categoria_cla, 16, 18, 'Lunes', 'Miércoles')
-sbasico2 = b.crearServicoBasico('Carpinteria', socio1,  categoria_car, 17, 18, 'Lunes')
-sbasico3 = b.crearServicoBasico('Yoga', socio1,  categoria_cla_y, 18, 20, 'Martes')
+sbasico2 = b.crearServicoBasico('Carpinteria', socio2,  categoria_car, 17, 18, 'Lunes')
+sbasico3 = b.crearServicoBasico('Yoga', socio3,  categoria_cla_y, 19, 20, 'Martes')
 
 scombo = b.crearServicoCombo('Combo1', socio1, sbasico3)
 #Combo correcto
-scombo2 = b.crearServicoCombo('Combo2', socio1, sbasico, scombo)
+scombo2 = b.crearServicoCombo('Combo2', socio2, sbasico, scombo)
 #Combo incorrecto
 scombo3 = b.crearServicoCombo('Combo3', socio1, sbasico3, scombo2)
 
-actGrupal = b.crearActGrupal('Yoga', socio1, categoria_cla_y, 15, 16, 17, 'Viernes', socio2, socio3)
+actGrupal = b.crearActGrupal('Clase Yoga', socio2, categoria_cla_y, 15, 16, 17, 'Viernes', socio1, socio3)
 
 #Error actividad grupal
 scombo4 = b.crearServicoCombo('Combo4', socio1, sbasico, actGrupal, scombo)
@@ -45,8 +46,10 @@ b.mostrarServicios
 
 # Crear Intercambios
 b.crearIntercambio(socio2, sbasico)
-b.crearIntercambio(socio2, scombo5)
-b.crearIntercambio(socio1, actGrupal)
+b.crearIntercambio(socio1, sbasico3)
+b.crearIntercambio(socio3, scombo5)
+b.crearIntercambio(socio4, actGrupal)
+b.crearIntercambio(socio4, sbasico3)
 
 b.mostrarIntercambios
 

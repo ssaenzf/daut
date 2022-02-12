@@ -9,7 +9,7 @@ class Intercambio
     @servicio = servicio
     @numHoras = 0
     setNumHoras()
-    if socio.saldo == 0 || (socio.saldo - @numHoras < 0)
+    if socio.saldo == 0 || (socio.saldo - @numHoras*60 < 0)
       raise Error_Saldo_Intercambio.new(socio, servicio), "El socio #{socio.nombre} no dispone del saldo suficiente para solicitar el servicio #{servicio.descripcion}\n"
     end
     @socioReceptor = socio
@@ -38,5 +38,7 @@ class Intercambio
   def to_s
     puts ("Socio: " + @socioReceptor.nombre + "\nServicio: " + @servicio.descripcion + "\nNúmero de horas: " + @numHoras.to_s + "\n")
   end
+
+  private :setNumHoras, :setNumHorasCombo
 
 end

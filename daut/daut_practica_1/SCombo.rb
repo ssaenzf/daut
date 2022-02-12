@@ -43,4 +43,6 @@ class SCombo < Servicio
     end
     puts ""
   end
+
+  private :setServicios
 end
