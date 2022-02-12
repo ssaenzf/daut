@@ -99,30 +99,27 @@ class Banco
   end
 
   def crearIntercambio(socio, servicio)
+    begin
     i = Intercambio.new(socio, servicio)
-    @listIntercambios.append(i)
-    calcularIntercambio(i)
+    rescue Error_Saldo_Intercambio => error
+      print error
+    else
+      @listIntercambios.append(i)
+      calcularIntercambio(i)
+    end
   end
 
   def calcularIntercambio(int)
     if int.servicio.instance_of?ActGrupal
       saldoDescuento = int.numHoras * 60
       saldoAumento = saldoDescuento/int.servicio.colaboradores.size
-      if (int.socioReceptor.saldo - saldoDescuento) >= 0
-        int.socioReceptor.saldo -= saldoDescuento
-      else
-        int.socioReceptor.saldo = 0
-      end
+      int.socioReceptor.saldo -= saldoDescuento
       int.servicio.colaboradores.each do |c|
         c.saldo += saldoAumento
       end
     else
       nuevoSaldo = int.numHoras * 60
-      if (int.socioReceptor.saldo - nuevoSaldo) >= 0
-        int.socioReceptor.saldo -= nuevoSaldo
-      else
-        int.socioReceptor.saldo = 0
-      end
+      int.socioReceptor.saldo -= nuevoSaldo
       int.servicio.socio.saldo += nuevoSaldo
     end
   end

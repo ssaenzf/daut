@@ -2,13 +2,17 @@ require_relative 'SBasico'
 require_relative 'SCombo'
 require_relative 'ActGrupal'
 require_relative 'Socio'
+require_relative 'Error_Saldo_Intercambio'
 
 class Intercambio
   def initialize(socio, servicio)
-    @socioReceptor = socio
     @servicio = servicio
     @numHoras = 0
     setNumHoras()
+    if socio.saldo == 0 || (socio.saldo - @numHoras < 0)
+      raise Error_Saldo_Intercambio.new(socio, servicio), "El socio #{socio.nombre} no dispone del saldo suficiente para solicitar el servicio #{servicio.descripcion}\n"
+    end
+    @socioReceptor = socio
   end
 
   attr_accessor :socioReceptor, :servicio, :servicio, :numHoras
