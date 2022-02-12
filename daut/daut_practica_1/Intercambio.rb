@@ -9,8 +9,9 @@ class Intercambio
     @servicio = servicio
     @numHoras = 0
     setNumHoras()
-    calcularIntercambio()
   end
+
+  attr_accessor :socioReceptor, :servicio, :servicio, :numHoras
 
   def setNumHoras
     if !@servicio.instance_of?SCombo
@@ -27,29 +28,6 @@ class Intercambio
       else
         @numHoras += (s.horaFin - s.horaIni)
       end
-    end
-  end
-
-  def calcularIntercambio
-    if @servicio.instance_of?ActGrupal
-      saldoDescuento = @numHoras * 60
-      saldoAumento = saldoDescuento/@servicio.colaboradores.size
-      if (@socioReceptor.saldo - saldoDescuento) >= 0
-        @socioReceptor.saldo -= saldoDescuento
-      else
-        @socioReceptor.saldo = 0
-      end
-      @servicio.colaboradores.each do |c|
-        c.saldo += saldoAumento
-      end
-    else
-      nuevoSaldo = @numHoras * 60
-      if (@socioReceptor.saldo - nuevoSaldo) >= 0
-        @socioReceptor.saldo -= nuevoSaldo
-      else
-        @socioReceptor.saldo = 0
-      end
-      @servicio.socio.saldo += nuevoSaldo
     end
   end
 

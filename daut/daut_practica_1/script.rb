@@ -110,8 +110,3 @@ int2.to_s
 puts "--> Intercambio 3\n"
 int3 = Intercambio.new(socio1, actGrupal)
 int3.to_s
-
-puts "\n****** Socios ******\n"
-listSocios.each do |s|
-  puts("Saldo actual de #{s.nombre}: #{s.saldo}\n")
-end

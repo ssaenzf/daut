@@ -54,7 +54,8 @@ class Socio
   end
   
   def to_s ()
-    puts("Nombre: " + @nombre.to_s + "\nnif: " + @nif.to_s + "\nTelefono: " +  @telefono.to_s + "\nSaldo: " +  @saldo.to_s + "\nIdentificador: " +  @identificador.to_s)
+    puts("Nombre: " + @nombre.to_s + "\nnif: " + @nif.to_s + "\nTelefono: " +
+           @telefono.to_s + "\nSaldo: " +  @saldo.to_s + "\nIdentificador: " +  @identificador.to_s + "\n")
   end
 end
 
