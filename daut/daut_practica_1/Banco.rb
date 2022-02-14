@@ -152,22 +152,10 @@ class Banco
     puts "Intercambio más corto: " + min(listHoras).to_s + " hora/s"
     puts "Intercambio más largo: " + max(listHoras).to_s + " hora/s"
     puts "Duración media de intercambios: " + medio(listHoras).round(2).to_s + " hora/s"
-    puts "Número medio de intercambios por servicio: "
-    tamanioInt = @listIntercambios.size + 0.0
-    mapa = Hash.new
+    x = @listServicios.size
+    y = @listIntercambios.size
+    puts "Número medio de intercambios por servicio: " + y.fdiv(x).round(2).to_s
 
-    @listIntercambios.each do |i|
-      key = i.servicio.descripcion
-      if mapa.has_key?key
-        mapa[key] += 1
-      else
-        mapa[key] = 1
-      end
-    end
-
-    mapa.each { |k, v|
-      puts "\tServico #{k}: #{(v/tamanioInt).round(2)}"
-    }
   end
 
   private :calcularIntercambio
