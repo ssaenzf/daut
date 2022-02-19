@@ -1,4 +1,3 @@
-# Errores a tener en cuenta -> 1. Numero de socios del mes superior a 9999, 2. Que ponga el contador a 1 al comenzar nuevo mes
 require_relative 'Numero_socios_error'
 class Socio
   def initialize (nombre, nif, telefono)

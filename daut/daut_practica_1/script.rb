@@ -1,5 +1,7 @@
 $stdout.sync = true
 require_relative 'Banco'
+require_relative 'Buscador_servicios'
+
 b = Banco.new
 
 # Crear socios
@@ -64,5 +66,14 @@ puts "Criterio 1. Introduce el identificador del socio ofertante, si desea por e
 identificador = gets
 puts "Criterio 2. Introduce el codigo de la categoria, si desea por el contrario pasar al siguiente criterio de busqueda, pulse enter"
 codigo = gets
+# El formato debe ser lunes,martes,miercoles de 10 a 14
 puts "Criterio 3. Introduce el horario de la actividad"
 horario = gets
+listServicios = b.listServicios
+
+buscador_servicios = Buscador_servicios.new(identificador, codigo, horario, listServicios)
+puts buscador_servicios.busqueda()
+#buscador_servicios.numero_intercambios()
+#buscador_servicios.saldo()
+
+

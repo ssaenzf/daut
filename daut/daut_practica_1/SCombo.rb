@@ -30,7 +30,18 @@ class SCombo < Servicio
       end
     end
   end
-
+  
+  def conjunto_servicios_basicos()
+    servicios_basicos = Array.new()
+    @listServicios.each do |servicio|
+      if servicio.class.name == ('SBasico')
+        servicios_basicos.append(servicio)
+      else 
+        servicios_basicos.concat(servicio.conjunto_servicios_basicos())
+      end
+    end
+    return servicios_basicos
+  end
   def to_s()
     puts super.to_s + "Servicios: \n"
 
