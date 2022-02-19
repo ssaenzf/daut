@@ -21,5 +21,15 @@ class ActGrupal < Servicio
     @minimo.to_s + "\nDisponibilidad: \n" + "\tDía: " + @dia + "\n\tHora Inicio: " + @horaIni.to_s + "\n\tHora Fin: " +
      @horaFin.to_s + "\nColaboradores: " + nombres.to_s)
   end
+  def eql?(other)
+    return (self.class == other.class && @descripcion == other.descripcion && @socio.nombre == other.socio.nombre)
+  end
 
+  def hash
+    return [self.class, @descripcion, @socio.nombre].hash
+  end
+  
+  def ==(other)
+    return (other.class == self.class && other.descripcion == @descripcion && other.socio.nombre = @socio.nombre)
+  end
 end

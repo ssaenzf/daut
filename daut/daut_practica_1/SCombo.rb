@@ -54,6 +54,17 @@ class SCombo < Servicio
     end
     puts ""
   end
+  def eql?(other)
+    return (self.class == other.class && @descripcion == other.descripcion && @socio.nombre == other.socio.nombre)
+  end
 
+  def hash
+    return [self.class, @descripcion, @socio.nombre].hash
+  end
+  
+  def ==(other)
+    return (other.class == self.class && other.descripcion == @descripcion  && other.socio.nombre = @socio.nombre)
+  end
+  
   private :setServicios
 end

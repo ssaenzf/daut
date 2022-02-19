@@ -26,8 +26,8 @@ class Buscador_servicios
     if listServicios == nil
       raise Sin_servicios_busqueda_error, "No se le han pasado servicios sobre los que buscar al buscador de servicios\n"
     end
-    @identificador = identificador
-    @codigo = codigo
+    @identificador = identificador[0, identificador.length - 1] # Hay que quitar el ultimo valor correspondiente al del usuario al pulsar enter
+    @codigo = codigo[0, codigo.length - 1] # Hay que quitar el ultimo valor correspondiente al del usuario al pulsar enter
     @dias = dias
     @hora_ini = hora_ini
     @hora_fin = hora_fin
@@ -47,19 +47,19 @@ class Buscador_servicios
     # Busqueda de servicios por identificador dividido en dos tramos
     list_servicios_encontrados_criterio1 = Array.new
     if @identificador != nil
-      servicios_aux1 = @listServicios.select{|servicio| servicio.class.name == ('ActGrupal')}
       # Busqueda servicios de actividades grupales donde alguno de los colaboradores coincidan con el identificador
+      servicios_aux1 = @listServicios.select{|servicio| servicio.class.name == ('ActGrupal')}
       servicios_aux1.each do |servicio|
         colaboradores = servicio.colaboradores
         colaboradores.each do |colaborador|
-          if colaborador.nombre == @identificador
-            list_servicios_encontrados_criterio1.concat(servicio)
+          if colaborador.identificador == @identificador
+            list_servicios_encontrados_criterio1.append(servicio)
           end      
         end
       end
       # Busqueda de servicios donde el socio coincida con el identificador
-      servicios_aux1 = @listServicios.select{|servicio| servicio.socio == @identificador}
-      list_servicios_encontrados_criterio1.concat(servicios_aux1)
+      servicios_aux1 = @listServicios.select{|servicio| servicio.socio.identificador == @identificador}
+      list_servicios_encontrados_criterio1 = list_servicios_encontrados_criterio1.concat(servicios_aux1)
     else
       list_servicios_encontrados_criterio1 = @listServicios 
     end
@@ -69,12 +69,17 @@ class Buscador_servicios
     if @codigo != nil
       # Busqueda por codigo para Actividades grupales y servicios basicos
       servicios_aux1 = @listServicios.reject{|servicio| servicio.class.name == ('SCombo')}
-      servicios_aux1 = servicios_aux1.select{|servicio| servicio.categoria == @codigo}
+      servicios_aux1 = servicios_aux1.select{|servicio| servicio.categoria.codigo == @codigo}
       list_servicios_encontrados_criterio2.concat(servicios_aux1)
       # Busqueda por codigo para servicios combo
       servicios_aux1 = @listServicios.select{|servicio| servicio.class.name == ('SCombo')}
-      servicios_aux1.each do |servicio|
-        list_servicios_encontrados_criterio2.concat(servicio.conjunto_servicios_basicos())
+      servicios_aux1.each do |servicio_combo|
+        conjunto_servicios_basicos = servicio_combo.conjunto_servicios_basicos()
+        conjunto_servicios_basicos.each do |servicio_basico|
+          if servicio_basico.categoria.codigo == @codigo
+            list_servicios_encontrados_criterio2.append(servicio_combo)
+          end
+        end
       end 
     else
       list_servicios_encontrados_criterio2 = @listServicios 
@@ -105,6 +110,14 @@ class Buscador_servicios
       list_servicios_encontrados_criterio3 = @listServicios 
     end
     
+    puts "list_servicios_encontrados_criterio1"
+    puts list_servicios_encontrados_criterio1.union([]) # Correcto
+    
+    puts "list_servicios_encontrados_criterio2"
+    puts list_servicios_encontrados_criterio2.union([]) # Correcto 
+        
+    puts "list_servicios_encontrados_criterio3"
+    puts list_servicios_encontrados_criterio3.union([]) # Incorrecto
     # Interseccion de las 3 busquedas, ya que deben concidir los 3 criterios para la busqueda
     return list_servicios_encontrados_criterio1.intersection(list_servicios_encontrados_criterio2).intersection(list_servicios_encontrados_criterio3)
   end
