@@ -31,7 +31,7 @@ class SCombo < Servicio
     end
   end
   
-  def conjunto_servicios_basicos()
+  def conjunto_servicios_basicos
     servicios_basicos = Array.new()
     @listServicios.each do |servicio|
       if servicio.class.name == ('SBasico')
@@ -42,6 +42,7 @@ class SCombo < Servicio
     end
     return servicios_basicos
   end
+  
   def to_s()
     puts super.to_s + "Servicios: \n"
 

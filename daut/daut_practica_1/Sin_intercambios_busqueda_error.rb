@@ -1,0 +1,2 @@
+class Sin_intercambios_busqueda_error < StandardError
+end

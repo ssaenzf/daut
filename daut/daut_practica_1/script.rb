@@ -61,6 +61,10 @@ b.mostrarSaldos
 b.mostrarEstadisticas
 puts "\n"
 
+# Ejemplo paso argumentos =>
+# 2022_02_0001
+# CLA.i
+# Lunes,Miercoles de 16 a 18
 # Buscador de servicios -> Manejar error de que no introduzca ningún criterio
 puts "Criterio 1. Introduce el identificador del socio ofertante, si desea por el contrario pasar al siguiente criterio de busqueda, pulse enter"
 identificador = gets
@@ -70,10 +74,12 @@ codigo = gets
 puts "Criterio 3. Introduce el horario de la actividad"
 horario = gets
 listServicios = b.listServicios
+listIntercambios = b.listIntercambios
 
-buscador_servicios = Buscador_servicios.new(identificador, codigo, horario, listServicios)
-puts buscador_servicios.busqueda()
-#buscador_servicios.numero_intercambios()
-#buscador_servicios.saldo()
+buscador_servicios = Buscador_servicios.new(identificador, codigo, horario, listServicios, listIntercambios)
+puts 'Busqueda servicios por numero de intercambios'
+puts buscador_servicios.busqueda_numero_intercambios()
+puts 'Busqueda servicios por saldo' 
+puts buscador_servicios.busqueda_saldo()
 
 
