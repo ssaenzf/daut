@@ -7,16 +7,13 @@ class Libro
   def to_s
     puts "Id: #{@id}. Tipo: #{@tipo}"
   end
-end
-
-y = Libro.new
-for i in y.instance_variables
-  puts y.instance_variable_get(i)
+  
+  attr_accessor :id
 end
 
 def clonar_superficial (obj)
 
-  clon = obj.class.new
+  clon = obj.class.allocate
 
   for i in obj.instance_variables
     x = obj.instance_variable_get(i)
@@ -26,5 +23,6 @@ def clonar_superficial (obj)
   clon
 end
 
+y = Libro.new
 z = clonar_superficial(y)
-puts z.to_s
+z.to_s
