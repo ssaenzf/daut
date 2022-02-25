@@ -1,5 +1,3 @@
-# Error
-
 class Autor
   def initialize
     @nombre = 'Pepito'        # Clonado recursivo, debera clonar tambien las variables de objetos que contenga

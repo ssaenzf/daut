@@ -1,4 +1,4 @@
-class Libro
+class Perro
   def initialize
     @id = 0
     @tipo = "ij"
@@ -23,6 +23,7 @@ def clonar_superficial (obj)
   clon
 end
 
-y = Libro.new
+y = Perro.new
 z = clonar_superficial(y)
 z.to_s
+puts z.class.instance_methods
