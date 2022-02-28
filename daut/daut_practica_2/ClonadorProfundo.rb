@@ -81,4 +81,4 @@ end
 autor = Autor.new
 y = Libro.new(autor)
 z = clonar_profundo(y)
-puts z
+puts z.to_s
