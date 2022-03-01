@@ -1,9 +1,0 @@
-require_relative 'clonado_superficial'
-require_relative 'perro'
-#### PRUEBA CLONADO SUPERFICIAL ####
-y = Perro.new
-z = clonar_superficial(y)
-z.to_s
-
-
-
