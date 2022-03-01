@@ -77,11 +77,9 @@ class Dataset
       @registros.each do |r|
         if r.campos.has_key?(c.campo)
           _args = []
+          _args.append(r.campos[c.campo])
           if arity > 1
-            _args.append(r.campos[c.campo])
             _args += args[pos..(pos + (pos_arg-1))]
-          else
-            _args.append(r.campos[c.campo])
           end
           begin
             _regs.append(r) if c.applyFiltro(_args) == true
