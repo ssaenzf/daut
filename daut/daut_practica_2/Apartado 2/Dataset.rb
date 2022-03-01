@@ -1,6 +1,7 @@
 require_relative 'Filtro'
 require_relative 'Registro'
 require_relative 'Error_Filtro_NoExiste'
+require_relative 'Error_Filtro_Parametros'
 
 class Dataset
   def initialize
@@ -80,9 +81,13 @@ class Dataset
             _args.append(r.campos[c.campo])
             _args += args[pos..(pos + (pos_arg-1))]
           else
-            _args = r.campos[c.campo]
+            _args.append(r.campos[c.campo])
           end
-          _regs.append(r) if c.applyFiltro(_args) == true
+          begin
+            _regs.append(r) if c.applyFiltro(_args) == true
+          rescue Error_Filtro_Parametros => error
+            print error
+          end
         end
       end
       pos += pos_arg
