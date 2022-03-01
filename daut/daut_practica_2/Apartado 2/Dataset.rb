@@ -94,11 +94,11 @@ class Dataset
     regs
   end
 
-  def method_missing(method, *_args)
+  def method_missing(method, *args)
     regs = []
-    puts "Llamaste al método #{method}"
+    puts "Llamaste al método #{method} desde method_missing"
     begin
-      regs = buscar(method.to_s, _args)
+      regs = buscar(method.to_s, args)
     rescue Error_Filtro_NoExiste => error
       print error
     else
@@ -106,7 +106,7 @@ class Dataset
         @@accesos[method] += 1
         if @@accesos[method] >= 10
           self.class.send(:define_method, method) do |*param|
-            puts method.to_s
+            puts "Llamaste al método #{method}"
             begin
               return buscar(method.to_s, param)
             rescue Error_Filtro_NoExiste => error
