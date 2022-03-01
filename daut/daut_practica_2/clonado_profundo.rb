@@ -1,33 +1,7 @@
-class Autor
-  def initialize
-    @nombre = 'Pepito'        # Clonado recursivo, debera clonar tambien las variables de objetos que contenga
-  end
-  
-  def ==(other)
-    if (other.class == self.class)
-      return (other.nombre == @nombre)
-    end
-  end
-  attr_accessor :nombre
-end
+# Necesario archivo clonado profundo
+require_relative 'clonado_profundo'
 
-class Libro
-  def initialize(autor)
-    @id = 5
-    @tipo = "Western"
-    @autor = autor
-    @autor2 = autor # Varias variables de instancia referenciando un mismo objeto
-    @subcategorias = ["Comedia", "Drama", "Belica"] # Variable de instancia de tipo array
-    @protagonistas = {"El_bueno" => "Clint Eastwood", "El_feo" => "Eli Wallach"} # Variable de instancia de tipo hash
-  end
-  attr_accessor :id, :tipo, :autor, :autor2, :subcategorias, :protagonistas
-
-  def to_s
-    puts "Libro: id #{@id}, tipo #{@tipo}, autor #{@autor} autor2 #{@autor2} subcategorias #{@subcategorias.to_s} protagonistas #{@protagonistas.to_s}\n Autor: #{@autor.nombre}"
-  end
-end
-
-def clonar_profundo(obj)
+def clonado_profundo(obj)
   clon = obj.class.allocate
   obj.instance_variables.each do |name_instance_variable|
     variable_clonada = false
@@ -69,7 +43,7 @@ def clonar_profundo(obj)
       # Si no es un hash ni un array se comprueba si es un objeto
       if instance_variable.instance_variables.length > 0
         # Si es un objeto se llama recursivamente a clonar profundo
-        clon.instance_variable_set(name_instance_variable, clonar_profundo(instance_variable))
+        clon.instance_variable_set(name_instance_variable, clonado_profundo(instance_variable))
       else
         clon.instance_variable_set(name_instance_variable, instance_variable)
       end
@@ -77,8 +51,3 @@ def clonar_profundo(obj)
   end
   return clon
 end
-
-autor = Autor.new
-y = Libro.new(autor)
-z = clonar_profundo(y)
-puts z
