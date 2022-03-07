@@ -1,5 +1,7 @@
 require_relative 'Dataset'
 require_relative 'Registro'
+require_relative 'Error_Filtro_Existe'
+require_relative 'Error_Filtro_Sin_Condicion'
 
 dataset = Dataset.new
 # registros
@@ -64,3 +66,19 @@ dataset.buscar_rangoEdad(20, 30) # excepción: el filtro rangoEdad no existe
 
 puts "\n************ ACCESOS BÚSQUEDAS ************"
 dataset.mostrarAccesos
+
+puts "\n************ COMPROBACIÓN ERRORES FILTROS ************"
+begin
+  dataset.addFiltro("mayorEdad", "edad") { |edad| edad >= 18 }
+rescue Error_Filtro_Existe => error
+  print error
+end
+
+begin
+  dataset.addFiltro("rangoEdad", "edad")
+rescue Error_Filtro_Sin_Condicion => error
+  print error
+end
+
+puts "\n************ FILTROS ************"
+dataset.mostrarFiltros

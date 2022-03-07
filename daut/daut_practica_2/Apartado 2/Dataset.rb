@@ -2,6 +2,8 @@ require_relative 'Filtro'
 require_relative 'Registro'
 require_relative 'Error_Filtro_NoExiste'
 require_relative 'Error_Filtro_Parametros'
+require_relative 'Error_Filtro_Existe'
+require_relative 'Error_Filtro_Sin_Condicion'
 
 class Dataset
   def initialize
@@ -10,6 +12,7 @@ class Dataset
   end
 
   @@accesos = {}
+  @@listFiltros = []
 
   def addRegistro(reg)
     @registros.append(reg)
@@ -22,7 +25,16 @@ class Dataset
   end
 
   def addFiltro(nombre, campo, &bloque)
-    @filtros.append(Filtro.new(nombre, campo, bloque))
+   if block_given?
+    if @@listFiltros.index(nombre)
+      raise Error_Filtro_Existe.new(nombre), "El filtro #{nombre} ya existe\n"
+    else
+      @@listFiltros.append(nombre)
+      @filtros.append(Filtro.new(nombre, campo, bloque))
+    end
+   else
+     raise Error_Filtro_Sin_Condicion.new(nombre), "No se ha indicado condición para el filtro #{nombre}\n"
+   end
   end
 
   def delFiltro(filtro_nombre)
@@ -39,6 +51,7 @@ class Dataset
         if m.to_s.include? filtro_nombre
           self.class.remove_method m
           @@accesos.delete(m)
+          @@listFiltros.delete(filtro_nombre)
           puts "Método #{m} eliminado"
         end
       end
