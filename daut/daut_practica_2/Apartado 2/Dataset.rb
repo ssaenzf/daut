@@ -25,16 +25,16 @@ class Dataset
   end
 
   def addFiltro(nombre, campo, &bloque)
-   if block_given?
-    if @@listFiltros.index(nombre)
-      raise Error_Filtro_Existe.new(nombre), "El filtro #{nombre} ya existe\n"
+    if block_given?
+      if @@listFiltros.index(nombre)
+        raise Error_Filtro_Existe.new(nombre), "El filtro #{nombre} ya existe\n"
+      else
+        @@listFiltros.append(nombre)
+        @filtros.append(Filtro.new(nombre, campo, bloque))
+      end
     else
-      @@listFiltros.append(nombre)
-      @filtros.append(Filtro.new(nombre, campo, bloque))
+      raise Error_Filtro_Sin_Condicion.new(nombre), "No se ha indicado condición para el filtro #{nombre}\n"
     end
-   else
-     raise Error_Filtro_Sin_Condicion.new(nombre), "No se ha indicado condición para el filtro #{nombre}\n"
-   end
   end
 
   def delFiltro(filtro_nombre)
@@ -98,6 +98,8 @@ class Dataset
             _regs.append(r) if c.applyFiltro(_args) == true
           rescue Error_Filtro_Parametros => error
             print error
+          rescue ArgumentError => error
+            print "Argumentos incorrectos para el filtro #{c.nombre}\n"
           end
         end
       end
