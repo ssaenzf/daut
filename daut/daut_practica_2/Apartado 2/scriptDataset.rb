@@ -58,6 +58,7 @@ puts "\n************ COMPROBACIÓN ERRORES ************"
 # Errores
 dataset.buscar_rangoEdad_tieneMascota(20, 80) # excepción: Número incorrecto de parámetros para el filtro tieneMascota
 dataset.buscar_rangoEdad(20) # excepción: Número incorrecto de parámetros para el filtro rangoEdad (Un mensaje por cada registro)
+dataset.buscar_rangoEdad("20", 30) # excepción: Argumentos incorrectos para el filtro rangoEdad (Un mensaje por cada registro)
 dataset.buscar_tieneProfesion("escultor") # excepción: el filtro tieneProfesion no existe
 
 puts "\n************ COMPROBACIÓN ELIMINACIÓN FILTRO ************"
