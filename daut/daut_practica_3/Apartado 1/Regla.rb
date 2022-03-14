@@ -18,15 +18,15 @@ class Regla
   def addAccion(accion, args)
     case accion
     when :asignarValor
-      a = AccionAsignarValor.new(args[0], args[1])
+      a = AccionAsignarValor.new(accion, args[0], args[1])
     when :sumarValor
-      a = AccionSumarValor.new(args[0], args[1])
+      a = AccionSumarValor.new(accion, args[0], args[1])
     when :restarValor
-      a = AccionRestarValor.new(args[0], args[1])
+      a = AccionRestarValor.new(accion, args[0], args[1])
     when :crearAgente
-      a = AccionCrearAgente.new(args[0])
+      a = AccionCrearAgente.new(accion, args[0])
     when :moverseA
-      a = AccionMoverseA.new(args[0], args[1])
+      a = AccionMoverseA.new(accion, args[0], args[1])
     else
       return
     end
@@ -36,17 +36,28 @@ class Regla
   def addCondicion(cond, args)
     case cond
     when :agenteA
-      c = CondicionAgenteA.new(args[0], args[1])
+      c = CondicionAgenteA.new(cond, args[0], args[1])
     when :propiedadIgual
-      c = CondicionPropiedadIgual.new(args[0], args[1])
+      c = CondicionPropiedadIgual.new(cond, args[0], args[1])
     when :propiedadMayor
-      c = CondicionPropiedadMayor.new(args[0], args[1])
+      c = CondicionPropiedadMayor.new(cond, args[0], args[1])
     when :propiedadIgual
-      c = CondicionPropiedadMenor.new(args[0], args[1])
+      c = CondicionPropiedadMenor.new(cond, args[0], args[1])
     else
       return
     end
     @condiciones << c
   end
 
+  def to_s
+    puts "Regla: #{@nombre}"
+    puts "Acciones: \n"
+    (@acciones.each do |a|
+      a.to_s
+    end).to_s
+    puts "Condiciones: \n"
+    (@condiciones.each do |t|
+      t.to_s
+    end).to_s
+  end
 end

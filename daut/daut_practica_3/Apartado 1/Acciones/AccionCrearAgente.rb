@@ -1,5 +1,10 @@
 class AccionCrearAgente
-  def initialize(tipo)
+  def initialize(nombre, tipo)
+    @nombre = nombre
     @tipo = tipo
+  end
+
+  def to_s
+    puts "\tNombre: #{@nombre}. Tipo: #{@tipo}"
   end
 end
