@@ -1,5 +1,5 @@
 class AccionCrearAgente
-  def initialize(nombre, tipo)
+  def initialize(nombre, tipo, *propiedades)
     @nombre = nombre
     @tipo = tipo
   end

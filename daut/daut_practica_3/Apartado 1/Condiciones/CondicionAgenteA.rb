@@ -1,11 +1,14 @@
+require_relative '../Excepciones/Error_Distancias'
 class CondicionAgenteA
-  def initialize(nombre, tipo, distancia)
-    @nombre = nombre
+  def initialize(tipo, distancia)
     @tipo = tipo
+    if distancia.instance_of?(Integer) == false
+      raise Error_Distancias.new, "El valor #{distancia} no es correcto para indicar unidades de distancia\n"
+    end
     @distancia = distancia
   end
 
   def to_s
-    puts "\tNombre: #{@nombre}. Tipo: #{@tipo}. Distancia: #{@distancia}"
+    puts "\tTipo: #{@tipo}. Distancia: #{@distancia}"
   end
 end

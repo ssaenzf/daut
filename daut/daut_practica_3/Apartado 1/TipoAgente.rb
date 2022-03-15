@@ -1,5 +1,6 @@
 require_relative 'Propiedad'
 require_relative 'Excepciones/Error_Propiedad_Existe'
+require_relative 'Excepciones/Error_TipoDato'
 
 class TipoAgente
   def initialize(nombre)
@@ -20,7 +21,7 @@ class TipoAgente
     end
     false
   end
-  
+
   def findPropiedad(nombre)
     encontrado = false
     @propiedades.each do |p|
@@ -29,8 +30,42 @@ class TipoAgente
       end
     end
     unless encontrado
-      raise Error_Propiedad_NoExiste.new(nombre), 
+      raise Error_Propiedad_NoExiste.new(nombre),
             "La propiedad #{nombre} no existe para el tipo agente #{@nombre}\n"
+    end
+    encontrado
+  end
+
+  def comprobarTipoDato(propiedad, valor)
+    @propiedades.each do |p|
+      next unless p.nombre == propiedad
+
+      t = p.tipo
+      if t == :VARCHAR
+        if !valor.instance_of?(String) && !valor.instance_of?(Symbol)
+          raise Error_TipoDato.new, "El valor #{valor} no es correcto para la propiedad #{propiedad}, requiere un #{t}\n"
+        end
+      else
+        if !valor.instance_of?(Integer) && !valor.instance_of?(Float)
+          raise Error_TipoDato.new, "El valor #{valor} no es correcto para la propiedad #{propiedad}, requiere un #{t}\n"
+        end
+      end
+    end
+  end
+
+  def addAccion(accion)
+    regla = getRegla(num_reglas - 1)
+    regla.addAccion(accion)
+  end
+
+  def addCondicion(cond)
+    regla = getRegla(num_reglas - 1)
+    regla.addCondicion(cond)
+  end
+
+  def comprobarPropiedades(propiedad, valor)
+    if findPropiedad(propiedad)
+      comprobarTipoDato(propiedad, valor)
     end
   end
 

@@ -7,7 +7,14 @@ require_relative 'Excepciones/Error_TipoAgente_NoExiste'
 require_relative 'Excepciones/Error_TipoAgente_Existe'
 require_relative 'Excepciones/Error_Propiedad_Existe'
 require_relative 'Excepciones/Error_Propiedad_NoExiste'
-require_relative 'Acciones/Error_Direccion'
+require_relative 'Excepciones/Error_Distancias'
+require_relative 'Excepciones/Error_TipoDato'
+require_relative 'Excepciones/Error_Operacion'
+require_relative 'Acciones/AccionModificarValor'
+require_relative 'Acciones/AccionMoverseA'
+require_relative 'Acciones/AccionCrearAgente'
+require_relative 'Condiciones/CondicionAgenteA'
+require_relative 'Condiciones/CondicionPropiedad'
 
 class SistemaMultiAgenteDSL
 
@@ -42,38 +49,158 @@ class SistemaMultiAgenteDSL
   end
 
   def self.regla(nombre)
+    regla = Regla.new(nombre)
+    tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
+    tpAgente.addRegla(regla)
+    yield if block_given?
+  end
+
+  def self.accionMoverseNorte(unidades)
     begin
-      regla = Regla.new(nombre)
+      acc = AccionMoverseA.new(:norte, unidades)
       tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
-      tpAgente.addRegla(regla)
-      yield if block_given?
-    rescue Error_Direccion => error
+      tpAgente.addAccion(acc)
+    rescue Error_Distancias => error
       print error
     end
   end
 
-  def self.accion(nombre, *args)
-    tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
+  def self.accionMoverseSur(unidades)
     begin
-      tpAgente.findPropiedad(args[0])
-      regla = tpAgente.getRegla(tpAgente.num_reglas - 1)
-      regla.addAccion(nombre, args)
-    rescue Error_Propiedad_NoExiste => error
+      acc = AccionMoverseA.new(:sur, unidades)
+      tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
+      tpAgente.addAccion(acc)
+    rescue Error_Distancias => error
       print error
     end
   end
 
-  def self.condicion(nombre, *args)
-    tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
+  def self.accionMoverseEste(unidades)
     begin
-      if nombre != :crearAgente || nombre != :moverseA
-        tpAgente.findPropiedad(args[0])
-      else
-        tpAgente
+      acc = AccionMoverseA.new(:este, unidades)
+      tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
+      tpAgente.addAccion(acc)
+    rescue Error_Distancias => error
+      print error
+    end
+  end
+
+  def self.accionMoverseOeste(unidades)
+    begin
+      acc = AccionMoverseA.new(:oeste, unidades)
+      tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
+      tpAgente.addAccion(acc)
+    rescue Error_Distancias => error
+      print error
+    end
+  end
+
+  def self.accionMoverseAleatorio(unidades)
+    begin
+      acc = AccionMoverseA.new(:aleatorio, unidades)
+      tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
+      tpAgente.addAccion(acc)
+    rescue Error_Distancias => error
+      print error
+    end
+  end
+
+  def self.accionAsignarValor(propiedad, valor)
+    begin
+      tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
+      tpAgente.comprobarPropiedades(propiedad, valor)
+      acc = AccionModificarValor.new(:asignar, propiedad, valor)
+      tpAgente.addAccion(acc)
+    rescue Error_Propiedad_Existe => error
+      print error
+    rescue Error_TipoDato => error
+      print error
+    end
+  end
+
+  def self.accionSumarValor(propiedad, valor)
+    begin
+      tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
+      tpAgente.comprobarPropiedades(propiedad, valor)
+      acc = AccionModificarValor.new(:sumar, propiedad, valor)
+      tpAgente.addAccion(acc)
+    rescue Error_Propiedad_Existe => error
+      print error
+    rescue Error_TipoDato => error
+      print error
+    rescue Error_Operacion => error
+      print error
+    end
+  end
+
+  def self.accionRestarValor(propiedad, valor)
+    begin
+      tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
+      tpAgente.comprobarPropiedades(propiedad, valor)
+      acc = AccionModificarValor.new(:restar, propiedad, valor)
+      tpAgente.addAccion(acc)
+    rescue Error_Propiedad_Existe => error
+      print error
+    rescue Error_TipoDato => error
+      print error
+    rescue Error_Operacion => error
+      print error
+    end
+  end
+
+  def self.condicionAgenteA(tipo, distancia)
+    begin
+      if @sistema.getTipoAgente(tipo) != nil
+        tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
+        c = CondicionAgenteA.new(tipo, distancia)
+        tpAgente.addCondicion(c)
       end
-      regla = tpAgente.getRegla(tpAgente.num_reglas - 1)
-      regla.addCondicion(nombre, args)
-    rescue Error_Propiedad_NoExiste => error
+    rescue Error_TipoAgente_NoExiste => error
+      print error
+    rescue Error_Distancias => error
+      print error
+    end
+  end
+
+  def self.condicionPropiedadIgual(propiedad, valor)
+    begin
+      tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
+      tpAgente.comprobarPropiedades(propiedad, valor)
+      cond = CondicionPropiedad.new(:igual, propiedad, valor)
+      tpAgente.addCondicion(cond)
+    rescue Error_Propiedad_Existe => error
+      print error
+    rescue Error_TipoDato => error
+      print error
+    end
+  end
+
+  def self.condicionPropiedadMayor(propiedad, valor)
+    begin
+      tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
+      tpAgente.comprobarPropiedades(propiedad, valor)
+      cond = CondicionPropiedad.new(:mayor, propiedad, valor)
+      tpAgente.addCondicion(cond)
+    rescue Error_Propiedad_Existe => error
+      print error
+    rescue Error_TipoDato => error
+      print error
+    rescue Error_Operacion => error
+      print error
+    end
+  end
+
+  def self.condicionPropiedadMenor(propiedad, valor)
+    begin
+      tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
+      tpAgente.comprobarPropiedades(propiedad, valor)
+      cond = CondicionPropiedad.new(:menor, propiedad, valor)
+      tpAgente.addCondicion(cond)
+    rescue Error_Propiedad_Existe => error
+      print error
+    rescue Error_TipoDato => error
+      print error
+    rescue Error_Operacion => error
       print error
     end
   end

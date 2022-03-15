@@ -6,7 +6,9 @@ class SistemaMultiAgente < SistemaMultiAgenteDSL
       propiedad(:patas, :VARCHAR)
 
       regla(:Regla1) do
-        accion :asignarValor, :patas, 2
+        accionMoverseNorte 6
+        accionAsignarValor :patas, 3
+        condicionAgenteA :hormiga, 2
       end
     end
 
@@ -14,7 +16,7 @@ class SistemaMultiAgente < SistemaMultiAgenteDSL
       propiedad(:patas, :NUMBER)
 
       regla(:Regla1) do
-        accion :asignarValor, :patas, 2
+        accionAsignarValor :patas, 3
       end
     end
 
@@ -23,16 +25,13 @@ class SistemaMultiAgente < SistemaMultiAgenteDSL
       propiedad(:saludo, :VARCHAR).esOpcional
 
       regla(:Regla1) do
-        accion :asignarValor, :feronom, 2
-        accion :crearAgente, :perro
-        accion :moverseA, :norte, 4
-        accion :moverseA, :par, 4
-        condicion :agenteA, :perro, 5
+        accionSumarValor :feronoma, 3
+        accionRestarValor :saludo, "hola"
       end
 
       regla(:Regla2) do
-        accion :asignarValor, :saludo, "adios"
-        condicion :propiedadIgual, :saludo, "adios"
+        accionRestarValor :feronoma, 3
+        condicionPropiedadIgual :feronoma, 6
       end
     end
 
