@@ -148,6 +148,41 @@ class SistemaMultiAgenteDSL
     end
   end
 
+  def self.accionCrearAgente(nombre, tipo)
+    begin
+      tipoAgente = @sistema.getTipoAgente(tipo)
+      acc = AccionCrearAgente.new(nombre, tipoAgente)
+      tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
+      tpAgente.addAccion(acc)
+      yield if block_given?
+      acc.allPropiedades
+    rescue Error_TipoAgente_NoExiste => error
+      print error
+    rescue Error_Agente_Propiedades => error
+      r = tpAgente.getRegla(tpAgente.num_reglas - 1)
+      r.removeAccion(acc)
+      print error
+    end
+  end
+
+  def self.addValorPropiedad(prop, valor)
+    begin
+      tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
+      r = tpAgente.getRegla(tpAgente.num_reglas - 1)
+      acc = r.getAccion(r.num_acciones - 1)
+      tpA = acc.tipo
+      tpA.findPropiedad(prop)
+      tpA.comprobarTipoDato(prop, valor)
+      acc.addValorPropiedad(prop, valor)
+    rescue Error_Propiedad_NoExiste => error
+      r.removeAccion(acc)
+      print error
+    rescue Error_TipoDato => error
+      r.removeAccion(acc)
+      print error
+    end
+  end
+
   def self.condicionAgenteA(tipo, distancia)
     begin
       if @sistema.getTipoAgente(tipo) != nil

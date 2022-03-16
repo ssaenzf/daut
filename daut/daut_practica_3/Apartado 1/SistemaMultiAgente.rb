@@ -30,6 +30,12 @@ class SistemaMultiAgente < SistemaMultiAgenteDSL
       end
 
       regla(:Regla2) do
+        accionCrearAgente :perrox, :perro do
+          addValorPropiedad :patas, 5
+        end
+        accionCrearAgente :hx, :hormiga do
+          addValorPropiedad :patas, 5
+        end
         accionRestarValor :feronoma, 3
         condicionPropiedadIgual :feronoma, 6
       end

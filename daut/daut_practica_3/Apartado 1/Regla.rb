@@ -13,6 +13,18 @@ class Regla
     @condiciones << cond
   end
 
+  def removeAccion(acc)
+    @acciones.delete(acc)
+  end
+
+  def num_acciones
+    @acciones.size
+  end
+
+  def getAccion(pos)
+    @acciones[pos]
+  end
+
   def to_s
     puts "Regla: #{@nombre}"
     puts "Acciones: \n"
