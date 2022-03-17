@@ -9,7 +9,7 @@ class Agente
     @_y = 0
     @nombre = nombre
     @listProp = tipoAgente.propiedades
-    @tipoAgente = tipoAgente.nombre
+    @tipoAgente = tipoAgente
     @propiedades = Hash.new
     setPropiedades(tipoAgente)
     @reglas = tipoAgente.getReglas
@@ -44,8 +44,19 @@ class Agente
     true
   end
 
+  def getValor(propiedad)
+    @propiedades[propiedad]
+  end
+
+  def setCoordenadas(x, y)
+    @_x = x
+    @_y = y
+  end
+
   def to_s
     puts "Agente: #{@nombre}"
     puts "Propiedades: #{@propiedades.to_s}"
   end
+
+  attr_reader :nombre, :tipoAgente, :reglas, :propiedades, :_x, :_y
 end

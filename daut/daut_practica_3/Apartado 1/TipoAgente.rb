@@ -4,6 +4,7 @@ require_relative 'Excepciones/Error_TipoDato'
 
 class TipoAgente
   def initialize(nombre)
+
     @nombre = nombre
     @propiedades = []
     @reglas = []
@@ -86,7 +87,7 @@ class TipoAgente
   end
 
   def to_s
-    puts "Tipos Agente: #{@nombre}"
+    puts "Tipo Agente: #{@nombre}"
     puts "Propiedades: \n"
     (@propiedades.each do |p|
       p.to_s

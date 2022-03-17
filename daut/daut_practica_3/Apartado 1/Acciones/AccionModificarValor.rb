@@ -15,4 +15,6 @@ class AccionModificarValor
   def to_s
     puts "\tOperacion: #{@operacion}. Propiedad: #{@propiedad}. Valor: #{@valor}"
   end
+
+  attr_reader :valor, :operacion, :propiedad
 end

@@ -12,4 +12,6 @@ class AccionMoverseA
   def to_s
     puts "\tDireccion: #{@direccion}. Desplazamiento: #{@desplazamiento}"
   end
+
+  attr_reader :desplazamiento, :direccion
 end

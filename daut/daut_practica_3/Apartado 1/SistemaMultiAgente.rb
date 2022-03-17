@@ -8,7 +8,7 @@ class SistemaMultiAgente < SistemaMultiAgenteDSL
       regla(:Regla1) do
         accionMoverseNorte 6
         accionAsignarValor :patas, 3
-        condicionAgenteA :hormiga, 2
+        condicionAgenteA :perro, 2
       end
     end
 
@@ -51,9 +51,17 @@ class SistemaMultiAgente < SistemaMultiAgenteDSL
     agente :hormiga2, :hormiga do
       setPropiedadValor :saludo, "hola"
     end
+    agente :hormiga1, :hormiga do
+      setPropiedadValor :feronoma, 4
+      setPropiedadValor :saludo, "hola"
+    end
     agente :gato1, :gato
   end
 end
 
 s = SistemaMultiAgente.getSistema
+puts "\n************* SISTEMA MULTI-AGENTE *************"
 s.to_s
+
+puts "\n************* SIMULACIÓN *************"
+s.simular(4, 4)

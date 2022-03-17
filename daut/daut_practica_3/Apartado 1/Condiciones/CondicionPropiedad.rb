@@ -14,4 +14,6 @@ class CondicionPropiedad
   def to_s
     puts "\tOperación: #{@operacion}. Propiedad: #{@propiedad}. Valor: #{@valor}"
   end
+
+  attr_reader :valor, :propiedad, :operacion
 end

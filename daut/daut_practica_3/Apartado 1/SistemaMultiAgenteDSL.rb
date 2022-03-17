@@ -242,11 +242,14 @@ class SistemaMultiAgenteDSL
 
   def self.agente(nombre, tipo)
     begin
+      @sistema.findAgenteNombre(nombre)
       tipoAgente = @sistema.getTipoAgente(tipo)
       a = Agente.new(nombre, tipoAgente)
       @sistema.addAgente(a)
       yield if block_given?
       a.allPropiedades
+    rescue Error_NombreAgente_Existe => error
+      print error
     rescue Error_TipoAgente_NoExiste => error
       print error
     rescue Error_Agente_Propiedades => error
@@ -264,11 +267,15 @@ class SistemaMultiAgenteDSL
     end
   end
 
+  def self.simular(tamanio, pasos)
+    @sistema.simular(tamanio, pasos)
+  end
+
   def self.getSistema
     @sistema
   end
 
-  def mostrar
+  def self.mostrar
     @sistema.to_s
   end
 

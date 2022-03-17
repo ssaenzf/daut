@@ -11,4 +11,6 @@ class CondicionAgenteA
   def to_s
     puts "\tTipo: #{@tipo}. Distancia: #{@distancia}"
   end
+
+  attr_reader :tipo, :distancia
 end

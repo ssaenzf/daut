@@ -37,5 +37,5 @@ class AccionCrearAgente
     puts "\tCrearAgente. Nombre: #{@nombre}. Tipo: #{@tipo.nombre}"
   end
 
-  attr_reader :tipo, :propiedades
+  attr_reader :tipo, :propiedades, :nombre
 end

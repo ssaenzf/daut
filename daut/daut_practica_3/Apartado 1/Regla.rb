@@ -21,6 +21,10 @@ class Regla
     @acciones.size
   end
 
+  def num_condiciones
+    @condiciones.size
+  end
+
   def getAccion(pos)
     @acciones[pos]
   end
@@ -36,4 +40,6 @@ class Regla
       t.to_s
     end).to_s
   end
+
+  attr_reader :condiciones, :acciones
 end
