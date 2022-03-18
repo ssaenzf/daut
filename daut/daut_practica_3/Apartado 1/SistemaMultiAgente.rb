@@ -3,21 +3,30 @@ class SistemaMultiAgente < SistemaMultiAgenteDSL
   sistema(:Sistema1) do
     tipoAgente(:perro) do
       propiedad(:patas, :NUMBER)
-      propiedad(:patas, :VARCHAR)
+      propiedad(:patas, :VARCHAR) # Error, propiedad ya existe
 
       regla(:Regla1) do
         accionMoverseNorte 6
-        accionAsignarValor :patas, 3
+        accionSumarValor :patas, 2
         condicionAgenteA :perro, 2
       end
+
+      regla(:Regla2) do
+        accionMoverseEste 1
+        accionAsignarValor :patas, 6
+        condicionPropiedadIgual :patas, 2
+      end
+
+      regla(:Regla3) do
+        accionMoverseNorte 3
+        accionRestarValor :patas, 2
+        condicionPropiedadMayor :patas, 2
+      end
+
     end
 
-    tipoAgente(:perro) do
+    tipoAgente(:perro) do # Error, tipo agente ya existe
       propiedad(:patas, :NUMBER)
-
-      regla(:Regla1) do
-        accionAsignarValor :patas, 3
-      end
     end
 
     tipoAgente(:hormiga) do
@@ -25,15 +34,15 @@ class SistemaMultiAgente < SistemaMultiAgenteDSL
       propiedad(:saludo, :VARCHAR).esOpcional
 
       regla(:Regla1) do
-        accionSumarValor :feronoma, 3
-        accionRestarValor :saludo, "hola"
+        accionSumarValor :feronoma, 2
+        accionRestarValor :saludo, "hola" # Error, resta de un dato string
       end
 
       regla(:Regla2) do
         accionCrearAgente :perrox, :perro do
           addValorPropiedad :patas, 5
         end
-        accionCrearAgente :hx, :hormiga do
+        accionCrearAgente :hx, :hormiga do # Error, la propiedad patas no existe para hormiga
           addValorPropiedad :patas, 5
         end
         accionRestarValor :feronoma, 3
@@ -44,14 +53,20 @@ class SistemaMultiAgente < SistemaMultiAgenteDSL
     agente :perro1, :perro do
       setPropiedadValor :patas, 4
     end
+
+    agente :perro2, :perro do
+      setPropiedadValor :patas, 2
+    end
+
     agente :hormiga1, :hormiga do
       setPropiedadValor :feronoma, 4
       setPropiedadValor :saludo, "hola"
     end
-    agente :hormiga2, :hormiga do
+
+    agente :hormiga2, :hormiga do # Error, no se ha asignado valor a todas la propiedades obligatorias
       setPropiedadValor :saludo, "hola"
     end
-    agente :hormiga1, :hormiga do
+    agente :hormiga1, :hormiga do # Error, agente ya existe
       setPropiedadValor :feronoma, 4
       setPropiedadValor :saludo, "hola"
     end
@@ -59,9 +74,12 @@ class SistemaMultiAgente < SistemaMultiAgenteDSL
   end
 end
 
-s = SistemaMultiAgente.getSistema
 puts "\n************* SISTEMA MULTI-AGENTE *************"
-s.to_s
+SistemaMultiAgente.mostrar
+
+puts "\n"
+SistemaMultiAgente.simular(1, 4) # Error, tamaño insuficiente
+SistemaMultiAgente.simular(4, 0) # Error, pasos insuficientes
 
 puts "\n************* SIMULACIÓN *************"
-s.simular(4, 4)
+SistemaMultiAgente.simular(4, 4)

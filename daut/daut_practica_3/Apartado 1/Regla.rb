@@ -41,5 +41,5 @@ class Regla
     end).to_s
   end
 
-  attr_reader :condiciones, :acciones
+  attr_reader :condiciones, :acciones, :nombre
 end

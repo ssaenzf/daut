@@ -25,9 +25,12 @@ puts a[0, 0]
 puts a
 puts a.to_a.map(&:inspect)
 
-puts 4%4
+puts rand(2)
 
-puts -200.abs
+a = Array.new
+a.length
+
+puts a.class
 
 
 # Crea un nuevo fichero, y escribe

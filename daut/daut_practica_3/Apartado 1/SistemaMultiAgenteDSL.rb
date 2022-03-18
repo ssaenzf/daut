@@ -10,6 +10,8 @@ require_relative 'Excepciones/Error_Propiedad_NoExiste'
 require_relative 'Excepciones/Error_Distancias'
 require_relative 'Excepciones/Error_TipoDato'
 require_relative 'Excepciones/Error_Operacion'
+require_relative 'Excepciones/Error_Simulacion'
+require_relative 'Excepciones/Error_Regla_Existe'
 require_relative 'Acciones/AccionModificarValor'
 require_relative 'Acciones/AccionMoverseA'
 require_relative 'Acciones/AccionCrearAgente'
@@ -49,10 +51,16 @@ class SistemaMultiAgenteDSL
   end
 
   def self.regla(nombre)
-    regla = Regla.new(nombre)
-    tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
-    tpAgente.addRegla(regla)
-    yield if block_given?
+    begin
+      tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
+      tpAgente.reglaExiste(nombre)
+      regla = Regla.new(nombre)
+      tpAgente.addRegla(regla)
+      yield if block_given?
+    rescue Error_Regla_Existe => error
+      print error
+    end
+
   end
 
   def self.accionMoverseNorte(unidades)
@@ -268,7 +276,11 @@ class SistemaMultiAgenteDSL
   end
 
   def self.simular(tamanio, pasos)
-    @sistema.simular(tamanio, pasos)
+    begin
+      @sistema.simular(tamanio, pasos)
+    rescue Error_Simulacion => error
+      print error
+    end
   end
 
   def self.getSistema

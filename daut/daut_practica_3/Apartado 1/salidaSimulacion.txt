@@ -1,3 +1,23 @@
 Paso 0
-Agente perro1 -> Posición: [0, 0]
-Agente hormiga1 -> Posición: [0, 2]
+Agente perro1 -> Posición: [2, 1]
+Agente perro2 -> Posición: [2, 1]
+Agente hormiga1 -> Posición: [1, 1]
+Paso 1
+Agente perro1 -> Posición: [3, 1]
+Agente perro2 -> Posición: [2, 2]
+Agente hormiga1 -> Posición: [1, 1]
+Paso 2
+Agente perro1 -> Posición: [3, 2]
+Agente perro2 -> Posición: [3, 2]
+Agente hormiga1 -> Posición: [1, 1]
+Agente perrox -> Posición: [1, 0]
+Paso 3
+Agente perro1 -> Posición: [0, 2]
+Agente perro2 -> Posición: [0, 2]
+Agente hormiga1 -> Posición: [1, 1]
+Agente perrox -> Posición: [2, 0]
+Paso 4
+Agente perro1 -> Posición: [1, 2]
+Agente perro2 -> Posición: [0, 3]
+Agente hormiga1 -> Posición: [1, 1]
+Agente perrox -> Posición: [2, 0]

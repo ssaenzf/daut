@@ -3,7 +3,6 @@ require_relative 'Excepciones/Error_TipoAgente_NoExiste'
 require_relative 'Excepciones/Error_TipoAgente_Existe'
 require_relative 'Excepciones/Error_Agente_Propiedades'
 require_relative 'Excepciones/Error_NombreAgente_Existe'
-require_relative 'Excepciones/Error_Simulacion'
 require_relative 'Agente'
 require_relative 'Regla'
 require_relative 'Condiciones/CondicionAgenteA'
@@ -11,12 +10,14 @@ require_relative 'Condiciones/CondicionPropiedad'
 require_relative 'Acciones/AccionCrearAgente'
 require_relative 'Acciones/AccionMoverseA'
 require_relative 'Acciones/AccionModificarValor'
+require 'matrix'
 
 class Sistema
   def initialize(nombre)
     @nombre = nombre
     @tiposAgentes = []
     @agentes = []
+    @mapa
   end
 
   def addTipoAgente(tpAgente)
@@ -59,9 +60,10 @@ class Sistema
   end
 
   def simular(tamanio, pasos)
-    raise Error_Simulacion.new, "Error, el tamaño #{tamanio} es incorrecto para realizar la simulación\n" if tamanio*tamanio <= num_agentes
-    raise Error_Simulacion.new, "Error, número de pasos insuficiente para realizar la simulación\n" if pasos == 0
-
+    if tamanio*tamanio <= num_agentes
+      puts 'Tamaño pequeño'
+    end
+    @mapa = Matrix.zero(tamanio)
     @tamanio_mapa = tamanio
 
     @agentes.each do |a|
@@ -70,11 +72,9 @@ class Sistema
     #Posiciones iniciales
     saveInfo(0)
 
-    puts 'Inicio simulación'
     i = 0
     reglas_disp = true
     while i < pasos && reglas_disp
-      puts 'Paso ' + (i+1).to_s
       @agentes.each do |a|
         reglasApl = getReglasApl(a)
         reglas_disp = false if reglasApl.empty?
@@ -86,14 +86,13 @@ class Sistema
       saveInfo(i + 1)
       i += 1
     end
-    puts 'No hay reglas para aplicar' if !reglas_disp
     puts 'Fin simulación'
   end
 
   def getReglasApl(a)
     reglas = []
     a.reglas.each do |r|
-      reglas << r if r.num_condiciones.zero?
+      reglas << r if r.num_condiciones == 0
       r.condiciones.each do |c|
         if isAplicable(a, c)
           reglas << r
@@ -102,13 +101,20 @@ class Sistema
     end
     reglas
   end
-  
+
   def colocarAgente(a)
-    row = rand(@tamanio_mapa)
-    col = rand(@tamanio_mapa)
-    a.setCoordenadas(row, col)
+    pos_ok = false
+    until pos_ok do
+      row = rand(@tamanio_mapa)
+      col = rand(@tamanio_mapa)
+      if @mapa[row, col] == 0
+        @mapa[row, col] = a
+        a.setCoordenadas(row, col)
+        pos_ok = true
+      end
+    end
   end
-  
+
   def isAplicable(agente, condicion)
     cond_ok = false
     if condicion.instance_of? CondicionAgenteA
@@ -120,47 +126,67 @@ class Sistema
       #este
       if (distancia + y_a) >= @tamanio_mapa
         y_nuevo = (y_a + distancia)%@tamanio_mapa
-        cond_ok = true if agenteInPos(x_a, y_nuevo, tipo)
+        if @mapa[x_a, y_nuevo] != 0
+          cond_ok = true if @mapa[x_a, y_nuevo].tipoAgente.nombre == tipo
+        end
       else
-        cond_ok = true if agenteInPos(x_a, (distancia + y_a), tipo)
+        if @mapa[x_a, (distancia + y_a)] != 0
+          cond_ok = true if @mapa[x_a, (distancia + y_a)].tipoAgente.nombre == tipo
+        end
       end
 
       #sur
       if (distancia + x_a) >= @tamanio_mapa
         x_nuevo = (x_a + distancia)%@tamanio_mapa
-        cond_ok = true if agenteInPos(x_nuevo, y_a, tipo)
+        if @mapa[x_nuevo, y_a] != 0
+          cond_ok = true if @mapa[x_nuevo, y_a].tipoAgente.nombre == tipo
+        end
       else
-        cond_ok = true if agenteInPos((distancia + x_a), y_a, tipo)
+        if @mapa[(distancia + x_a), y_a] != 0
+          cond_ok = true if @mapa[(distancia + x_a), y_a].tipoAgente.nombre == tipo
+        end
       end
 
       #oeste
-      if (y_a - distancia).negative?
+      if (y_a - distancia) < 0
         if (y_a - distancia).abs < @tamanio_mapa
           y_nuevo = @tamanio_mapa - (y_a - distancia).abs
-          cond_ok = true if agenteInPos(x_a, y_nuevo, tipo)
+          if @mapa[x_a, y_nuevo] != 0
+            cond_ok = true if @mapa[x_a, y_nuevo].tipoAgente.nombre == tipo
+          end
         else
           abs = (y_a - distancia).abs
           y_nuevo = abs%@tamanio_mapa
-          cond_ok = true if agenteInPos(x_a, y_nuevo, tipo)
+          if @mapa[x_a, y_nuevo] != 0
+            cond_ok = true if @mapa[x_a, y_nuevo].tipoAgente.nombre == tipo
+          end
         end
       else
         y_nuevo = y_a - distancia
-        cond_ok = true if agenteInPos(x_a, y_nuevo, tipo)
+        if @mapa[x_a, y_nuevo] != 0
+          cond_ok = true if @mapa[x_a, y_nuevo].tipoAgente.nombre == tipo
+        end
       end
 
       #norte
-      if (x_a - distancia).negative?
+      if (x_a - distancia) < 0
         if (x_a - distancia).abs < @tamanio_mapa
           x_nuevo = @tamanio_mapa - (x_a - distancia).abs
-          cond_ok = true if agenteInPos(x_nuevo, y_a, tipo)
+          if @mapa[x_nuevo, y_a] != 0
+            cond_ok = true if @mapa[x_nuevo, y_a].tipoAgente.nombre == tipo
+          end
         else
           abs = (x_a - distancia).abs
           x_nuevo = abs%@tamanio_mapa
-          cond_ok = true if agenteInPos(x_nuevo, y_a, tipo)
+          if @mapa[x_nuevo, y_a] != 0
+            cond_ok = true if @mapa[x_nuevo, y_a].tipoAgente.nombre == tipo
+          end
         end
       else
         x_nuevo = x_a - distancia
-        cond_ok = true if agenteInPos(x_nuevo, y_a, tipo)
+        if @mapa[x_nuevo, y_a] != 0
+          cond_ok = true if @mapa[x_nuevo, y_a].tipoAgente.nombre == tipo
+        end
       end
 
     else
@@ -170,34 +196,22 @@ class Sistema
 
       valorA = agente.getValor(propiedad)
       cond_ok = case operacion
-      when :igual
-        (valor == valorA)
-      when :mayor
-        (valorA > valor)
-      else
-        (valorA < valor)
+                when :igual
+                  (valor == valorA)
+                when :mayor
+                  (valor > valorA)
+                else
+                  (valor < valorA)
                 end
     end
     cond_ok
   end
 
-  def agenteInPos(x, y, tipo)
-    agente_ok = false
-    @agentes.each do |a|
-      x_a = a._x
-      y_a = a._y
-      tipo_a = a.tipoAgente.nombre
-      agente_ok = true if x_a == x && y_a == y && tipo_a == tipo
-    end
-    agente_ok
-  end
-
   def applyAccion(reglas, agente)
     regla_seleccionada = rand(reglas.length)
     regla = reglas[regla_seleccionada]
-    puts 'Ejecutando regla ' + regla.nombre.to_s + ' para el agente ' + agente.nombre.to_s
+
     regla.acciones.each do |a|
-      puts 'Aplicando acción ' + a.class.to_s + ' para el agente ' + agente.nombre.to_s
       if a.instance_of? AccionCrearAgente
         nombre = a.nombre
         tipo = a.tipo
@@ -247,57 +261,101 @@ class Sistema
       #este
       if (distancia + y_a) >= @tamanio_mapa
         y_nuevo = (y_a + distancia)%@tamanio_mapa
-        agente.setCoordenadas(x_a, y_nuevo)
+        if @mapa[x_a, y_nuevo] == 0
+          @mapa[x_a, y_nuevo] = agente
+          @mapa[x_a, y_a] = 0
+          agente.setCoordenadas(x_a, y_nuevo)
+        end
       else
-        agente.setCoordenadas(x_a, (distancia + y_a))
+        if @mapa[x_a, (distancia + y_a)] == 0
+          @mapa[x_a, (distancia + y_a)] = agente
+          @mapa[x_a, y_a] = 0
+          agente.setCoordenadas(x_a, (distancia + y_a))
+        end
       end
     elsif direccion == :sur
       #sur
       if (distancia + x_a) >= @tamanio_mapa
         x_nuevo = (x_a + distancia)%@tamanio_mapa
-        agente.setCoordenadas(x_nuevo, y_a)
+        if @mapa[x_nuevo, y_a] == 0
+          @mapa[x_nuevo, y_a] = agente
+          @mapa[x_a, y_a] = 0
+          agente.setCoordenadas(x_nuevo, y_a)
+        end
       else
-        agente.setCoordenadas((distancia + x_a), y_a)
+        if @mapa[(distancia + x_a), y_a] == 0
+          @mapa[(distancia + x_a), y_a] = agente
+          @mapa[x_a, y_a] = 0
+          agente.setCoordenadas((distancia + x_a), y_a)
+        end
       end
     elsif direccion == :oeste
       #oeste
-      if (y_a - distancia).negative?
+      if (y_a - distancia) < 0
         if (y_a - distancia).abs < @tamanio_mapa
           y_nuevo = @tamanio_mapa - (y_a - distancia).abs
-          agente.setCoordenadas(x_a, y_nuevo)
+          if @mapa[x_a, y_nuevo] == 0
+            @mapa[x_a, y_nuevo] = agente
+            @mapa[x_a, y_a] = 0
+            agente.setCoordenadas(x_a, y_nuevo)
+          end
         else
           abs = (y_a - distancia).abs
           y_nuevo = abs%@tamanio_mapa
-          agente.setCoordenadas(x_a, y_nuevo)
+          if @mapa[x_a, y_nuevo] == 0
+            @mapa[x_a, y_nuevo] = agente
+            @mapa[x_a, y_a] = 0
+            agente.setCoordenadas(x_a, y_nuevo)
+          end
         end
       else
         y_nuevo = y_a - distancia
-        agente.setCoordenadas(x_a, y_nuevo)
+        if @mapa[x_a, y_nuevo] == 0
+          @mapa[x_a, y_nuevo] = agente
+          @mapa[x_a, y_a] = 0
+          agente.setCoordenadas(x_a, y_nuevo)
+        end
       end
     else
       #norte
-      if (x_a - distancia).negative?
+      if (x_a - distancia) < 0
         if (x_a - distancia).abs < @tamanio_mapa
           x_nuevo = @tamanio_mapa - (x_a - distancia).abs
-          agente.setCoordenadas(x_nuevo, y_a)
+          if @mapa[x_nuevo, y_a] == 0
+            @mapa[x_nuevo, y_a] = agente
+            @mapa[x_a, y_a] = 0
+            agente.setCoordenadas(x_nuevo, y_a)
+          end
         else
           abs = (x_a - distancia).abs
           x_nuevo = abs%@tamanio_mapa
-          agente.setCoordenadas(x_nuevo, y_a)
+          if @mapa[x_nuevo, y_a] == 0
+            @mapa[x_nuevo, y_a] = agente
+            @mapa[x_a, y_a] = 0
+            agente.setCoordenadas(x_nuevo, y_a)
+          end
         end
       else
         x_nuevo = x_a - distancia
-        agente.setCoordenadas(x_nuevo, y_a)
+        if @mapa[x_nuevo, y_a] == 0
+          @mapa[x_nuevo, y_a] = agente
+          @mapa[x_a, y_a] = 0
+          agente.setCoordenadas(x_nuevo, y_a)
+        end
       end
     end
   end
 
+  def showMapa
+    puts @mapa.to_a.map(&:inspect)
+  end
+
   def saveInfo(paso)
-    modo = if paso.zero?
-    'w'
-    else
-    'a'
-    end
+    modo = if paso == 0
+             'w'
+           else
+             'a'
+           end
     File.open('salidaSimulacion.txt', modo) do |f|
       f.puts "Paso #{paso}"
       @agentes.each do |a|
@@ -335,3 +393,4 @@ class Sistema
     end).to_s
   end
 end
+

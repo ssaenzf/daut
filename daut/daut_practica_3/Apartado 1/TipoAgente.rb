@@ -1,6 +1,7 @@
 require_relative 'Propiedad'
 require_relative 'Excepciones/Error_Propiedad_Existe'
 require_relative 'Excepciones/Error_TipoDato'
+require_relative 'Excepciones/Error_Regla_Existe'
 
 class TipoAgente
   def initialize(nombre)
@@ -72,6 +73,14 @@ class TipoAgente
 
   def addRegla(regla)
     @reglas << regla
+  end
+
+  def reglaExiste(nombre)
+    @reglas.each do |r|
+      if r.nombre == nombre
+        raise Error_Regla_Existe.new, "Error, la regla #{nombre} ya existe\n"
+      end
+    end
   end
 
   def getRegla(pos)
