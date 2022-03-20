@@ -156,10 +156,10 @@ class SistemaMultiAgenteDSL
     end
   end
 
-  def self.accionCrearAgente(nombre, tipo)
+  def self.accionCrearAgente(tipo)
     begin
       tipoAgente = @sistema.getTipoAgente(tipo)
-      acc = AccionCrearAgente.new(nombre, tipoAgente)
+      acc = AccionCrearAgente.new(tipoAgente)
       tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
       tpAgente.addAccion(acc)
       yield if block_given?

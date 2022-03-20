@@ -17,6 +17,7 @@ class Sistema
     @nombre = nombre
     @tiposAgentes = []
     @agentes = []
+    @@num_agente_crear = 1
   end
 
   def addTipoAgente(tpAgente)
@@ -66,7 +67,9 @@ class Sistema
 
     @agentes.each do |a|
       colocarAgente(a)
+      puts "Agente: #{a.nombre}. Posición inicial: [#{a._x}, #{a._y}]"
     end
+
     #Posiciones iniciales
     saveInfo(0)
 
@@ -96,6 +99,7 @@ class Sistema
       reglas << r if r.num_condiciones.zero?
       r.condiciones.each do |c|
         if isAplicable(a, c)
+          puts "Regla: #{r.nombre} aplicable para agente #{a.nombre}"
           reglas << r
         end
       end
@@ -197,12 +201,12 @@ class Sistema
     regla = reglas[regla_seleccionada]
     puts 'Ejecutando regla ' + regla.nombre.to_s + ' para el agente ' + agente.nombre.to_s
     regla.acciones.each do |a|
-      puts 'Aplicando acción ' + a.class.to_s + ' para el agente ' + agente.nombre.to_s
       if a.instance_of? AccionCrearAgente
-        nombre = a.nombre
+        puts 'Aplicando acción AccionCrearAgente para el agente ' + agente.nombre.to_s
         tipo = a.tipo
         propiedades = a.propiedades
-
+        nombre = "tipo_" + tipo.nombre.to_s + @@num_agente_crear.to_s
+        @@num_agente_crear += 1
         new_a = Agente.new(nombre, tipo)
         propiedades.each do |key, value|
           new_a.setPropiedadValor(key, value)
@@ -214,15 +218,20 @@ class Sistema
         propiedad = a.propiedad
         operacion = a.operacion
 
+        puts 'Aplicando acción AccionModificarValor para el agente ' + agente.nombre.to_s
+        puts "-> " + operacion.to_s + " " + valor.to_s + " a " + propiedad.to_s
+
         case operacion
         when :restar
           v = agente.getValor(propiedad)
           new_v = v - valor
           agente.setPropiedadValor(propiedad, new_v)
+          puts "-> Nuevo valor: #{new_v}"
         when :sumar
           v = agente.getValor(propiedad)
           new_v = v + valor
           agente.setPropiedadValor(propiedad, new_v)
+          puts "-> Nuevo valor: #{new_v}"
         else
           agente.setPropiedadValor(propiedad, valor)
         end
@@ -238,26 +247,34 @@ class Sistema
     distancia = acc.desplazamiento
     direccion = acc.direccion
 
+    puts 'Aplicando acción AccionMoverseA para el agente ' + agente.nombre.to_s
+
     if direccion == :aleatorio
       direcciones = [:norte, :sur, :este, :oeste]
       direccion = direcciones[rand(direcciones.size)]
     end
+
+    puts "-> " + direccion.to_s + " " + distancia.to_s + " unidades "
 
     if direccion == :este
       #este
       if (distancia + y_a) >= @tamanio_mapa
         y_nuevo = (y_a + distancia)%@tamanio_mapa
         agente.setCoordenadas(x_a, y_nuevo)
+        puts "-> Inicial: [#{x_a}, #{y_a}]. Final: [#{x_a}, #{y_nuevo}]"
       else
         agente.setCoordenadas(x_a, (distancia + y_a))
       end
+      puts "-> Inicial: [#{x_a}, #{y_a}]. Final: [#{x_a}, #{(distancia + y_a)}]"
     elsif direccion == :sur
       #sur
       if (distancia + x_a) >= @tamanio_mapa
         x_nuevo = (x_a + distancia)%@tamanio_mapa
         agente.setCoordenadas(x_nuevo, y_a)
+        puts "-> Inicial: [#{x_a}, #{y_a}]. Final: [#{x_nuevo}, #{y_a}]"
       else
         agente.setCoordenadas((distancia + x_a), y_a)
+        puts "-> Inicial: [#{x_a}, #{y_a}]. Final: [#{(distancia + x_a)}, #{y_a}]"
       end
     elsif direccion == :oeste
       #oeste
@@ -265,14 +282,21 @@ class Sistema
         if (y_a - distancia).abs < @tamanio_mapa
           y_nuevo = @tamanio_mapa - (y_a - distancia).abs
           agente.setCoordenadas(x_a, y_nuevo)
+          puts "-> Inicial: [#{x_a}, #{y_a}]. Final: [#{x_a}, #{y_nuevo}]"
         else
           abs = (y_a - distancia).abs
-          y_nuevo = abs%@tamanio_mapa
+          y_nuevo = if (y_a % 2 == 0 && distancia % 2 != 0) || (y_a % 2 != 0 && distancia % 2 == 0)
+                      (abs + 2)%@tamanio_mapa
+                    else
+                      abs%@tamanio_mapa
+                    end
           agente.setCoordenadas(x_a, y_nuevo)
+          puts "-> Inicial: [#{x_a}, #{y_a}]. Final: [#{y_a}, #{y_nuevo}]"
         end
       else
         y_nuevo = y_a - distancia
         agente.setCoordenadas(x_a, y_nuevo)
+        puts "-> Inicial: [#{x_a}, #{y_a}]. Final: [#{x_a}, #{y_nuevo}]"
       end
     else
       #norte
@@ -280,14 +304,21 @@ class Sistema
         if (x_a - distancia).abs < @tamanio_mapa
           x_nuevo = @tamanio_mapa - (x_a - distancia).abs
           agente.setCoordenadas(x_nuevo, y_a)
+          puts "-> Inicial: [#{x_a}, #{y_a}]. Final: [#{x_nuevo}, #{y_a}]"
         else
           abs = (x_a - distancia).abs
-          x_nuevo = abs%@tamanio_mapa
+          x_nuevo = if (x_a % 2 == 0 && distancia % 2 != 0) || (x_a % 2 != 0 && distancia % 2 == 0)
+            (abs + 2)%@tamanio_mapa
+          else 
+            abs%@tamanio_mapa
+                    end
           agente.setCoordenadas(x_nuevo, y_a)
+          puts "-> Inicial: [#{x_a}, #{y_a}]. Final: [#{x_nuevo}, #{y_a}]"
         end
       else
         x_nuevo = x_a - distancia
         agente.setCoordenadas(x_nuevo, y_a)
+        puts "-> Inicial: [#{x_a}, #{y_a}]. Final: [#{x_nuevo}, #{y_a}]"
       end
     end
   end

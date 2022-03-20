@@ -1,8 +1,7 @@
 require_relative '../Excepciones/Error_Agente_Propiedades'
 
 class AccionCrearAgente
-  def initialize(nombre, tipo)
-    @nombre = nombre
+  def initialize(tipo)
     @tipo = tipo
     @propiedades = Hash.new
   end
@@ -28,14 +27,14 @@ class AccionCrearAgente
 
     unless estado
       raise Error_Agente_Propiedades.new(@tipo),
-            "La/s propiedad/es #{no_asignadas.to_s} obligatorias del agente #{@nombre} no les han sido asignado un valor\n"
+            "La/s propiedad/es #{no_asignadas.to_s} obligatorias del agente no les han sido asignado un valor\n"
     end
     true
   end
 
   def to_s
-    puts "\tCrearAgente. Nombre: #{@nombre}. Tipo: #{@tipo.nombre}"
+    puts "\tCrearAgente. Tipo: #{@tipo.nombre}"
   end
 
-  attr_reader :tipo, :propiedades, :nombre
+  attr_reader :tipo, :propiedades
 end

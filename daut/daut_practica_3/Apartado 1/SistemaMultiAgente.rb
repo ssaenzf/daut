@@ -39,10 +39,10 @@ class SistemaMultiAgente < SistemaMultiAgenteDSL
       end
 
       regla(:Regla2) do
-        accionCrearAgente :perrox, :perro do
+        accionCrearAgente :perro do
           addValorPropiedad :patas, 5
         end
-        accionCrearAgente :hx, :hormiga do # Error, la propiedad patas no existe para hormiga
+        accionCrearAgente :hormiga do # Error, la propiedad patas no existe para hormiga
           addValorPropiedad :patas, 5
         end
         accionRestarValor :feronoma, 3
