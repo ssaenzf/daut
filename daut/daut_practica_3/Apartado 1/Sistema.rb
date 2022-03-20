@@ -67,7 +67,6 @@ class Sistema
 
     @agentes.each do |a|
       colocarAgente(a)
-      puts "Agente: #{a.nombre}. Posición inicial: [#{a._x}, #{a._y}]"
     end
 
     #Posiciones iniciales
@@ -78,14 +77,16 @@ class Sistema
     reglas_disp = true
     while i < pasos && reglas_disp
       puts 'Paso ' + (i+1).to_s
+      mostrarPosicionesAct
+      r_disp = false
       @agentes.each do |a|
         reglasApl = getReglasApl(a)
-        reglas_disp = false if reglasApl.empty?
         if !reglasApl.empty?
           applyAccion(reglasApl, a)
-          reglas_disp = true
+          r_disp = true
         end
       end
+      reglas_disp = r_disp
       saveInfo(i + 1)
       i += 1
     end
@@ -93,10 +94,20 @@ class Sistema
     puts 'Fin simulación'
   end
 
+  def mostrarPosicionesAct
+    puts "* Posiciones iniciales *"
+    @agentes.each do |a|
+      puts "Agente: #{a.nombre}. Posición inicial: [#{a._x}, #{a._y}]"
+    end
+  end
+
   def getReglasApl(a)
     reglas = []
     a.reglas.each do |r|
-      reglas << r if r.num_condiciones.zero?
+      if r.num_condiciones.zero?
+        reglas << r
+        puts "Regla: #{r.nombre} aplicable para agente #{a.nombre}"
+      end
       r.condiciones.each do |c|
         if isAplicable(a, c)
           puts "Regla: #{r.nombre} aplicable para agente #{a.nombre}"
@@ -106,13 +117,13 @@ class Sistema
     end
     reglas
   end
-  
+
   def colocarAgente(a)
     row = rand(@tamanio_mapa)
     col = rand(@tamanio_mapa)
     a.setCoordenadas(row, col)
   end
-  
+
   def isAplicable(agente, condicion)
     cond_ok = false
     if condicion.instance_of? CondicionAgenteA
@@ -143,8 +154,13 @@ class Sistema
           y_nuevo = @tamanio_mapa - (y_a - distancia).abs
           cond_ok = true if agenteInPos(x_a, y_nuevo, tipo)
         else
-          abs = (y_a - distancia).abs
-          y_nuevo = abs%@tamanio_mapa
+          desplazamiento = distancia%@tamanio_mapa
+          if (y_a - desplazamiento) < @tamanio_mapa
+            abs = (y_a - desplazamiento).abs
+            y_nuevo = @tamanio_mapa - abs
+          else
+            y_nuevo = y_a - desplazamiento
+          end
           cond_ok = true if agenteInPos(x_a, y_nuevo, tipo)
         end
       else
@@ -158,8 +174,13 @@ class Sistema
           x_nuevo = @tamanio_mapa - (x_a - distancia).abs
           cond_ok = true if agenteInPos(x_nuevo, y_a, tipo)
         else
-          abs = (x_a - distancia).abs
-          x_nuevo = abs%@tamanio_mapa
+          desplazamiento = distancia%@tamanio_mapa
+          if (x_a - desplazamiento) < @tamanio_mapa
+            abs = (x_a - desplazamiento).abs
+            x_nuevo = @tamanio_mapa - abs
+          else
+            x_nuevo = y_a - desplazamiento
+          end
           cond_ok = true if agenteInPos(x_nuevo, y_a, tipo)
         end
       else
@@ -284,12 +305,13 @@ class Sistema
           agente.setCoordenadas(x_a, y_nuevo)
           puts "-> Inicial: [#{x_a}, #{y_a}]. Final: [#{x_a}, #{y_nuevo}]"
         else
-          abs = (y_a - distancia).abs
-          y_nuevo = if (y_a % 2 == 0 && distancia % 2 != 0) || (y_a % 2 != 0 && distancia % 2 == 0)
-                      (abs + 2)%@tamanio_mapa
-                    else
-                      abs%@tamanio_mapa
-                    end
+          desplazamiento = distancia%@tamanio_mapa
+          if (y_a - desplazamiento) < @tamanio_mapa
+            abs = (y_a - desplazamiento).abs
+            y_nuevo = @tamanio_mapa - abs
+          else
+            y_nuevo = y_a - desplazamiento
+          end
           agente.setCoordenadas(x_a, y_nuevo)
           puts "-> Inicial: [#{x_a}, #{y_a}]. Final: [#{y_a}, #{y_nuevo}]"
         end
@@ -306,12 +328,13 @@ class Sistema
           agente.setCoordenadas(x_nuevo, y_a)
           puts "-> Inicial: [#{x_a}, #{y_a}]. Final: [#{x_nuevo}, #{y_a}]"
         else
-          abs = (x_a - distancia).abs
-          x_nuevo = if (x_a % 2 == 0 && distancia % 2 != 0) || (x_a % 2 != 0 && distancia % 2 == 0)
-            (abs + 2)%@tamanio_mapa
-          else 
-            abs%@tamanio_mapa
-                    end
+          desplazamiento = distancia%@tamanio_mapa
+          if (x_a - desplazamiento) < @tamanio_mapa
+            abs = (x_a - desplazamiento).abs
+            x_nuevo = @tamanio_mapa - abs
+          else
+            x_nuevo = x_a - desplazamiento
+          end
           agente.setCoordenadas(x_nuevo, y_a)
           puts "-> Inicial: [#{x_a}, #{y_a}]. Final: [#{x_nuevo}, #{y_a}]"
         end

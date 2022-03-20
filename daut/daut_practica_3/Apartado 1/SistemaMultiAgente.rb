@@ -18,7 +18,7 @@ class SistemaMultiAgente < SistemaMultiAgenteDSL
       end
 
       regla(:Regla3) do
-        accionMoverseNorte 3
+        accionMoverseAleatorio 3
         accionRestarValor :patas, 2
         condicionPropiedadMayor :patas, 2
       end

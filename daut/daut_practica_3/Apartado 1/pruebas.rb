@@ -30,7 +30,7 @@ puts rand(2)
 a = Array.new
 a.length
 
-puts 7
+puts 9%5
 
 
 # Crea un nuevo fichero, y escribe
