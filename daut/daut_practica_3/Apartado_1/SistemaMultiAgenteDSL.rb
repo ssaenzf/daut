@@ -272,6 +272,9 @@ class SistemaMultiAgenteDSL
       agente.setPropiedadValor(propiedad, valor)
     rescue Error_Agente_Propiedad_NoExiste => error
       print error
+    rescue Error_TipoDato => error
+      @sistema.removeAgente(agente)
+      print error
     end
   end
 

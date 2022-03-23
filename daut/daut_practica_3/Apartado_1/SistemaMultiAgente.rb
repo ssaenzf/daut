@@ -43,7 +43,7 @@ class SistemaMultiAgente < SistemaMultiAgenteDSL
           addValorPropiedad :patas, 5
         end
         accionCrearAgente :hormiga do # Error, la propiedad patas no existe para hormiga
-          addValorPropiedad :patas, 5
+          addValorPropiedad :patas, 4
         end
         accionRestarValor :feronoma, 3
         condicionPropiedadIgual :feronoma, 6

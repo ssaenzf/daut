@@ -23,6 +23,7 @@ class Agente
 
   def setPropiedadValor(propiedad, valor)
     if @propiedades.key? propiedad
+      @tipoAgente.comprobarPropiedades(propiedad, valor)
       @propiedades[propiedad] = valor
     else
       raise Error_Agente_Propiedad_NoExiste.new(propiedad),
