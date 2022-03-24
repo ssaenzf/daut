@@ -57,6 +57,7 @@ class SistemaMultiAgenteDSL
       regla = Regla.new(nombre)
       tpAgente.addRegla(regla)
       yield if block_given?
+      tpAgente.removeRegla(regla) if regla.num_acciones == 0
     rescue Error_Regla_Existe => error
       print error
     end
@@ -67,9 +68,10 @@ class SistemaMultiAgenteDSL
     begin
       acc = AccionMoverseA.new(:norte, unidades)
       tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
-      tpAgente.addAccion(acc)
     rescue Error_Distancias => error
       print error
+    else
+      tpAgente.addAccion(acc)
     end
   end
 
@@ -77,9 +79,10 @@ class SistemaMultiAgenteDSL
     begin
       acc = AccionMoverseA.new(:sur, unidades)
       tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
-      tpAgente.addAccion(acc)
     rescue Error_Distancias => error
       print error
+    else
+      tpAgente.addAccion(acc)
     end
   end
 
@@ -87,9 +90,10 @@ class SistemaMultiAgenteDSL
     begin
       acc = AccionMoverseA.new(:este, unidades)
       tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
-      tpAgente.addAccion(acc)
     rescue Error_Distancias => error
       print error
+    else
+      tpAgente.addAccion(acc)
     end
   end
 
@@ -97,9 +101,10 @@ class SistemaMultiAgenteDSL
     begin
       acc = AccionMoverseA.new(:oeste, unidades)
       tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
-      tpAgente.addAccion(acc)
     rescue Error_Distancias => error
       print error
+    else
+      tpAgente.addAccion(acc)
     end
   end
 
@@ -107,9 +112,10 @@ class SistemaMultiAgenteDSL
     begin
       acc = AccionMoverseA.new(:aleatorio, unidades)
       tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
-      tpAgente.addAccion(acc)
     rescue Error_Distancias => error
       print error
+    else
+      tpAgente.addAccion(acc)
     end
   end
 

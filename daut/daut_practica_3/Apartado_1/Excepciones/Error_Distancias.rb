@@ -1,2 +1,2 @@
-class Error_AccionMoverseA < RuntimeError
+class Error_Distancias < RuntimeError
 end

@@ -95,6 +95,10 @@ class TipoAgente
     @reglas.size
   end
 
+  def removeRegla(regla)
+    @reglas.delete(regla)
+  end
+
   def to_s
     puts "Tipo Agente: #{@nombre}"
     puts "Propiedades: \n"
