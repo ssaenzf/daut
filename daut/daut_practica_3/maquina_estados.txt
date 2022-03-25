@@ -1,29 +1,36 @@
 @startuml
 hide empty description
-state Disponible
-state enMantenimiento
-state Seleccion {
-  state EsperandoSeleccion
-  state SeleccionBebida
-  state SeleccionDulzor
-  state SeleccionCompleta
-  EsperandoSeleccion --> [:SeleccionBebida, :SeleccionDulzor]
-  SeleccionBebida --> SeleccionCompleta
-SeleccionDulzor --> SeleccionCompleta
+State Disponible
+State enMantenimiento
+State Seleccion {
+  State EsperandoSeleccion
+  State SeleccionBebida
+  State SeleccionDulzor
+  State SeleccionCompleta
+  State bifurcacion1
+  State union1
+  EsperandoSeleccion --> bifurcacion1
+  bifurcacion1 --> SeleccionBebida
+  EsperandoSeleccion --> bifurcacion1
+  bifurcacion1 --> SeleccionDulzor
+  SeleccionBebida --> union1
+  union1 --> SeleccionCompleta
+  SeleccionDulzor --> union1
+  union1 --> SeleccionCompleta
   SeleccionCompleta --> Disponible
 }
-state Configuracion {
-  state ConSonido
-  state SinSonido
-  historico --> ConSonido
+State Configuracion {
+  State ConSonido
+  State SinSonido
+  [H] --> ConSonido
   ConSonido --> SinSonido
   SinSonido --> ConSonido
-  Disponible --> historico
+  Disponible --> [H]
 }
-[H] --> [H] : mantener
-[H] --> [H] : comprar
-[H] --> [H] : arreglar
-[H] --> [H] : retirar
-[H] --> [H] : cancelar
-[H] --> [H] : terminar
+EnMantenimiento : mantener
+Seleccion : comprar
+Disponible : arreglar
+final : retirar
+Disponible : cancelar
+Disponible : terminar
 @enduml

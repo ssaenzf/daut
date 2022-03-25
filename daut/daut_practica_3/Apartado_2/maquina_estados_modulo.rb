@@ -26,49 +26,126 @@ module MaquinaEstadosModulo
 			fichero.puts("hide empty description\n")
 		    for estado in @estados
 		    	if estado.class == EstadoSimple
-		    		fichero.puts("state #{estado.nombre}\n")
+		    		fichero.puts("State #{estado.nombre}\n")
 		    	elsif estado.class == EstadoCompuesto
 		    		estado.plant_uml(fichero, 0)
 		    	end
 		    end
+		    
 		    for transicion in @transiciones
-		    	string_transicion = ""
-				for origen in Array(transicion.origen)
-					for destino in Array(transicion.destino)
-						if (origen.class == EstadoFinal)
-							string_transicion += "[*] --> "
-						elsif origen.class == EstadoSimple or origen.class == EstadoCompuesto
-							if origen.inicial == true
-								string_transicion += "[*] --> "
+		    	if transicion.class != TransicionSimple
+		    		fichero.puts("State #{transicion.nombre}\n")
+		    	end
+		    end
+		    
+		    for transicion in @transiciones
+				for origen in Array(transicion.origen).flatten
+					for destino in Array(transicion.destino).flatten
+						# Busqueda estado origen y estado destino
+						estado_origen_clase = EstadoSimple
+						estado_destino_clase = EstadoSimple
+						estado_origen_inicial = false
+						estado_destino_inicial = false
+						if origen == '[*]'
+							estado_origen_clase = EstadoFinal
+						elsif origen == '[H]'
+							estado_origen_clase = EstadoHistorico
+						end
+						if destino == '[*]'
+							estado_destino_clase = EstadoFinal
+						elsif destino == '[H]'
+							estado_destino_clase = EstadoHistorico
+						end
+						for estado in @estados
+							if estado.class == EstadoSimple or estado.class == EstadoCompuesto	
+								if estado.nombre == origen
+									if estado.class == EstadoSimple or  estado.class == EstadoCompuesto
+										if estado.inicial == true
+											estado_origen_inicial = true
+										end
+									end
+									estado_origen_clase = estado.class
+								end
+								if estado.nombre == destino
+									if estado.class == EstadoSimple or  estado.class == EstadoCompuesto
+										if estado.inicial == true
+											estado_destino_inicial = true
+										end
+									end
+									estado_destino_clase = estado.class
+								end
+							end
+						end
+						string_transicion_origen = ""
+						if (estado_origen_clase == EstadoFinal)
+							if transicion.class != TransicionSimple
+								string_transicion_origen += "[*] --> #{transicion.nombre}\n"
 							else
-								string_transicion += "#{origen.nombre} --> "
+								string_transicion_origen += "[*] --> "
+							end
+						elsif (estado_origen_clase == EstadoSimple or estado_origen_clase == EstadoCompuesto)
+							if estado_origen_inicial == true
+								if transicion.class != TransicionSimple
+									string_transicion_origen += "[*] --> #{transicion.nombre}\n"
+								else
+									string_transicion_origen += "[*] --> "
+								end
+							else
+								if transicion.class != TransicionSimple
+									string_transicion_origen += "#{origen} --> #{transicion.nombre}\n"
+								else
+									string_transicion_origen += "#{origen} --> "
+								end
 							end
 						else
-							string_transicion += "[H] --> "
+							if transicion.class != TransicionSimple
+								string_transicion_origen += "[H] --> #{transicion.nombre}\n"
+							else
+								string_transicion_origen += "[H] --> "
+							end
 						end
-						if (destino.class == EstadoFinal)
-							string_transicion += "[*]"
+						if transicion.class != TransicionSimple
+							fichero.puts(string_transicion_origen)
+						else
+							string_transicion_destino = ""
+							string_transicion_destino += string_transicion_origen
+						end
+						string_transicion_destino = ""
+						if (estado_destino_clase == EstadoFinal)
+							if transicion.class != TransicionSimple
+								string_transicion_destino += "#{transicion.nombre} --> [*]"
+							else
+								string_transicion_destino += "[*]"
+							end
 							# Mirar si contiene evento
 							if transicion.hay_evento == true
-								string_transicion += " : #{transicion.accion.nombre_evento}\n"
-								fichero.puts(string_transicion)
+								string_transicion_destino += " : #{transicion.accion.nombre_evento}\n"
+								fichero.puts(string_transicion_destino)
 							else 
-								string_transicion += "\n"
-								fichero.puts(string_transicion)
+								string_transicion_destino += "\n"
+								fichero.puts(string_transicion_destino)
 							end
-						elsif destino.class == EstadoSimple or destino.class == EstadoCompuesto
-							string_transicion += "#{destino.nombre}"
+						elsif estado_destino_clase == EstadoSimple or estado_destino_clase == EstadoCompuesto
+							if transicion.class != TransicionSimple
+								string_transicion_destino += "#{transicion.nombre} --> #{destino}"
+							else
+								string_transicion_destino += "#{destino}"
+							end
 							if transicion.hay_evento == true
-								fichero.puts(string_transicion + " : #{transicion.accion.nombre_evento}\n")
+								fichero.puts(string_transicion_destino + " : #{transicion.accion.nombre_evento}\n")
 							else 
-								fichero.puts(string_transicion + "\n")
+								fichero.puts(string_transicion_destino + "\n")
 							end
 						else
-							string_transicion += "[H]"
+							if transicion.class != TransicionSimple
+								string_transicion_destino += "#{transicion.nombre} --> [H]"
+							else
+								string_transicion_destino += "[H]"
+							end
 							if transicion.hay_evento == true
-								fichero.puts(string_transicion + " : #{transicion.accion.nombre_evento}\n")
+								fichero.puts(string_transicion_destino + " : #{transicion.accion.nombre_evento}\n")
 							else 
-								fichero.puts(string_transicion + "\n")
+								fichero.puts(string_transicion_destino + "\n")
 							end
 						end
 					end
@@ -234,23 +311,37 @@ module MaquinaEstadosModulo
 		end
 		
 		def plant_uml(fichero, iteraciones)
-			fichero.puts("state #{@nombre} {\n")
+			fichero.puts("State #{@nombre} {\n")
 			iteraciones = iteraciones + 2
+			string_transicion = ""
+			t = 0
+			while t < iteraciones
+			    string_transicion += " "
+			    t = t + 1
+			end
+			
 			for estado in @estados
-				string_transicion = ""
-				t = 0
+		    	if estado.class == EstadoSimple
+		    		if estado.inicial == true
+		    			fichero.puts(string_transicion + "State [*]\n")
+		    		else
+		    			fichero.puts(string_transicion + "State #{estado.nombre}\n")
+		    		end
+		    	elsif estado.class == EstadoCompuesto
+		    		estado.plant_uml(fichero, iteraciones)
+		    	elsif estado.class == EstadoFinal
+		    		fichero.puts(string_transicion + "State [*]\n")
+		    	end
+		    end
+		    for transicion in @transiciones
+		    	t = 0
+		    	string_transicion = ""
 			    while t < iteraciones
 			    	string_transicion += " "
 			    	t = t + 1
 			    end
-		    	if estado.class == EstadoSimple
-		    		if estado.inicial == true
-		    			fichero.puts(string_transicion + "state [*]\n")
-		    		else
-		    			fichero.puts(string_transicion + "state #{estado.nombre}\n")
-		    		end
-		    	elsif estado.class == EstadoCompuesto
-		    		estado.plant_uml(fichero, iteraciones)
+			    if transicion.class != TransicionSimple
+		    		fichero.puts("#{string_transicion}State #{transicion.nombre}\n")
 		    	end
 		    end
 		    for transicion in @transiciones
@@ -260,36 +351,117 @@ module MaquinaEstadosModulo
 		    		string_transicion += " "
 		    		t = t + 1
 		    	end
-				for origen in Array(transicion.origen)
-					for destino in Array(transicion.destino)
-						if (origen.class == EstadoFinal)
-							string_transicion += "[*] --> "
-						elsif origen.class == EstadoSimple or origen.class == EstadoCompuesto
-							if origen.inicial == true
-								string_transicion += "[*] --> "
+				for origen in Array(transicion.origen).flatten
+					for destino in Array(transicion.destino).flatten
+						# Busqueda estado origen y estado destino
+						estado_origen_clase = EstadoSimple
+						estado_destino_clase = EstadoSimple
+						estado_origen_inicial = false
+						estado_destino_inicial = false
+						if origen == '[*]'
+							estado_origen_clase = EstadoFinal
+						elsif origen == :historico
+							estado_origen_clase = EstadoHistorico
+						end
+						if destino == '[*]'
+							estado_destino_clase = EstadoFinal
+						elsif destino == :historico
+							estado_destino_clase = EstadoHistorico
+						end
+						for estado in @estados
+							if estado.class == EstadoSimple or estado.class == EstadoCompuesto	
+								if estado.nombre == origen
+									if estado.class == EstadoSimple or  estado.class == EstadoCompuesto
+										if estado.inicial == true
+											estado_origen_inicial = true
+										end
+									end
+									estado_origen_clase = estado.class
+								end
+								if estado.nombre == destino
+									if estado.class == EstadoSimple or  estado.class == EstadoCompuesto
+										if estado.inicial == true
+											estado_destino_inicial = true
+										end
+									end
+									estado_destino_clase = estado.class
+								end
+							end
+						end
+						string_transicion_origen = string_transicion
+						if (estado_origen_clase == EstadoFinal)
+							if transicion.class != TransicionSimple
+								string_transicion_origen += "[*] --> #{transicion.nombre}\n"
+							else
+								string_transicion_origen += "[*] --> "
+							end
+						elsif estado_origen_clase == EstadoSimple or estado_origen_clase == EstadoCompuesto
+							if estado_origen_inicial == true
+								if transicion.class != TransicionSimple
+									string_transicion_origen += "[*] --> #{transicion.nombre}\n"
+								else
+									string_transicion_origen += "[*] --> "
+								end
+							else
+								if transicion.class != TransicionSimple
+									string_transicion_origen += "#{origen} --> #{transicion.nombre}\n"
+								else
+									string_transicion_origen += "#{origen} --> "
+								end
 							end
 						else
-							string_transicion += "#{origen} --> "
+							if transicion.class != TransicionSimple
+								string_transicion_origen += "[H] --> #{transicion.nombre}\n"
+							else
+								string_transicion_origen += "[H] --> "
+							end
 						end
-						if (destino.class == EstadoFinal)
-							string_transicion += "[*]"
+						if transicion.class != TransicionSimple
+							fichero.puts(string_transicion_origen)
+							string_transicion_destino = string_transicion
+						else
+							string_transicion_destino = ""
+							string_transicion_destino += string_transicion_origen
+						end
+						if (estado_destino_clase == EstadoFinal)
+							if transicion.class != TransicionSimple
+								string_transicion_destino += "#{transicion.nombre} --> [*]"
+							else
+								string_transicion_destino += "[*]"
+							end
 							# Mirar si contiene evento
 							if transicion.hay_evento == true
-								string_transicion += " : #{transicion.accion.nombre_evento}\n"
+								string_transicion_destino += " : #{transicion.accion.nombre_evento}\n"
+								fichero.puts(string_transicion_destino)
 							else 
-								string_transicion += "\n"
+								string_transicion_destino += "\n"
+								fichero.puts(string_transicion_destino)
+							end
+						elsif estado_destino_clase == EstadoSimple or estado_destino_clase == EstadoCompuesto
+							if transicion.class != TransicionSimple
+								string_transicion_destino += "#{transicion.nombre} --> #{destino}"
+							else
+								string_transicion_destino += "#{destino}"
+							end
+							if transicion.hay_evento == true
+								fichero.puts(string_transicion_destino + " : #{transicion.accion.nombre_evento}\n")
+							else 
+								fichero.puts(string_transicion_destino + "\n")
 							end
 						else
-							string_transicion += "#{destino}"
+							if transicion.class != TransicionSimple
+								string_transicion_destino += "#{transicion.nombre} --> [H]"
+							else
+								string_transicion_destino += "[H]"
+							end
 							if transicion.hay_evento == true
-								string_transicion += " : #{transicion.accion.nombre_evento}"
+								fichero.puts(string_transicion_destino + " : #{transicion.accion.nombre_evento}\n")
 							else 
-								string_transicion += "\n"
+								fichero.puts(string_transicion_destino + "\n")
 							end
 						end
 					end
 				end
-				fichero.puts(string_transicion)
 		    end
 		    fichero.puts("}\n")
 		end
@@ -463,6 +635,7 @@ module MaquinaEstadosModulo
 	
 	# Estado Historico
 	class EstadoHistorico
+		@nombre = "[H]"
 		def to_s()
 			puts "Estado historico\n"
 		end
@@ -496,10 +669,14 @@ module MaquinaEstadosModulo
 	end
 
 	class TransicionSimple 
+		@@numero = 0
 		def initialize (origen, destino)
 			@origen = origen
 			@destino = destino
 			@hay_evento = false
+			@@numero = @@numero + 1
+			@numero_asignado = @@numero
+			@nombre = "transicion#{@numero_asignado}"
 		end
 		def evento(nombre)
 			@accion = Evento.new(nombre)
@@ -512,14 +689,18 @@ module MaquinaEstadosModulo
 				@accion.to_s
 			end
 		end
-		attr_accessor :origen, :destino, :hay_evento, :accion
+		attr_accessor :origen, :destino, :hay_evento, :accion, :numero, :nombre
 	end
 
 	class Bifuracion 
+		@@numero = 0
 		def initialize (origen, *destinos)
 			@origen = origen
 			@destino = destinos
 			@hay_evento = false
+			@@numero = @@numero + 1
+			@numero_asignado = @@numero
+			@nombre = "bifurcacion#{@numero_asignado}"
 		end
 		def evento(nombre)
 			@accion = Evento.new(nombre)
@@ -532,14 +713,18 @@ module MaquinaEstadosModulo
 				@accion.to_s
 			end
 		end
-		attr_accessor :origen, :destino, :hay_evento, :accion
+		attr_accessor :origen, :destino, :hay_evento, :accion, :numero, :nombre
 	end
 
 	class Union 
+		@@numero = 0
 		def initialize (destino, *origenes)
 			@origen = origenes
 			@destino = destino
 			@hay_evento = false
+			@@numero = @@numero + 1
+			@numero_asignado = @@numero
+			@nombre = "union#{@numero_asignado}"
 		end
 		def evento(nombre)
 			@accion = Evento.new(nombre)
@@ -552,6 +737,6 @@ module MaquinaEstadosModulo
 				@accion.to_s
 			end
 		end
-		attr_accessor :origen, :destino, :hay_evento, :accion
+		attr_accessor :origen, :destino, :hay_evento, :accion, :numero, :nombre
 	end
 end
