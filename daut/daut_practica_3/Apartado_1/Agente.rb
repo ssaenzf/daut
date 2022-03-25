@@ -7,7 +7,7 @@ class Agente
   def initialize(nombre, tipoAgente)
     @_x = 0
     @_y = 0
-    @nombre = nombre
+    @nombre = nombre.to_s
     @listProp = tipoAgente.propiedades
     @tipoAgente = tipoAgente
     @propiedades = Hash.new
@@ -22,9 +22,9 @@ class Agente
   end
 
   def setPropiedadValor(propiedad, valor)
-    if @propiedades.key? propiedad
+    if @propiedades.key? propiedad.to_s
       @tipoAgente.comprobarPropiedades(propiedad, valor)
-      @propiedades[propiedad] = valor
+      @propiedades[propiedad.to_s] = valor
     else
       raise Error_Agente_Propiedad_NoExiste.new(propiedad),
             "No existe la propiedad #{propiedad} en el agente #{@nombre}. No se puede asignar el valor: #{valor}\n"

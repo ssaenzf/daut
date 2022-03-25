@@ -1,6 +1,6 @@
 class Propiedad
   def initialize(nombre, tipo)
-    @nombre = nombre
+    @nombre = nombre.to_s
     @tipo = tipo
     @opcional = false
   end

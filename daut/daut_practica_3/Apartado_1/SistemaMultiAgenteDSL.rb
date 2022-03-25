@@ -125,7 +125,7 @@ class SistemaMultiAgenteDSL
       tpAgente.comprobarPropiedades(propiedad, valor)
       acc = AccionModificarValor.new(:asignar, propiedad, valor)
       tpAgente.addAccion(acc)
-    rescue Error_Propiedad_Existe => error
+    rescue Error_Propiedad_NoExiste => error
       print error
     rescue Error_TipoDato => error
       print error
@@ -138,7 +138,7 @@ class SistemaMultiAgenteDSL
       tpAgente.comprobarPropiedades(propiedad, valor)
       acc = AccionModificarValor.new(:sumar, propiedad, valor)
       tpAgente.addAccion(acc)
-    rescue Error_Propiedad_Existe => error
+    rescue Error_Propiedad_NoExiste => error
       print error
     rescue Error_TipoDato => error
       print error
@@ -153,7 +153,7 @@ class SistemaMultiAgenteDSL
       tpAgente.comprobarPropiedades(propiedad, valor)
       acc = AccionModificarValor.new(:restar, propiedad, valor)
       tpAgente.addAccion(acc)
-    rescue Error_Propiedad_Existe => error
+    rescue Error_Propiedad_NoExiste => error
       print error
     rescue Error_TipoDato => error
       print error
@@ -176,25 +176,25 @@ class SistemaMultiAgenteDSL
       r = tpAgente.getRegla(tpAgente.num_reglas - 1)
       r.removeAccion(acc)
       print error
+    rescue Error_Propiedad_NoExiste => error
+      r = tpAgente.getRegla(tpAgente.num_reglas - 1)
+      r.removeAccion(acc)
+      print error
+    rescue Error_TipoDato => error
+      r = tpAgente.getRegla(tpAgente.num_reglas - 1)
+      r.removeAccion(acc)
+      print error
     end
   end
 
   def self.addValorPropiedad(prop, valor)
-    begin
-      tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
-      r = tpAgente.getRegla(tpAgente.num_reglas - 1)
-      acc = r.getAccion(r.num_acciones - 1)
-      tpA = acc.tipo
-      tpA.findPropiedad(prop)
-      tpA.comprobarTipoDato(prop, valor)
-      acc.addValorPropiedad(prop, valor)
-    rescue Error_Propiedad_NoExiste => error
-      r.removeAccion(acc)
-      print error
-    rescue Error_TipoDato => error
-      r.removeAccion(acc)
-      print error
-    end
+    tpAgente = @sistema.getTpAgente(@sistema.num_tpAgentes-1)
+    r = tpAgente.getRegla(tpAgente.num_reglas - 1)
+    acc = r.getAccion(r.num_acciones - 1)
+    tpA = acc.tipo
+    tpA.findPropiedad(prop)
+    tpA.comprobarTipoDato(prop, valor)
+    acc.addValorPropiedad(prop, valor)
   end
 
   def self.condicionAgenteA(tipo, distancia)
@@ -217,7 +217,7 @@ class SistemaMultiAgenteDSL
       tpAgente.comprobarPropiedades(propiedad, valor)
       cond = CondicionPropiedad.new(:igual, propiedad, valor)
       tpAgente.addCondicion(cond)
-    rescue Error_Propiedad_Existe => error
+    rescue Error_Propiedad_NoExiste => error
       print error
     rescue Error_TipoDato => error
       print error
@@ -230,7 +230,7 @@ class SistemaMultiAgenteDSL
       tpAgente.comprobarPropiedades(propiedad, valor)
       cond = CondicionPropiedad.new(:mayor, propiedad, valor)
       tpAgente.addCondicion(cond)
-    rescue Error_Propiedad_Existe => error
+    rescue Error_Propiedad_NoExiste => error
       print error
     rescue Error_TipoDato => error
       print error
@@ -245,7 +245,7 @@ class SistemaMultiAgenteDSL
       tpAgente.comprobarPropiedades(propiedad, valor)
       cond = CondicionPropiedad.new(:menor, propiedad, valor)
       tpAgente.addCondicion(cond)
-    rescue Error_Propiedad_Existe => error
+    rescue Error_Propiedad_NoExiste => error
       print error
     rescue Error_TipoDato => error
       print error
@@ -269,19 +269,18 @@ class SistemaMultiAgenteDSL
     rescue Error_Agente_Propiedades => error
       @sistema.removeAgente(a)
       print error
+    rescue Error_TipoDato => error
+      @sistema.removeAgente(a)
+      print error
+    rescue Error_Agente_Propiedad_NoExiste => error
+      @sistema.removeAgente(a)
+      print error
     end
   end
 
   def self.setPropiedadValor(propiedad, valor)
     agente = @sistema.getAgente(@sistema.num_agentes-1)
-    begin
-      agente.setPropiedadValor(propiedad, valor)
-    rescue Error_Agente_Propiedad_NoExiste => error
-      print error
-    rescue Error_TipoDato => error
-      @sistema.removeAgente(agente)
-      print error
-    end
+    agente.setPropiedadValor(propiedad, valor)
   end
 
   def self.simular(tamanio, pasos)

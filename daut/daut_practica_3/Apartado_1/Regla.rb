@@ -1,6 +1,6 @@
 class Regla
   def initialize(nombre)
-    @nombre = nombre
+    @nombre = nombre.to_s
     @acciones = []
     @condiciones = []
   end

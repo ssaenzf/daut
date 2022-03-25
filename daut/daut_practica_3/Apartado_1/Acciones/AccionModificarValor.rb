@@ -7,7 +7,7 @@ class AccionModificarValor
         raise Error_Operacion.new, "No se puede realizar la operación #{operacion} sobre #{valor}, ya que, es un #{valor.class}\n"
       end
     end
-    @propiedad = propiedad
+    @propiedad = propiedad.to_s
     @valor = valor
     @operacion = operacion
   end

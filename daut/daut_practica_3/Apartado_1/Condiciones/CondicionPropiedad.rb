@@ -7,7 +7,7 @@ class CondicionPropiedad
       end
     end
     @operacion = operacion
-    @propiedad = propiedad
+    @propiedad = propiedad.to_s
     @valor = valor
   end
 

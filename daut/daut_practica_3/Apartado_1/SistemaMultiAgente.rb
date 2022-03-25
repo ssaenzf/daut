@@ -3,7 +3,7 @@ class SistemaMultiAgente < SistemaMultiAgenteDSL
   sistema(:Sistema1) do
     tipoAgente(:perro) do
       propiedad(:patas, :NUMBER)
-      propiedad(:patas, :VARCHAR) # Error, propiedad ya existe
+      propiedad("patas", :VARCHAR) # Error, propiedad ya existe
 
       regla(:Regla1) do
         accionMoverseNorte 6
@@ -44,9 +44,10 @@ class SistemaMultiAgente < SistemaMultiAgenteDSL
         end
         accionCrearAgente :hormiga do # Error, la propiedad patas no existe para hormiga
           addValorPropiedad :patas, 4
+          addValorPropiedad :feronoma, 4
         end
         accionRestarValor :feronoma, 3
-        condicionPropiedadIgual :feronoma, 6
+        condicionPropiedadIgual :feronoma, 2
       end
     end
 
@@ -59,7 +60,7 @@ class SistemaMultiAgente < SistemaMultiAgenteDSL
     end
 
     agente :hormiga1, :hormiga do
-      setPropiedadValor :feronoma, 4
+      setPropiedadValor :feronoma, 2
       setPropiedadValor :saludo, "hola"
     end
 
@@ -70,7 +71,7 @@ class SistemaMultiAgente < SistemaMultiAgenteDSL
       setPropiedadValor :feronoma, 4
       setPropiedadValor :saludo, "hola"
     end
-    agente :gato1, :gato
+    agente :gato1, :gato # Error, tipo gato no existe
   end
 end
 

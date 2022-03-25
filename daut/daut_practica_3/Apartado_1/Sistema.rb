@@ -34,7 +34,7 @@ class Sistema
 
   def getTipoAgente(tipo)
     @tiposAgentes.each do |t|
-      if t.nombre == tipo
+      if t.nombre == tipo.to_s
         return t
       end
     end
@@ -43,7 +43,7 @@ class Sistema
 
   def findTipoAgente(nombre)
     @tiposAgentes.each do |t|
-      if t.nombre == nombre
+      if t.nombre == nombre.to_s
         raise Error_TipoAgente_Existe.new(nombre), "El tipo agente #{nombre} ya existe\n"
       end
     end
@@ -52,7 +52,7 @@ class Sistema
 
   def findAgenteNombre(nombre)
     @agentes.each do |a|
-      if a.nombre == nombre
+      if a.nombre == nombre.to_s
         raise Error_NombreAgente_Existe.new, "El agente con nombre #{nombre} ya existe\n"
       end
     end
@@ -218,6 +218,7 @@ class Sistema
       valorA = agente.getValor(propiedad)
       cond_ok = case operacion
       when :igual
+        valor = valor.to_s if valor.instance_of? Symbol
         (valor == valorA)
       when :mayor
         (valorA > valor)

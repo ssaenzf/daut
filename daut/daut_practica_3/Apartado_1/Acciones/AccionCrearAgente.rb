@@ -7,7 +7,7 @@ class AccionCrearAgente
   end
 
   def addValorPropiedad(prop, valor)
-    @propiedades[prop] = valor
+    @propiedades[prop.to_s] = valor
   end
 
   def allPropiedades
@@ -27,7 +27,7 @@ class AccionCrearAgente
 
     unless estado
       raise Error_Agente_Propiedades.new(@tipo),
-            "La/s propiedad/es #{no_asignadas.to_s} obligatorias del agente no les han sido asignado un valor\n"
+            "Error al crear accionCrearAgente. La/s propiedad/es #{no_asignadas.to_s} obligatorias del agente no les han sido asignado un valor\n"
     end
     true
   end

@@ -1,12 +1,13 @@
 require_relative 'Propiedad'
 require_relative 'Excepciones/Error_Propiedad_Existe'
+require_relative 'Excepciones/Error_Propiedad_NoExiste'
 require_relative 'Excepciones/Error_TipoDato'
 require_relative 'Excepciones/Error_Regla_Existe'
 
 class TipoAgente
   def initialize(nombre)
 
-    @nombre = nombre
+    @nombre = nombre.to_s
     @propiedades = []
     @reglas = []
   end
@@ -17,7 +18,7 @@ class TipoAgente
 
   def propiedadExists(nombre)
     @propiedades.each do |p|
-      if p.nombre == nombre
+      if p.nombre == nombre.to_s
         raise Error_Propiedad_Existe.new(nombre), "La propiedad #{nombre} ya existe para el tipo agente #{@nombre}\n"
       end
     end
@@ -27,7 +28,7 @@ class TipoAgente
   def findPropiedad(nombre)
     encontrado = false
     @propiedades.each do |p|
-      if p.nombre == nombre
+      if p.nombre == nombre || p.nombre == nombre.to_s
         encontrado = true
       end
     end
@@ -40,7 +41,7 @@ class TipoAgente
 
   def comprobarTipoDato(propiedad, valor)
     @propiedades.each do |p|
-      next unless p.nombre == propiedad
+      next unless p.nombre == propiedad || p.nombre == propiedad.to_s
 
       t = p.tipo
       if t == :VARCHAR
@@ -77,7 +78,7 @@ class TipoAgente
 
   def reglaExiste(nombre)
     @reglas.each do |r|
-      if r.nombre == nombre
+      if r.nombre == nombre.to_s
         raise Error_Regla_Existe.new, "Error, la regla #{nombre} ya existe\n"
       end
     end
