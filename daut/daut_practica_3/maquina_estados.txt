@@ -1,0 +1,29 @@
+@startuml
+hide empty description
+state Disponible
+state enMantenimiento
+state Seleccion {
+  state EsperandoSeleccion
+  state SeleccionBebida
+  state SeleccionDulzor
+  state SeleccionCompleta
+  EsperandoSeleccion --> [:SeleccionBebida, :SeleccionDulzor]
+  SeleccionBebida --> SeleccionCompleta
+SeleccionDulzor --> SeleccionCompleta
+  SeleccionCompleta --> Disponible
+}
+state Configuracion {
+  state ConSonido
+  state SinSonido
+  historico --> ConSonido
+  ConSonido --> SinSonido
+  SinSonido --> ConSonido
+  Disponible --> historico
+}
+[H] --> [H] : mantener
+[H] --> [H] : comprar
+[H] --> [H] : arreglar
+[H] --> [H] : retirar
+[H] --> [H] : cancelar
+[H] --> [H] : terminar
+@enduml

@@ -1,6 +1,5 @@
 require_relative 'maquina_estados_modulo'
 
-me = MaquinaEstadosModulo.maquinaEstados{}
 maquina_estados = MaquinaEstadosModulo.maquinaEstados {
     estado_simple :True, :Disponible
     estado_simple :enMantenimiento
@@ -20,7 +19,7 @@ maquina_estados = MaquinaEstadosModulo.maquinaEstados {
     estado_compuesto :Configuracion do
         estado_simple :ConSonido
         estado_simple :SinSonido
-        historico
+        estado_historico
         transicionSimple :historico, :ConSonido
         transicionSimple :ConSonido, :SinSonido do
             evento :cambiar
@@ -49,4 +48,10 @@ maquina_estados = MaquinaEstadosModulo.maquinaEstados {
         evento :terminar
     end
 }
+
+maquina_estados.to_s
+
+File.open("maquina_estados.txt", "w") do |file|
+	maquina_estados.plant_uml(file)
+end
 
