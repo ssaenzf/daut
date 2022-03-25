@@ -219,6 +219,7 @@ class Sistema
       cond_ok = case operacion
       when :igual
         valor = valor.to_s if valor.instance_of? Symbol
+        valorA = valorA.to_s if valorA.instance_of? Symbol
         (valor == valorA)
       when :mayor
         (valorA > valor)

@@ -61,11 +61,12 @@ class SistemaMultiAgente < SistemaMultiAgenteDSL
 
     agente :hormiga1, :hormiga do
       setPropiedadValor :feronoma, 2
-      setPropiedadValor :saludo, "hola"
+      setPropiedadValor :saludo, :hola
     end
 
     agente :hormiga2, :hormiga do # Error, no se ha asignado valor a todas la propiedades obligatorias
       setPropiedadValor :saludo, "hola"
+
     end
     agente :hormiga1, :hormiga do # Error, agente ya existe
       setPropiedadValor :feronoma, 4
