@@ -1,5 +1,9 @@
 package dasoft.introeclipse.wizard.handlers;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
@@ -10,7 +14,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import java.util.List;
 
 public class CuadroTextoUsuario extends TitleAreaDialog {
 
@@ -108,11 +111,21 @@ public class CuadroTextoUsuario extends TitleAreaDialog {
         return firstName;
     }
 
-    public List<String> getCarpetas() {
-        return lastName;
+    public Set<String>  getCarpetas() {
+    	Set<String> partes = new HashSet<String>();
+    	String[] parts = lastName.split(" ");
+    	for (String part : parts) {
+    		partes.add(part);
+    	}
+    	return partes;
     }
     
-    public List<String> getFicheros() {
-        return ficheros;
+    public Set<String>  getFicheros() {
+    	Set<String> partes = new HashSet<String>();
+    	String[] parts = ficheros.split(" ");
+    	for (String part : parts) {
+    		partes.add(part);
+    	}
+    	return partes;
     }
 }

@@ -9,5 +9,8 @@ public interface IWizardSource {
 	public Set <String> getCarpetasPredefinido();			// Carpetas con nombre predefinido
 	public Set <String> getFicherosConfigurable();			// Ficheros con nombre configurable
 	public Set <String> getCarpetasConfigurable();			// Carpetas con nombre configurable
-	public Map<String, String> getContenidoCarpeta();		// Para cada fichero cuál es su carpeta, y contenido donde se creará
+	public Map<String, String> getCarpetaFichero();			// Para cada fichero cuál es su carpeta
+	public Map<String, String> getContenidoFichero();		// Para cada fichero cuál sera su contenido
+	public Boolean validacionCarpeta(String carpeta);		// Función para validación nombre de la carpeta
+	public Boolean validacionFichero(String fichero);		// Función para validación nombre del fichero
 }	
