@@ -1,9 +1,5 @@
 package dasoft.introeclipse.wizard.handlers;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
@@ -14,6 +10,9 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CuadroTextoUsuario extends TitleAreaDialog {
 
@@ -32,8 +31,8 @@ public class CuadroTextoUsuario extends TitleAreaDialog {
     @Override
     public void create() {
         super.create();
-        setTitle("Cuadro de dialogo con el usuario");
-        setMessage("El usuario deberaintroducir el nombre del proyecto y el nombre de ficheros y carpetas configurables", IMessageProvider.INFORMATION);
+        setTitle("Cuadro de diálogo con el usuario");
+        setMessage("El usuario deberá introducir el nombre del proyecto, los nombre de ficheros y carpetas configurables (separados con espacios)", IMessageProvider.INFORMATION);
     }
 
     @Override
@@ -97,7 +96,7 @@ public class CuadroTextoUsuario extends TitleAreaDialog {
     private void saveInput() {
         firstName = txtFirstName.getText();
         lastName = lastNameText.getText();
-        ficheros = lastNameText.getText();
+        ficheros = ficherosText.getText();
 
     }
 
@@ -111,21 +110,19 @@ public class CuadroTextoUsuario extends TitleAreaDialog {
         return firstName;
     }
 
-    public Set<String>  getCarpetas() {
-    	Set<String> partes = new HashSet<String>();
-    	String[] parts = lastName.split(" ");
-    	for (String part : parts) {
-    		partes.add(part);
-    	}
-    	return partes;
+    public List<String> getCarpetas() {
+    	List<String> carpetas = new ArrayList<String>();
+    	String[] cs;
+    	cs = this.lastName.split(" ");
+    	for (String c: cs) carpetas.add(c);
+        return carpetas;
     }
     
-    public Set<String>  getFicheros() {
-    	Set<String> partes = new HashSet<String>();
-    	String[] parts = ficheros.split(" ");
-    	for (String part : parts) {
-    		partes.add(part);
-    	}
-    	return partes;
+    public List<String> getFicheros() {
+    	List<String> ficheros = new ArrayList<String>();
+    	String[] fs;
+    	fs = this.ficheros.split(" "); 
+    	for (String f: fs) ficheros.add(f);
+        return ficheros;
     }
 }
