@@ -31,7 +31,7 @@
                   commandId="dasoft.introeclipse.wizard.commands.wizard"
                   icon="icons/sample.png"
                   id="dasoft.introeclipse.wizard.toolbars.wizard"
-                  tooltip="Say hello world">
+                  tooltip="Crear nuevo proyecto">
             </command>
          </toolbar>
       </menuContribution>

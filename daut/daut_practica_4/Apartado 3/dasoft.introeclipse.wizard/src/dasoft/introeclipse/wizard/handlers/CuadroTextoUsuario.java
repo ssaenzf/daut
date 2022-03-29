@@ -31,7 +31,7 @@ public class CuadroTextoUsuario extends TitleAreaDialog {
     public void create() {
         super.create();
         setTitle("Cuadro de dialogo con el usuario");
-        setMessage("El usuario debera introducir el nombre del proyecto y el nombre de ficheros y carpetas configurables", IMessageProvider.INFORMATION);
+        setMessage("El usuario deberá introducir el nombre del proyecto y el nombre de ficheros y carpetas configurables (separdos por espacios)", IMessageProvider.INFORMATION);
     }
 
     @Override
