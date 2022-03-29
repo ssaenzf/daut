@@ -1,0 +1,2 @@
+Los nombres de los ficheros y carpetas configurables cuando se introduzcan deben estar separados por espacios
+Por defecto se crean en la carpeta raiz si no se especifico localización en la extension para estos.

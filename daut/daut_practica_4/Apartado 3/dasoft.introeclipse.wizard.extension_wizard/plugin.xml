@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="dasoft.introeclipse.wizard.wizardsource">
+      <WizardSource
+            class="dasoft.introeclipse.wizard.extension_wizard.WizardSource1"
+            name="WizardSource1">
+      </WizardSource>
+   </extension>
+
+</plugin>

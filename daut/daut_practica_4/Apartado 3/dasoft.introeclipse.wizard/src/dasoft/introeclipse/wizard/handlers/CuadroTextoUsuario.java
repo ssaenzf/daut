@@ -1,9 +1,7 @@
 package dasoft.introeclipse.wizard.handlers;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
@@ -33,7 +31,7 @@ public class CuadroTextoUsuario extends TitleAreaDialog {
     public void create() {
         super.create();
         setTitle("Cuadro de dialogo con el usuario");
-        setMessage("El usuario deberaintroducir el nombre del proyecto y el nombre de ficheros y carpetas configurables", IMessageProvider.INFORMATION);
+        setMessage("El usuario debera introducir el nombre del proyecto y el nombre de ficheros y carpetas configurables", IMessageProvider.INFORMATION);
     }
 
     @Override
@@ -115,7 +113,9 @@ public class CuadroTextoUsuario extends TitleAreaDialog {
     	Set<String> partes = new HashSet<String>();
     	String[] parts = lastName.split(" ");
     	for (String part : parts) {
-    		partes.add(part);
+    		if ((part != "") && (part != " ")) {
+    			partes.add(part);
+    		}
     	}
     	return partes;
     }
@@ -124,7 +124,9 @@ public class CuadroTextoUsuario extends TitleAreaDialog {
     	Set<String> partes = new HashSet<String>();
     	String[] parts = ficheros.split(" ");
     	for (String part : parts) {
-    		partes.add(part);
+    		if ((part != "") && (part != " ")) {
+    			partes.add(part);
+    		}
     	}
     	return partes;
     }

@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Extension_wizard
+Bundle-SymbolicName: extension_wizard;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: extension.wizard
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Require-Bundle: dasoft.introeclipse.wizard;bundle-version="1.0.0"
