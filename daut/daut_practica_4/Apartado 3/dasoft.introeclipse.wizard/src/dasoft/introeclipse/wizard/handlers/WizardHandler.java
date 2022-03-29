@@ -76,7 +76,13 @@ public class WizardHandler extends AbstractHandler {
 		IProgressMonitor monitor = new NullProgressMonitor();
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		// crear proyecto
-		IProject project = root.getProject(nombre_proyecto);
+		IProject project;
+		try {
+			project = root.getProject(nombre_proyecto);
+		} catch (Exception e) {
+			System.out.println("Error. No se ha indicado nombre para el proyecto.\n");
+			return null;
+		}
 		Set<String> ficheros_predefinido = new HashSet<String>();				// Ficheros con nombre predefinido
 		Set<String> carpetas_predefinido = new HashSet<String>();				// Carpetas con nombre predefinido
 		Set<String> ficheros_configurable =new HashSet<String>();				// Ficheros con nombre configurable
