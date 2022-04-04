@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="redes_transporte_publico" nsURI="redes_transporte_publico" nsPrefix="redes_transporte_publico">
+  <eClassifiers xsi:type="ecore:EClass" name="RedTransporte"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Metro"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Bus"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Tren"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Parada"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LineaTransporte"/>
+</ecore:EPackage>
