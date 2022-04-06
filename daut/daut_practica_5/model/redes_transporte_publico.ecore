@@ -11,11 +11,10 @@
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="RedTransporte">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="nonDuplicateLineas nonDuplicateParadas"/>
+      <details key="constraints" value="lineasParadasConsecutivasIguales"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="nonDuplicateLineas" value="&#xA;&#x9;&#x9;&#x9;linea->forAll(linea1, linea2 | &#xA;&#x9;&#x9;&#x9;&#x9;linea1 &lt;> linea2 implies ((linea1.codigo &lt;> linea2.codigo) and (linea1.oclIsTypeOf(linea2.oclType())))&#xA;&#x9;&#x9;&#x9;)"/>
-      <details key="nonDuplicateParadas" value="&#xA;&#x9;&#x9;&#x9;parada->forAll(parada1, parada2 | &#xA;&#x9;&#x9;&#x9;&#x9;parada1 &lt;> parada2 implies (parada1 &lt;> parada2)&#xA;&#x9;&#x9;&#x9;)"/>
+      <details key="lineasParadasConsecutivasIguales" value="&#xA;&#x9;&#x9;&#x9;linea->forAll(linea1, linea2 | &#xA;&#x9;&#x9;&#x9;&#x9;linea1.parada->forAll(par1|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;linea2.parada->forAll(par2|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(par1 = par2) implies (&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;linea2.parada->forAll(par3|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;linea1.parada->forAll(par4|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;par3 = par4 and (linea1.parada->indexOf(par4) = 1 + linea1.parada->indexOf(par1)) and (linea2.parada->indexOf(par2) = 1 + linea2.parada->indexOf(par3))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;implies(linea1.siquienteParadaDistancia[par1] = linea2.siquienteParadaDistancia[par2])&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="linea" lowerBound="1" upperBound="-1"
         eType="#//Linea" containment="true"/>
@@ -24,16 +23,23 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Metro" eSuperTypes="#//Linea">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="nonDuplicateColores"/>
+      <details key="constraints" value="nonDuplicateColores nonDuplicateCodigoMetro"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="nonDuplicateColores" value="&#xA;&#x9;&#x9;&#x9;color->forAll(color1, color2 | &#xA;&#x9;&#x9;&#x9;&#x9;color1 &lt;> color2 implies (color1 &lt;> color2)&#xA;&#x9;&#x9;&#x9;)"/>
+      <details key="nonDuplicateColores" value="&#xA;&#x9;&#x9;Metro.allInstances()->isUnique(color)"/>
+      <details key="nonDuplicateCodigoMetro" value="&#xA;&#x9;&#x9;Metro.allInstances()->isUnique(codigo)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="paradas: Parada"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//Colores"
         defaultValueLiteral=""/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Bus" eSuperTypes="#//Linea">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="nonDuplicateCodigoBus"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="nonDuplicateCodigoBus" value="&#xA;&#x9;&#x9;Bus.allInstances()->isUnique(codigo)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="paradas: Parada"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="diurnas" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral=""/>
@@ -41,9 +47,21 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Tren" eSuperTypes="#//Linea">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="nonDuplicateCodigoTren"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="nonDuplicateCodigoTren" value="&#xA;&#x9;&#x9;Tren.allInstances()->isUnique(codigo)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="paradas: Parada"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parada">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="nonDuplicatedNombreParada"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="nonDuplicatedNombreParada" value="&#xA;&#x9;&#x9;Parada.allInstances()->isUnique(nombre)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="accesible" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral=""/>
@@ -67,7 +85,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="descuento" upperBound="-1"
         eType="#//Descuento" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="siguienteParadaDistancia"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap" transient="true"
+        defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="siguienteParadaTiempo"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
   </eClassifiers>
