@@ -84,6 +84,7 @@ public class RedTables extends AbstractTables
 	public static final /*@NonInvalid*/ EnumerationId ENUMid_Colores = RedTables.PACKid_red.getEnumerationId("Colores");
 	public static final /*@NonInvalid*/ EnumerationId ENUMid_Transbordos = RedTables.PACKid_red.getEnumerationId("Transbordos");
 	public static final /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.integerValueOf("0");
+	public static final /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Parada = TypeId.ORDERED_SET.getSpecializedId(RedTables.CLSSid_Parada);
 	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Descuento = TypeId.SET.getSpecializedId(RedTables.CLSSid_Descuento);
 	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Linea = TypeId.SET.getSpecializedId(RedTables.CLSSid_Linea);
 	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_LineaBus = TypeId.SET.getSpecializedId(RedTables.CLSSid_LineaBus);

@@ -486,6 +486,15 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getDescuento__PositiveDescuento__DiagnosticChain_Map() {
+		return descuentoEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getZonaTarifacion() {
 		return zonaTarifacionEClass;
 	}
@@ -639,6 +648,7 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 		createEAttribute(descuentoEClass, DESCUENTO__HORA_APERTURA);
 		createEAttribute(descuentoEClass, DESCUENTO__HORA_CIERRE);
 		createEAttribute(descuentoEClass, DESCUENTO__DESCUENTO);
+		createEOperation(descuentoEClass, DESCUENTO___POSITIVE_DESCUENTO__DIAGNOSTICCHAIN_MAP);
 
 		zonaTarifacionEClass = createEClass(ZONA_TARIFACION);
 		createEAttribute(zonaTarifacionEClass, ZONA_TARIFACION__ENUMERACION);
@@ -709,7 +719,7 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
 		initEAttribute(getLinea_SiguienteParadaDistancia(), g1, "siguienteParadaDistancia", null, 0, 1, Linea.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLinea_Paradas(), this.getParada(), null, "paradas", null, 2, -1, Linea.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getLinea_Paradas(), this.getParada(), null, "paradas", null, 2, -1, Linea.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(lineaMetroEClass, LineaMetro.class, "LineaMetro", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLineaMetro_Color(), this.getColores(), "color", null, 0, 1, LineaMetro.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -777,6 +787,15 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 		initEAttribute(getDescuento_HoraApertura(), ecorePackage.getEInt(), "horaApertura", null, 1, 1, Descuento.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDescuento_HoraCierre(), ecorePackage.getEInt(), "horaCierre", null, 1, 1, Descuento.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDescuento_Descuento(), ecorePackage.getEDouble(), "descuento", null, 1, 1, Descuento.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getDescuento__PositiveDescuento__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "positiveDescuento", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(zonaTarifacionEClass, ZonaTarifacion.class, "ZonaTarifacion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getZonaTarifacion_Enumeracion(), ecorePackage.getEInt(), "enumeracion", null, 1, 1, ZonaTarifacion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -876,6 +895,12 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 			   "constraints", "nonDuplicateNombreParada"
 		   });
 		addAnnotation
+		  (descuentoEClass,
+		   source,
+		   new String[] {
+			   "constraints", "positiveDescuento"
+		   });
+		addAnnotation
 		  (zonaTarifacionEClass,
 		   source,
 		   new String[] {
@@ -911,12 +936,6 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 		   });
 		addAnnotation
 		  (getLinea_Descuentos(),
-		   source,
-		   new String[] {
-			   "nullFree", "false"
-		   });
-		addAnnotation
-		  (getLinea_Paradas(),
 		   source,
 		   new String[] {
 			   "nullFree", "false"
@@ -960,6 +979,12 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 		   source,
 		   new String[] {
 			   "body", "\n\t\t\tParada.allInstances()->isUnique(nombre)"
+		   });
+		addAnnotation
+		  (getDescuento__PositiveDescuento__DiagnosticChain_Map(),
+		   source,
+		   new String[] {
+			   "body", "descuento > 0"
 		   });
 		addAnnotation
 		  (getZonaTarifacion__PositiveTarifaBus__DiagnosticChain_Map(),

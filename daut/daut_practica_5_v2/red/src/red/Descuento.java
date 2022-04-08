@@ -2,6 +2,8 @@
  */
 package red;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -19,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see red.RedPackage#getDescuento()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='positiveDescuento'"
  * @generated
  */
 public interface Descuento extends EObject {
@@ -88,5 +90,13 @@ public interface Descuento extends EObject {
 	 * @generated
 	 */
 	void setDescuento(double value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='descuento &gt; 0'"
+	 * @generated
+	 */
+	boolean positiveDescuento(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Descuento

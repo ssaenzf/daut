@@ -161,8 +161,7 @@ public interface Linea extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Paradas</em>' containment reference list.
 	 * @see red.RedPackage#getLinea_Paradas()
-	 * @model containment="true" lower="2" ordered="false"
-	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
+	 * @model containment="true" lower="2"
 	 * @generated
 	 */
 	EList<Parada> getParadas();

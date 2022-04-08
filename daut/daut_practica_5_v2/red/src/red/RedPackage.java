@@ -679,13 +679,22 @@ public interface RedPackage extends EPackage {
 	int DESCUENTO_FEATURE_COUNT = 3;
 
 	/**
+	 * The operation id for the '<em>Positive Descuento</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCUENTO___POSITIVE_DESCUENTO__DIAGNOSTICCHAIN_MAP = 0;
+
+	/**
 	 * The number of operations of the '<em>Descuento</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DESCUENTO_OPERATION_COUNT = 0;
+	int DESCUENTO_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link red.impl.ZonaTarifacionImpl <em>Zona Tarifacion</em>}' class.
@@ -1162,6 +1171,16 @@ public interface RedPackage extends EPackage {
 	EAttribute getDescuento_Descuento();
 
 	/**
+	 * Returns the meta object for the '{@link red.Descuento#positiveDescuento(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Positive Descuento</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Positive Descuento</em>' operation.
+	 * @see red.Descuento#positiveDescuento(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getDescuento__PositiveDescuento__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link red.ZonaTarifacion <em>Zona Tarifacion</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1573,6 +1592,14 @@ public interface RedPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DESCUENTO__DESCUENTO = eINSTANCE.getDescuento_Descuento();
+
+		/**
+		 * The meta object literal for the '<em><b>Positive Descuento</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation DESCUENTO___POSITIVE_DESCUENTO__DIAGNOSTICCHAIN_MAP = eINSTANCE.getDescuento__PositiveDescuento__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link red.impl.ZonaTarifacionImpl <em>Zona Tarifacion</em>}' class.

@@ -80,12 +80,20 @@ public class RedValidator extends EObjectValidator {
 	public static final int PARADA__NON_DUPLICATE_NOMBRE_PARADA = 5;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Positive Descuento' of 'Descuento'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int DESCUENTO__POSITIVE_DESCUENTO = 6;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Positive Tarifa Bus' of 'Zona Tarifacion'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ZONA_TARIFACION__POSITIVE_TARIFA_BUS = 6;
+	public static final int ZONA_TARIFACION__POSITIVE_TARIFA_BUS = 7;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Positive Tarifa Tren' of 'Zona Tarifacion'.
@@ -93,7 +101,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ZONA_TARIFACION__POSITIVE_TARIFA_TREN = 7;
+	public static final int ZONA_TARIFACION__POSITIVE_TARIFA_TREN = 8;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Positive Tarifa Metro' of 'Zona Tarifacion'.
@@ -101,7 +109,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ZONA_TARIFACION__POSITIVE_TARIFA_METRO = 8;
+	public static final int ZONA_TARIFACION__POSITIVE_TARIFA_METRO = 9;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -109,7 +117,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 8;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 9;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -325,7 +333,27 @@ public class RedValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateDescuento(Descuento descuento, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(descuento, diagnostics, context);
+		if (!validate_NoCircularContainment(descuento, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(descuento, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(descuento, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(descuento, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(descuento, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(descuento, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(descuento, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(descuento, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(descuento, diagnostics, context);
+		if (result || diagnostics != null) result &= validateDescuento_positiveDescuento(descuento, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the positiveDescuento constraint of '<em>Descuento</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateDescuento_positiveDescuento(Descuento descuento, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return descuento.positiveDescuento(diagnostics, context);
 	}
 
 	/**
