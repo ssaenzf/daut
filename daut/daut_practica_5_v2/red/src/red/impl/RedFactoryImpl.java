@@ -1,0 +1,236 @@
+/**
+ */
+package red.impl;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import red.*;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Factory</b>.
+ * <!-- end-user-doc -->
+ * @generated
+ */
+public class RedFactoryImpl extends EFactoryImpl implements RedFactory {
+	/**
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static RedFactory init() {
+		try {
+			RedFactory theRedFactory = (RedFactory)EPackage.Registry.INSTANCE.getEFactory(RedPackage.eNS_URI);
+			if (theRedFactory != null) {
+				return theRedFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new RedFactoryImpl();
+	}
+
+	/**
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RedFactoryImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EObject create(EClass eClass) {
+		switch (eClass.getClassifierID()) {
+			case RedPackage.RED_TRANSPORTE: return createRedTransporte();
+			case RedPackage.LINEA_METRO: return createLineaMetro();
+			case RedPackage.LINEA_TREN: return createLineaTren();
+			case RedPackage.LINEA_BUS: return createLineaBus();
+			case RedPackage.PARADA: return createParada();
+			case RedPackage.DESCUENTO: return createDescuento();
+			case RedPackage.ZONA_TARIFACION: return createZonaTarifacion();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case RedPackage.COLORES:
+				return createColoresFromString(eDataType, initialValue);
+			case RedPackage.TRANSBORDOS:
+				return createTransbordosFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case RedPackage.COLORES:
+				return convertColoresToString(eDataType, instanceValue);
+			case RedPackage.TRANSBORDOS:
+				return convertTransbordosToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RedTransporte createRedTransporte() {
+		RedTransporteImpl redTransporte = new RedTransporteImpl();
+		return redTransporte;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LineaMetro createLineaMetro() {
+		LineaMetroImpl lineaMetro = new LineaMetroImpl();
+		return lineaMetro;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LineaTren createLineaTren() {
+		LineaTrenImpl lineaTren = new LineaTrenImpl();
+		return lineaTren;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LineaBus createLineaBus() {
+		LineaBusImpl lineaBus = new LineaBusImpl();
+		return lineaBus;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Parada createParada() {
+		ParadaImpl parada = new ParadaImpl();
+		return parada;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Descuento createDescuento() {
+		DescuentoImpl descuento = new DescuentoImpl();
+		return descuento;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ZonaTarifacion createZonaTarifacion() {
+		ZonaTarifacionImpl zonaTarifacion = new ZonaTarifacionImpl();
+		return zonaTarifacion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Colores createColoresFromString(EDataType eDataType, String initialValue) {
+		Colores result = Colores.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertColoresToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Transbordos createTransbordosFromString(EDataType eDataType, String initialValue) {
+		Transbordos result = Transbordos.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertTransbordosToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RedPackage getRedPackage() {
+		return (RedPackage)getEPackage();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @deprecated
+	 * @generated
+	 */
+	@Deprecated
+	public static RedPackage getPackage() {
+		return RedPackage.eINSTANCE;
+	}
+
+} //RedFactoryImpl
