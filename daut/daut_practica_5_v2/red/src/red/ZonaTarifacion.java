@@ -5,7 +5,6 @@ package red;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -30,12 +29,13 @@ import org.eclipse.emf.ecore.EObject;
 public interface ZonaTarifacion extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Enumeracion</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Enumeracion</em>' attribute.
 	 * @see #setEnumeracion(int)
 	 * @see red.RedPackage#getZonaTarifacion_Enumeracion()
-	 * @model required="true"
+	 * @model default="1" required="true" transient="true"
 	 * @generated
 	 */
 	int getEnumeracion();

@@ -32,7 +32,7 @@ public interface RedTransporte extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Lineas</em>' containment reference list.
 	 * @see red.RedPackage#getRedTransporte_Lineas()
-	 * @model containment="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
 	 * @generated
 	 */
@@ -58,7 +58,7 @@ public interface RedTransporte extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Zonas Tarifacion</em>' containment reference list.
 	 * @see red.RedPackage#getRedTransporte_ZonasTarifacion()
-	 * @model containment="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
 	 * @generated
 	 */
