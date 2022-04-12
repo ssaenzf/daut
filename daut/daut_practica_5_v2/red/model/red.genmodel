@@ -49,8 +49,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Parada/accesible"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Parada/bicicletas"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Parada/aparcamientoGrat"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Parada/aseos"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Parada/transbordo"/>
+    </genClasses>
+    <genClasses ecoreClass="red.ecore#//ParadaBus"/>
+    <genClasses ecoreClass="red.ecore#//ParadaMetro">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//ParadaMetro/aseos"/>
+    </genClasses>
+    <genClasses ecoreClass="red.ecore#//ParadaTren">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//ParadaTren/aseos"/>
     </genClasses>
     <genClasses ecoreClass="red.ecore#//Descuento">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Descuento/horaApertura"/>

@@ -106,7 +106,7 @@
       <details key="nonDuplicateCodigoBus" value="&#xA;&#x9;&#x9;&#x9;LineaBus.allInstances()->isUnique(codigo)"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Parada">
+  <eClassifiers xsi:type="ecore:EClass" name="Parada" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="nonDuplicateNombreParada"/>
     </eAnnotations>
@@ -121,8 +121,14 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aparcamientoGrat" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aseos" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="transbordo" eType="#//Transbordos"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParadaBus" eSuperTypes="#//Parada"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ParadaMetro" eSuperTypes="#//Parada">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aseos" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParadaTren" eSuperTypes="#//Parada">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aseos" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Descuento">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
