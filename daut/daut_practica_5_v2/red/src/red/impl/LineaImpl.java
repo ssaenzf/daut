@@ -654,9 +654,9 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 			 *     else
 			 *       let
 			 *         result : Boolean[?] = descuentos->forAll(d1, d2 |
-			 *           if d1.horaIni < d2.horaFin and d1.horaIni > d2.horaIni and d1.horaFin < d2.horaFin and d1.horaFin > d2.horaIni
-			 *           then true
-			 *           else false
+			 *           if d1.horaIni < d2.horaFin and d1.horaIni > d2.horaIni or d1.horaFin < d2.horaFin and d1.horaFin > d2.horaIni
+			 *           then false
+			 *           else true
 			 *           endif)
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
@@ -685,9 +685,9 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 					final AbstractSimpleOperation BODY_result_0 = new AbstractSimpleOperation() {
 						/**
 						 *
-						 * if d1.horaIni < d2.horaFin and d1.horaIni > d2.horaIni and d1.horaFin < d2.horaFin and d1.horaFin > d2.horaIni
-						 * then true
-						 * else false
+						 * if d1.horaIni < d2.horaFin and d1.horaIni > d2.horaIni or d1.horaFin < d2.horaFin and d1.horaFin > d2.horaIni
+						 * then false
+						 * else true
 						 * endif
 						 */
 						@Override
@@ -766,9 +766,9 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 							catch (Exception e) {
 								CAUGHT_and = ValueUtil.createInvalidValue(e);
 							}
-							final /*@Thrown*/ Boolean and_1;
-							if (CAUGHT_and == ValueUtil.FALSE_VALUE) {
-								and_1 = ValueUtil.FALSE_VALUE;
+							final /*@Thrown*/ Boolean or;
+							if (CAUGHT_and == ValueUtil.TRUE_VALUE) {
+								or = ValueUtil.TRUE_VALUE;
 							}
 							else {
 								/*@Caught*/ Object CAUGHT_and_0;
@@ -842,8 +842,8 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 								catch (Exception e) {
 									CAUGHT_and_0 = ValueUtil.createInvalidValue(e);
 								}
-								if (CAUGHT_and_0 == ValueUtil.FALSE_VALUE) {
-									and_1 = ValueUtil.FALSE_VALUE;
+								if (CAUGHT_and_0 == ValueUtil.TRUE_VALUE) {
+									or = ValueUtil.TRUE_VALUE;
 								}
 								else {
 									if (CAUGHT_and instanceof InvalidValueException) {
@@ -853,22 +853,22 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 										throw (InvalidValueException)CAUGHT_and_0;
 									}
 									if ((CAUGHT_and == null) || (CAUGHT_and_0 == null)) {
-										and_1 = null;
+										or = null;
 									}
 									else {
-										and_1 = ValueUtil.TRUE_VALUE;
+										or = ValueUtil.FALSE_VALUE;
 									}
 								}
 							}
-							if (and_1 == null) {
+							if (or == null) {
 								throw new InvalidValueException("Null if condition");
 							}
 							/*@NonInvalid*/ boolean local_8;
-							if (and_1) {
-								local_8 = true;
+							if (or) {
+								local_8 = false;
 							}
 							else {
-								local_8 = false;
+								local_8 = true;
 							}
 							return local_8;
 						}

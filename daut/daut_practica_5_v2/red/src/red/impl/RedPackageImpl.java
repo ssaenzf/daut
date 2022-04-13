@@ -1280,7 +1280,7 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 		  (getLinea__NonDescuentosSolapados__DiagnosticChain_Map(),
 		   source,
 		   new String[] {
-			   "body", "\n\t\t\tdescuentos->forAll(d1,d2 |\n\t\t\t\tif ((d1.horaIni < d2.horaFin and d1.horaIni > d2.horaIni) and (d1.horaFin < d2.horaFin and d1.horaFin > d2.horaIni)) then true\n\t\t\t\telse false endif\n\t\t\t)"
+			   "body", "\n\t\t\tdescuentos->forAll(d1,d2 |\n\t\t\t\tif ((d1.horaIni < d2.horaFin and d1.horaIni > d2.horaIni) or (d1.horaFin < d2.horaFin and d1.horaFin > d2.horaIni)) then false\n\t\t\t\telse true endif\n\t\t\t)"
 		   });
 		addAnnotation
 		  (getLinea__LineaCircular__DiagnosticChain_Map(),

@@ -245,7 +245,7 @@ public interface Linea extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tdescuentos-&gt;forAll(d1,d2 |\n\t\t\t\tif ((d1.horaIni &lt; d2.horaFin and d1.horaIni &gt; d2.horaIni) and (d1.horaFin &lt; d2.horaFin and d1.horaFin &gt; d2.horaIni)) then true\n\t\t\t\telse false endif\n\t\t\t)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tdescuentos-&gt;forAll(d1,d2 |\n\t\t\t\tif ((d1.horaIni &lt; d2.horaFin and d1.horaIni &gt; d2.horaIni) or (d1.horaFin &lt; d2.horaFin and d1.horaFin &gt; d2.horaIni)) then false\n\t\t\t\telse true endif\n\t\t\t)'"
 	 * @generated
 	 */
 	boolean nonDescuentosSolapados(DiagnosticChain diagnostics, Map<Object, Object> context);
