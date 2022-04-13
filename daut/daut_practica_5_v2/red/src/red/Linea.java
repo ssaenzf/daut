@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link red.Linea#getHoraCierre <em>Hora Cierre</em>}</li>
  *   <li>{@link red.Linea#getSiguienteParadaTiempo <em>Siguiente Parada Tiempo</em>}</li>
  *   <li>{@link red.Linea#getSiguienteParadaDistancia <em>Siguiente Parada Distancia</em>}</li>
- *   <li>{@link red.Linea#getParadas <em>Paradas</em>}</li>
  *   <li>{@link red.Linea#getParadaIni <em>Parada Ini</em>}</li>
  *   <li>{@link red.Linea#getParadaFin <em>Parada Fin</em>}</li>
  *   <li>{@link red.Linea#isCircular <em>Circular</em>}</li>
@@ -32,7 +31,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see red.RedPackage#getLinea()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='paradasIguales'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='lineaCircular'"
  * @generated
  */
 public interface Linea extends EObject {
@@ -61,11 +60,13 @@ public interface Linea extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Descuentos</b></em>' containment reference list.
 	 * The list contents are of type {@link red.Descuento}.
+	 * It is bidirectional and its opposite is '{@link red.Descuento#getLinea <em>Linea</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Descuentos</em>' containment reference list.
 	 * @see red.RedPackage#getLinea_Descuentos()
-	 * @model containment="true" ordered="false"
+	 * @see red.Descuento#getLinea
+	 * @model opposite="linea" containment="true" ordered="false"
 	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
 	 * @generated
 	 */
@@ -160,19 +161,6 @@ public interface Linea extends EObject {
 	void setSiguienteParadaDistancia(Map<?, ?> value);
 
 	/**
-	 * Returns the value of the '<em><b>Paradas</b></em>' reference list.
-	 * The list contents are of type {@link red.Parada}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Paradas</em>' reference list.
-	 * @see red.RedPackage#getLinea_Paradas()
-	 * @model lower="2"
-	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
-	 * @generated
-	 */
-	EList<Parada> getParadas();
-
-	/**
 	 * Returns the value of the '<em><b>Parada Ini</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -249,9 +237,17 @@ public interface Linea extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tparadas-&gt;forAll(p1, p2 | \n\t\t\t\tp1 &lt;&gt; p2 implies p1.nombre &lt;&gt; p2.nombre\n\t\t\t)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t(horaApertura &gt;= 0 and horaApertura &lt;= 23) and \n\t\t\t(horaCierre &gt;= 0 and horaCierre &lt;= 23) and\n\t\t\t(horaApertura &lt;&gt; horaCierre) and (horaCierre &gt; horaApertura)'"
 	 * @generated
 	 */
-	boolean paradasIguales(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean horarioCorrecto(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tdescuentos-&gt;forAll(d1,d2 |\n\t\t\t\tif ((d1.horaIni &lt; d2.horaFin and d1.horaIni &gt; d2.horaIni) and (d1.horaFin &lt; d2.horaFin and d1.horaFin &gt; d2.horaIni)) then true\n\t\t\t\telse false endif\n\t\t\t)'"
+	 * @generated
+	 */
+	boolean nonDescuentosSolapados(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Linea

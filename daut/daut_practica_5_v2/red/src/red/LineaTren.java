@@ -5,6 +5,7 @@ package red;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,8 +16,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link red.LineaTren#isDiurna <em>Diurna</em>}</li>
- *   <li>{@link red.LineaTren#isNocturna <em>Nocturna</em>}</li>
+ *   <li>{@link red.LineaTren#getParadas <em>Paradas</em>}</li>
  * </ul>
  *
  * @see red.RedPackage#getLineaTren()
@@ -25,48 +25,17 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  */
 public interface LineaTren extends Linea {
 	/**
-	 * Returns the value of the '<em><b>Diurna</b></em>' attribute.
+	 * Returns the value of the '<em><b>Paradas</b></em>' reference list.
+	 * The list contents are of type {@link red.ParadaTren}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Diurna</em>' attribute.
-	 * @see #setDiurna(boolean)
-	 * @see red.RedPackage#getLineaTren_Diurna()
-	 * @model required="true"
+	 * @return the value of the '<em>Paradas</em>' reference list.
+	 * @see red.RedPackage#getLineaTren_Paradas()
+	 * @model lower="2"
+	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
 	 * @generated
 	 */
-	boolean isDiurna();
-
-	/**
-	 * Sets the value of the '{@link red.LineaTren#isDiurna <em>Diurna</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Diurna</em>' attribute.
-	 * @see #isDiurna()
-	 * @generated
-	 */
-	void setDiurna(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Nocturna</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Nocturna</em>' attribute.
-	 * @see #setNocturna(boolean)
-	 * @see red.RedPackage#getLineaTren_Nocturna()
-	 * @model required="true"
-	 * @generated
-	 */
-	boolean isNocturna();
-
-	/**
-	 * Sets the value of the '{@link red.LineaTren#isNocturna <em>Nocturna</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Nocturna</em>' attribute.
-	 * @see #isNocturna()
-	 * @generated
-	 */
-	void setNocturna(boolean value);
+	EList<ParadaTren> getParadas();
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -105,6 +105,27 @@ public class RedSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case RedPackage.PARADA_BUS: {
+				ParadaBus paradaBus = (ParadaBus)theEObject;
+				T result = caseParadaBus(paradaBus);
+				if (result == null) result = caseParada(paradaBus);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RedPackage.PARADA_METRO: {
+				ParadaMetro paradaMetro = (ParadaMetro)theEObject;
+				T result = caseParadaMetro(paradaMetro);
+				if (result == null) result = caseParada(paradaMetro);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RedPackage.PARADA_TREN: {
+				ParadaTren paradaTren = (ParadaTren)theEObject;
+				T result = caseParadaTren(paradaTren);
+				if (result == null) result = caseParada(paradaTren);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case RedPackage.DESCUENTO: {
 				Descuento descuento = (Descuento)theEObject;
 				T result = caseDescuento(descuento);
@@ -208,6 +229,51 @@ public class RedSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseParada(Parada object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Parada Bus</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Parada Bus</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParadaBus(ParadaBus object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Parada Metro</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Parada Metro</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParadaMetro(ParadaMetro object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Parada Tren</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Parada Tren</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParadaTren(ParadaTren object) {
 		return null;
 	}
 

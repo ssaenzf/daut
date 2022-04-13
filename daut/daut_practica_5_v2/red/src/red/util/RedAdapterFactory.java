@@ -92,6 +92,18 @@ public class RedAdapterFactory extends AdapterFactoryImpl {
 				return createParadaAdapter();
 			}
 			@Override
+			public Adapter caseParadaBus(ParadaBus object) {
+				return createParadaBusAdapter();
+			}
+			@Override
+			public Adapter caseParadaMetro(ParadaMetro object) {
+				return createParadaMetroAdapter();
+			}
+			@Override
+			public Adapter caseParadaTren(ParadaTren object) {
+				return createParadaTrenAdapter();
+			}
+			@Override
 			public Adapter caseDescuento(Descuento object) {
 				return createDescuentoAdapter();
 			}
@@ -200,6 +212,48 @@ public class RedAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createParadaAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link red.ParadaBus <em>Parada Bus</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see red.ParadaBus
+	 * @generated
+	 */
+	public Adapter createParadaBusAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link red.ParadaMetro <em>Parada Metro</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see red.ParadaMetro
+	 * @generated
+	 */
+	public Adapter createParadaMetroAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link red.ParadaTren <em>Parada Tren</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see red.ParadaTren
+	 * @generated
+	 */
+	public Adapter createParadaTrenAdapter() {
 		return null;
 	}
 

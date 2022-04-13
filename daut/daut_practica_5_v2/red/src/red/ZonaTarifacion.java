@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see red.RedPackage#getZonaTarifacion()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='positiveTarifaMetro'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='positiveTarifaBus'"
  * @generated
  */
 public interface ZonaTarifacion extends EObject {
@@ -35,7 +35,7 @@ public interface ZonaTarifacion extends EObject {
 	 * @return the value of the '<em>Enumeracion</em>' attribute.
 	 * @see #setEnumeracion(int)
 	 * @see red.RedPackage#getZonaTarifacion_Enumeracion()
-	 * @model default="1" required="true" transient="true"
+	 * @model default="1" required="true"
 	 * @generated
 	 */
 	int getEnumeracion();
@@ -131,6 +131,14 @@ public interface ZonaTarifacion extends EObject {
 	 * @generated
 	 */
 	boolean positiveTarifaTren(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tZonaTarifacion.allInstances()-&gt;isUnique(enumeracion)'"
+	 * @generated
+	 */
+	boolean nonDuplicateNum(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -5,6 +5,7 @@ package red;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,6 +17,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * </p>
  * <ul>
  *   <li>{@link red.LineaMetro#getColor <em>Color</em>}</li>
+ *   <li>{@link red.LineaMetro#getParadas <em>Paradas</em>}</li>
  * </ul>
  *
  * @see red.RedPackage#getLineaMetro()
@@ -47,6 +49,19 @@ public interface LineaMetro extends Linea {
 	 * @generated
 	 */
 	void setColor(Colores value);
+
+	/**
+	 * Returns the value of the '<em><b>Paradas</b></em>' reference list.
+	 * The list contents are of type {@link red.ParadaMetro}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Paradas</em>' reference list.
+	 * @see red.RedPackage#getLineaMetro_Paradas()
+	 * @model lower="2"
+	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
+	 * @generated
+	 */
+	EList<ParadaMetro> getParadas();
 
 	/**
 	 * <!-- begin-user-doc -->

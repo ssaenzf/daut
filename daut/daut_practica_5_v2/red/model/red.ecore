@@ -31,16 +31,17 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Linea" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="lineaCircular paradasIguales"/>
+      <details key="constraints" value="horarioCorrecto lineaCircular nonDescuentosSolapados"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="horarioCorrecto" value="&#xA;&#x9;&#x9;&#x9;(horaApertura >= 0 and horaApertura &lt;= 23) and &#xA;&#x9;&#x9;&#x9;(horaCierre >= 0 and horaCierre &lt;= 23) and&#xA;&#x9;&#x9;&#x9;(horaApertura &lt;> horaCierre) and (horaCierre > horaApertura)"/>
       <details key="lineaCircular" value="&#xA;&#x9;&#x9;&#x9;if circular = true then&#xA;&#x9;&#x9;&#x9;&#x9;paradaFin = paradaIni &#xA;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;paradaFin &lt;> paradaIni &#xA;&#x9;&#x9;&#x9;endif"/>
-      <details key="paradasIguales" value="&#xA;&#x9;&#x9;&#x9;paradas->forAll(p1, p2 | &#xA;&#x9;&#x9;&#x9;&#x9;p1 &lt;> p2 implies p1.nombre &lt;> p2.nombre&#xA;&#x9;&#x9;&#x9;)"/>
+      <details key="nonDescuentosSolapados" value="&#xA;&#x9;&#x9;&#x9;descuentos->forAll(d1,d2 |&#xA;&#x9;&#x9;&#x9;&#x9;if ((d1.horaIni &lt; d2.horaFin and d1.horaIni > d2.horaIni) and (d1.horaFin &lt; d2.horaFin and d1.horaFin > d2.horaIni)) then true&#xA;&#x9;&#x9;&#x9;&#x9;else false endif&#xA;&#x9;&#x9;&#x9;)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigo" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="descuentos" ordered="false"
-        upperBound="-1" eType="#//Descuento" containment="true">
+        upperBound="-1" eType="#//Descuento" containment="true" eOpposite="#//Descuento/linea">
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
       </eAnnotations>
@@ -63,12 +64,6 @@
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="paradas" lowerBound="2"
-        upperBound="-1" eType="#//Parada">
-      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-        <details key="nullFree" value="false"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="paradaIni" lowerBound="1"
         eType="#//Parada"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="paradaFin" lowerBound="1"
@@ -85,6 +80,12 @@
       <details key="nonDuplicateCodigoMetro" value="&#xA;&#x9;&#x9;&#x9;LineaMetro.allInstances()->isUnique(codigo)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//Colores"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="paradas" lowerBound="2"
+        upperBound="-1" eType="#//ParadaMetro">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LineaTren" eSuperTypes="#//Linea">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -93,26 +94,31 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="nonDuplicateCodigoTren" value="&#xA;&#x9;&#x9;&#x9;LineaTren.allInstances()->isUnique(codigo)"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="diurna" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nocturna" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="paradas" lowerBound="2"
+        upperBound="-1" eType="#//ParadaTren">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LineaBus" eSuperTypes="#//Linea">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="nonDuplicateCodigoBus"/>
+      <details key="constraints" value="nonDuplicateCodigoBus lineaDiurna"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="nonDuplicateCodigoBus" value="&#xA;&#x9;&#x9;&#x9;LineaBus.allInstances()->isUnique(codigo)"/>
+      <details key="lineaDiurna" value="&#xA;&#x9;&#x9;&#x9;if isDiurna = true then&#xA;&#x9;&#x9;&#x9;&#x9;(horaApertura >= 6 and horaCierre &lt;= 23) and (horaCierre > horaApertura)&#xA;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;(horaApertura >= 0 and horaCierre &lt;=5) and (horaCierre > horaApertura)&#xA;&#x9;&#x9;&#x9;endif"/>
     </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="paradas" lowerBound="2"
+        upperBound="-1" eType="#//ParadaBus">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDiurna" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parada" abstract="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="nonDuplicateNombreParada"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="nonDuplicateNombreParada" value="&#xA;&#x9;&#x9;&#x9;Parada.allInstances()->isUnique(nombre)"/>
-    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="accesible" lowerBound="1"
@@ -123,39 +129,61 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="transbordo" eType="#//Transbordos"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ParadaBus" eSuperTypes="#//Parada"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ParadaBus" eSuperTypes="#//Parada">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="nonDuplicateNombreParada"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="nonDuplicateNombreParada" value="&#xA;&#x9;&#x9;&#x9;ParadaBus.allInstances()->isUnique(nombre)"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParadaMetro" eSuperTypes="#//Parada">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="nonDuplicateNombreParada"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="nonDuplicateNombreParada" value="&#xA;&#x9;&#x9;&#x9;ParadaMetro.allInstances()->isUnique(nombre)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aseos" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParadaTren" eSuperTypes="#//Parada">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="nonDuplicateNombreParada"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="nonDuplicateNombreParada" value="&#xA;&#x9;&#x9;&#x9;ParadaTren.allInstances()->isUnique(nombre)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aseos" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Descuento">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="positiveDescuento"/>
+      <details key="constraints" value="positiveDescuento horarioCorrecto"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="positiveDescuento" value="descuento > 0"/>
+      <details key="horarioCorrecto" value="&#xA;&#x9;&#x9;&#x9;(horaIni >= 0 and horaIni &lt;= 23) and &#xA;&#x9;&#x9;&#x9;(horaFin >= 0 and horaFin &lt;= 23) and&#xA;&#x9;&#x9;&#x9;(horaIni &lt;> horaFin) and (horaFin > horaIni) and&#xA;&#x9;&#x9;&#x9;(horaIni >= linea.horaApertura and horaFin &lt;= linea.horaCierre)"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="horaApertura" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="horaIni" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="horaCierre" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="horaFin" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="descuento" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linea" eType="#//Linea"
+        eOpposite="#//Linea/descuentos"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ZonaTarifacion">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="positiveTarifaMetro positiveTarifaBus positiveTarifaTren"/>
+      <details key="constraints" value="positiveTarifaMetro positiveTarifaBus positiveTarifaTren nonDuplicateNum"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="positiveTarifaMetro" value="tarifaMetro > 0"/>
       <details key="positiveTarifaBus" value="tarifaBus > 0"/>
       <details key="positiveTarifaTren" value="tarifaTren > 0"/>
+      <details key="nonDuplicateNum" value="&#xA;&#x9;&#x9;&#x9;ZonaTarifacion.allInstances()->isUnique(enumeracion)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enumeracion" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" transient="true"
-        defaultValueLiteral="1"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tarifaBus" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tarifaMetro" lowerBound="1"

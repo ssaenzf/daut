@@ -58,13 +58,31 @@ public interface RedFactory extends EFactory {
 	LineaBus createLineaBus();
 
 	/**
-	 * Returns a new object of class '<em>Parada</em>'.
+	 * Returns a new object of class '<em>Parada Bus</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Parada</em>'.
+	 * @return a new object of class '<em>Parada Bus</em>'.
 	 * @generated
 	 */
-	Parada createParada();
+	ParadaBus createParadaBus();
+
+	/**
+	 * Returns a new object of class '<em>Parada Metro</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Parada Metro</em>'.
+	 * @generated
+	 */
+	ParadaMetro createParadaMetro();
+
+	/**
+	 * Returns a new object of class '<em>Parada Tren</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Parada Tren</em>'.
+	 * @generated
+	 */
+	ParadaTren createParadaTren();
 
 	/**
 	 * Returns a new object of class '<em>Descuento</em>'.

@@ -31,19 +31,21 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Linea/horaCierre"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Linea/siguienteParadaTiempo"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Linea/siguienteParadaDistancia"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//Linea/paradas"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//Linea/paradaIni"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//Linea/paradaFin"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Linea/circular"/>
     </genClasses>
     <genClasses ecoreClass="red.ecore#//LineaMetro">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//LineaMetro/color"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//LineaMetro/paradas"/>
     </genClasses>
     <genClasses ecoreClass="red.ecore#//LineaTren">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//LineaTren/diurna"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//LineaTren/nocturna"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//LineaTren/paradas"/>
     </genClasses>
-    <genClasses ecoreClass="red.ecore#//LineaBus"/>
+    <genClasses ecoreClass="red.ecore#//LineaBus">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//LineaBus/paradas"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//LineaBus/isDiurna"/>
+    </genClasses>
     <genClasses ecoreClass="red.ecore#//Parada">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Parada/nombre"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Parada/accesible"/>
@@ -59,9 +61,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//ParadaTren/aseos"/>
     </genClasses>
     <genClasses ecoreClass="red.ecore#//Descuento">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Descuento/horaApertura"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Descuento/horaCierre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Descuento/horaIni"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Descuento/horaFin"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Descuento/descuento"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference red.ecore#//Descuento/linea"/>
     </genClasses>
     <genClasses ecoreClass="red.ecore#//ZonaTarifacion">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//ZonaTarifacion/enumeracion"/>

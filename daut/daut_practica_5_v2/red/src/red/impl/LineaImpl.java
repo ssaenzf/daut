@@ -18,11 +18,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.IdResolver;
@@ -30,7 +27,10 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorMultipleIterationManager;
 import org.eclipse.ocl.pivot.library.AbstractSimpleOperation;
 import org.eclipse.ocl.pivot.library.LibraryIteration.LibraryIterationExtension;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanEqualOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
@@ -38,7 +38,7 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
-import org.eclipse.ocl.pivot.values.OrderedSetValue;
+import org.eclipse.ocl.pivot.values.SetValue;
 import red.Descuento;
 import red.Linea;
 import red.Parada;
@@ -59,7 +59,6 @@ import red.RedTables;
  *   <li>{@link red.impl.LineaImpl#getHoraCierre <em>Hora Cierre</em>}</li>
  *   <li>{@link red.impl.LineaImpl#getSiguienteParadaTiempo <em>Siguiente Parada Tiempo</em>}</li>
  *   <li>{@link red.impl.LineaImpl#getSiguienteParadaDistancia <em>Siguiente Parada Distancia</em>}</li>
- *   <li>{@link red.impl.LineaImpl#getParadas <em>Paradas</em>}</li>
  *   <li>{@link red.impl.LineaImpl#getParadaIni <em>Parada Ini</em>}</li>
  *   <li>{@link red.impl.LineaImpl#getParadaFin <em>Parada Fin</em>}</li>
  *   <li>{@link red.impl.LineaImpl#isCircular <em>Circular</em>}</li>
@@ -159,16 +158,6 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 	protected Map<?, ?> siguienteParadaDistancia;
 
 	/**
-	 * The cached value of the '{@link #getParadas() <em>Paradas</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getParadas()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Parada> paradas;
-
-	/**
 	 * The cached value of the '{@link #getParadaIni() <em>Parada Ini</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -255,7 +244,7 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	public EList<Descuento> getDescuentos() {
 		if (descuentos == null) {
-			descuentos = new EObjectContainmentEList<Descuento>(Descuento.class, this, RedPackage.LINEA__DESCUENTOS);
+			descuentos = new EObjectContainmentWithInverseEList<Descuento>(Descuento.class, this, RedPackage.LINEA__DESCUENTOS, RedPackage.DESCUENTO__LINEA);
 		}
 		return descuentos;
 	}
@@ -342,18 +331,6 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 		siguienteParadaDistancia = newSiguienteParadaDistancia;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RedPackage.LINEA__SIGUIENTE_PARADA_DISTANCIA, oldSiguienteParadaDistancia, siguienteParadaDistancia));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Parada> getParadas() {
-		if (paradas == null) {
-			paradas = new EObjectResolvingEList<Parada>(Parada.class, this, RedPackage.LINEA__PARADAS);
-		}
-		return paradas;
 	}
 
 	/**
@@ -513,19 +490,174 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean paradasIguales(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		final String constraintName = "Linea::paradasIguales";
+	public boolean horarioCorrecto(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "Linea::horarioCorrecto";
 		try {
 			/**
 			 *
-			 * inv paradasIguales:
+			 * inv horarioCorrecto:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let result : Boolean[?] = horaApertura >= 0 and horaApertura <= 23 and horaCierre >= 0 and horaCierre <= 23 and horaApertura <> horaCierre and horaCierre > horaApertura
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, RedPackage.Literals.LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, RedTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_0;
+			if (le) {
+				local_0 = true;
+			}
+			else {
+				/*@Caught*/ Object CAUGHT_result;
+				try {
+					final /*@NonInvalid*/ int horaApertura_2 = this.getHoraApertura();
+					final /*@NonInvalid*/ int horaCierre_2 = this.getHoraCierre();
+					final /*@NonInvalid*/ IntegerValue BOXED_horaApertura_2 = ValueUtil.integerValueOf(horaApertura_2);
+					final /*@NonInvalid*/ IntegerValue BOXED_horaCierre_2 = ValueUtil.integerValueOf(horaCierre_2);
+					/*@Caught*/ Object CAUGHT_and_2;
+					try {
+						/*@Caught*/ Object CAUGHT_and_1;
+						try {
+							final /*@NonInvalid*/ boolean ge = OclComparableGreaterThanEqualOperation.INSTANCE.evaluate(executor, BOXED_horaApertura_2, RedTables.INT_0).booleanValue();
+							final /*@NonInvalid*/ Boolean and;
+							if (!ge) {
+								and = ValueUtil.FALSE_VALUE;
+							}
+							else {
+								final /*@NonInvalid*/ boolean le_0 = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, BOXED_horaApertura_2, RedTables.INT_23).booleanValue();
+								if (!le_0) {
+									and = ValueUtil.FALSE_VALUE;
+								}
+								else {
+									and = ValueUtil.TRUE_VALUE;
+								}
+							}
+							final /*@Thrown*/ Boolean and_1;
+							if (and == ValueUtil.FALSE_VALUE) {
+								and_1 = ValueUtil.FALSE_VALUE;
+							}
+							else {
+								final /*@NonInvalid*/ boolean ge_0 = OclComparableGreaterThanEqualOperation.INSTANCE.evaluate(executor, BOXED_horaCierre_2, RedTables.INT_0).booleanValue();
+								final /*@NonInvalid*/ Boolean and_0;
+								if (!ge_0) {
+									and_0 = ValueUtil.FALSE_VALUE;
+								}
+								else {
+									final /*@NonInvalid*/ boolean le_1 = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, BOXED_horaCierre_2, RedTables.INT_23).booleanValue();
+									if (!le_1) {
+										and_0 = ValueUtil.FALSE_VALUE;
+									}
+									else {
+										and_0 = ValueUtil.TRUE_VALUE;
+									}
+								}
+								if (and_0 == ValueUtil.FALSE_VALUE) {
+									and_1 = ValueUtil.FALSE_VALUE;
+								}
+								else {
+									if ((and == null) || (and_0 == null)) {
+										and_1 = null;
+									}
+									else {
+										and_1 = ValueUtil.TRUE_VALUE;
+									}
+								}
+							}
+							CAUGHT_and_1 = and_1;
+						}
+						catch (Exception e) {
+							CAUGHT_and_1 = ValueUtil.createInvalidValue(e);
+						}
+						final /*@Thrown*/ Boolean and_2;
+						if (CAUGHT_and_1 == ValueUtil.FALSE_VALUE) {
+							and_2 = ValueUtil.FALSE_VALUE;
+						}
+						else {
+							final /*@NonInvalid*/ boolean ne = horaApertura_2 != horaCierre_2;
+							if (!ne) {
+								and_2 = ValueUtil.FALSE_VALUE;
+							}
+							else {
+								if (CAUGHT_and_1 instanceof InvalidValueException) {
+									throw (InvalidValueException)CAUGHT_and_1;
+								}
+								if (CAUGHT_and_1 == null) {
+									and_2 = null;
+								}
+								else {
+									and_2 = ValueUtil.TRUE_VALUE;
+								}
+							}
+						}
+						CAUGHT_and_2 = and_2;
+					}
+					catch (Exception e) {
+						CAUGHT_and_2 = ValueUtil.createInvalidValue(e);
+					}
+					final /*@Thrown*/ Boolean result;
+					if (CAUGHT_and_2 == ValueUtil.FALSE_VALUE) {
+						result = ValueUtil.FALSE_VALUE;
+					}
+					else {
+						final /*@NonInvalid*/ boolean gt = OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, BOXED_horaCierre_2, BOXED_horaApertura_2).booleanValue();
+						if (!gt) {
+							result = ValueUtil.FALSE_VALUE;
+						}
+						else {
+							if (CAUGHT_and_2 instanceof InvalidValueException) {
+								throw (InvalidValueException)CAUGHT_and_2;
+							}
+							if (CAUGHT_and_2 == null) {
+								result = null;
+							}
+							else {
+								result = ValueUtil.TRUE_VALUE;
+							}
+						}
+					}
+					CAUGHT_result = result;
+				}
+				catch (Exception e) {
+					CAUGHT_result = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object)null, diagnostics, context, (Object)null, severity_0, CAUGHT_result, RedTables.INT_0).booleanValue();
+				local_0 = logDiagnostic;
+			}
+			return local_0;
+		}
+		catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean nonDescuentosSolapados(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "Linea::nonDescuentosSolapados";
+		try {
+			/**
+			 *
+			 * inv nonDescuentosSolapados:
 			 *   let severity : Integer[1] = constraintName.getSeverity()
 			 *   in
 			 *     if severity <= 0
 			 *     then true
 			 *     else
 			 *       let
-			 *         result : Boolean[?] = paradas->forAll(p1, p2 | p1 <> p2 implies p1.nombre <> p2.nombre)
+			 *         result : Boolean[?] = descuentos->forAll(d1, d2 |
+			 *           if d1.horaIni < d2.horaFin and d1.horaIni > d2.horaIni and d1.horaFin < d2.horaFin and d1.horaFin > d2.horaIni
+			 *           then true
+			 *           else false
+			 *           endif)
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
 			 *     endif
@@ -533,18 +665,18 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
 			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 			final /*@NonInvalid*/ StandardLibrary standardLibrary = idResolver.getStandardLibrary();
-			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, RedPackage.Literals.LINEA___PARADAS_IGUALES__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, RedPackage.Literals.LINEA___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP);
 			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, RedTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_4;
+			/*@NonInvalid*/ boolean local_9;
 			if (le) {
-				local_4 = true;
+				local_9 = true;
 			}
 			else {
 				/*@Caught*/ Object CAUGHT_result;
 				try {
-					final /*@NonInvalid*/ List<Parada> paradas = this.getParadas();
-					final /*@NonInvalid*/ OrderedSetValue BOXED_paradas = idResolver.createOrderedSetOfAll(RedTables.ORD_CLSSid_Parada, paradas);
-					final org.eclipse.ocl.pivot.Class TYPE_result_0 = executor.getStaticTypeOfValue(null, BOXED_paradas);
+					final /*@NonInvalid*/ List<Descuento> descuentos = this.getDescuentos();
+					final /*@NonInvalid*/ SetValue BOXED_descuentos = idResolver.createSetOfAll(RedTables.SET_CLSSid_Descuento, descuentos);
+					final org.eclipse.ocl.pivot.Class TYPE_result_0 = executor.getStaticTypeOfValue(null, BOXED_descuentos);
 					final LibraryIterationExtension IMPL_result_0 = (LibraryIterationExtension)TYPE_result_0.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Collection__1_forAll);
 					final /*@NonNull*/ Object ACC_result_0 = IMPL_result_0.createAccumulatorValue(executor, TypeId.BOOLEAN, TypeId.BOOLEAN);
 					/**
@@ -552,58 +684,196 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 					 */
 					final AbstractSimpleOperation BODY_result_0 = new AbstractSimpleOperation() {
 						/**
-						 * p1 <> p2 implies p1.nombre <> p2.nombre
+						 *
+						 * if d1.horaIni < d2.horaFin and d1.horaIni > d2.horaIni and d1.horaFin < d2.horaFin and d1.horaFin > d2.horaIni
+						 * then true
+						 * else false
+						 * endif
 						 */
 						@Override
 						public /*@Nullable*/ Object evaluate(final Executor executor, final TypeId typeId, final /*@Nullable*/ Object /*@NonNull*/ [] sourceAndArgumentValues) {
-							final /*@NonInvalid*/ OrderedSetValue BOXED_paradas = (OrderedSetValue)sourceAndArgumentValues[0];
-							final /*@NonInvalid*/ Object p1 = sourceAndArgumentValues[1];
-							final /*@NonInvalid*/ Object p2 = sourceAndArgumentValues[2];
-							/*@Caught*/ Object CAUGHT_implies;
+							final /*@NonInvalid*/ SetValue BOXED_descuentos = (SetValue)sourceAndArgumentValues[0];
+							final /*@NonInvalid*/ Object d1 = sourceAndArgumentValues[1];
+							final /*@NonInvalid*/ Object d2 = sourceAndArgumentValues[2];
+							/*@Caught*/ Object CAUGHT_and;
 							try {
-								final /*@NonInvalid*/ Parada local_0 = (Parada)p1;
-								final /*@NonInvalid*/ Parada local_1 = (Parada)p2;
-								final /*@NonInvalid*/ boolean ne = (local_0 != null) ? !local_0.equals(local_1) : (local_1 != null);
-								final /*@Thrown*/ Boolean implies;
-								if (!ne) {
-									implies = ValueUtil.TRUE_VALUE;
+								/*@Caught*/ Object CAUGHT_lt;
+								try {
+									final /*@NonInvalid*/ Descuento local_0 = (Descuento)d1;
+									if (local_0 == null) {
+										throw new InvalidValueException("Null source for \'\'red\'::Descuento::horaIni\'");
+									}
+									final /*@Thrown*/ int horaIni = local_0.getHoraIni();
+									final /*@Thrown*/ IntegerValue BOXED_horaIni = ValueUtil.integerValueOf(horaIni);
+									final /*@NonInvalid*/ Descuento local_1 = (Descuento)d2;
+									if (local_1 == null) {
+										throw new InvalidValueException("Null source for \'\'red\'::Descuento::horaFin\'");
+									}
+									final /*@Thrown*/ int horaFin = local_1.getHoraFin();
+									final /*@Thrown*/ IntegerValue BOXED_horaFin = ValueUtil.integerValueOf(horaFin);
+									if (BOXED_horaFin instanceof InvalidValueException) {
+										throw (InvalidValueException)BOXED_horaFin;
+									}
+									final /*@Thrown*/ boolean lt = OclComparableLessThanOperation.INSTANCE.evaluate(executor, BOXED_horaIni, BOXED_horaFin).booleanValue();
+									CAUGHT_lt = lt;
+								}
+								catch (Exception e) {
+									CAUGHT_lt = ValueUtil.createInvalidValue(e);
+								}
+								final /*@Thrown*/ Boolean and;
+								if (CAUGHT_lt == ValueUtil.FALSE_VALUE) {
+									and = ValueUtil.FALSE_VALUE;
 								}
 								else {
-									/*@Caught*/ Object CAUGHT_ne_0;
+									/*@Caught*/ Object CAUGHT_gt;
 									try {
-										if (local_0 == null) {
-											throw new InvalidValueException("Null source for \'\'red\'::Parada::nombre\'");
+										final /*@NonInvalid*/ Descuento local_2 = (Descuento)d1;
+										if (local_2 == null) {
+											throw new InvalidValueException("Null source for \'\'red\'::Descuento::horaIni\'");
 										}
-										final /*@Thrown*/ String nombre = local_0.getNombre();
-										if (local_1 == null) {
-											throw new InvalidValueException("Null source for \'\'red\'::Parada::nombre\'");
+										final /*@Thrown*/ int horaIni_0 = local_2.getHoraIni();
+										final /*@Thrown*/ IntegerValue BOXED_horaIni_0 = ValueUtil.integerValueOf(horaIni_0);
+										final /*@NonInvalid*/ Descuento local_3 = (Descuento)d2;
+										if (local_3 == null) {
+											throw new InvalidValueException("Null source for \'\'red\'::Descuento::horaIni\'");
 										}
-										final /*@Thrown*/ String nombre_0 = local_1.getNombre();
-										final /*@Thrown*/ boolean ne_0 = !nombre.equals(nombre_0);
-										CAUGHT_ne_0 = ne_0;
+										final /*@Thrown*/ int horaIni_1 = local_3.getHoraIni();
+										final /*@Thrown*/ IntegerValue BOXED_horaIni_1 = ValueUtil.integerValueOf(horaIni_1);
+										if (BOXED_horaIni_1 instanceof InvalidValueException) {
+											throw (InvalidValueException)BOXED_horaIni_1;
+										}
+										final /*@Thrown*/ boolean gt = OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, BOXED_horaIni_0, BOXED_horaIni_1).booleanValue();
+										CAUGHT_gt = gt;
 									}
 									catch (Exception e) {
-										CAUGHT_ne_0 = ValueUtil.createInvalidValue(e);
+										CAUGHT_gt = ValueUtil.createInvalidValue(e);
 									}
-									if (CAUGHT_ne_0 == ValueUtil.TRUE_VALUE) {
-										implies = ValueUtil.TRUE_VALUE;
+									if (CAUGHT_gt == ValueUtil.FALSE_VALUE) {
+										and = ValueUtil.FALSE_VALUE;
 									}
 									else {
-										if (CAUGHT_ne_0 instanceof InvalidValueException) {
-											throw (InvalidValueException)CAUGHT_ne_0;
+										if (CAUGHT_lt instanceof InvalidValueException) {
+											throw (InvalidValueException)CAUGHT_lt;
 										}
-										implies = ValueUtil.FALSE_VALUE;
+										if (CAUGHT_gt instanceof InvalidValueException) {
+											throw (InvalidValueException)CAUGHT_gt;
+										}
+										and = ValueUtil.TRUE_VALUE;
 									}
 								}
-								CAUGHT_implies = implies;
+								CAUGHT_and = and;
 							}
 							catch (Exception e) {
-								CAUGHT_implies = ValueUtil.createInvalidValue(e);
+								CAUGHT_and = ValueUtil.createInvalidValue(e);
 							}
-							return CAUGHT_implies;
+							final /*@Thrown*/ Boolean and_1;
+							if (CAUGHT_and == ValueUtil.FALSE_VALUE) {
+								and_1 = ValueUtil.FALSE_VALUE;
+							}
+							else {
+								/*@Caught*/ Object CAUGHT_and_0;
+								try {
+									/*@Caught*/ Object CAUGHT_lt_0;
+									try {
+										final /*@NonInvalid*/ Descuento local_4 = (Descuento)d1;
+										if (local_4 == null) {
+											throw new InvalidValueException("Null source for \'\'red\'::Descuento::horaFin\'");
+										}
+										final /*@Thrown*/ int horaFin_0 = local_4.getHoraFin();
+										final /*@Thrown*/ IntegerValue BOXED_horaFin_0 = ValueUtil.integerValueOf(horaFin_0);
+										final /*@NonInvalid*/ Descuento local_5 = (Descuento)d2;
+										if (local_5 == null) {
+											throw new InvalidValueException("Null source for \'\'red\'::Descuento::horaFin\'");
+										}
+										final /*@Thrown*/ int horaFin_1 = local_5.getHoraFin();
+										final /*@Thrown*/ IntegerValue BOXED_horaFin_1 = ValueUtil.integerValueOf(horaFin_1);
+										if (BOXED_horaFin_1 instanceof InvalidValueException) {
+											throw (InvalidValueException)BOXED_horaFin_1;
+										}
+										final /*@Thrown*/ boolean lt_0 = OclComparableLessThanOperation.INSTANCE.evaluate(executor, BOXED_horaFin_0, BOXED_horaFin_1).booleanValue();
+										CAUGHT_lt_0 = lt_0;
+									}
+									catch (Exception e) {
+										CAUGHT_lt_0 = ValueUtil.createInvalidValue(e);
+									}
+									final /*@Thrown*/ Boolean and_0;
+									if (CAUGHT_lt_0 == ValueUtil.FALSE_VALUE) {
+										and_0 = ValueUtil.FALSE_VALUE;
+									}
+									else {
+										/*@Caught*/ Object CAUGHT_gt_0;
+										try {
+											final /*@NonInvalid*/ Descuento local_6 = (Descuento)d1;
+											if (local_6 == null) {
+												throw new InvalidValueException("Null source for \'\'red\'::Descuento::horaFin\'");
+											}
+											final /*@Thrown*/ int horaFin_2 = local_6.getHoraFin();
+											final /*@Thrown*/ IntegerValue BOXED_horaFin_2 = ValueUtil.integerValueOf(horaFin_2);
+											final /*@NonInvalid*/ Descuento local_7 = (Descuento)d2;
+											if (local_7 == null) {
+												throw new InvalidValueException("Null source for \'\'red\'::Descuento::horaIni\'");
+											}
+											final /*@Thrown*/ int horaIni_2 = local_7.getHoraIni();
+											final /*@Thrown*/ IntegerValue BOXED_horaIni_2 = ValueUtil.integerValueOf(horaIni_2);
+											if (BOXED_horaIni_2 instanceof InvalidValueException) {
+												throw (InvalidValueException)BOXED_horaIni_2;
+											}
+											final /*@Thrown*/ boolean gt_0 = OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, BOXED_horaFin_2, BOXED_horaIni_2).booleanValue();
+											CAUGHT_gt_0 = gt_0;
+										}
+										catch (Exception e) {
+											CAUGHT_gt_0 = ValueUtil.createInvalidValue(e);
+										}
+										if (CAUGHT_gt_0 == ValueUtil.FALSE_VALUE) {
+											and_0 = ValueUtil.FALSE_VALUE;
+										}
+										else {
+											if (CAUGHT_lt_0 instanceof InvalidValueException) {
+												throw (InvalidValueException)CAUGHT_lt_0;
+											}
+											if (CAUGHT_gt_0 instanceof InvalidValueException) {
+												throw (InvalidValueException)CAUGHT_gt_0;
+											}
+											and_0 = ValueUtil.TRUE_VALUE;
+										}
+									}
+									CAUGHT_and_0 = and_0;
+								}
+								catch (Exception e) {
+									CAUGHT_and_0 = ValueUtil.createInvalidValue(e);
+								}
+								if (CAUGHT_and_0 == ValueUtil.FALSE_VALUE) {
+									and_1 = ValueUtil.FALSE_VALUE;
+								}
+								else {
+									if (CAUGHT_and instanceof InvalidValueException) {
+										throw (InvalidValueException)CAUGHT_and;
+									}
+									if (CAUGHT_and_0 instanceof InvalidValueException) {
+										throw (InvalidValueException)CAUGHT_and_0;
+									}
+									if ((CAUGHT_and == null) || (CAUGHT_and_0 == null)) {
+										and_1 = null;
+									}
+									else {
+										and_1 = ValueUtil.TRUE_VALUE;
+									}
+								}
+							}
+							if (and_1 == null) {
+								throw new InvalidValueException("Null if condition");
+							}
+							/*@NonInvalid*/ boolean local_8;
+							if (and_1) {
+								local_8 = true;
+							}
+							else {
+								local_8 = false;
+							}
+							return local_8;
 						}
 					};
-					final ExecutorMultipleIterationManager MGR_result_0 = new ExecutorMultipleIterationManager(executor, 2, TypeId.BOOLEAN, BODY_result_0, BOXED_paradas, ACC_result_0);
+					final ExecutorMultipleIterationManager MGR_result_0 = new ExecutorMultipleIterationManager(executor, 2, TypeId.BOOLEAN, BODY_result_0, BOXED_descuentos, ACC_result_0);
 					final /*@Thrown*/ Boolean result = (Boolean)IMPL_result_0.evaluateIteration(MGR_result_0);
 					CAUGHT_result = result;
 				}
@@ -611,13 +881,28 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 					CAUGHT_result = ValueUtil.createInvalidValue(e);
 				}
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object)null, diagnostics, context, (Object)null, severity_0, CAUGHT_result, RedTables.INT_0).booleanValue();
-				local_4 = logDiagnostic;
+				local_9 = logDiagnostic;
 			}
-			return local_4;
+			return local_9;
 		}
 		catch (Throwable e) {
 			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case RedPackage.LINEA__DESCUENTOS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDescuentos()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -654,8 +939,6 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 				return getSiguienteParadaTiempo();
 			case RedPackage.LINEA__SIGUIENTE_PARADA_DISTANCIA:
 				return getSiguienteParadaDistancia();
-			case RedPackage.LINEA__PARADAS:
-				return getParadas();
 			case RedPackage.LINEA__PARADA_INI:
 				if (resolve) return getParadaIni();
 				return basicGetParadaIni();
@@ -696,10 +979,6 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 			case RedPackage.LINEA__SIGUIENTE_PARADA_DISTANCIA:
 				setSiguienteParadaDistancia((Map<?, ?>)newValue);
 				return;
-			case RedPackage.LINEA__PARADAS:
-				getParadas().clear();
-				getParadas().addAll((Collection<? extends Parada>)newValue);
-				return;
 			case RedPackage.LINEA__PARADA_INI:
 				setParadaIni((Parada)newValue);
 				return;
@@ -739,9 +1018,6 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 			case RedPackage.LINEA__SIGUIENTE_PARADA_DISTANCIA:
 				setSiguienteParadaDistancia((Map<?, ?>)null);
 				return;
-			case RedPackage.LINEA__PARADAS:
-				getParadas().clear();
-				return;
 			case RedPackage.LINEA__PARADA_INI:
 				setParadaIni((Parada)null);
 				return;
@@ -775,8 +1051,6 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 				return siguienteParadaTiempo != null;
 			case RedPackage.LINEA__SIGUIENTE_PARADA_DISTANCIA:
 				return siguienteParadaDistancia != null;
-			case RedPackage.LINEA__PARADAS:
-				return paradas != null && !paradas.isEmpty();
 			case RedPackage.LINEA__PARADA_INI:
 				return paradaIni != null;
 			case RedPackage.LINEA__PARADA_FIN:
@@ -796,10 +1070,12 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
+			case RedPackage.LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP:
+				return horarioCorrecto((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case RedPackage.LINEA___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP:
+				return nonDescuentosSolapados((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case RedPackage.LINEA___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP:
 				return lineaCircular((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case RedPackage.LINEA___PARADAS_IGUALES__DIAGNOSTICCHAIN_MAP:
-				return paradasIguales((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

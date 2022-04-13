@@ -4,6 +4,7 @@ package red.impl;
 
 import java.lang.reflect.InvocationTargetException;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 
 import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
@@ -40,6 +42,7 @@ import org.eclipse.ocl.pivot.values.SetValue.Accumulator;
 
 import red.Colores;
 import red.LineaMetro;
+import red.ParadaMetro;
 import red.RedPackage;
 import red.RedTables;
 
@@ -52,6 +55,7 @@ import red.RedTables;
  * </p>
  * <ul>
  *   <li>{@link red.impl.LineaMetroImpl#getColor <em>Color</em>}</li>
+ *   <li>{@link red.impl.LineaMetroImpl#getParadas <em>Paradas</em>}</li>
  * </ul>
  *
  * @generated
@@ -76,6 +80,16 @@ public class LineaMetroImpl extends LineaImpl implements LineaMetro {
 	 * @ordered
 	 */
 	protected Colores color = COLOR_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getParadas() <em>Paradas</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParadas()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ParadaMetro> paradas;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -115,6 +129,18 @@ public class LineaMetroImpl extends LineaImpl implements LineaMetro {
 		color = newColor == null ? COLOR_EDEFAULT : newColor;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RedPackage.LINEA_METRO__COLOR, oldColor, color));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ParadaMetro> getParadas() {
+		if (paradas == null) {
+			paradas = new EObjectResolvingEList<ParadaMetro>(ParadaMetro.class, this, RedPackage.LINEA_METRO__PARADAS);
+		}
+		return paradas;
 	}
 
 	/**
@@ -265,6 +291,8 @@ public class LineaMetroImpl extends LineaImpl implements LineaMetro {
 		switch (featureID) {
 			case RedPackage.LINEA_METRO__COLOR:
 				return getColor();
+			case RedPackage.LINEA_METRO__PARADAS:
+				return getParadas();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -274,11 +302,16 @@ public class LineaMetroImpl extends LineaImpl implements LineaMetro {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case RedPackage.LINEA_METRO__COLOR:
 				setColor((Colores)newValue);
+				return;
+			case RedPackage.LINEA_METRO__PARADAS:
+				getParadas().clear();
+				getParadas().addAll((Collection<? extends ParadaMetro>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -295,6 +328,9 @@ public class LineaMetroImpl extends LineaImpl implements LineaMetro {
 			case RedPackage.LINEA_METRO__COLOR:
 				setColor(COLOR_EDEFAULT);
 				return;
+			case RedPackage.LINEA_METRO__PARADAS:
+				getParadas().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -309,6 +345,8 @@ public class LineaMetroImpl extends LineaImpl implements LineaMetro {
 		switch (featureID) {
 			case RedPackage.LINEA_METRO__COLOR:
 				return color != COLOR_EDEFAULT;
+			case RedPackage.LINEA_METRO__PARADAS:
+				return paradas != null && !paradas.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

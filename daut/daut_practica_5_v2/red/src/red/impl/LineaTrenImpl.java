@@ -4,18 +4,14 @@ package red.impl;
 
 import java.lang.reflect.InvocationTargetException;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
-
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 
 import org.eclipse.ocl.pivot.ids.IdResolver;
@@ -37,6 +33,7 @@ import org.eclipse.ocl.pivot.values.SetValue;
 import org.eclipse.ocl.pivot.values.SetValue.Accumulator;
 
 import red.LineaTren;
+import red.ParadaTren;
 import red.RedPackage;
 import red.RedTables;
 
@@ -48,52 +45,21 @@ import red.RedTables;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link red.impl.LineaTrenImpl#isDiurna <em>Diurna</em>}</li>
- *   <li>{@link red.impl.LineaTrenImpl#isNocturna <em>Nocturna</em>}</li>
+ *   <li>{@link red.impl.LineaTrenImpl#getParadas <em>Paradas</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class LineaTrenImpl extends LineaImpl implements LineaTren {
 	/**
-	 * The default value of the '{@link #isDiurna() <em>Diurna</em>}' attribute.
+	 * The cached value of the '{@link #getParadas() <em>Paradas</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isDiurna()
+	 * @see #getParadas()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean DIURNA_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isDiurna() <em>Diurna</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isDiurna()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean diurna = DIURNA_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isNocturna() <em>Nocturna</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isNocturna()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean NOCTURNA_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isNocturna() <em>Nocturna</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isNocturna()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean nocturna = NOCTURNA_EDEFAULT;
+	protected EList<ParadaTren> paradas;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -119,41 +85,11 @@ public class LineaTrenImpl extends LineaImpl implements LineaTren {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDiurna() {
-		return diurna;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDiurna(boolean newDiurna) {
-		boolean oldDiurna = diurna;
-		diurna = newDiurna;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RedPackage.LINEA_TREN__DIURNA, oldDiurna, diurna));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isNocturna() {
-		return nocturna;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setNocturna(boolean newNocturna) {
-		boolean oldNocturna = nocturna;
-		nocturna = newNocturna;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RedPackage.LINEA_TREN__NOCTURNA, oldNocturna, nocturna));
+	public EList<ParadaTren> getParadas() {
+		if (paradas == null) {
+			paradas = new EObjectResolvingEList<ParadaTren>(ParadaTren.class, this, RedPackage.LINEA_TREN__PARADAS);
+		}
+		return paradas;
 	}
 
 	/**
@@ -230,10 +166,8 @@ public class LineaTrenImpl extends LineaImpl implements LineaTren {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RedPackage.LINEA_TREN__DIURNA:
-				return isDiurna();
-			case RedPackage.LINEA_TREN__NOCTURNA:
-				return isNocturna();
+			case RedPackage.LINEA_TREN__PARADAS:
+				return getParadas();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -243,14 +177,13 @@ public class LineaTrenImpl extends LineaImpl implements LineaTren {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RedPackage.LINEA_TREN__DIURNA:
-				setDiurna((Boolean)newValue);
-				return;
-			case RedPackage.LINEA_TREN__NOCTURNA:
-				setNocturna((Boolean)newValue);
+			case RedPackage.LINEA_TREN__PARADAS:
+				getParadas().clear();
+				getParadas().addAll((Collection<? extends ParadaTren>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -264,11 +197,8 @@ public class LineaTrenImpl extends LineaImpl implements LineaTren {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RedPackage.LINEA_TREN__DIURNA:
-				setDiurna(DIURNA_EDEFAULT);
-				return;
-			case RedPackage.LINEA_TREN__NOCTURNA:
-				setNocturna(NOCTURNA_EDEFAULT);
+			case RedPackage.LINEA_TREN__PARADAS:
+				getParadas().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -282,10 +212,8 @@ public class LineaTrenImpl extends LineaImpl implements LineaTren {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RedPackage.LINEA_TREN__DIURNA:
-				return diurna != DIURNA_EDEFAULT;
-			case RedPackage.LINEA_TREN__NOCTURNA:
-				return nocturna != NOCTURNA_EDEFAULT;
+			case RedPackage.LINEA_TREN__PARADAS:
+				return paradas != null && !paradas.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -303,24 +231,6 @@ public class LineaTrenImpl extends LineaImpl implements LineaTren {
 				return nonDuplicateCodigoTren((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (diurna: ");
-		result.append(diurna);
-		result.append(", nocturna: ");
-		result.append(nocturna);
-		result.append(')');
-		return result.toString();
 	}
 
 } //LineaTrenImpl

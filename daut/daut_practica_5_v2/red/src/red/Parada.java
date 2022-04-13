@@ -2,8 +2,6 @@
  */
 package red;
 
-import java.util.Map;
-import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -19,12 +17,11 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link red.Parada#isAccesible <em>Accesible</em>}</li>
  *   <li>{@link red.Parada#isBicicletas <em>Bicicletas</em>}</li>
  *   <li>{@link red.Parada#isAparcamientoGrat <em>Aparcamiento Grat</em>}</li>
- *   <li>{@link red.Parada#isAseos <em>Aseos</em>}</li>
  *   <li>{@link red.Parada#getTransbordo <em>Transbordo</em>}</li>
  * </ul>
  *
  * @see red.RedPackage#getParada()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='nonDuplicateNombreParada'"
+ * @model abstract="true"
  * @generated
  */
 public interface Parada extends EObject {
@@ -117,28 +114,6 @@ public interface Parada extends EObject {
 	void setAparcamientoGrat(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Aseos</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Aseos</em>' attribute.
-	 * @see #setAseos(boolean)
-	 * @see red.RedPackage#getParada_Aseos()
-	 * @model required="true"
-	 * @generated
-	 */
-	boolean isAseos();
-
-	/**
-	 * Sets the value of the '{@link red.Parada#isAseos <em>Aseos</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Aseos</em>' attribute.
-	 * @see #isAseos()
-	 * @generated
-	 */
-	void setAseos(boolean value);
-
-	/**
 	 * Returns the value of the '<em><b>Transbordo</b></em>' attribute.
 	 * The literals are from the enumeration {@link red.Transbordos}.
 	 * <!-- begin-user-doc -->
@@ -162,13 +137,5 @@ public interface Parada extends EObject {
 	 * @generated
 	 */
 	void setTransbordo(Transbordos value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tParada.allInstances()-&gt;isUnique(nombre)'"
-	 * @generated
-	 */
-	boolean nonDuplicateNombreParada(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Parada

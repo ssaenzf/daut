@@ -61,7 +61,9 @@ public class RedFactoryImpl extends EFactoryImpl implements RedFactory {
 			case RedPackage.LINEA_METRO: return createLineaMetro();
 			case RedPackage.LINEA_TREN: return createLineaTren();
 			case RedPackage.LINEA_BUS: return createLineaBus();
-			case RedPackage.PARADA: return createParada();
+			case RedPackage.PARADA_BUS: return createParadaBus();
+			case RedPackage.PARADA_METRO: return createParadaMetro();
+			case RedPackage.PARADA_TREN: return createParadaTren();
 			case RedPackage.DESCUENTO: return createDescuento();
 			case RedPackage.ZONA_TARIFACION: return createZonaTarifacion();
 			default:
@@ -148,9 +150,29 @@ public class RedFactoryImpl extends EFactoryImpl implements RedFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Parada createParada() {
-		ParadaImpl parada = new ParadaImpl();
-		return parada;
+	public ParadaBus createParadaBus() {
+		ParadaBusImpl paradaBus = new ParadaBusImpl();
+		return paradaBus;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ParadaMetro createParadaMetro() {
+		ParadaMetroImpl paradaMetro = new ParadaMetroImpl();
+		return paradaMetro;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ParadaTren createParadaTren() {
+		ParadaTrenImpl paradaTren = new ParadaTrenImpl();
+		return paradaTren;
 	}
 
 	/**
