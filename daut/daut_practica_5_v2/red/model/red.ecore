@@ -10,6 +10,12 @@
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="RedTransporte">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="lineasParadasConsecutivasIguales"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="lineasParadasConsecutivasIguales" value="&#xA;&#x9;&#x9;&#x9;lineas->forAll(linea1, linea2 | &#xA;&#x9;&#x9;&#x9;&#x9;linea1.paradas->forAll(par1|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;linea2.paradas->forAll(par2|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(par1 = par2) implies (&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;linea2.paradas->forAll(par3|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;linea1.paradas->forAll(par4|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;((par3 = par4) and (linea1.paradas->indexOf(par4) = 1 + linea1.paradas->indexOf(par1)) and (linea2.paradas->indexOf(par2) = 1 + linea2.paradas->indexOf(par3))) implies(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;linea1.siguienteParadaDistancia->forAll(dis1|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(linea1.siguienteParadaDistancia->indexOf(dis1) = linea1.paradas->indexOf(par1)) implies(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;linea2.siguienteParadaDistancia->forAll(dis2|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(linea2.siguienteParadaDistancia->indexOf(dis2) = linea2.paradas->indexOf(par2)) implies(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;dis1 = dis2&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="lineas" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//Linea" containment="true">
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
@@ -51,25 +57,19 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="horaCierre" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="siguienteParadaTiempo"
-        transient="true">
-      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-        <eTypeArguments/>
-        <eTypeArguments/>
-      </eGenericType>
-    </eStructuralFeatures>
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="siguienteParadaDistancia"
-        transient="true">
-      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-        <eTypeArguments/>
-        <eTypeArguments/>
-      </eGenericType>
-    </eStructuralFeatures>
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="paradaIni" lowerBound="1"
         eType="#//Parada"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="paradaFin" lowerBound="1"
         eType="#//Parada"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="circular" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="paradas" lowerBound="2"
+        upperBound="-1" eType="#//Parada"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LineaMetro" eSuperTypes="#//Linea">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
