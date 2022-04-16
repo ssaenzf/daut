@@ -5,11 +5,13 @@ package red.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import red.Parada;
 import red.RedPackage;
 import red.Transbordos;
+import red.ZonaTarifacion;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,6 +26,7 @@ import red.Transbordos;
  *   <li>{@link red.impl.ParadaImpl#isBicicletas <em>Bicicletas</em>}</li>
  *   <li>{@link red.impl.ParadaImpl#isAparcamientoGrat <em>Aparcamiento Grat</em>}</li>
  *   <li>{@link red.impl.ParadaImpl#getTransbordo <em>Transbordo</em>}</li>
+ *   <li>{@link red.impl.ParadaImpl#getZonatarificacion <em>Zonatarificacion</em>}</li>
  * </ul>
  *
  * @generated
@@ -128,6 +131,16 @@ public abstract class ParadaImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected Transbordos transbordo = TRANSBORDO_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getZonatarificacion() <em>Zonatarificacion</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getZonatarificacion()
+	 * @generated
+	 * @ordered
+	 */
+	protected ZonaTarifacion zonatarificacion;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -258,6 +271,44 @@ public abstract class ParadaImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ZonaTarifacion getZonatarificacion() {
+		if (zonatarificacion != null && zonatarificacion.eIsProxy()) {
+			InternalEObject oldZonatarificacion = (InternalEObject)zonatarificacion;
+			zonatarificacion = (ZonaTarifacion)eResolveProxy(oldZonatarificacion);
+			if (zonatarificacion != oldZonatarificacion) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RedPackage.PARADA__ZONATARIFICACION, oldZonatarificacion, zonatarificacion));
+			}
+		}
+		return zonatarificacion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ZonaTarifacion basicGetZonatarificacion() {
+		return zonatarificacion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setZonatarificacion(ZonaTarifacion newZonatarificacion) {
+		ZonaTarifacion oldZonatarificacion = zonatarificacion;
+		zonatarificacion = newZonatarificacion;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RedPackage.PARADA__ZONATARIFICACION, oldZonatarificacion, zonatarificacion));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -271,6 +322,9 @@ public abstract class ParadaImpl extends MinimalEObjectImpl.Container implements
 				return isAparcamientoGrat();
 			case RedPackage.PARADA__TRANSBORDO:
 				return getTransbordo();
+			case RedPackage.PARADA__ZONATARIFICACION:
+				if (resolve) return getZonatarificacion();
+				return basicGetZonatarificacion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -297,6 +351,9 @@ public abstract class ParadaImpl extends MinimalEObjectImpl.Container implements
 				return;
 			case RedPackage.PARADA__TRANSBORDO:
 				setTransbordo((Transbordos)newValue);
+				return;
+			case RedPackage.PARADA__ZONATARIFICACION:
+				setZonatarificacion((ZonaTarifacion)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -325,6 +382,9 @@ public abstract class ParadaImpl extends MinimalEObjectImpl.Container implements
 			case RedPackage.PARADA__TRANSBORDO:
 				setTransbordo(TRANSBORDO_EDEFAULT);
 				return;
+			case RedPackage.PARADA__ZONATARIFICACION:
+				setZonatarificacion((ZonaTarifacion)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -347,6 +407,8 @@ public abstract class ParadaImpl extends MinimalEObjectImpl.Container implements
 				return aparcamientoGrat != APARCAMIENTO_GRAT_EDEFAULT;
 			case RedPackage.PARADA__TRANSBORDO:
 				return transbordo != TRANSBORDO_EDEFAULT;
+			case RedPackage.PARADA__ZONATARIFICACION:
+				return zonatarificacion != null;
 		}
 		return super.eIsSet(featureID);
 	}

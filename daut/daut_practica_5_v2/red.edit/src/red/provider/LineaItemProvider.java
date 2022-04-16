@@ -68,9 +68,8 @@ public class LineaItemProvider
 			addHoraCierrePropertyDescriptor(object);
 			addSiguienteParadaTiempoPropertyDescriptor(object);
 			addSiguienteParadaDistanciaPropertyDescriptor(object);
-			addParadaIniPropertyDescriptor(object);
-			addParadaFinPropertyDescriptor(object);
 			addCircularPropertyDescriptor(object);
+			addParadasPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -158,7 +157,7 @@ public class LineaItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -180,51 +179,7 @@ public class LineaItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Parada Ini feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addParadaIniPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Linea_paradaIni_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Linea_paradaIni_feature", "_UI_Linea_type"),
-				 RedPackage.Literals.LINEA__PARADA_INI,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Parada Fin feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addParadaFinPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Linea_paradaFin_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Linea_paradaFin_feature", "_UI_Linea_type"),
-				 RedPackage.Literals.LINEA__PARADA_FIN,
-				 true,
-				 false,
-				 true,
-				 null,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -247,6 +202,28 @@ public class LineaItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Paradas feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addParadasPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Linea_paradas_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Linea_paradas_feature", "_UI_Linea_type"),
+				 RedPackage.Literals.LINEA__PARADAS,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

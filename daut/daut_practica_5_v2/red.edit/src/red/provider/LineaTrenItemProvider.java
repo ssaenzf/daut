@@ -43,25 +43,48 @@ public class LineaTrenItemProvider extends LineaItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addParadasPropertyDescriptor(object);
+			addParadaIniPropertyDescriptor(object);
+			addParadaFinPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Paradas feature.
+	 * This adds a property descriptor for the Parada Ini feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addParadasPropertyDescriptor(Object object) {
+	protected void addParadaIniPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LineaTren_paradas_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LineaTren_paradas_feature", "_UI_LineaTren_type"),
-				 RedPackage.Literals.LINEA_TREN__PARADAS,
+				 getString("_UI_LineaTren_paradaIni_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LineaTren_paradaIni_feature", "_UI_LineaTren_type"),
+				 RedPackage.Literals.LINEA_TREN__PARADA_INI,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Parada Fin feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addParadaFinPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LineaTren_paradaFin_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LineaTren_paradaFin_feature", "_UI_LineaTren_type"),
+				 RedPackage.Literals.LINEA_TREN__PARADA_FIN,
 				 true,
 				 false,
 				 true,

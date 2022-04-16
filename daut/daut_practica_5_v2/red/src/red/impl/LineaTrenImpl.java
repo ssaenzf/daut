@@ -3,39 +3,19 @@
 package red.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.Map;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.ocl.pivot.evaluation.Executor;
-
-import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.ids.TypeId;
-
-import org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation;
-
-import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
-
-import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
-import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
-
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
-
-import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.SetValue;
-
-import org.eclipse.ocl.pivot.values.SetValue.Accumulator;
-
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import red.LineaTren;
 import red.ParadaTren;
 import red.RedPackage;
-import red.RedTables;
+import red.util.RedValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,21 +25,31 @@ import red.RedTables;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link red.impl.LineaTrenImpl#getParadas <em>Paradas</em>}</li>
+ *   <li>{@link red.impl.LineaTrenImpl#getParadaIni <em>Parada Ini</em>}</li>
+ *   <li>{@link red.impl.LineaTrenImpl#getParadaFin <em>Parada Fin</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class LineaTrenImpl extends LineaImpl implements LineaTren {
 	/**
-	 * The cached value of the '{@link #getParadas() <em>Paradas</em>}' reference list.
+	 * The cached value of the '{@link #getParadaIni() <em>Parada Ini</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParadas()
+	 * @see #getParadaIni()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ParadaTren> paradas;
+	protected ParadaTren paradaIni;
+	/**
+	 * The cached value of the '{@link #getParadaFin() <em>Parada Fin</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParadaFin()
+	 * @generated
+	 * @ordered
+	 */
+	protected ParadaTren paradaFin;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -85,11 +75,16 @@ public class LineaTrenImpl extends LineaImpl implements LineaTren {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ParadaTren> getParadas() {
-		if (paradas == null) {
-			paradas = new EObjectResolvingEList<ParadaTren>(ParadaTren.class, this, RedPackage.LINEA_TREN__PARADAS);
+	public ParadaTren getParadaIni() {
+		if (paradaIni != null && paradaIni.eIsProxy()) {
+			InternalEObject oldParadaIni = (InternalEObject)paradaIni;
+			paradaIni = (ParadaTren)eResolveProxy(oldParadaIni);
+			if (paradaIni != oldParadaIni) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RedPackage.LINEA_TREN__PARADA_INI, oldParadaIni, paradaIni));
+			}
 		}
-		return paradas;
+		return paradaIni;
 	}
 
 	/**
@@ -97,65 +92,124 @@ public class LineaTrenImpl extends LineaImpl implements LineaTren {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean nonDuplicateCodigoTren(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		final String constraintName = "LineaTren::nonDuplicateCodigoTren";
-		try {
-			/**
-			 *
-			 * inv nonDuplicateCodigoTren:
-			 *   let severity : Integer[1] = constraintName.getSeverity()
-			 *   in
-			 *     if severity <= 0
-			 *     then true
-			 *     else
-			 *       let
-			 *         result : Boolean[1] = LineaTren.allInstances()
-			 *         ->isUnique(codigo)
-			 *       in
-			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
-			 *     endif
-			 */
-			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
-			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, RedPackage.Literals.LINEA_TREN___NON_DUPLICATE_CODIGO_TREN__DIAGNOSTICCHAIN_MAP);
-			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, RedTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_0;
-			if (le) {
-				local_0 = true;
+	public ParadaTren basicGetParadaIni() {
+		return paradaIni;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setParadaIni(ParadaTren newParadaIni) {
+		ParadaTren oldParadaIni = paradaIni;
+		paradaIni = newParadaIni;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RedPackage.LINEA_TREN__PARADA_INI, oldParadaIni, paradaIni));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ParadaTren getParadaFin() {
+		if (paradaFin != null && paradaFin.eIsProxy()) {
+			InternalEObject oldParadaFin = (InternalEObject)paradaFin;
+			paradaFin = (ParadaTren)eResolveProxy(oldParadaFin);
+			if (paradaFin != oldParadaFin) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RedPackage.LINEA_TREN__PARADA_FIN, oldParadaFin, paradaFin));
 			}
-			else {
-				final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_red_c_c_LineaTren = idResolver.getClass(RedTables.CLSSid_LineaTren, null);
-				final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE.evaluate(executor, RedTables.SET_CLSSid_LineaTren, TYP_red_c_c_LineaTren);
-				/*@Thrown*/ Accumulator accumulator = ValueUtil.createSetAccumulatorValue(RedTables.SET_CLSSid_LineaTren);
-				Iterator<Object> ITERATOR__1 = allInstances.iterator();
-				/*@NonInvalid*/ boolean result;
-				while (true) {
-					if (!ITERATOR__1.hasNext()) {
-						result = true;
-						break;
-					}
-					/*@NonInvalid*/ LineaTren _1 = (LineaTren)ITERATOR__1.next();
-					/**
-					 * codigo
-					 */
-					final /*@NonInvalid*/ String codigo = _1.getCodigo();
-					//
-					if (accumulator.includes(codigo) == ValueUtil.TRUE_VALUE) {
-						result = false;
-						break;			// Abort after second find
-					}
-					else {
-						accumulator.add(codigo);
-					}
-				}
-				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object)null, diagnostics, context, (Object)null, severity_0, result, RedTables.INT_0).booleanValue();
-				local_0 = logDiagnostic;
-			}
-			return local_0;
 		}
-		catch (Throwable e) {
-			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
-		}
+		return paradaFin;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ParadaTren basicGetParadaFin() {
+		return paradaFin;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setParadaFin(ParadaTren newParadaFin) {
+		ParadaTren oldParadaFin = paradaFin;
+		paradaFin = newParadaFin;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RedPackage.LINEA_TREN__PARADA_FIN, oldParadaFin, paradaFin));
+	}
+
+	/**
+	 * The cached validation expression for the '{@link #nonDuplicateCodigoTren(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Non Duplicate Codigo Tren</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #nonDuplicateCodigoTren(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NON_DUPLICATE_CODIGO_TREN_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n" +
+		"\t\t\tLineaTren.allInstances()->isUnique(codigo)";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean nonDuplicateCodigoTren(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			RedValidator.validate
+				(RedPackage.Literals.LINEA_TREN,
+				 this,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 RedPackage.Literals.LINEA_TREN___NON_DUPLICATE_CODIGO_TREN__DIAGNOSTICCHAIN_MAP,
+				 NON_DUPLICATE_CODIGO_TREN_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 RedValidator.DIAGNOSTIC_SOURCE,
+				 RedValidator.LINEA_TREN__NON_DUPLICATE_CODIGO_TREN);
+	}
+
+	/**
+	 * The cached validation expression for the '{@link #lineaCircular(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Linea Circular</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #lineaCircular(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LINEA_CIRCULAR_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n" +
+		"\t\t\tif circular = true then\n" +
+		"\t\t\t\tparadaFin = paradaIni \n" +
+		"\t\t\telse \n" +
+		"\t\t\t\tparadaFin <> paradaIni \n" +
+		"\t\t\tendif";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean lineaCircular(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			RedValidator.validate
+				(RedPackage.Literals.LINEA_TREN,
+				 this,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 RedPackage.Literals.LINEA_TREN___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP,
+				 LINEA_CIRCULAR_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 RedValidator.DIAGNOSTIC_SOURCE,
+				 RedValidator.LINEA_TREN__LINEA_CIRCULAR);
 	}
 
 	/**
@@ -166,8 +220,12 @@ public class LineaTrenImpl extends LineaImpl implements LineaTren {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RedPackage.LINEA_TREN__PARADAS:
-				return getParadas();
+			case RedPackage.LINEA_TREN__PARADA_INI:
+				if (resolve) return getParadaIni();
+				return basicGetParadaIni();
+			case RedPackage.LINEA_TREN__PARADA_FIN:
+				if (resolve) return getParadaFin();
+				return basicGetParadaFin();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -181,9 +239,11 @@ public class LineaTrenImpl extends LineaImpl implements LineaTren {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RedPackage.LINEA_TREN__PARADAS:
-				getParadas().clear();
-				getParadas().addAll((Collection<? extends ParadaTren>)newValue);
+			case RedPackage.LINEA_TREN__PARADA_INI:
+				setParadaIni((ParadaTren)newValue);
+				return;
+			case RedPackage.LINEA_TREN__PARADA_FIN:
+				setParadaFin((ParadaTren)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -197,8 +257,11 @@ public class LineaTrenImpl extends LineaImpl implements LineaTren {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RedPackage.LINEA_TREN__PARADAS:
-				getParadas().clear();
+			case RedPackage.LINEA_TREN__PARADA_INI:
+				setParadaIni((ParadaTren)null);
+				return;
+			case RedPackage.LINEA_TREN__PARADA_FIN:
+				setParadaFin((ParadaTren)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -212,8 +275,10 @@ public class LineaTrenImpl extends LineaImpl implements LineaTren {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RedPackage.LINEA_TREN__PARADAS:
-				return paradas != null && !paradas.isEmpty();
+			case RedPackage.LINEA_TREN__PARADA_INI:
+				return paradaIni != null;
+			case RedPackage.LINEA_TREN__PARADA_FIN:
+				return paradaFin != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -229,6 +294,8 @@ public class LineaTrenImpl extends LineaImpl implements LineaTren {
 		switch (operationID) {
 			case RedPackage.LINEA_TREN___NON_DUPLICATE_CODIGO_TREN__DIAGNOSTICCHAIN_MAP:
 				return nonDuplicateCodigoTren((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case RedPackage.LINEA_TREN___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP:
+				return lineaCircular((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

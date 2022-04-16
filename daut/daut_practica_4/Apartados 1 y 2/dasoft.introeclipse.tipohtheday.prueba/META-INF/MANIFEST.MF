@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Prueba
-Bundle-SymbolicName: dasoft.introeclipse.tipohtheday.prueba;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Automatic-Module-Name: dasoft.introeclipse.tipohtheday.prueba
-Bundle-RequiredExecutionEnvironment: JavaSE-15
-Require-Bundle: dasoft.introeclipse.tipoftheday;bundle-version="1.0.0"

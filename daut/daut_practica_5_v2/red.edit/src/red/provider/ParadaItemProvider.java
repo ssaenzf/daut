@@ -65,6 +65,7 @@ public class ParadaItemProvider
 			addBicicletasPropertyDescriptor(object);
 			addAparcamientoGratPropertyDescriptor(object);
 			addTransbordoPropertyDescriptor(object);
+			addZonatarificacionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -180,14 +181,25 @@ public class ParadaItemProvider
 	}
 
 	/**
-	 * This returns Parada.gif.
+	 * This adds a property descriptor for the Zonatarificacion feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Parada"));
+	protected void addZonatarificacionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Parada_zonatarificacion_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Parada_zonatarificacion_feature", "_UI_Parada_type"),
+				 RedPackage.Literals.PARADA__ZONATARIFICACION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**

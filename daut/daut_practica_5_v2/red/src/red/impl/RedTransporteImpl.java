@@ -2,10 +2,14 @@
  */
 package red.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -21,6 +25,7 @@ import red.Parada;
 import red.RedPackage;
 import red.RedTransporte;
 import red.ZonaTarifacion;
+import red.util.RedValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -124,6 +129,96 @@ public class RedTransporteImpl extends MinimalEObjectImpl.Container implements R
 	}
 
 	/**
+	 * The cached validation expression for the '{@link #restriccionTarifasZona(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Restriccion Tarifas Zona</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #restriccionTarifasZona(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String RESTRICCION_TARIFAS_ZONA_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n" +
+		"\t\tzonasTarifacion->forAll(zona1|\n" +
+		"\t\t\tzonasTarifacion->forAll(zona2|\n" +
+		"\t\t\t\t(zona1.enumeracion < zona2.enumeracion) implies (\n" +
+		"\t\t\t\t\t(zona2.tarifaBus > zona1.tarifaBus) and (zona2.tarifaMetro > zona1.tarifaMetro) and (zona2.tarifaTren > zona1.tarifaTren)\n" +
+		"\t\t\t\t)\n" +
+		"\t\t\t)\n" +
+		"\t\t)";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean restriccionTarifasZona(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			RedValidator.validate
+				(RedPackage.Literals.RED_TRANSPORTE,
+				 this,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 RedPackage.Literals.RED_TRANSPORTE___RESTRICCION_TARIFAS_ZONA__DIAGNOSTICCHAIN_MAP,
+				 RESTRICCION_TARIFAS_ZONA_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 RedValidator.DIAGNOSTIC_SOURCE,
+				 RedValidator.RED_TRANSPORTE__RESTRICCION_TARIFAS_ZONA);
+	}
+
+	/**
+	 * The cached validation expression for the '{@link #lineasParadasConsecutivasIguales(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Lineas Paradas Consecutivas Iguales</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #lineasParadasConsecutivasIguales(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LINEAS_PARADAS_CONSECUTIVAS_IGUALES_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n" +
+		"\t\t\tlineas->forAll(linea1, linea2 | \n" +
+		"\t\t\t\tlinea1.paradas->forAll(par1|\n" +
+		"\t\t\t\t\tlinea2.paradas->forAll(par2|\n" +
+		"\t\t\t\t\t\t(par1 = par2) implies (\n" +
+		"\t\t\t\t\t\t\tlinea2.paradas->forAll(par3|\n" +
+		"\t\t\t\t\t\t\t\tlinea1.paradas->forAll(par4|\n" +
+		"\t\t\t\t\t\t\t\t\t((par3 = par4) and (linea1.paradas->indexOf(par4) = 1 + linea1.paradas->indexOf(par1)) and (linea2.paradas->indexOf(par2) = 1 + linea2.paradas->indexOf(par3))) implies(\n" +
+		"\t\t\t\t\t\t\t\t\t\tlinea1.siguienteParadaDistancia->forAll(dis1|\n" +
+		"\t\t\t\t\t\t\t\t\t\t\t(linea1.siguienteParadaDistancia->indexOf(dis1) = linea1.paradas->indexOf(par1)) implies(\n" +
+		"\t\t\t\t\t\t\t\t\t\t\t\tlinea2.siguienteParadaDistancia->forAll(dis2|\n" +
+		"\t\t\t\t\t\t\t\t\t\t\t\t\t(linea2.siguienteParadaDistancia->indexOf(dis2) = linea2.paradas->indexOf(par2)) implies(\n" +
+		"\t\t\t\t\t\t\t\t\t\t\t\t\t\tdis1 = dis2\n" +
+		"\t\t\t\t\t\t\t\t\t\t\t\t\t)\n" +
+		"\t\t\t\t\t\t\t\t\t\t\t\t)\n" +
+		"\t\t\t\t\t\t\t\t\t\t\t)\n" +
+		"\t\t\t\t\t\t\t\t\t\t)\n" +
+		"\t\t\t\t\t\t\t\t\t)\n" +
+		"\t\t\t\t\t\t\t\t)\n" +
+		"\t\t\t\t\t\t\t)\n" +
+		"\t\t\t\t\t\t)\n" +
+		"\t\t\t\t\t)\n" +
+		"\t\t\t\t)\n" +
+		"\t\t\t)";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean lineasParadasConsecutivasIguales(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			RedValidator.validate
+				(RedPackage.Literals.RED_TRANSPORTE,
+				 this,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 RedPackage.Literals.RED_TRANSPORTE___LINEAS_PARADAS_CONSECUTIVAS_IGUALES__DIAGNOSTICCHAIN_MAP,
+				 LINEAS_PARADAS_CONSECUTIVAS_IGUALES_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 RedValidator.DIAGNOSTIC_SOURCE,
+				 RedValidator.RED_TRANSPORTE__LINEAS_PARADAS_CONSECUTIVAS_IGUALES);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -221,6 +316,23 @@ public class RedTransporteImpl extends MinimalEObjectImpl.Container implements R
 				return zonasTarifacion != null && !zonasTarifacion.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case RedPackage.RED_TRANSPORTE___RESTRICCION_TARIFAS_ZONA__DIAGNOSTICCHAIN_MAP:
+				return restriccionTarifasZona((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case RedPackage.RED_TRANSPORTE___LINEAS_PARADAS_CONSECUTIVAS_IGUALES__DIAGNOSTICCHAIN_MAP:
+				return lineasParadasConsecutivasIguales((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //RedTransporteImpl

@@ -19,6 +19,11 @@
       <genEnumLiterals ecoreEnumLiteral="red.ecore#//Transbordos/Largo"/>
       <genEnumLiterals ecoreEnumLiteral="red.ecore#//Transbordos/NoPermitido"/>
     </genEnums>
+    <genDataTypes ecoreDataType="red.ecore#//DiagnosticChain"/>
+    <genDataTypes ecoreDataType="red.ecore#//Map">
+      <genTypeParameters ecoreTypeParameter="red.ecore#//Map/T"/>
+      <genTypeParameters ecoreTypeParameter="red.ecore#//Map/T1"/>
+    </genDataTypes>
     <genClasses ecoreClass="red.ecore#//RedTransporte">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference red.ecore#//RedTransporte/lineas"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference red.ecore#//RedTransporte/paradas"/>
@@ -31,23 +36,64 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Linea/horaCierre"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Linea/siguienteParadaTiempo"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Linea/siguienteParadaDistancia"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//Linea/paradaIni"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//Linea/paradaFin"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Linea/circular"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//Linea/paradas"/>
+      <genOperations ecoreOperation="red.ecore#//Linea/horarioCorrecto">
+        <genParameters ecoreParameter="red.ecore#//Linea/horarioCorrecto/diagnostics"/>
+        <genParameters ecoreParameter="red.ecore#//Linea/horarioCorrecto/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="red.ecore#//Linea/nonDescuentosSolapados">
+        <genParameters ecoreParameter="red.ecore#//Linea/nonDescuentosSolapados/diagnostics"/>
+        <genParameters ecoreParameter="red.ecore#//Linea/nonDescuentosSolapados/context"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="red.ecore#//LineaMetro">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//LineaMetro/color"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//LineaMetro/paradas"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//LineaMetro/paradaIni"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//LineaMetro/paradaFin"/>
+      <genOperations ecoreOperation="red.ecore#//LineaMetro/nonDuplicateColores">
+        <genParameters ecoreParameter="red.ecore#//LineaMetro/nonDuplicateColores/diagnostics"/>
+        <genParameters ecoreParameter="red.ecore#//LineaMetro/nonDuplicateColores/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="red.ecore#//LineaMetro/nonDuplicateCodigoMetro">
+        <genParameters ecoreParameter="red.ecore#//LineaMetro/nonDuplicateCodigoMetro/diagnostics"/>
+        <genParameters ecoreParameter="red.ecore#//LineaMetro/nonDuplicateCodigoMetro/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="red.ecore#//LineaMetro/lineaCircular">
+        <genParameters ecoreParameter="red.ecore#//LineaMetro/lineaCircular/diagnostics"/>
+        <genParameters ecoreParameter="red.ecore#//LineaMetro/lineaCircular/context"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="red.ecore#//LineaTren">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//LineaTren/paradas"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//LineaTren/paradaIni"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//LineaTren/paradaFin"/>
+      <genOperations ecoreOperation="red.ecore#//LineaTren/nonDuplicateCodigoTren">
+        <genParameters ecoreParameter="red.ecore#//LineaTren/nonDuplicateCodigoTren/diagnostics"/>
+        <genParameters ecoreParameter="red.ecore#//LineaTren/nonDuplicateCodigoTren/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="red.ecore#//LineaTren/lineaCircular">
+        <genParameters ecoreParameter="red.ecore#//LineaTren/lineaCircular/diagnostics"/>
+        <genParameters ecoreParameter="red.ecore#//LineaTren/lineaCircular/context"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="red.ecore#//LineaBus">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//LineaBus/paradas"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//LineaBus/isDiurna"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//LineaBus/paradaIni"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//LineaBus/paradaFin"/>
+      <genOperations ecoreOperation="red.ecore#//LineaBus/nonDuplicateCodigoBus">
+        <genParameters ecoreParameter="red.ecore#//LineaBus/nonDuplicateCodigoBus/diagnostics"/>
+        <genParameters ecoreParameter="red.ecore#//LineaBus/nonDuplicateCodigoBus/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="red.ecore#//LineaBus/lineaDiurna">
+        <genParameters ecoreParameter="red.ecore#//LineaBus/lineaDiurna/diagnostics"/>
+        <genParameters ecoreParameter="red.ecore#//LineaBus/lineaDiurna/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="red.ecore#//LineaBus/lineaCircular">
+        <genParameters ecoreParameter="red.ecore#//LineaBus/lineaCircular/diagnostics"/>
+        <genParameters ecoreParameter="red.ecore#//LineaBus/lineaCircular/context"/>
+      </genOperations>
     </genClasses>
-    <genClasses ecoreClass="red.ecore#//Parada">
+    <genClasses image="false" ecoreClass="red.ecore#//Parada">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Parada/nombre"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Parada/accesible"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Parada/bicicletas"/>
@@ -55,24 +101,61 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Parada/transbordo"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//Parada/zonatarificacion"/>
     </genClasses>
-    <genClasses ecoreClass="red.ecore#//ParadaBus"/>
+    <genClasses ecoreClass="red.ecore#//ParadaBus">
+      <genOperations ecoreOperation="red.ecore#//ParadaBus/nonDuplicateNombreParada">
+        <genParameters ecoreParameter="red.ecore#//ParadaBus/nonDuplicateNombreParada/diagnostics"/>
+        <genParameters ecoreParameter="red.ecore#//ParadaBus/nonDuplicateNombreParada/context"/>
+      </genOperations>
+    </genClasses>
     <genClasses ecoreClass="red.ecore#//ParadaMetro">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//ParadaMetro/aseos"/>
+      <genOperations ecoreOperation="red.ecore#//ParadaMetro/nonDuplicateNombreParada">
+        <genParameters ecoreParameter="red.ecore#//ParadaMetro/nonDuplicateNombreParada/diagnostics"/>
+        <genParameters ecoreParameter="red.ecore#//ParadaMetro/nonDuplicateNombreParada/context"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="red.ecore#//ParadaTren">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//ParadaTren/aseos"/>
+      <genOperations ecoreOperation="red.ecore#//ParadaTren/nonDuplicateNombreParada">
+        <genParameters ecoreParameter="red.ecore#//ParadaTren/nonDuplicateNombreParada/diagnostics"/>
+        <genParameters ecoreParameter="red.ecore#//ParadaTren/nonDuplicateNombreParada/context"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="red.ecore#//Descuento">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Descuento/horaIni"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Descuento/horaFin"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Descuento/descuento"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference red.ecore#//Descuento/linea"/>
+      <genOperations ecoreOperation="red.ecore#//Descuento/positiveDescuento">
+        <genParameters ecoreParameter="red.ecore#//Descuento/positiveDescuento/diagnostics"/>
+        <genParameters ecoreParameter="red.ecore#//Descuento/positiveDescuento/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="red.ecore#//Descuento/horarioCorrecto">
+        <genParameters ecoreParameter="red.ecore#//Descuento/horarioCorrecto/diagnostics"/>
+        <genParameters ecoreParameter="red.ecore#//Descuento/horarioCorrecto/context"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="red.ecore#//ZonaTarifacion">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//ZonaTarifacion/enumeracion"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//ZonaTarifacion/tarifaBus"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//ZonaTarifacion/tarifaMetro"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//ZonaTarifacion/tarifaTren"/>
+      <genOperations ecoreOperation="red.ecore#//ZonaTarifacion/positiveTarifaBus">
+        <genParameters ecoreParameter="red.ecore#//ZonaTarifacion/positiveTarifaBus/diagnostics"/>
+        <genParameters ecoreParameter="red.ecore#//ZonaTarifacion/positiveTarifaBus/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="red.ecore#//ZonaTarifacion/positiveTarifaTren">
+        <genParameters ecoreParameter="red.ecore#//ZonaTarifacion/positiveTarifaTren/diagnostics"/>
+        <genParameters ecoreParameter="red.ecore#//ZonaTarifacion/positiveTarifaTren/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="red.ecore#//ZonaTarifacion/nonDuplicateNum">
+        <genParameters ecoreParameter="red.ecore#//ZonaTarifacion/nonDuplicateNum/diagnostics"/>
+        <genParameters ecoreParameter="red.ecore#//ZonaTarifacion/nonDuplicateNum/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="red.ecore#//ZonaTarifacion/positiveTarifaMetro">
+        <genParameters ecoreParameter="red.ecore#//ZonaTarifacion/positiveTarifaMetro/diagnostics"/>
+        <genParameters ecoreParameter="red.ecore#//ZonaTarifacion/positiveTarifaMetro/context"/>
+      </genOperations>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

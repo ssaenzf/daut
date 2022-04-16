@@ -3,31 +3,17 @@
 package red.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Iterator;
 import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.ocl.pivot.evaluation.Executor;
-import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation;
-import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
-import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
-import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.SetValue;
-import org.eclipse.ocl.pivot.values.SetValue.Accumulator;
 import red.ParadaTren;
 import red.RedPackage;
-import red.RedTables;
+import red.util.RedValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -104,69 +90,34 @@ public class ParadaTrenImpl extends ParadaImpl implements ParadaTren {
 	}
 
 	/**
+	 * The cached validation expression for the '{@link #nonDuplicateNombreParada(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Non Duplicate Nombre Parada</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #nonDuplicateNombreParada(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NON_DUPLICATE_NOMBRE_PARADA_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n" +
+		"\t\t\tParadaTren.allInstances()->isUnique(nombre)";
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean nonDuplicateNombreParada(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		final String constraintName = "ParadaTren::nonDuplicateNombreParada";
-		try {
-			/**
-			 *
-			 * inv nonDuplicateNombreParada:
-			 *   let severity : Integer[1] = constraintName.getSeverity()
-			 *   in
-			 *     if severity <= 0
-			 *     then true
-			 *     else
-			 *       let
-			 *         result : Boolean[1] = ParadaTren.allInstances()
-			 *         ->isUnique(nombre)
-			 *       in
-			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
-			 *     endif
-			 */
-			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
-			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, RedPackage.Literals.PARADA_TREN___NON_DUPLICATE_NOMBRE_PARADA__DIAGNOSTICCHAIN_MAP);
-			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, RedTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_0;
-			if (le) {
-				local_0 = true;
-			}
-			else {
-				final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_red_c_c_ParadaTren = idResolver.getClass(RedTables.CLSSid_ParadaTren, null);
-				final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE.evaluate(executor, RedTables.SET_CLSSid_ParadaTren, TYP_red_c_c_ParadaTren);
-				/*@Thrown*/ Accumulator accumulator = ValueUtil.createSetAccumulatorValue(RedTables.SET_CLSSid_ParadaTren);
-				Iterator<Object> ITERATOR__1 = allInstances.iterator();
-				/*@NonInvalid*/ boolean result;
-				while (true) {
-					if (!ITERATOR__1.hasNext()) {
-						result = true;
-						break;
-					}
-					/*@NonInvalid*/ ParadaTren _1 = (ParadaTren)ITERATOR__1.next();
-					/**
-					 * nombre
-					 */
-					final /*@NonInvalid*/ String nombre = _1.getNombre();
-					//
-					if (accumulator.includes(nombre) == ValueUtil.TRUE_VALUE) {
-						result = false;
-						break;			// Abort after second find
-					}
-					else {
-						accumulator.add(nombre);
-					}
-				}
-				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object)null, diagnostics, context, (Object)null, severity_0, result, RedTables.INT_0).booleanValue();
-				local_0 = logDiagnostic;
-			}
-			return local_0;
-		}
-		catch (Throwable e) {
-			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
-		}
+	public boolean nonDuplicateNombreParada(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			RedValidator.validate
+				(RedPackage.Literals.PARADA_TREN,
+				 this,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 RedPackage.Literals.PARADA_TREN___NON_DUPLICATE_NOMBRE_PARADA__DIAGNOSTICCHAIN_MAP,
+				 NON_DUPLICATE_NOMBRE_PARADA_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 RedValidator.DIAGNOSTIC_SOURCE,
+				 RedValidator.PARADA_TREN__NON_DUPLICATE_NOMBRE_PARADA);
 	}
 
 	/**

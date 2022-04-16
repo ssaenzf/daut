@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see red.RedPackage#getDescuento()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='horarioCorrecto'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore"
  * @generated
  */
 public interface Descuento extends EObject {

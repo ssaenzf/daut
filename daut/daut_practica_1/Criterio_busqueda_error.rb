@@ -1,2 +1,0 @@
-class Criterio_busqueda_error < StandardError
-end

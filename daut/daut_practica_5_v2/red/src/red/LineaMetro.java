@@ -5,7 +5,6 @@ package red;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,11 +16,12 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link red.LineaMetro#getColor <em>Color</em>}</li>
- *   <li>{@link red.LineaMetro#getParadas <em>Paradas</em>}</li>
+ *   <li>{@link red.LineaMetro#getParadaIni <em>Parada Ini</em>}</li>
+ *   <li>{@link red.LineaMetro#getParadaFin <em>Parada Fin</em>}</li>
  * </ul>
  *
  * @see red.RedPackage#getLineaMetro()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='nonDuplicateCodigoMetro'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore"
  * @generated
  */
 public interface LineaMetro extends Linea {
@@ -51,17 +51,48 @@ public interface LineaMetro extends Linea {
 	void setColor(Colores value);
 
 	/**
-	 * Returns the value of the '<em><b>Paradas</b></em>' reference list.
-	 * The list contents are of type {@link red.ParadaMetro}.
+	 * Returns the value of the '<em><b>Parada Ini</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Paradas</em>' reference list.
-	 * @see red.RedPackage#getLineaMetro_Paradas()
-	 * @model lower="2"
-	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
+	 * @return the value of the '<em>Parada Ini</em>' reference.
+	 * @see #setParadaIni(ParadaMetro)
+	 * @see red.RedPackage#getLineaMetro_ParadaIni()
+	 * @model required="true"
 	 * @generated
 	 */
-	EList<ParadaMetro> getParadas();
+	ParadaMetro getParadaIni();
+
+	/**
+	 * Sets the value of the '{@link red.LineaMetro#getParadaIni <em>Parada Ini</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Parada Ini</em>' reference.
+	 * @see #getParadaIni()
+	 * @generated
+	 */
+	void setParadaIni(ParadaMetro value);
+
+	/**
+	 * Returns the value of the '<em><b>Parada Fin</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parada Fin</em>' reference.
+	 * @see #setParadaFin(ParadaMetro)
+	 * @see red.RedPackage#getLineaMetro_ParadaFin()
+	 * @model required="true"
+	 * @generated
+	 */
+	ParadaMetro getParadaFin();
+
+	/**
+	 * Sets the value of the '{@link red.LineaMetro#getParadaFin <em>Parada Fin</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Parada Fin</em>' reference.
+	 * @see #getParadaFin()
+	 * @generated
+	 */
+	void setParadaFin(ParadaMetro value);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -78,5 +109,13 @@ public interface LineaMetro extends Linea {
 	 * @generated
 	 */
 	boolean nonDuplicateCodigoMetro(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tif circular = true then\n\t\t\t\tparadaFin = paradaIni \n\t\t\telse \n\t\t\t\tparadaFin &lt;&gt; paradaIni \n\t\t\tendif'"
+	 * @generated
+	 */
+	boolean lineaCircular(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // LineaMetro

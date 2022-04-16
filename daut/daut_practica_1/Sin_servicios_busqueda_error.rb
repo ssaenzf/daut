@@ -1,2 +1,0 @@
-class Sin_servicios_busqueda_error < StandardError
-end

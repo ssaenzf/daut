@@ -2,6 +2,8 @@
  */
 package red.impl;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -83,6 +85,10 @@ public class RedFactoryImpl extends EFactoryImpl implements RedFactory {
 				return createColoresFromString(eDataType, initialValue);
 			case RedPackage.TRANSBORDOS:
 				return createTransbordosFromString(eDataType, initialValue);
+			case RedPackage.DIAGNOSTIC_CHAIN:
+				return createDiagnosticChainFromString(eDataType, initialValue);
+			case RedPackage.MAP:
+				return createMapFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -100,6 +106,10 @@ public class RedFactoryImpl extends EFactoryImpl implements RedFactory {
 				return convertColoresToString(eDataType, instanceValue);
 			case RedPackage.TRANSBORDOS:
 				return convertTransbordosToString(eDataType, instanceValue);
+			case RedPackage.DIAGNOSTIC_CHAIN:
+				return convertDiagnosticChainToString(eDataType, instanceValue);
+			case RedPackage.MAP:
+				return convertMapToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -233,6 +243,42 @@ public class RedFactoryImpl extends EFactoryImpl implements RedFactory {
 	 */
 	public String convertTransbordosToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DiagnosticChain createDiagnosticChainFromString(EDataType eDataType, String initialValue) {
+		return (DiagnosticChain)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertDiagnosticChainToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Map<?, ?> createMapFromString(EDataType eDataType, String initialValue) {
+		return (Map<?, ?>)super.createFromString(initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertMapToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(instanceValue);
 	}
 
 	/**

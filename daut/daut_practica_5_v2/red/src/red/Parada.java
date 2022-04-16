@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link red.Parada#isBicicletas <em>Bicicletas</em>}</li>
  *   <li>{@link red.Parada#isAparcamientoGrat <em>Aparcamiento Grat</em>}</li>
  *   <li>{@link red.Parada#getTransbordo <em>Transbordo</em>}</li>
+ *   <li>{@link red.Parada#getZonatarificacion <em>Zonatarificacion</em>}</li>
  * </ul>
  *
  * @see red.RedPackage#getParada()
@@ -137,5 +138,27 @@ public interface Parada extends EObject {
 	 * @generated
 	 */
 	void setTransbordo(Transbordos value);
+
+	/**
+	 * Returns the value of the '<em><b>Zonatarificacion</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Zonatarificacion</em>' reference.
+	 * @see #setZonatarificacion(ZonaTarifacion)
+	 * @see red.RedPackage#getParada_Zonatarificacion()
+	 * @model required="true"
+	 * @generated
+	 */
+	ZonaTarifacion getZonatarificacion();
+
+	/**
+	 * Sets the value of the '{@link red.Parada#getZonatarificacion <em>Zonatarificacion</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Zonatarificacion</em>' reference.
+	 * @see #getZonatarificacion()
+	 * @generated
+	 */
+	void setZonatarificacion(ZonaTarifacion value);
 
 } // Parada
