@@ -53,6 +53,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Parada/bicicletas"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Parada/aparcamientoGrat"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Parada/transbordo"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//Parada/zonatarificacion"/>
     </genClasses>
     <genClasses ecoreClass="red.ecore#//ParadaBus"/>
     <genClasses ecoreClass="red.ecore#//ParadaMetro">

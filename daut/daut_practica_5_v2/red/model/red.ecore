@@ -11,10 +11,11 @@
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="RedTransporte">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="lineasParadasConsecutivasIguales"/>
+      <details key="constraints" value="lineasParadasConsecutivasIguales restriccionTarifasZona"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="lineasParadasConsecutivasIguales" value="&#xA;&#x9;&#x9;&#x9;lineas->forAll(linea1, linea2 | &#xA;&#x9;&#x9;&#x9;&#x9;linea1.paradas->forAll(par1|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;linea2.paradas->forAll(par2|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(par1 = par2) implies (&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;linea2.paradas->forAll(par3|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;linea1.paradas->forAll(par4|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;((par3 = par4) and (linea1.paradas->indexOf(par4) = 1 + linea1.paradas->indexOf(par1)) and (linea2.paradas->indexOf(par2) = 1 + linea2.paradas->indexOf(par3))) implies(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;linea1.siguienteParadaDistancia->forAll(dis1|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(linea1.siguienteParadaDistancia->indexOf(dis1) = linea1.paradas->indexOf(par1)) implies(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;linea2.siguienteParadaDistancia->forAll(dis2|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(linea2.siguienteParadaDistancia->indexOf(dis2) = linea2.paradas->indexOf(par2)) implies(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;dis1 = dis2&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;)"/>
+      <details key="restriccionTarifasZona" value="&#xA;&#x9;&#x9;zonasTarifacion->forAll(zona1|&#xA;&#x9;&#x9;&#x9;zonasTarifacion->forAll(zona2|&#xA;&#x9;&#x9;&#x9;&#x9;(zona1.enumeracion &lt; zona2.enumeracion) implies (&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;(zona2.tarifaBus > zona1.tarifaBus) and (zona2.tarifaMetro > zona1.tarifaMetro) and (zona2.tarifaTren > zona1.tarifaTren)&#xA;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="lineas" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//Linea" containment="true">
@@ -29,7 +30,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="zonasTarifacion" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//ZonaTarifacion" containment="true">
+        lowerBound="1" upperBound="10" eType="#//ZonaTarifacion" containment="true">
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
       </eAnnotations>
@@ -37,12 +38,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Linea" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="horarioCorrecto lineaCircular nonDescuentosSolapados"/>
+      <details key="constraints" value="horarioCorrecto lineaCircular nonDescuentosSolapados zonaTarificacionParadasConsecutivas"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="horarioCorrecto" value="&#xA;&#x9;&#x9;&#x9;(horaApertura >= 0 and horaApertura &lt;= 23) and &#xA;&#x9;&#x9;&#x9;(horaCierre >= 0 and horaCierre &lt;= 23) and&#xA;&#x9;&#x9;&#x9;(horaApertura &lt;> horaCierre) and (horaCierre > horaApertura)"/>
       <details key="lineaCircular" value="&#xA;&#x9;&#x9;&#x9;if circular = true then&#xA;&#x9;&#x9;&#x9;&#x9;paradaFin = paradaIni &#xA;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;paradaFin &lt;> paradaIni &#xA;&#x9;&#x9;&#x9;endif"/>
       <details key="nonDescuentosSolapados" value="&#xA;&#x9;&#x9;&#x9;descuentos->forAll(d1,d2 |&#xA;&#x9;&#x9;&#x9;&#x9;if ((d1.horaIni &lt; d2.horaFin and d1.horaIni > d2.horaIni) or (d1.horaFin &lt; d2.horaFin and d1.horaFin > d2.horaIni)) then false&#xA;&#x9;&#x9;&#x9;&#x9;else true endif&#xA;&#x9;&#x9;&#x9;)"/>
+      <details key="zonaTarificacionParadasConsecutivas" value="&#xA;&#x9;&#x9;paradas->forAll(parada1|&#xA;&#x9;&#x9;&#x9;paradas->forAll(parada2|&#xA;&#x9;&#x9;&#x9;&#x9;(paradas->indexOf(parada1) = 1 + paradas->indexOf(parada2)) implies (&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;(parada1.zonatarificacion.enumeracion = parada2.zonatarificacion.enumeracion) or (parada1.zonatarificacion.enumeracion = parada2.zonatarificacion.enumeracion + 1) &#xA;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigo" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -128,6 +130,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aparcamientoGrat" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="transbordo" eType="#//Transbordos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="zonatarificacion" lowerBound="1"
+        eType="#//ZonaTarifacion"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParadaBus" eSuperTypes="#//Parada">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
