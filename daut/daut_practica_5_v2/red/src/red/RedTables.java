@@ -11,6 +11,15 @@
  *******************************************************************************/
 package red;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.ocl.pivot.ids.ClassId;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.DataTypeId;
+import org.eclipse.ocl.pivot.ids.EnumerationId;
+import org.eclipse.ocl.pivot.ids.IdManager;
+import org.eclipse.ocl.pivot.ids.NsURIPackageId;
+import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorEnumeration;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorEnumerationLiteral;
@@ -27,6 +36,9 @@ import org.eclipse.ocl.pivot.internal.library.executor.ExecutorType;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorTypeParameter;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.utilities.AbstractTables;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+// import red.RedPackage;
 // import red.RedTables;
 
 /**
@@ -50,6 +62,48 @@ public class RedTables extends AbstractTables
 	 *	The library of all packages and types.
 	 */
 	public static final ExecutorStandardLibrary LIBRARY = OCLstdlibTables.LIBRARY;
+
+	/**
+	 *	Constants used by auto-generated code.
+	 */
+	public static final /*@NonInvalid*/ RootPackageId PACKid_$metamodel$ = IdManager.getRootPackageId("$metamodel$");
+	public static final /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore = IdManager.getNsURIPackageId("http://www.eclipse.org/emf/2002/Ecore", null, EcorePackage.eINSTANCE);
+	public static final /*@NonInvalid*/ NsURIPackageId PACKid_red = IdManager.getNsURIPackageId("red", null, RedPackage.eINSTANCE);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Class = RedTables.PACKid_$metamodel$.getClassId("Class", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Descuento = RedTables.PACKid_red.getClassId("Descuento", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Linea = RedTables.PACKid_red.getClassId("Linea", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_LineaBus = RedTables.PACKid_red.getClassId("LineaBus", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_LineaMetro = RedTables.PACKid_red.getClassId("LineaMetro", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_LineaTren = RedTables.PACKid_red.getClassId("LineaTren", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Parada = RedTables.PACKid_red.getClassId("Parada", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_ParadaBus = RedTables.PACKid_red.getClassId("ParadaBus", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_ParadaMetro = RedTables.PACKid_red.getClassId("ParadaMetro", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_ParadaTren = RedTables.PACKid_red.getClassId("ParadaTren", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_RedTransporte = RedTables.PACKid_red.getClassId("RedTransporte", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_ZonaTarifacion = RedTables.PACKid_red.getClassId("ZonaTarifacion", 0);
+	public static final /*@NonInvalid*/ DataTypeId DATAid_EDouble = RedTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getDataTypeId("EDouble", 0);
+	public static final /*@NonInvalid*/ DataTypeId DATAid_EInt = RedTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getDataTypeId("EInt", 0);
+	public static final /*@NonInvalid*/ EnumerationId ENUMid_Colores = RedTables.PACKid_red.getEnumerationId("Colores");
+	public static final /*@NonInvalid*/ EnumerationId ENUMid_Transbordos = RedTables.PACKid_red.getEnumerationId("Transbordos");
+	public static final /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.integerValueOf("0");
+	public static final /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
+	public static final /*@NonInvalid*/ IntegerValue INT_23 = ValueUtil.integerValueOf("23");
+	public static final /*@NonInvalid*/ IntegerValue INT_5 = ValueUtil.integerValueOf("5");
+	public static final /*@NonInvalid*/ IntegerValue INT_6 = ValueUtil.integerValueOf("6");
+	public static final /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Linea = TypeId.BAG.getSpecializedId(RedTables.CLSSid_Linea);
+	public static final /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Parada = TypeId.BAG.getSpecializedId(RedTables.CLSSid_Parada);
+	public static final /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Parada = TypeId.ORDERED_SET.getSpecializedId(RedTables.CLSSid_Parada);
+	public static final /*@NonInvalid*/ CollectionTypeId ORD_DATAid_EDouble = TypeId.ORDERED_SET.getSpecializedId(RedTables.DATAid_EDouble);
+	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Descuento = TypeId.SET.getSpecializedId(RedTables.CLSSid_Descuento);
+	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Linea = TypeId.SET.getSpecializedId(RedTables.CLSSid_Linea);
+	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_LineaBus = TypeId.SET.getSpecializedId(RedTables.CLSSid_LineaBus);
+	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_LineaMetro = TypeId.SET.getSpecializedId(RedTables.CLSSid_LineaMetro);
+	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_LineaTren = TypeId.SET.getSpecializedId(RedTables.CLSSid_LineaTren);
+	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Parada = TypeId.SET.getSpecializedId(RedTables.CLSSid_Parada);
+	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_ParadaBus = TypeId.SET.getSpecializedId(RedTables.CLSSid_ParadaBus);
+	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_ParadaMetro = TypeId.SET.getSpecializedId(RedTables.CLSSid_ParadaMetro);
+	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_ParadaTren = TypeId.SET.getSpecializedId(RedTables.CLSSid_ParadaTren);
+	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_ZonaTarifacion = TypeId.SET.getSpecializedId(RedTables.CLSSid_ZonaTarifacion);
 
 	/**
 	 *	The type parameters for templated types and operations.
@@ -288,21 +342,16 @@ public class RedTables extends AbstractTables
 		public static final ExecutorProperty _Linea__descuentos = new EcoreExecutorProperty(RedPackage.Literals.LINEA__DESCUENTOS, Types._Linea, 2);
 		public static final ExecutorProperty _Linea__horaApertura = new EcoreExecutorProperty(RedPackage.Literals.LINEA__HORA_APERTURA, Types._Linea, 3);
 		public static final ExecutorProperty _Linea__horaCierre = new EcoreExecutorProperty(RedPackage.Literals.LINEA__HORA_CIERRE, Types._Linea, 4);
-		public static final ExecutorProperty _Linea__paradas = new EcoreExecutorProperty(RedPackage.Literals.LINEA__PARADAS, Types._Linea, 5);
-		public static final ExecutorProperty _Linea__siguienteParadaDistancia = new EcoreExecutorProperty(RedPackage.Literals.LINEA__SIGUIENTE_PARADA_DISTANCIA, Types._Linea, 6);
-		public static final ExecutorProperty _Linea__siguienteParadaTiempo = new EcoreExecutorProperty(RedPackage.Literals.LINEA__SIGUIENTE_PARADA_TIEMPO, Types._Linea, 7);
-		public static final ExecutorProperty _Linea__RedTransporte__lineas = new ExecutorPropertyWithImplementation("RedTransporte", Types._Linea, 8, new EcoreLibraryOppositeProperty(RedPackage.Literals.RED_TRANSPORTE__LINEAS));
+		public static final ExecutorProperty _Linea__paradaFin = new EcoreExecutorProperty(RedPackage.Literals.LINEA__PARADA_FIN, Types._Linea, 5);
+		public static final ExecutorProperty _Linea__paradaIni = new EcoreExecutorProperty(RedPackage.Literals.LINEA__PARADA_INI, Types._Linea, 6);
+		public static final ExecutorProperty _Linea__paradas = new EcoreExecutorProperty(RedPackage.Literals.LINEA__PARADAS, Types._Linea, 7);
+		public static final ExecutorProperty _Linea__siguienteParadaDistancia = new EcoreExecutorProperty(RedPackage.Literals.LINEA__SIGUIENTE_PARADA_DISTANCIA, Types._Linea, 8);
+		public static final ExecutorProperty _Linea__siguienteParadaTiempo = new EcoreExecutorProperty(RedPackage.Literals.LINEA__SIGUIENTE_PARADA_TIEMPO, Types._Linea, 9);
+		public static final ExecutorProperty _Linea__RedTransporte__lineas = new ExecutorPropertyWithImplementation("RedTransporte", Types._Linea, 10, new EcoreLibraryOppositeProperty(RedPackage.Literals.RED_TRANSPORTE__LINEAS));
 
 		public static final ExecutorProperty _LineaBus__isDiurna = new EcoreExecutorProperty(RedPackage.Literals.LINEA_BUS__IS_DIURNA, Types._LineaBus, 0);
-		public static final ExecutorProperty _LineaBus__paradaFin = new EcoreExecutorProperty(RedPackage.Literals.LINEA_BUS__PARADA_FIN, Types._LineaBus, 1);
-		public static final ExecutorProperty _LineaBus__paradaIni = new EcoreExecutorProperty(RedPackage.Literals.LINEA_BUS__PARADA_INI, Types._LineaBus, 2);
 
 		public static final ExecutorProperty _LineaMetro__color = new EcoreExecutorProperty(RedPackage.Literals.LINEA_METRO__COLOR, Types._LineaMetro, 0);
-		public static final ExecutorProperty _LineaMetro__paradaFin = new EcoreExecutorProperty(RedPackage.Literals.LINEA_METRO__PARADA_FIN, Types._LineaMetro, 1);
-		public static final ExecutorProperty _LineaMetro__paradaIni = new EcoreExecutorProperty(RedPackage.Literals.LINEA_METRO__PARADA_INI, Types._LineaMetro, 2);
-
-		public static final ExecutorProperty _LineaTren__paradaFin = new EcoreExecutorProperty(RedPackage.Literals.LINEA_TREN__PARADA_FIN, Types._LineaTren, 0);
-		public static final ExecutorProperty _LineaTren__paradaIni = new EcoreExecutorProperty(RedPackage.Literals.LINEA_TREN__PARADA_INI, Types._LineaTren, 1);
 
 		public static final ExecutorProperty _Parada__accesible = new EcoreExecutorProperty(RedPackage.Literals.PARADA__ACCESIBLE, Types._Parada, 0);
 		public static final ExecutorProperty _Parada__aparcamientoGrat = new EcoreExecutorProperty(RedPackage.Literals.PARADA__APARCAMIENTO_GRAT, Types._Parada, 1);
@@ -313,16 +362,11 @@ public class RedTables extends AbstractTables
 		public static final ExecutorProperty _Parada__Linea__paradas = new ExecutorPropertyWithImplementation("Linea", Types._Parada, 6, new EcoreLibraryOppositeProperty(RedPackage.Literals.LINEA__PARADAS));
 		public static final ExecutorProperty _Parada__RedTransporte__paradas = new ExecutorPropertyWithImplementation("RedTransporte", Types._Parada, 7, new EcoreLibraryOppositeProperty(RedPackage.Literals.RED_TRANSPORTE__PARADAS));
 
-		public static final ExecutorProperty _ParadaBus__LineaBus__paradaFin = new ExecutorPropertyWithImplementation("LineaBus", Types._ParadaBus, 0, new EcoreLibraryOppositeProperty(RedPackage.Literals.LINEA_BUS__PARADA_FIN));
-		public static final ExecutorProperty _ParadaBus__LineaBus__paradaIni = new ExecutorPropertyWithImplementation("LineaBus", Types._ParadaBus, 1, new EcoreLibraryOppositeProperty(RedPackage.Literals.LINEA_BUS__PARADA_INI));
-
 		public static final ExecutorProperty _ParadaMetro__aseos = new EcoreExecutorProperty(RedPackage.Literals.PARADA_METRO__ASEOS, Types._ParadaMetro, 0);
-		public static final ExecutorProperty _ParadaMetro__LineaMetro__paradaFin = new ExecutorPropertyWithImplementation("LineaMetro", Types._ParadaMetro, 1, new EcoreLibraryOppositeProperty(RedPackage.Literals.LINEA_METRO__PARADA_FIN));
-		public static final ExecutorProperty _ParadaMetro__LineaMetro__paradaIni = new ExecutorPropertyWithImplementation("LineaMetro", Types._ParadaMetro, 2, new EcoreLibraryOppositeProperty(RedPackage.Literals.LINEA_METRO__PARADA_INI));
+		public static final ExecutorProperty _ParadaMetro__Linea__paradaFin = new ExecutorPropertyWithImplementation("Linea", Types._ParadaMetro, 1, new EcoreLibraryOppositeProperty(RedPackage.Literals.LINEA__PARADA_FIN));
+		public static final ExecutorProperty _ParadaMetro__Linea__paradaIni = new ExecutorPropertyWithImplementation("Linea", Types._ParadaMetro, 2, new EcoreLibraryOppositeProperty(RedPackage.Literals.LINEA__PARADA_INI));
 
 		public static final ExecutorProperty _ParadaTren__aseos = new EcoreExecutorProperty(RedPackage.Literals.PARADA_TREN__ASEOS, Types._ParadaTren, 0);
-		public static final ExecutorProperty _ParadaTren__LineaTren__paradaFin = new ExecutorPropertyWithImplementation("LineaTren", Types._ParadaTren, 1, new EcoreLibraryOppositeProperty(RedPackage.Literals.LINEA_TREN__PARADA_FIN));
-		public static final ExecutorProperty _ParadaTren__LineaTren__paradaIni = new ExecutorPropertyWithImplementation("LineaTren", Types._ParadaTren, 2, new EcoreLibraryOppositeProperty(RedPackage.Literals.LINEA_TREN__PARADA_INI));
 
 		public static final ExecutorProperty _RedTransporte__lineas = new EcoreExecutorProperty(RedPackage.Literals.RED_TRANSPORTE__LINEAS, Types._RedTransporte, 0);
 		public static final ExecutorProperty _RedTransporte__paradas = new EcoreExecutorProperty(RedPackage.Literals.RED_TRANSPORTE__PARADAS, Types._RedTransporte, 1);
@@ -1053,6 +1097,8 @@ public class RedTables extends AbstractTables
 			RedTables.Properties._Linea__horaCierre,
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents,
+			RedTables.Properties._Linea__paradaFin,
+			RedTables.Properties._Linea__paradaIni,
 			RedTables.Properties._Linea__paradas,
 			RedTables.Properties._Linea__siguienteParadaDistancia,
 			RedTables.Properties._Linea__siguienteParadaTiempo
@@ -1067,8 +1113,8 @@ public class RedTables extends AbstractTables
 			RedTables.Properties._LineaBus__isDiurna,
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents,
-			RedTables.Properties._LineaBus__paradaFin,
-			RedTables.Properties._LineaBus__paradaIni,
+			RedTables.Properties._Linea__paradaFin,
+			RedTables.Properties._Linea__paradaIni,
 			RedTables.Properties._Linea__paradas,
 			RedTables.Properties._Linea__siguienteParadaDistancia,
 			RedTables.Properties._Linea__siguienteParadaTiempo
@@ -1083,8 +1129,8 @@ public class RedTables extends AbstractTables
 			RedTables.Properties._Linea__horaCierre,
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents,
-			RedTables.Properties._LineaMetro__paradaFin,
-			RedTables.Properties._LineaMetro__paradaIni,
+			RedTables.Properties._Linea__paradaFin,
+			RedTables.Properties._Linea__paradaIni,
 			RedTables.Properties._Linea__paradas,
 			RedTables.Properties._Linea__siguienteParadaDistancia,
 			RedTables.Properties._Linea__siguienteParadaTiempo
@@ -1098,8 +1144,8 @@ public class RedTables extends AbstractTables
 			RedTables.Properties._Linea__horaCierre,
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents,
-			RedTables.Properties._LineaTren__paradaFin,
-			RedTables.Properties._LineaTren__paradaIni,
+			RedTables.Properties._Linea__paradaFin,
+			RedTables.Properties._Linea__paradaIni,
 			RedTables.Properties._Linea__paradas,
 			RedTables.Properties._Linea__siguienteParadaDistancia,
 			RedTables.Properties._Linea__siguienteParadaTiempo
@@ -1304,5 +1350,23 @@ public class RedTables extends AbstractTables
 
 	private RedTables() {
 		super(RedPackage.eNS_URI);
+	}
+
+	/*
+	 * The EClasses whose instances should be cached to support allInstances().
+	 */
+	private static final EClass allInstancesEClasses /*@NonNull*/ [] = {
+		RedPackage.Literals.LINEA_BUS,
+		RedPackage.Literals.LINEA_METRO,
+		RedPackage.Literals.LINEA_TREN,
+		RedPackage.Literals.PARADA_BUS,
+		RedPackage.Literals.PARADA_METRO,
+		RedPackage.Literals.PARADA_TREN,
+		RedPackage.Literals.ZONA_TARIFACION
+	};
+
+	@Override
+	public EClass /*@NonNull*/ [] basicGetAllInstancesClasses() {
+		return allInstancesEClasses;
 	}
 }

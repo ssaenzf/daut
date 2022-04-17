@@ -39,35 +39,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Linea" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="zonaTarificacionParadasConsecutivas"/>
+      <details key="constraints" value="zonaTarificacionParadasConsecutivas horarioCorrecto nonDescuentosSolapados lineaCircular"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="zonaTarificacionParadasConsecutivas" value="&#xA;&#x9;&#x9;paradas->forAll(parada1|&#xA;&#x9;&#x9;&#x9;paradas->forAll(parada2|&#xA;&#x9;&#x9;&#x9;&#x9;(paradas->indexOf(parada1) = 1 + paradas->indexOf(parada2)) implies (&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;(parada1.zonatarificacion.enumeracion = parada2.zonatarificacion.enumeracion) or (parada1.zonatarificacion.enumeracion = parada2.zonatarificacion.enumeracion + 1) &#xA;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;)"/>
+      <details key="horarioCorrecto" value="&#xA;&#x9;&#x9;&#x9;(horaApertura >= 0 and horaApertura &lt;= 23) and &#xA;&#x9;&#x9;&#x9;(horaCierre >= 0 and horaCierre &lt;= 23) and&#xA;&#x9;&#x9;&#x9;(horaApertura &lt;> horaCierre) and (horaCierre > horaApertura)"/>
+      <details key="nonDescuentosSolapados" value="&#xA;&#x9;&#x9;&#x9;descuentos->forAll(d1,d2 |&#xA;&#x9;&#x9;&#x9;&#x9;if ((d1.horaIni &lt; d2.horaFin and d1.horaIni > d2.horaIni) or (d1.horaFin &lt; d2.horaFin and d1.horaFin > d2.horaIni)) then false&#xA;&#x9;&#x9;&#x9;&#x9;else true endif&#xA;&#x9;&#x9;&#x9;)"/>
+      <details key="lineaCircular" value="&#xA;&#x9;&#x9;&#x9;if circular = true then&#xA;&#x9;&#x9;&#x9;&#x9;paradaFin = paradaIni &#xA;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;paradaFin &lt;> paradaIni &#xA;&#x9;&#x9;&#x9;endif"/>
     </eAnnotations>
-    <eOperations name="horarioCorrecto" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;(horaApertura >= 0 and horaApertura &lt;= 23) and &#xA;&#x9;&#x9;&#x9;(horaCierre >= 0 and horaCierre &lt;= 23) and&#xA;&#x9;&#x9;&#x9;(horaApertura &lt;> horaCierre) and (horaCierre > horaApertura)"/>
-      </eAnnotations>
-      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-      <eParameters name="context">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
-    <eOperations name="nonDescuentosSolapados" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;descuentos->forAll(d1,d2 |&#xA;&#x9;&#x9;&#x9;&#x9;if ((d1.horaIni &lt; d2.horaFin and d1.horaIni > d2.horaIni) or (d1.horaFin &lt; d2.horaFin and d1.horaFin > d2.horaIni)) then false&#xA;&#x9;&#x9;&#x9;&#x9;else true endif&#xA;&#x9;&#x9;&#x9;)"/>
-      </eAnnotations>
-      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-      <eParameters name="context">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigo" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="descuentos" ordered="false"
@@ -89,13 +68,14 @@
         transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="circular" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="paradaIni" lowerBound="1"
+        eType="#//ParadaMetro"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="paradaFin" lowerBound="1"
+        eType="#//ParadaMetro"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="paradas" lowerBound="2"
         upperBound="-1" eType="#//Parada"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LineaMetro" eSuperTypes="#//Linea">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="nonDuplicateCodigoMetro lineaCircular"/>
-    </eAnnotations>
     <eOperations name="nonDuplicateColores" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;&#x9;&#x9;&#x9;LineaMetro.allInstances()->isUnique(color)"/>
@@ -120,103 +100,26 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="lineaCircular" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;if circular = true then&#xA;&#x9;&#x9;&#x9;&#x9;paradaFin = paradaIni &#xA;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;paradaFin &lt;> paradaIni &#xA;&#x9;&#x9;&#x9;endif"/>
-      </eAnnotations>
-      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-      <eParameters name="context">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//Colores"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="paradaIni" lowerBound="1"
-        eType="#//ParadaMetro"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="paradaFin" lowerBound="1"
-        eType="#//ParadaMetro"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LineaTren" eSuperTypes="#//Linea">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="nonDuplicateCodigoTren lineaCircular"/>
+      <details key="constraints" value="nonDuplicateCodigoTren"/>
     </eAnnotations>
-    <eOperations name="nonDuplicateCodigoTren" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;LineaTren.allInstances()->isUnique(codigo)"/>
-      </eAnnotations>
-      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-      <eParameters name="context">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
-    <eOperations name="lineaCircular" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;if circular = true then&#xA;&#x9;&#x9;&#x9;&#x9;paradaFin = paradaIni &#xA;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;paradaFin &lt;> paradaIni &#xA;&#x9;&#x9;&#x9;endif"/>
-      </eAnnotations>
-      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-      <eParameters name="context">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="paradaIni" lowerBound="1"
-        eType="#//ParadaTren"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="paradaFin" lowerBound="1"
-        eType="#//ParadaTren"/>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="nonDuplicateCodigoTren" value="&#xA;&#x9;&#x9;&#x9;LineaTren.allInstances()->isUnique(codigo)"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LineaBus" eSuperTypes="#//Linea">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="lineaDiurna lineaCircular"/>
+      <details key="constraints" value="nonDuplicateCodigoBus lineaDiurna"/>
     </eAnnotations>
-    <eOperations name="nonDuplicateCodigoBus" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;LineaBus.allInstances()->isUnique(codigo)"/>
-      </eAnnotations>
-      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-      <eParameters name="context">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
-    <eOperations name="lineaDiurna" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;if isDiurna = true then&#xA;&#x9;&#x9;&#x9;&#x9;(horaApertura >= 6 and horaCierre &lt;= 23) and (horaCierre > horaApertura)&#xA;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;(horaApertura >= 0 and horaCierre &lt;=5) and (horaCierre > horaApertura)&#xA;&#x9;&#x9;&#x9;endif"/>
-      </eAnnotations>
-      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-      <eParameters name="context">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
-    <eOperations name="lineaCircular" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;if circular = true then&#xA;&#x9;&#x9;&#x9;&#x9;paradaFin = paradaIni &#xA;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;paradaFin &lt;> paradaIni &#xA;&#x9;&#x9;&#x9;endif"/>
-      </eAnnotations>
-      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-      <eParameters name="context">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="nonDuplicateCodigoBus" value="&#xA;&#x9;&#x9;&#x9;LineaBus.allInstances()->isUnique(codigo)"/>
+      <details key="lineaDiurna" value="&#xA;&#x9;&#x9;&#x9;if isDiurna = true then&#xA;&#x9;&#x9;&#x9;&#x9;(horaApertura >= 6 and horaCierre &lt;= 23) and (horaCierre > horaApertura)&#xA;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;(horaApertura >= 0 and horaCierre &lt;=5) and (horaCierre > horaApertura)&#xA;&#x9;&#x9;&#x9;endif"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDiurna" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="paradaIni" lowerBound="1"
-        eType="#//ParadaBus"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="paradaFin" lowerBound="1"
-        eType="#//ParadaBus"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parada" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
@@ -235,83 +138,36 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="nonDuplicateNombreParada"/>
     </eAnnotations>
-    <eOperations name="nonDuplicateNombreParada" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;ParadaBus.allInstances()->isUnique(nombre)"/>
-      </eAnnotations>
-      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-      <eParameters name="context">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="nonDuplicateNombreParada" value="&#xA;&#x9;&#x9;&#x9;ParadaBus.allInstances()->isUnique(nombre)"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParadaMetro" eSuperTypes="#//Parada">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="nonDuplicateNombreParada"/>
     </eAnnotations>
-    <eOperations name="nonDuplicateNombreParada" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;ParadaMetro.allInstances()->isUnique(nombre)"/>
-      </eAnnotations>
-      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-      <eParameters name="context">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="nonDuplicateNombreParada" value="&#xA;&#x9;&#x9;&#x9;ParadaMetro.allInstances()->isUnique(nombre)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aseos" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParadaTren" eSuperTypes="#//Parada">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="nonDuplicateNombreParada"/>
     </eAnnotations>
-    <eOperations name="nonDuplicateNombreParada" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;ParadaTren.allInstances()->isUnique(nombre)"/>
-      </eAnnotations>
-      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-      <eParameters name="context">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="nonDuplicateNombreParada" value="&#xA;&#x9;&#x9;&#x9;ParadaTren.allInstances()->isUnique(nombre)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aseos" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Descuento">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="horarioCorrecto"/>
+      <details key="constraints" value="positiveDescuento horarioCorrecto"/>
     </eAnnotations>
-    <eOperations name="positiveDescuento" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="descuento > 0"/>
-      </eAnnotations>
-      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-      <eParameters name="context">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
-    <eOperations name="horarioCorrecto" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;(horaIni >= 0 and horaIni &lt;= 23) and &#xA;&#x9;&#x9;&#x9;(horaFin >= 0 and horaFin &lt;= 23) and&#xA;&#x9;&#x9;&#x9;(horaIni &lt;> horaFin) and (horaFin > horaIni) and&#xA;&#x9;&#x9;&#x9;(horaIni >= linea.horaApertura and horaFin &lt;= linea.horaCierre)"/>
-      </eAnnotations>
-      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-      <eParameters name="context">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="positiveDescuento" value="descuento > 0"/>
+      <details key="horarioCorrecto" value="&#xA;&#x9;&#x9;&#x9;(horaIni >= 0 and horaIni &lt;= 23) and &#xA;&#x9;&#x9;&#x9;(horaFin >= 0 and horaFin &lt;= 23) and&#xA;&#x9;&#x9;&#x9;(horaIni &lt;> horaFin) and (horaFin > horaIni) and&#xA;&#x9;&#x9;&#x9;(horaIni >= linea.horaApertura and horaFin &lt;= linea.horaCierre)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="horaIni" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="horaFin" lowerBound="1"
@@ -323,56 +179,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ZonaTarifacion">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="positiveTarifaBus"/>
+      <details key="constraints" value="positiveTarifaBus positiveTarifaTren positiveTarifaMetro nonDuplicateNum"/>
     </eAnnotations>
-    <eOperations name="positiveTarifaBus" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="tarifaBus > 0"/>
-      </eAnnotations>
-      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-      <eParameters name="context">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
-    <eOperations name="positiveTarifaTren" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="tarifaTren > 0"/>
-      </eAnnotations>
-      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-      <eParameters name="context">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
-    <eOperations name="nonDuplicateNum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;ZonaTarifacion.allInstances()->isUnique(enumeracion)"/>
-      </eAnnotations>
-      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-      <eParameters name="context">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
-    <eOperations name="positiveTarifaMetro" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="tarifaMetro > 0"/>
-      </eAnnotations>
-      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-      <eParameters name="context">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="positiveTarifaBus" value="tarifaBus > 0"/>
+      <details key="positiveTarifaTren" value="tarifaTren > 0"/>
+      <details key="positiveTarifaMetro" value="tarifaMetro > 0"/>
+      <details key="nonDuplicateNum" value="&#xA;&#x9;&#x9;&#x9;ZonaTarifacion.allInstances()->isUnique(enumeracion)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enumeracion" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tarifaBus" lowerBound="1"

@@ -6,10 +6,6 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.EObjectValidator;
@@ -72,7 +68,15 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA__NON_DESCUENTOS_SOLAPADOS = 4;
+	public static final int LINEA__NON_DESCUENTOS_SOLAPADOS = 5;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Linea Circular' of 'Linea'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int LINEA__LINEA_CIRCULAR = 6;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Zona Tarificacion Paradas Consecutivas' of 'Linea'.
@@ -80,7 +84,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA__ZONA_TARIFICACION_PARADAS_CONSECUTIVAS = 5;
+	public static final int LINEA__ZONA_TARIFICACION_PARADAS_CONSECUTIVAS = 4;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Non Duplicate Colores' of 'Linea Metro'.
@@ -88,7 +92,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA_METRO__NON_DUPLICATE_COLORES = 6;
+	public static final int LINEA_METRO__NON_DUPLICATE_COLORES = 7;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Non Duplicate Codigo Metro' of 'Linea Metro'.
@@ -96,15 +100,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA_METRO__NON_DUPLICATE_CODIGO_METRO = 7;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Linea Circular' of 'Linea Metro'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int LINEA_METRO__LINEA_CIRCULAR = 8;
+	public static final int LINEA_METRO__NON_DUPLICATE_CODIGO_METRO = 8;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Non Duplicate Codigo Tren' of 'Linea Tren'.
@@ -115,20 +111,12 @@ public class RedValidator extends EObjectValidator {
 	public static final int LINEA_TREN__NON_DUPLICATE_CODIGO_TREN = 9;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Linea Circular' of 'Linea Tren'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int LINEA_TREN__LINEA_CIRCULAR = 10;
-
-	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Non Duplicate Codigo Bus' of 'Linea Bus'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA_BUS__NON_DUPLICATE_CODIGO_BUS = 11;
+	public static final int LINEA_BUS__NON_DUPLICATE_CODIGO_BUS = 10;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Linea Diurna' of 'Linea Bus'.
@@ -136,15 +124,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA_BUS__LINEA_DIURNA = 12;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Linea Circular' of 'Linea Bus'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int LINEA_BUS__LINEA_CIRCULAR = 13;
+	public static final int LINEA_BUS__LINEA_DIURNA = 11;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Non Duplicate Nombre Parada' of 'Parada Bus'.
@@ -152,7 +132,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PARADA_BUS__NON_DUPLICATE_NOMBRE_PARADA = 14;
+	public static final int PARADA_BUS__NON_DUPLICATE_NOMBRE_PARADA = 12;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Non Duplicate Nombre Parada' of 'Parada Metro'.
@@ -160,7 +140,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PARADA_METRO__NON_DUPLICATE_NOMBRE_PARADA = 15;
+	public static final int PARADA_METRO__NON_DUPLICATE_NOMBRE_PARADA = 13;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Non Duplicate Nombre Parada' of 'Parada Tren'.
@@ -168,7 +148,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PARADA_TREN__NON_DUPLICATE_NOMBRE_PARADA = 16;
+	public static final int PARADA_TREN__NON_DUPLICATE_NOMBRE_PARADA = 14;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Positive Descuento' of 'Descuento'.
@@ -176,7 +156,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int DESCUENTO__POSITIVE_DESCUENTO = 17;
+	public static final int DESCUENTO__POSITIVE_DESCUENTO = 15;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Horario Correcto' of 'Descuento'.
@@ -184,7 +164,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int DESCUENTO__HORARIO_CORRECTO = 18;
+	public static final int DESCUENTO__HORARIO_CORRECTO = 16;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Positive Tarifa Bus' of 'Zona Tarifacion'.
@@ -192,7 +172,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ZONA_TARIFACION__POSITIVE_TARIFA_BUS = 19;
+	public static final int ZONA_TARIFACION__POSITIVE_TARIFA_BUS = 20;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Positive Tarifa Tren' of 'Zona Tarifacion'.
@@ -200,7 +180,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ZONA_TARIFACION__POSITIVE_TARIFA_TREN = 20;
+	public static final int ZONA_TARIFACION__POSITIVE_TARIFA_TREN = 17;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Non Duplicate Num' of 'Zona Tarifacion'.
@@ -208,7 +188,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ZONA_TARIFACION__NON_DUPLICATE_NUM = 21;
+	public static final int ZONA_TARIFACION__NON_DUPLICATE_NUM = 19;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Positive Tarifa Metro' of 'Zona Tarifacion'.
@@ -216,7 +196,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ZONA_TARIFACION__POSITIVE_TARIFA_METRO = 22;
+	public static final int ZONA_TARIFACION__POSITIVE_TARIFA_METRO = 18;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -224,7 +204,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 22;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 20;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -233,16 +213,6 @@ public class RedValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
-
-	/**
-	 * Delegates evaluation of the given invariant expression against the object in the given context.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context, String validationDelegate, EOperation invariant, String expression, int severity, String source, int code) {
-		return EObjectValidator.validate(eClass, eObject, diagnostics, context, validationDelegate, invariant, expression, severity, source, code);
-	}
 
 	/**
 	 * Creates an instance of the switch.
@@ -364,10 +334,21 @@ public class RedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(linea, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(linea, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(linea, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLinea_zonaTarificacionParadasConsecutivas(linea, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_lineaCircular(linea, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinea_horarioCorrecto(linea, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_zonaTarificacionParadasConsecutivas(linea, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinea_nonDescuentosSolapados(linea, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * Validates the lineaCircular constraint of '<em>Linea</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLinea_lineaCircular(Linea linea, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return linea.lineaCircular(diagnostics, context);
 	}
 
 	/**
@@ -415,12 +396,12 @@ public class RedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(lineaMetro, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(lineaMetro, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(lineaMetro, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLinea_zonaTarificacionParadasConsecutivas(lineaMetro, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_lineaCircular(lineaMetro, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinea_horarioCorrecto(lineaMetro, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_zonaTarificacionParadasConsecutivas(lineaMetro, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinea_nonDescuentosSolapados(lineaMetro, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLineaMetro_nonDuplicateColores(lineaMetro, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLineaMetro_nonDuplicateCodigoMetro(lineaMetro, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLineaMetro_lineaCircular(lineaMetro, diagnostics, context);
 		return result;
 	}
 
@@ -432,16 +413,6 @@ public class RedValidator extends EObjectValidator {
 	 */
 	public boolean validateLineaMetro_nonDuplicateCodigoMetro(LineaMetro lineaMetro, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return lineaMetro.nonDuplicateCodigoMetro(diagnostics, context);
-	}
-
-	/**
-	 * Validates the lineaCircular constraint of '<em>Linea Metro</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateLineaMetro_lineaCircular(LineaMetro lineaMetro, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return lineaMetro.lineaCircular(diagnostics, context);
 	}
 
 	/**
@@ -469,11 +440,11 @@ public class RedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(lineaTren, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(lineaTren, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(lineaTren, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLinea_zonaTarificacionParadasConsecutivas(lineaTren, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_lineaCircular(lineaTren, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinea_horarioCorrecto(lineaTren, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_zonaTarificacionParadasConsecutivas(lineaTren, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinea_nonDescuentosSolapados(lineaTren, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLineaTren_nonDuplicateCodigoTren(lineaTren, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLineaTren_lineaCircular(lineaTren, diagnostics, context);
 		return result;
 	}
 
@@ -485,16 +456,6 @@ public class RedValidator extends EObjectValidator {
 	 */
 	public boolean validateLineaTren_nonDuplicateCodigoTren(LineaTren lineaTren, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return lineaTren.nonDuplicateCodigoTren(diagnostics, context);
-	}
-
-	/**
-	 * Validates the lineaCircular constraint of '<em>Linea Tren</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateLineaTren_lineaCircular(LineaTren lineaTren, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return lineaTren.lineaCircular(diagnostics, context);
 	}
 
 	/**
@@ -512,12 +473,12 @@ public class RedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(lineaBus, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(lineaBus, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(lineaBus, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLinea_zonaTarificacionParadasConsecutivas(lineaBus, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_lineaCircular(lineaBus, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinea_horarioCorrecto(lineaBus, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_zonaTarificacionParadasConsecutivas(lineaBus, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinea_nonDescuentosSolapados(lineaBus, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLineaBus_nonDuplicateCodigoBus(lineaBus, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLineaBus_lineaDiurna(lineaBus, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLineaBus_lineaCircular(lineaBus, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLineaBus_nonDuplicateCodigoBus(lineaBus, diagnostics, context);
 		return result;
 	}
 
@@ -529,16 +490,6 @@ public class RedValidator extends EObjectValidator {
 	 */
 	public boolean validateLineaBus_lineaDiurna(LineaBus lineaBus, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return lineaBus.lineaDiurna(diagnostics, context);
-	}
-
-	/**
-	 * Validates the lineaCircular constraint of '<em>Linea Bus</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateLineaBus_lineaCircular(LineaBus lineaBus, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return lineaBus.lineaCircular(diagnostics, context);
 	}
 
 	/**
@@ -662,8 +613,8 @@ public class RedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(descuento, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(descuento, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(descuento, diagnostics, context);
-		if (result || diagnostics != null) result &= validateDescuento_positiveDescuento(descuento, diagnostics, context);
 		if (result || diagnostics != null) result &= validateDescuento_horarioCorrecto(descuento, diagnostics, context);
+		if (result || diagnostics != null) result &= validateDescuento_positiveDescuento(descuento, diagnostics, context);
 		return result;
 	}
 
@@ -704,8 +655,8 @@ public class RedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(zonaTarifacion, diagnostics, context);
 		if (result || diagnostics != null) result &= validateZonaTarifacion_positiveTarifaBus(zonaTarifacion, diagnostics, context);
 		if (result || diagnostics != null) result &= validateZonaTarifacion_positiveTarifaTren(zonaTarifacion, diagnostics, context);
-		if (result || diagnostics != null) result &= validateZonaTarifacion_nonDuplicateNum(zonaTarifacion, diagnostics, context);
 		if (result || diagnostics != null) result &= validateZonaTarifacion_positiveTarifaMetro(zonaTarifacion, diagnostics, context);
+		if (result || diagnostics != null) result &= validateZonaTarifacion_nonDuplicateNum(zonaTarifacion, diagnostics, context);
 		return result;
 	}
 

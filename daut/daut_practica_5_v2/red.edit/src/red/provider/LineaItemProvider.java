@@ -69,6 +69,8 @@ public class LineaItemProvider
 			addSiguienteParadaTiempoPropertyDescriptor(object);
 			addSiguienteParadaDistanciaPropertyDescriptor(object);
 			addCircularPropertyDescriptor(object);
+			addParadaIniPropertyDescriptor(object);
+			addParadaFinPropertyDescriptor(object);
 			addParadasPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -202,6 +204,50 @@ public class LineaItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Parada Ini feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addParadaIniPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Linea_paradaIni_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Linea_paradaIni_feature", "_UI_Linea_type"),
+				 RedPackage.Literals.LINEA__PARADA_INI,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Parada Fin feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addParadaFinPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Linea_paradaFin_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Linea_paradaFin_feature", "_UI_Linea_type"),
+				 RedPackage.Literals.LINEA__PARADA_FIN,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

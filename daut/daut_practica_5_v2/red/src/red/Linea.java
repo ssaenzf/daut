@@ -25,12 +25,14 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link red.Linea#getSiguienteParadaTiempo <em>Siguiente Parada Tiempo</em>}</li>
  *   <li>{@link red.Linea#getSiguienteParadaDistancia <em>Siguiente Parada Distancia</em>}</li>
  *   <li>{@link red.Linea#isCircular <em>Circular</em>}</li>
+ *   <li>{@link red.Linea#getParadaIni <em>Parada Ini</em>}</li>
+ *   <li>{@link red.Linea#getParadaFin <em>Parada Fin</em>}</li>
  *   <li>{@link red.Linea#getParadas <em>Paradas</em>}</li>
  * </ul>
  *
  * @see red.RedPackage#getLinea()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='zonaTarificacionParadasConsecutivas'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='lineaCircular'"
  * @generated
  */
 public interface Linea extends EObject {
@@ -162,6 +164,50 @@ public interface Linea extends EObject {
 	void setCircular(boolean value);
 
 	/**
+	 * Returns the value of the '<em><b>Parada Ini</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parada Ini</em>' reference.
+	 * @see #setParadaIni(ParadaMetro)
+	 * @see red.RedPackage#getLinea_ParadaIni()
+	 * @model required="true"
+	 * @generated
+	 */
+	ParadaMetro getParadaIni();
+
+	/**
+	 * Sets the value of the '{@link red.Linea#getParadaIni <em>Parada Ini</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Parada Ini</em>' reference.
+	 * @see #getParadaIni()
+	 * @generated
+	 */
+	void setParadaIni(ParadaMetro value);
+
+	/**
+	 * Returns the value of the '<em><b>Parada Fin</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parada Fin</em>' reference.
+	 * @see #setParadaFin(ParadaMetro)
+	 * @see red.RedPackage#getLinea_ParadaFin()
+	 * @model required="true"
+	 * @generated
+	 */
+	ParadaMetro getParadaFin();
+
+	/**
+	 * Sets the value of the '{@link red.Linea#getParadaFin <em>Parada Fin</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Parada Fin</em>' reference.
+	 * @see #getParadaFin()
+	 * @generated
+	 */
+	void setParadaFin(ParadaMetro value);
+
+	/**
 	 * Returns the value of the '<em><b>Paradas</b></em>' reference list.
 	 * The list contents are of type {@link red.Parada}.
 	 * <!-- begin-user-doc -->
@@ -188,6 +234,14 @@ public interface Linea extends EObject {
 	 * @generated
 	 */
 	boolean nonDescuentosSolapados(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tif circular = true then\n\t\t\t\tparadaFin = paradaIni \n\t\t\telse \n\t\t\t\tparadaFin &lt;&gt; paradaIni \n\t\t\tendif'"
+	 * @generated
+	 */
+	boolean lineaCircular(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->

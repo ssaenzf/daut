@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * </ul>
  *
  * @see red.RedPackage#getParadaMetro()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='nonDuplicateNombreParada'"
  * @generated
  */
 public interface ParadaMetro extends Parada {
