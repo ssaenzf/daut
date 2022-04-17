@@ -2,6 +2,8 @@
  */
 package red;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -20,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see red.RedPackage#getZonaTarifacion()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='positiveTarifaBus'"
  * @generated
  */
 public interface ZonaTarifacion extends EObject {
@@ -112,5 +114,37 @@ public interface ZonaTarifacion extends EObject {
 	 * @generated
 	 */
 	void setTarifaTren(double value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='tarifaTren &gt; 0'"
+	 * @generated
+	 */
+	boolean positiveTarifaTren(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='tarifaMetro &gt; 0'"
+	 * @generated
+	 */
+	boolean positiveTarifaMetro(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tZonaTarifacion.allInstances()-&gt;isUnique(enumeracion)'"
+	 * @generated
+	 */
+	boolean nonDuplicateNum(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='tarifaBus &gt; 0'"
+	 * @generated
+	 */
+	boolean positiveTarifaBus(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // ZonaTarifacion

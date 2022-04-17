@@ -2,6 +2,9 @@
  */
 package red;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -10,8 +13,16 @@ package red;
  *
  *
  * @see red.RedPackage#getParadaBus()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='nonDuplicateNombreParada'"
  * @generated
  */
 public interface ParadaBus extends Parada {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tParadaBus.allInstances()-&gt;isUnique(nombre)'"
+	 * @generated
+	 */
+	boolean nonDuplicateNombreParada(DiagnosticChain diagnostics, Map<Object, Object> context);
 } // ParadaBus

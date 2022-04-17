@@ -2,6 +2,9 @@
  */
 package red;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -16,7 +19,7 @@ package red;
  * </ul>
  *
  * @see red.RedPackage#getLineaMetro()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='paradasCorrectas'"
  * @generated
  */
 public interface LineaMetro extends Linea {
@@ -44,5 +47,37 @@ public interface LineaMetro extends Linea {
 	 * @generated
 	 */
 	void setColor(Colores value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tparadaIni.oclIsTypeOf(ParadaMetro) and paradaFin.oclIsTypeOf(ParadaMetro)'"
+	 * @generated
+	 */
+	boolean paradasIniFin(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tLineaMetro.allInstances()-&gt;isUnique(color)'"
+	 * @generated
+	 */
+	boolean nonDuplicateColores(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tLineaMetro.allInstances()-&gt;isUnique(codigo)'"
+	 * @generated
+	 */
+	boolean nonDuplicateCodigoMetro(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tparadas-&gt;forAll(p | p.oclIsTypeOf(ParadaMetro))'"
+	 * @generated
+	 */
+	boolean paradasCorrectas(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // LineaMetro

@@ -2,6 +2,9 @@
  */
 package red;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -16,7 +19,7 @@ package red;
  * </ul>
  *
  * @see red.RedPackage#getLineaBus()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='paradasCorrectas'"
  * @generated
  */
 public interface LineaBus extends Linea {
@@ -41,5 +44,37 @@ public interface LineaBus extends Linea {
 	 * @generated
 	 */
 	void setIsDiurna(boolean value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tparadaIni.oclIsTypeOf(ParadaBus) and paradaFin.oclIsTypeOf(ParadaBus)'"
+	 * @generated
+	 */
+	boolean paradasIniFin(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tLineaBus.allInstances()-&gt;isUnique(codigo)'"
+	 * @generated
+	 */
+	boolean nonDuplicateCodigoBus(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tif isDiurna = true then\n\t\t\t\t(horaApertura &gt;= 6 and horaCierre &lt;= 23) and (horaCierre &gt; horaApertura)\n\t\t\telse \n\t\t\t\t(horaApertura &gt;= 0 and horaCierre &lt;=5) and (horaCierre &gt; horaApertura)\n\t\t\tendif'"
+	 * @generated
+	 */
+	boolean lineaDiurna(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tparadas-&gt;forAll(p | p.oclIsTypeOf(ParadaBus))'"
+	 * @generated
+	 */
+	boolean paradasCorrectas(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // LineaBus

@@ -2,6 +2,9 @@
  */
 package red;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -16,7 +19,7 @@ package red;
  * </ul>
  *
  * @see red.RedPackage#getParadaMetro()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='nonDuplicateNombreParada'"
  * @generated
  */
 public interface ParadaMetro extends Parada {
@@ -41,5 +44,13 @@ public interface ParadaMetro extends Parada {
 	 * @generated
 	 */
 	void setAseos(boolean value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tParadaMetro.allInstances()-&gt;isUnique(nombre)'"
+	 * @generated
+	 */
+	boolean nonDuplicateNombreParada(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // ParadaMetro
