@@ -2,9 +2,6 @@
  */
 package red;
 
-import java.util.Map;
-
-import org.eclipse.emf.common.util.DiagnosticChain;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +16,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * </ul>
  *
  * @see red.RedPackage#getLineaBus()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='lineaDiurna'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore"
  * @generated
  */
 public interface LineaBus extends Linea {
@@ -44,21 +41,5 @@ public interface LineaBus extends Linea {
 	 * @generated
 	 */
 	void setIsDiurna(boolean value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tLineaBus.allInstances()-&gt;isUnique(codigo)'"
-	 * @generated
-	 */
-	boolean nonDuplicateCodigoBus(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tif isDiurna = true then\n\t\t\t\t(horaApertura &gt;= 6 and horaCierre &lt;= 23) and (horaCierre &gt; horaApertura)\n\t\t\telse \n\t\t\t\t(horaApertura &gt;= 0 and horaCierre &lt;=5) and (horaCierre &gt; horaApertura)\n\t\t\tendif'"
-	 * @generated
-	 */
-	boolean lineaDiurna(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // LineaBus

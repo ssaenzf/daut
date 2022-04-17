@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -24,7 +23,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see red.RedFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface RedPackage extends EPackage {
@@ -107,31 +106,13 @@ public interface RedPackage extends EPackage {
 	int RED_TRANSPORTE_FEATURE_COUNT = 3;
 
 	/**
-	 * The operation id for the '<em>Restriccion Tarifas Zona</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RED_TRANSPORTE___RESTRICCION_TARIFAS_ZONA__DIAGNOSTICCHAIN_MAP = 0;
-
-	/**
-	 * The operation id for the '<em>Lineas Paradas Consecutivas Iguales</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RED_TRANSPORTE___LINEAS_PARADAS_CONSECUTIVAS_IGUALES__DIAGNOSTICCHAIN_MAP = 1;
-
-	/**
 	 * The number of operations of the '<em>Transporte</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RED_TRANSPORTE_OPERATION_COUNT = 2;
+	int RED_TRANSPORTE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link red.impl.LineaImpl <em>Linea</em>}' class.
@@ -243,49 +224,13 @@ public interface RedPackage extends EPackage {
 	int LINEA_FEATURE_COUNT = 10;
 
 	/**
-	 * The operation id for the '<em>Horario Correcto</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP = 0;
-
-	/**
-	 * The operation id for the '<em>Zona Tarificacion Paradas Consecutivas</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA___ZONA_TARIFICACION_PARADAS_CONSECUTIVAS__DIAGNOSTICCHAIN_MAP = 1;
-
-	/**
-	 * The operation id for the '<em>Non Descuentos Solapados</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP = 2;
-
-	/**
-	 * The operation id for the '<em>Linea Circular</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP = 3;
-
-	/**
 	 * The number of operations of the '<em>Linea</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINEA_OPERATION_COUNT = 4;
+	int LINEA_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link red.impl.LineaMetroImpl <em>Linea Metro</em>}' class.
@@ -406,67 +351,13 @@ public interface RedPackage extends EPackage {
 	int LINEA_METRO_FEATURE_COUNT = LINEA_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Horario Correcto</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_METRO___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP = LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Zona Tarificacion Paradas Consecutivas</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_METRO___ZONA_TARIFICACION_PARADAS_CONSECUTIVAS__DIAGNOSTICCHAIN_MAP = LINEA___ZONA_TARIFICACION_PARADAS_CONSECUTIVAS__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Non Descuentos Solapados</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_METRO___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP = LINEA___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Linea Circular</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_METRO___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP = LINEA___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Non Duplicate Colores</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_METRO___NON_DUPLICATE_COLORES__DIAGNOSTICCHAIN_MAP = LINEA_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Non Duplicate Codigo Metro</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_METRO___NON_DUPLICATE_CODIGO_METRO__DIAGNOSTICCHAIN_MAP = LINEA_OPERATION_COUNT + 1;
-
-	/**
 	 * The number of operations of the '<em>Linea Metro</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINEA_METRO_OPERATION_COUNT = LINEA_OPERATION_COUNT + 2;
+	int LINEA_METRO_OPERATION_COUNT = LINEA_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link red.impl.LineaTrenImpl <em>Linea Tren</em>}' class.
@@ -578,58 +469,13 @@ public interface RedPackage extends EPackage {
 	int LINEA_TREN_FEATURE_COUNT = LINEA_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Horario Correcto</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_TREN___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP = LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Zona Tarificacion Paradas Consecutivas</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_TREN___ZONA_TARIFICACION_PARADAS_CONSECUTIVAS__DIAGNOSTICCHAIN_MAP = LINEA___ZONA_TARIFICACION_PARADAS_CONSECUTIVAS__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Non Descuentos Solapados</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_TREN___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP = LINEA___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Linea Circular</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_TREN___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP = LINEA___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Non Duplicate Codigo Tren</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_TREN___NON_DUPLICATE_CODIGO_TREN__DIAGNOSTICCHAIN_MAP = LINEA_OPERATION_COUNT + 0;
-
-	/**
 	 * The number of operations of the '<em>Linea Tren</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINEA_TREN_OPERATION_COUNT = LINEA_OPERATION_COUNT + 1;
+	int LINEA_TREN_OPERATION_COUNT = LINEA_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link red.impl.LineaBusImpl <em>Linea Bus</em>}' class.
@@ -750,67 +596,13 @@ public interface RedPackage extends EPackage {
 	int LINEA_BUS_FEATURE_COUNT = LINEA_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Horario Correcto</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_BUS___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP = LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Zona Tarificacion Paradas Consecutivas</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_BUS___ZONA_TARIFICACION_PARADAS_CONSECUTIVAS__DIAGNOSTICCHAIN_MAP = LINEA___ZONA_TARIFICACION_PARADAS_CONSECUTIVAS__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Non Descuentos Solapados</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_BUS___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP = LINEA___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Linea Circular</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_BUS___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP = LINEA___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Non Duplicate Codigo Bus</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_BUS___NON_DUPLICATE_CODIGO_BUS__DIAGNOSTICCHAIN_MAP = LINEA_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Linea Diurna</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_BUS___LINEA_DIURNA__DIAGNOSTICCHAIN_MAP = LINEA_OPERATION_COUNT + 1;
-
-	/**
 	 * The number of operations of the '<em>Linea Bus</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINEA_BUS_OPERATION_COUNT = LINEA_OPERATION_COUNT + 2;
+	int LINEA_BUS_OPERATION_COUNT = LINEA_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link red.impl.ParadaImpl <em>Parada</em>}' class.
@@ -968,22 +760,13 @@ public interface RedPackage extends EPackage {
 	int PARADA_BUS_FEATURE_COUNT = PARADA_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Non Duplicate Nombre Parada</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARADA_BUS___NON_DUPLICATE_NOMBRE_PARADA__DIAGNOSTICCHAIN_MAP = PARADA_OPERATION_COUNT + 0;
-
-	/**
 	 * The number of operations of the '<em>Parada Bus</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARADA_BUS_OPERATION_COUNT = PARADA_OPERATION_COUNT + 1;
+	int PARADA_BUS_OPERATION_COUNT = PARADA_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link red.impl.ParadaMetroImpl <em>Parada Metro</em>}' class.
@@ -1068,22 +851,13 @@ public interface RedPackage extends EPackage {
 	int PARADA_METRO_FEATURE_COUNT = PARADA_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Non Duplicate Nombre Parada</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARADA_METRO___NON_DUPLICATE_NOMBRE_PARADA__DIAGNOSTICCHAIN_MAP = PARADA_OPERATION_COUNT + 0;
-
-	/**
 	 * The number of operations of the '<em>Parada Metro</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARADA_METRO_OPERATION_COUNT = PARADA_OPERATION_COUNT + 1;
+	int PARADA_METRO_OPERATION_COUNT = PARADA_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link red.impl.ParadaTrenImpl <em>Parada Tren</em>}' class.
@@ -1168,22 +942,13 @@ public interface RedPackage extends EPackage {
 	int PARADA_TREN_FEATURE_COUNT = PARADA_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Non Duplicate Nombre Parada</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARADA_TREN___NON_DUPLICATE_NOMBRE_PARADA__DIAGNOSTICCHAIN_MAP = PARADA_OPERATION_COUNT + 0;
-
-	/**
 	 * The number of operations of the '<em>Parada Tren</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARADA_TREN_OPERATION_COUNT = PARADA_OPERATION_COUNT + 1;
+	int PARADA_TREN_OPERATION_COUNT = PARADA_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link red.impl.DescuentoImpl <em>Descuento</em>}' class.
@@ -1241,31 +1006,13 @@ public interface RedPackage extends EPackage {
 	int DESCUENTO_FEATURE_COUNT = 4;
 
 	/**
-	 * The operation id for the '<em>Positive Descuento</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCUENTO___POSITIVE_DESCUENTO__DIAGNOSTICCHAIN_MAP = 0;
-
-	/**
-	 * The operation id for the '<em>Horario Correcto</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCUENTO___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP = 1;
-
-	/**
 	 * The number of operations of the '<em>Descuento</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DESCUENTO_OPERATION_COUNT = 2;
+	int DESCUENTO_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link red.impl.ZonaTarifacionImpl <em>Zona Tarifacion</em>}' class.
@@ -1323,49 +1070,13 @@ public interface RedPackage extends EPackage {
 	int ZONA_TARIFACION_FEATURE_COUNT = 4;
 
 	/**
-	 * The operation id for the '<em>Positive Tarifa Tren</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ZONA_TARIFACION___POSITIVE_TARIFA_TREN__DIAGNOSTICCHAIN_MAP = 0;
-
-	/**
-	 * The operation id for the '<em>Positive Tarifa Metro</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ZONA_TARIFACION___POSITIVE_TARIFA_METRO__DIAGNOSTICCHAIN_MAP = 1;
-
-	/**
-	 * The operation id for the '<em>Non Duplicate Num</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ZONA_TARIFACION___NON_DUPLICATE_NUM__DIAGNOSTICCHAIN_MAP = 2;
-
-	/**
-	 * The operation id for the '<em>Positive Tarifa Bus</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ZONA_TARIFACION___POSITIVE_TARIFA_BUS__DIAGNOSTICCHAIN_MAP = 3;
-
-	/**
 	 * The number of operations of the '<em>Zona Tarifacion</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ZONA_TARIFACION_OPERATION_COUNT = 4;
+	int ZONA_TARIFACION_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link red.Colores <em>Colores</em>}' enum.
@@ -1386,7 +1097,6 @@ public interface RedPackage extends EPackage {
 	 * @generated
 	 */
 	int TRANSBORDOS = 12;
-
 
 	/**
 	 * The meta object id for the '<em>Diagnostic Chain</em>' data type.
@@ -1451,26 +1161,6 @@ public interface RedPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRedTransporte_ZonasTarifacion();
-
-	/**
-	 * Returns the meta object for the '{@link red.RedTransporte#restriccionTarifasZona(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Restriccion Tarifas Zona</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Restriccion Tarifas Zona</em>' operation.
-	 * @see red.RedTransporte#restriccionTarifasZona(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getRedTransporte__RestriccionTarifasZona__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link red.RedTransporte#lineasParadasConsecutivasIguales(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Lineas Paradas Consecutivas Iguales</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Lineas Paradas Consecutivas Iguales</em>' operation.
-	 * @see red.RedTransporte#lineasParadasConsecutivasIguales(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getRedTransporte__LineasParadasConsecutivasIguales__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link red.Linea <em>Linea</em>}'.
@@ -1593,46 +1283,6 @@ public interface RedPackage extends EPackage {
 	EReference getLinea_Paradas();
 
 	/**
-	 * Returns the meta object for the '{@link red.Linea#horarioCorrecto(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Horario Correcto</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Horario Correcto</em>' operation.
-	 * @see red.Linea#horarioCorrecto(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getLinea__HorarioCorrecto__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link red.Linea#nonDescuentosSolapados(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Non Descuentos Solapados</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Non Descuentos Solapados</em>' operation.
-	 * @see red.Linea#nonDescuentosSolapados(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getLinea__NonDescuentosSolapados__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link red.Linea#lineaCircular(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Linea Circular</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Linea Circular</em>' operation.
-	 * @see red.Linea#lineaCircular(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getLinea__LineaCircular__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link red.Linea#zonaTarificacionParadasConsecutivas(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Zona Tarificacion Paradas Consecutivas</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Zona Tarificacion Paradas Consecutivas</em>' operation.
-	 * @see red.Linea#zonaTarificacionParadasConsecutivas(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getLinea__ZonaTarificacionParadasConsecutivas__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for class '{@link red.LineaMetro <em>Linea Metro</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1654,26 +1304,6 @@ public interface RedPackage extends EPackage {
 	EAttribute getLineaMetro_Color();
 
 	/**
-	 * Returns the meta object for the '{@link red.LineaMetro#nonDuplicateColores(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Non Duplicate Colores</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Non Duplicate Colores</em>' operation.
-	 * @see red.LineaMetro#nonDuplicateColores(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getLineaMetro__NonDuplicateColores__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link red.LineaMetro#nonDuplicateCodigoMetro(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Non Duplicate Codigo Metro</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Non Duplicate Codigo Metro</em>' operation.
-	 * @see red.LineaMetro#nonDuplicateCodigoMetro(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getLineaMetro__NonDuplicateCodigoMetro__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for class '{@link red.LineaTren <em>Linea Tren</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1682,16 +1312,6 @@ public interface RedPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getLineaTren();
-
-	/**
-	 * Returns the meta object for the '{@link red.LineaTren#nonDuplicateCodigoTren(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Non Duplicate Codigo Tren</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Non Duplicate Codigo Tren</em>' operation.
-	 * @see red.LineaTren#nonDuplicateCodigoTren(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getLineaTren__NonDuplicateCodigoTren__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link red.LineaBus <em>Linea Bus</em>}'.
@@ -1713,26 +1333,6 @@ public interface RedPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLineaBus_IsDiurna();
-
-	/**
-	 * Returns the meta object for the '{@link red.LineaBus#nonDuplicateCodigoBus(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Non Duplicate Codigo Bus</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Non Duplicate Codigo Bus</em>' operation.
-	 * @see red.LineaBus#nonDuplicateCodigoBus(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getLineaBus__NonDuplicateCodigoBus__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link red.LineaBus#lineaDiurna(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Linea Diurna</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Linea Diurna</em>' operation.
-	 * @see red.LineaBus#lineaDiurna(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getLineaBus__LineaDiurna__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link red.Parada <em>Parada</em>}'.
@@ -1821,16 +1421,6 @@ public interface RedPackage extends EPackage {
 	EClass getParadaBus();
 
 	/**
-	 * Returns the meta object for the '{@link red.ParadaBus#nonDuplicateNombreParada(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Non Duplicate Nombre Parada</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Non Duplicate Nombre Parada</em>' operation.
-	 * @see red.ParadaBus#nonDuplicateNombreParada(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getParadaBus__NonDuplicateNombreParada__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for class '{@link red.ParadaMetro <em>Parada Metro</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1852,16 +1442,6 @@ public interface RedPackage extends EPackage {
 	EAttribute getParadaMetro_Aseos();
 
 	/**
-	 * Returns the meta object for the '{@link red.ParadaMetro#nonDuplicateNombreParada(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Non Duplicate Nombre Parada</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Non Duplicate Nombre Parada</em>' operation.
-	 * @see red.ParadaMetro#nonDuplicateNombreParada(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getParadaMetro__NonDuplicateNombreParada__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for class '{@link red.ParadaTren <em>Parada Tren</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1881,16 +1461,6 @@ public interface RedPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getParadaTren_Aseos();
-
-	/**
-	 * Returns the meta object for the '{@link red.ParadaTren#nonDuplicateNombreParada(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Non Duplicate Nombre Parada</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Non Duplicate Nombre Parada</em>' operation.
-	 * @see red.ParadaTren#nonDuplicateNombreParada(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getParadaTren__NonDuplicateNombreParada__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link red.Descuento <em>Descuento</em>}'.
@@ -1947,26 +1517,6 @@ public interface RedPackage extends EPackage {
 	EReference getDescuento_Linea();
 
 	/**
-	 * Returns the meta object for the '{@link red.Descuento#positiveDescuento(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Positive Descuento</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Positive Descuento</em>' operation.
-	 * @see red.Descuento#positiveDescuento(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getDescuento__PositiveDescuento__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link red.Descuento#horarioCorrecto(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Horario Correcto</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Horario Correcto</em>' operation.
-	 * @see red.Descuento#horarioCorrecto(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getDescuento__HorarioCorrecto__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for class '{@link red.ZonaTarifacion <em>Zona Tarifacion</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2019,46 +1569,6 @@ public interface RedPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getZonaTarifacion_TarifaTren();
-
-	/**
-	 * Returns the meta object for the '{@link red.ZonaTarifacion#positiveTarifaBus(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Positive Tarifa Bus</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Positive Tarifa Bus</em>' operation.
-	 * @see red.ZonaTarifacion#positiveTarifaBus(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getZonaTarifacion__PositiveTarifaBus__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link red.ZonaTarifacion#positiveTarifaTren(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Positive Tarifa Tren</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Positive Tarifa Tren</em>' operation.
-	 * @see red.ZonaTarifacion#positiveTarifaTren(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getZonaTarifacion__PositiveTarifaTren__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link red.ZonaTarifacion#nonDuplicateNum(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Non Duplicate Num</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Non Duplicate Num</em>' operation.
-	 * @see red.ZonaTarifacion#nonDuplicateNum(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getZonaTarifacion__NonDuplicateNum__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link red.ZonaTarifacion#positiveTarifaMetro(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Positive Tarifa Metro</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Positive Tarifa Metro</em>' operation.
-	 * @see red.ZonaTarifacion#positiveTarifaMetro(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getZonaTarifacion__PositiveTarifaMetro__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for enum '{@link red.Colores <em>Colores</em>}'.
@@ -2160,22 +1670,6 @@ public interface RedPackage extends EPackage {
 		EReference RED_TRANSPORTE__ZONAS_TARIFACION = eINSTANCE.getRedTransporte_ZonasTarifacion();
 
 		/**
-		 * The meta object literal for the '<em><b>Restriccion Tarifas Zona</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation RED_TRANSPORTE___RESTRICCION_TARIFAS_ZONA__DIAGNOSTICCHAIN_MAP = eINSTANCE.getRedTransporte__RestriccionTarifasZona__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Lineas Paradas Consecutivas Iguales</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation RED_TRANSPORTE___LINEAS_PARADAS_CONSECUTIVAS_IGUALES__DIAGNOSTICCHAIN_MAP = eINSTANCE.getRedTransporte__LineasParadasConsecutivasIguales__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '{@link red.impl.LineaImpl <em>Linea</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2266,38 +1760,6 @@ public interface RedPackage extends EPackage {
 		EReference LINEA__PARADAS = eINSTANCE.getLinea_Paradas();
 
 		/**
-		 * The meta object literal for the '<em><b>Horario Correcto</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLinea__HorarioCorrecto__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Non Descuentos Solapados</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation LINEA___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLinea__NonDescuentosSolapados__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Linea Circular</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation LINEA___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLinea__LineaCircular__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Zona Tarificacion Paradas Consecutivas</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation LINEA___ZONA_TARIFICACION_PARADAS_CONSECUTIVAS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLinea__ZonaTarificacionParadasConsecutivas__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '{@link red.impl.LineaMetroImpl <em>Linea Metro</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2316,22 +1778,6 @@ public interface RedPackage extends EPackage {
 		EAttribute LINEA_METRO__COLOR = eINSTANCE.getLineaMetro_Color();
 
 		/**
-		 * The meta object literal for the '<em><b>Non Duplicate Colores</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation LINEA_METRO___NON_DUPLICATE_COLORES__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLineaMetro__NonDuplicateColores__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Non Duplicate Codigo Metro</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation LINEA_METRO___NON_DUPLICATE_CODIGO_METRO__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLineaMetro__NonDuplicateCodigoMetro__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '{@link red.impl.LineaTrenImpl <em>Linea Tren</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2340,14 +1786,6 @@ public interface RedPackage extends EPackage {
 		 * @generated
 		 */
 		EClass LINEA_TREN = eINSTANCE.getLineaTren();
-
-		/**
-		 * The meta object literal for the '<em><b>Non Duplicate Codigo Tren</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation LINEA_TREN___NON_DUPLICATE_CODIGO_TREN__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLineaTren__NonDuplicateCodigoTren__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link red.impl.LineaBusImpl <em>Linea Bus</em>}' class.
@@ -2366,22 +1804,6 @@ public interface RedPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LINEA_BUS__IS_DIURNA = eINSTANCE.getLineaBus_IsDiurna();
-
-		/**
-		 * The meta object literal for the '<em><b>Non Duplicate Codigo Bus</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation LINEA_BUS___NON_DUPLICATE_CODIGO_BUS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLineaBus__NonDuplicateCodigoBus__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Linea Diurna</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation LINEA_BUS___LINEA_DIURNA__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLineaBus__LineaDiurna__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link red.impl.ParadaImpl <em>Parada</em>}' class.
@@ -2452,14 +1874,6 @@ public interface RedPackage extends EPackage {
 		EClass PARADA_BUS = eINSTANCE.getParadaBus();
 
 		/**
-		 * The meta object literal for the '<em><b>Non Duplicate Nombre Parada</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation PARADA_BUS___NON_DUPLICATE_NOMBRE_PARADA__DIAGNOSTICCHAIN_MAP = eINSTANCE.getParadaBus__NonDuplicateNombreParada__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '{@link red.impl.ParadaMetroImpl <em>Parada Metro</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2478,14 +1892,6 @@ public interface RedPackage extends EPackage {
 		EAttribute PARADA_METRO__ASEOS = eINSTANCE.getParadaMetro_Aseos();
 
 		/**
-		 * The meta object literal for the '<em><b>Non Duplicate Nombre Parada</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation PARADA_METRO___NON_DUPLICATE_NOMBRE_PARADA__DIAGNOSTICCHAIN_MAP = eINSTANCE.getParadaMetro__NonDuplicateNombreParada__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '{@link red.impl.ParadaTrenImpl <em>Parada Tren</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2502,14 +1908,6 @@ public interface RedPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PARADA_TREN__ASEOS = eINSTANCE.getParadaTren_Aseos();
-
-		/**
-		 * The meta object literal for the '<em><b>Non Duplicate Nombre Parada</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation PARADA_TREN___NON_DUPLICATE_NOMBRE_PARADA__DIAGNOSTICCHAIN_MAP = eINSTANCE.getParadaTren__NonDuplicateNombreParada__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link red.impl.DescuentoImpl <em>Descuento</em>}' class.
@@ -2554,22 +1952,6 @@ public interface RedPackage extends EPackage {
 		EReference DESCUENTO__LINEA = eINSTANCE.getDescuento_Linea();
 
 		/**
-		 * The meta object literal for the '<em><b>Positive Descuento</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation DESCUENTO___POSITIVE_DESCUENTO__DIAGNOSTICCHAIN_MAP = eINSTANCE.getDescuento__PositiveDescuento__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Horario Correcto</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation DESCUENTO___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP = eINSTANCE.getDescuento__HorarioCorrecto__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '{@link red.impl.ZonaTarifacionImpl <em>Zona Tarifacion</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2610,38 +1992,6 @@ public interface RedPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ZONA_TARIFACION__TARIFA_TREN = eINSTANCE.getZonaTarifacion_TarifaTren();
-
-		/**
-		 * The meta object literal for the '<em><b>Positive Tarifa Bus</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation ZONA_TARIFACION___POSITIVE_TARIFA_BUS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getZonaTarifacion__PositiveTarifaBus__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Positive Tarifa Tren</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation ZONA_TARIFACION___POSITIVE_TARIFA_TREN__DIAGNOSTICCHAIN_MAP = eINSTANCE.getZonaTarifacion__PositiveTarifaTren__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Non Duplicate Num</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation ZONA_TARIFACION___NON_DUPLICATE_NUM__DIAGNOSTICCHAIN_MAP = eINSTANCE.getZonaTarifacion__NonDuplicateNum__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Positive Tarifa Metro</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation ZONA_TARIFACION___POSITIVE_TARIFA_METRO__DIAGNOSTICCHAIN_MAP = eINSTANCE.getZonaTarifacion__PositiveTarifaMetro__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link red.Colores <em>Colores</em>}' enum.

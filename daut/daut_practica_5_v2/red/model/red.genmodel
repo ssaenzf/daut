@@ -43,14 +43,6 @@
     </genClasses>
     <genClasses ecoreClass="red.ecore#//LineaMetro">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//LineaMetro/color"/>
-      <genOperations ecoreOperation="red.ecore#//LineaMetro/nonDuplicateColores">
-        <genParameters ecoreParameter="red.ecore#//LineaMetro/nonDuplicateColores/diagnostics"/>
-        <genParameters ecoreParameter="red.ecore#//LineaMetro/nonDuplicateColores/context"/>
-      </genOperations>
-      <genOperations ecoreOperation="red.ecore#//LineaMetro/nonDuplicateCodigoMetro">
-        <genParameters ecoreParameter="red.ecore#//LineaMetro/nonDuplicateCodigoMetro/diagnostics"/>
-        <genParameters ecoreParameter="red.ecore#//LineaMetro/nonDuplicateCodigoMetro/context"/>
-      </genOperations>
     </genClasses>
     <genClasses ecoreClass="red.ecore#//LineaTren"/>
     <genClasses ecoreClass="red.ecore#//LineaBus">

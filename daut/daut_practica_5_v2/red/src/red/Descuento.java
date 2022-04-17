@@ -2,8 +2,6 @@
  */
 package red;
 
-import java.util.Map;
-import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -22,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see red.RedPackage#getDescuento()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='horarioCorrecto'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore"
  * @generated
  */
 public interface Descuento extends EObject {
@@ -115,21 +113,5 @@ public interface Descuento extends EObject {
 	 * @generated
 	 */
 	void setLinea(Linea value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='descuento &gt; 0'"
-	 * @generated
-	 */
-	boolean positiveDescuento(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t(horaIni &gt;= 0 and horaIni &lt;= 23) and \n\t\t\t(horaFin &gt;= 0 and horaFin &lt;= 23) and\n\t\t\t(horaIni &lt;&gt; horaFin) and (horaFin &gt; horaIni) and\n\t\t\t(horaIni &gt;= linea.horaApertura and horaFin &lt;= linea.horaCierre)'"
-	 * @generated
-	 */
-	boolean horarioCorrecto(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Descuento

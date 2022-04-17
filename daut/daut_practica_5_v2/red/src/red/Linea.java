@@ -2,9 +2,6 @@
  */
 package red;
 
-import java.util.Map;
-
-import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -32,7 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see red.RedPackage#getLinea()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='lineaCircular'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore"
  * @generated
  */
 public interface Linea extends EObject {
@@ -168,12 +165,12 @@ public interface Linea extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parada Ini</em>' reference.
-	 * @see #setParadaIni(ParadaMetro)
+	 * @see #setParadaIni(Parada)
 	 * @see red.RedPackage#getLinea_ParadaIni()
 	 * @model required="true"
 	 * @generated
 	 */
-	ParadaMetro getParadaIni();
+	Parada getParadaIni();
 
 	/**
 	 * Sets the value of the '{@link red.Linea#getParadaIni <em>Parada Ini</em>}' reference.
@@ -183,19 +180,19 @@ public interface Linea extends EObject {
 	 * @see #getParadaIni()
 	 * @generated
 	 */
-	void setParadaIni(ParadaMetro value);
+	void setParadaIni(Parada value);
 
 	/**
 	 * Returns the value of the '<em><b>Parada Fin</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parada Fin</em>' reference.
-	 * @see #setParadaFin(ParadaMetro)
+	 * @see #setParadaFin(Parada)
 	 * @see red.RedPackage#getLinea_ParadaFin()
 	 * @model required="true"
 	 * @generated
 	 */
-	ParadaMetro getParadaFin();
+	Parada getParadaFin();
 
 	/**
 	 * Sets the value of the '{@link red.Linea#getParadaFin <em>Parada Fin</em>}' reference.
@@ -205,7 +202,7 @@ public interface Linea extends EObject {
 	 * @see #getParadaFin()
 	 * @generated
 	 */
-	void setParadaFin(ParadaMetro value);
+	void setParadaFin(Parada value);
 
 	/**
 	 * Returns the value of the '<em><b>Paradas</b></em>' reference list.
@@ -215,40 +212,9 @@ public interface Linea extends EObject {
 	 * @return the value of the '<em>Paradas</em>' reference list.
 	 * @see red.RedPackage#getLinea_Paradas()
 	 * @model lower="2"
+	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
 	 * @generated
 	 */
 	EList<Parada> getParadas();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t(horaApertura &gt;= 0 and horaApertura &lt;= 23) and \n\t\t\t(horaCierre &gt;= 0 and horaCierre &lt;= 23) and\n\t\t\t(horaApertura &lt;&gt; horaCierre) and (horaCierre &gt; horaApertura)'"
-	 * @generated
-	 */
-	boolean horarioCorrecto(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tdescuentos-&gt;forAll(d1,d2 |\n\t\t\t\tif ((d1.horaIni &lt; d2.horaFin and d1.horaIni &gt; d2.horaIni) or (d1.horaFin &lt; d2.horaFin and d1.horaFin &gt; d2.horaIni)) then false\n\t\t\t\telse true endif\n\t\t\t)'"
-	 * @generated
-	 */
-	boolean nonDescuentosSolapados(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tif circular = true then\n\t\t\t\tparadaFin = paradaIni \n\t\t\telse \n\t\t\t\tparadaFin &lt;&gt; paradaIni \n\t\t\tendif'"
-	 * @generated
-	 */
-	boolean lineaCircular(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\tparadas-&gt;forAll(parada1|\n\t\t\tparadas-&gt;forAll(parada2|\n\t\t\t\t(paradas-&gt;indexOf(parada1) = 1 + paradas-&gt;indexOf(parada2)) implies (\n\t\t\t\t\t(parada1.zonatarificacion.enumeracion = parada2.zonatarificacion.enumeracion) or (parada1.zonatarificacion.enumeracion = parada2.zonatarificacion.enumeracion + 1) \n\t\t\t\t)\n\t\t\t)\n\t\t)'"
-	 * @generated
-	 */
-	boolean zonaTarificacionParadasConsecutivas(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Linea

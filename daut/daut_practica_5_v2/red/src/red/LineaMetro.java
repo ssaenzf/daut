@@ -2,9 +2,6 @@
  */
 package red;
 
-import java.util.Map;
-
-import org.eclipse.emf.common.util.DiagnosticChain;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +16,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * </ul>
  *
  * @see red.RedPackage#getLineaMetro()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore"
  * @generated
  */
 public interface LineaMetro extends Linea {
@@ -47,21 +44,5 @@ public interface LineaMetro extends Linea {
 	 * @generated
 	 */
 	void setColor(Colores value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tLineaMetro.allInstances()-&gt;isUnique(color)'"
-	 * @generated
-	 */
-	boolean nonDuplicateColores(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tLineaMetro.allInstances()-&gt;isUnique(codigo)'"
-	 * @generated
-	 */
-	boolean nonDuplicateCodigoMetro(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // LineaMetro

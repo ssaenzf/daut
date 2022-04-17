@@ -2,9 +2,6 @@
  */
 package red;
 
-import java.util.Map;
-
-import org.eclipse.emf.common.util.DiagnosticChain;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,16 +10,8 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  *
  *
  * @see red.RedPackage#getLineaTren()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='nonDuplicateCodigoTren'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore"
  * @generated
  */
 public interface LineaTren extends Linea {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tLineaTren.allInstances()-&gt;isUnique(codigo)'"
-	 * @generated
-	 */
-	boolean nonDuplicateCodigoTren(DiagnosticChain diagnostics, Map<Object, Object> context);
-
 } // LineaTren
