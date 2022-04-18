@@ -1454,7 +1454,7 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 		  (getLinea__LineaCircular__DiagnosticChain_Map(),
 		   source,
 		   new String[] {
-			   "body", "\n\t\t\tif circular = true then\n\t\t\t\tparadaFin = paradaIni \n\t\t\telse \n\t\t\t\tparadaFin <> paradaIni \n\t\t\tendif"
+			   "body", "\n\t\t\tif circular = true then\n\t\t\t\tparadaFin = paradaIni and paradas->indexOf(paradaIni) = 1\n\t\t\telse \n\t\t\t\tparadaFin <> paradaIni and paradas->indexOf(paradaIni) = 1 and paradas->indexOf(paradaFin) = paradas->size()\n\t\t\tendif"
 		   });
 		addAnnotation
 		  (getLineaMetro__ParadasIniFin__DiagnosticChain_Map(),

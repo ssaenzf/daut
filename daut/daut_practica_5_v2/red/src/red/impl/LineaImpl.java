@@ -32,6 +32,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorMultipleIterationManager;
 import org.eclipse.ocl.pivot.library.AbstractSimpleOperation;
 import org.eclipse.ocl.pivot.library.LibraryIteration.LibraryIterationExtension;
+import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
 import org.eclipse.ocl.pivot.library.collection.OrderedCollectionIndexOfOperation;
 import org.eclipse.ocl.pivot.library.numeric.NumericPlusOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanEqualOperation;
@@ -1123,15 +1124,20 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 			 *     then true
 			 *     else
 			 *       let
-			 *         result : Boolean[1] = if circular = true
-			 *         then paradaFin = paradaIni
-			 *         else paradaFin <> paradaIni
+			 *         result : Boolean[?] = if circular = true
+			 *         then paradaFin = paradaIni and
+			 *           paradas->indexOf(paradaIni) = 1
+			 *         else paradaFin <> paradaIni and
+			 *           paradas->indexOf(paradaIni) = 1 and
+			 *           paradas->indexOf(paradaFin) =
+			 *           paradas->size()
 			 *         endif
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
 			 *     endif
 			 */
 			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, RedPackage.Literals.LINEA___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP);
 			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, RedTables.INT_0).booleanValue();
 			/*@NonInvalid*/ boolean local_0;
@@ -1139,19 +1145,74 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 				local_0 = true;
 			}
 			else {
-				final /*@NonInvalid*/ Parada paradaFin_0 = this.getParadaFin();
-				final /*@NonInvalid*/ Parada paradaIni_0 = this.getParadaIni();
-				final /*@NonInvalid*/ boolean circular = this.isCircular();
-				/*@NonInvalid*/ boolean result;
-				if (circular) {
-					final /*@NonInvalid*/ boolean eq = paradaFin_0.equals(paradaIni_0);
-					result = eq;
+				/*@Caught*/ Object CAUGHT_result;
+				try {
+					final /*@NonInvalid*/ Parada paradaFin = this.getParadaFin();
+					final /*@NonInvalid*/ Parada paradaIni = this.getParadaIni();
+					final /*@NonInvalid*/ List<Parada> paradas_1 = this.getParadas();
+					final /*@NonInvalid*/ OrderedSetValue BOXED_paradas_1 = idResolver.createOrderedSetOfAll(RedTables.ORD_CLSSid_Parada, paradas_1);
+					final /*@NonInvalid*/ IntegerValue indexOf = OrderedCollectionIndexOfOperation.INSTANCE.evaluate(BOXED_paradas_1, paradaIni);
+					final /*@NonInvalid*/ boolean eq_0 = RedTables.INT_1.equals(indexOf);
+					final /*@NonInvalid*/ boolean circular = this.isCircular();
+					/*@Thrown*/ Boolean result;
+					if (circular) {
+						final /*@NonInvalid*/ boolean eq = paradaFin.equals(paradaIni);
+						final /*@NonInvalid*/ Boolean and;
+						if (!eq) {
+							and = ValueUtil.FALSE_VALUE;
+						}
+						else {
+							if (!eq_0) {
+								and = ValueUtil.FALSE_VALUE;
+							}
+							else {
+								and = ValueUtil.TRUE_VALUE;
+							}
+						}
+						result = and;
+					}
+					else {
+						final /*@NonInvalid*/ boolean ne = !paradaFin.equals(paradaIni);
+						final /*@NonInvalid*/ Boolean and_0;
+						if (!ne) {
+							and_0 = ValueUtil.FALSE_VALUE;
+						}
+						else {
+							if (!eq_0) {
+								and_0 = ValueUtil.FALSE_VALUE;
+							}
+							else {
+								and_0 = ValueUtil.TRUE_VALUE;
+							}
+						}
+						final /*@Thrown*/ Boolean and_1;
+						if (and_0 == ValueUtil.FALSE_VALUE) {
+							and_1 = ValueUtil.FALSE_VALUE;
+						}
+						else {
+							final /*@NonInvalid*/ IntegerValue indexOf_1 = OrderedCollectionIndexOfOperation.INSTANCE.evaluate(BOXED_paradas_1, paradaFin);
+							final /*@NonInvalid*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_paradas_1);
+							final /*@NonInvalid*/ boolean eq_2 = size.equals(indexOf_1);
+							if (!eq_2) {
+								and_1 = ValueUtil.FALSE_VALUE;
+							}
+							else {
+								if (and_0 == null) {
+									and_1 = null;
+								}
+								else {
+									and_1 = ValueUtil.TRUE_VALUE;
+								}
+							}
+						}
+						result = and_1;
+					}
+					CAUGHT_result = result;
 				}
-				else {
-					final /*@NonInvalid*/ boolean ne = !paradaFin_0.equals(paradaIni_0);
-					result = ne;
+				catch (Exception e) {
+					CAUGHT_result = ValueUtil.createInvalidValue(e);
 				}
-				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object)null, diagnostics, context, (Object)null, severity_0, result, RedTables.INT_0).booleanValue();
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object)null, diagnostics, context, (Object)null, severity_0, CAUGHT_result, RedTables.INT_0).booleanValue();
 				local_0 = logDiagnostic;
 			}
 			return local_0;

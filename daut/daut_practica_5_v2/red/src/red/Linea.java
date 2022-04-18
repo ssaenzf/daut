@@ -246,7 +246,7 @@ public interface Linea extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tif circular = true then\n\t\t\t\tparadaFin = paradaIni \n\t\t\telse \n\t\t\t\tparadaFin &lt;&gt; paradaIni \n\t\t\tendif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tif circular = true then\n\t\t\t\tparadaFin = paradaIni and paradas-&gt;indexOf(paradaIni) = 1\n\t\t\telse \n\t\t\t\tparadaFin &lt;&gt; paradaIni and paradas-&gt;indexOf(paradaIni) = 1 and paradas-&gt;indexOf(paradaFin) = paradas-&gt;size()\n\t\t\tendif'"
 	 * @generated
 	 */
 	boolean lineaCircular(DiagnosticChain diagnostics, Map<Object, Object> context);
