@@ -34,6 +34,7 @@ import org.eclipse.ocl.pivot.library.AbstractSimpleOperation;
 import org.eclipse.ocl.pivot.library.LibraryIteration.LibraryIterationExtension;
 import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
 import org.eclipse.ocl.pivot.library.collection.OrderedCollectionIndexOfOperation;
+import org.eclipse.ocl.pivot.library.numeric.NumericMinusOperation;
 import org.eclipse.ocl.pivot.library.numeric.NumericPlusOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanEqualOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
@@ -588,6 +589,74 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 					CAUGHT_result = ValueUtil.createInvalidValue(e);
 				}
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object)null, diagnostics, context, (Object)null, severity_0, CAUGHT_result, RedTables.INT_0).booleanValue();
+				local_0 = logDiagnostic;
+			}
+			return local_0;
+		}
+		catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean siguientesParadas(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "Linea::siguientesParadas";
+		try {
+			/**
+			 *
+			 * inv siguientesParadas:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : Boolean[?] = siguienteParadaDistancia->size() =
+			 *         paradas->size() - 1 and
+			 *         siguienteParadaTiempo->size() =
+			 *         paradas->size() - 1
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, RedPackage.Literals.LINEA___SIGUIENTES_PARADAS__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, RedTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_0;
+			if (le) {
+				local_0 = true;
+			}
+			else {
+				final /*@NonInvalid*/ List<Parada> paradas_0 = this.getParadas();
+				final /*@NonInvalid*/ OrderedSetValue BOXED_paradas_0 = idResolver.createOrderedSetOfAll(RedTables.ORD_CLSSid_Parada, paradas_0);
+				final /*@NonInvalid*/ IntegerValue size_2 = CollectionSizeOperation.INSTANCE.evaluate(BOXED_paradas_0);
+				final /*@NonInvalid*/ IntegerValue diff_0 = (IntegerValue)NumericMinusOperation.INSTANCE.evaluate(size_2, RedTables.INT_1);
+				final /*@NonInvalid*/ List<Double> siguienteParadaDistancia = this.getSiguienteParadaDistancia();
+				final /*@NonInvalid*/ OrderedSetValue BOXED_siguienteParadaDistancia = idResolver.createOrderedSetOfAll(RedTables.ORD_DATAid_EDouble, siguienteParadaDistancia);
+				final /*@NonInvalid*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_siguienteParadaDistancia);
+				final /*@NonInvalid*/ boolean eq = size.equals(diff_0);
+				final /*@NonInvalid*/ Boolean result;
+				if (!eq) {
+					result = ValueUtil.FALSE_VALUE;
+				}
+				else {
+					final /*@NonInvalid*/ List<Double> siguienteParadaTiempo = this.getSiguienteParadaTiempo();
+					final /*@NonInvalid*/ OrderedSetValue BOXED_siguienteParadaTiempo = idResolver.createOrderedSetOfAll(RedTables.ORD_DATAid_EDouble, siguienteParadaTiempo);
+					final /*@NonInvalid*/ IntegerValue size_1 = CollectionSizeOperation.INSTANCE.evaluate(BOXED_siguienteParadaTiempo);
+					final /*@NonInvalid*/ boolean eq_0 = size_1.equals(diff_0);
+					if (!eq_0) {
+						result = ValueUtil.FALSE_VALUE;
+					}
+					else {
+						result = ValueUtil.TRUE_VALUE;
+					}
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object)null, diagnostics, context, (Object)null, severity_0, result, RedTables.INT_0).booleanValue();
 				local_0 = logDiagnostic;
 			}
 			return local_0;
@@ -1415,14 +1484,16 @@ public abstract class LineaImpl extends MinimalEObjectImpl.Container implements 
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case RedPackage.LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP:
-				return horarioCorrecto((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case RedPackage.LINEA___ZONA_TARIFICACION_PARADAS_CONSECUTIVAS__DIAGNOSTICCHAIN_MAP:
-				return zonaTarificacionParadasConsecutivas((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case RedPackage.LINEA___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP:
 				return nonDescuentosSolapados((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case RedPackage.LINEA___ZONA_TARIFICACION_PARADAS_CONSECUTIVAS__DIAGNOSTICCHAIN_MAP:
+				return zonaTarificacionParadasConsecutivas((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case RedPackage.LINEA___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP:
 				return lineaCircular((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case RedPackage.LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP:
+				return horarioCorrecto((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case RedPackage.LINEA___SIGUIENTES_PARADAS__DIAGNOSTICCHAIN_MAP:
+				return siguientesParadas((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

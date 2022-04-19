@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see red.RedPackage#getLinea()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='lineaCircular'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='siguientesParadas'"
  * @generated
  */
 public interface Linea extends EObject {
@@ -226,6 +226,14 @@ public interface Linea extends EObject {
 	 * @generated
 	 */
 	boolean horarioCorrecto(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tsiguienteParadaDistancia-&gt;size() = (paradas-&gt;size() - 1) \n\t\t\tand siguienteParadaTiempo-&gt;size() = (paradas-&gt;size() - 1)'"
+	 * @generated
+	 */
+	boolean siguientesParadas(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->

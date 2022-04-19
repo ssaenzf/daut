@@ -61,7 +61,15 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA__HORARIO_CORRECTO = 3;
+	public static final int LINEA__HORARIO_CORRECTO = 6;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Siguientes Paradas' of 'Linea'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int LINEA__SIGUIENTES_PARADAS = 7;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Zona Tarificacion Paradas Consecutivas' of 'Linea'.
@@ -77,7 +85,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA__NON_DESCUENTOS_SOLAPADOS = 5;
+	public static final int LINEA__NON_DESCUENTOS_SOLAPADOS = 3;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Linea Circular' of 'Linea'.
@@ -85,7 +93,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA__LINEA_CIRCULAR = 6;
+	public static final int LINEA__LINEA_CIRCULAR = 5;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Paradas Ini Fin' of 'Linea Metro'.
@@ -93,7 +101,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA_METRO__PARADAS_INI_FIN = 7;
+	public static final int LINEA_METRO__PARADAS_INI_FIN = 8;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Non Duplicate Colores' of 'Linea Metro'.
@@ -101,7 +109,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA_METRO__NON_DUPLICATE_COLORES = 8;
+	public static final int LINEA_METRO__NON_DUPLICATE_COLORES = 9;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Non Duplicate Codigo Metro' of 'Linea Metro'.
@@ -109,7 +117,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA_METRO__NON_DUPLICATE_CODIGO_METRO = 9;
+	public static final int LINEA_METRO__NON_DUPLICATE_CODIGO_METRO = 10;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Paradas Correctas' of 'Linea Metro'.
@@ -117,7 +125,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA_METRO__PARADAS_CORRECTAS = 10;
+	public static final int LINEA_METRO__PARADAS_CORRECTAS = 11;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Paradas Ini Fin' of 'Linea Tren'.
@@ -125,7 +133,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA_TREN__PARADAS_INI_FIN = 11;
+	public static final int LINEA_TREN__PARADAS_INI_FIN = 12;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Paradas Correctas' of 'Linea Tren'.
@@ -133,7 +141,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA_TREN__PARADAS_CORRECTAS = 12;
+	public static final int LINEA_TREN__PARADAS_CORRECTAS = 13;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Non Duplicate Codigo Tren' of 'Linea Tren'.
@@ -141,7 +149,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA_TREN__NON_DUPLICATE_CODIGO_TREN = 13;
+	public static final int LINEA_TREN__NON_DUPLICATE_CODIGO_TREN = 14;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Paradas Ini Fin' of 'Linea Bus'.
@@ -149,7 +157,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA_BUS__PARADAS_INI_FIN = 14;
+	public static final int LINEA_BUS__PARADAS_INI_FIN = 15;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Non Duplicate Codigo Bus' of 'Linea Bus'.
@@ -157,7 +165,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA_BUS__NON_DUPLICATE_CODIGO_BUS = 15;
+	public static final int LINEA_BUS__NON_DUPLICATE_CODIGO_BUS = 16;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Linea Diurna' of 'Linea Bus'.
@@ -165,7 +173,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA_BUS__LINEA_DIURNA = 16;
+	public static final int LINEA_BUS__LINEA_DIURNA = 17;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Paradas Correctas' of 'Linea Bus'.
@@ -173,7 +181,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LINEA_BUS__PARADAS_CORRECTAS = 17;
+	public static final int LINEA_BUS__PARADAS_CORRECTAS = 18;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Non Duplicate Nombre Parada' of 'Parada Bus'.
@@ -181,7 +189,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PARADA_BUS__NON_DUPLICATE_NOMBRE_PARADA = 18;
+	public static final int PARADA_BUS__NON_DUPLICATE_NOMBRE_PARADA = 19;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Non Duplicate Nombre Parada' of 'Parada Metro'.
@@ -189,7 +197,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PARADA_METRO__NON_DUPLICATE_NOMBRE_PARADA = 19;
+	public static final int PARADA_METRO__NON_DUPLICATE_NOMBRE_PARADA = 20;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Non Duplicate Nombre Parada' of 'Parada Tren'.
@@ -197,7 +205,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PARADA_TREN__NON_DUPLICATE_NOMBRE_PARADA = 20;
+	public static final int PARADA_TREN__NON_DUPLICATE_NOMBRE_PARADA = 21;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Descuento Correcto' of 'Descuento'.
@@ -205,7 +213,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int DESCUENTO__DESCUENTO_CORRECTO = 21;
+	public static final int DESCUENTO__DESCUENTO_CORRECTO = 22;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Horario Correcto' of 'Descuento'.
@@ -213,7 +221,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int DESCUENTO__HORARIO_CORRECTO = 22;
+	public static final int DESCUENTO__HORARIO_CORRECTO = 23;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Positive Tarifa Tren' of 'Zona Tarifacion'.
@@ -221,7 +229,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ZONA_TARIFACION__POSITIVE_TARIFA_TREN = 23;
+	public static final int ZONA_TARIFACION__POSITIVE_TARIFA_TREN = 24;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Positive Tarifa Metro' of 'Zona Tarifacion'.
@@ -229,7 +237,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ZONA_TARIFACION__POSITIVE_TARIFA_METRO = 24;
+	public static final int ZONA_TARIFACION__POSITIVE_TARIFA_METRO = 25;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Non Duplicate Num' of 'Zona Tarifacion'.
@@ -237,7 +245,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ZONA_TARIFACION__NON_DUPLICATE_NUM = 25;
+	public static final int ZONA_TARIFACION__NON_DUPLICATE_NUM = 26;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Positive Tarifa Bus' of 'Zona Tarifacion'.
@@ -245,7 +253,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ZONA_TARIFACION__POSITIVE_TARIFA_BUS = 26;
+	public static final int ZONA_TARIFACION__POSITIVE_TARIFA_BUS = 27;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -253,7 +261,7 @@ public class RedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 26;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 27;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -383,11 +391,22 @@ public class RedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(linea, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(linea, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(linea, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_siguientesParadas(linea, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_nonDescuentosSolapados(linea, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_zonaTarificacionParadasConsecutivas(linea, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinea_lineaCircular(linea, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinea_horarioCorrecto(linea, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLinea_zonaTarificacionParadasConsecutivas(linea, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLinea_nonDescuentosSolapados(linea, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * Validates the siguientesParadas constraint of '<em>Linea</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLinea_siguientesParadas(Linea linea, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return linea.siguientesParadas(diagnostics, context);
 	}
 
 	/**
@@ -445,10 +464,11 @@ public class RedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(lineaMetro, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(lineaMetro, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(lineaMetro, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_siguientesParadas(lineaMetro, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_nonDescuentosSolapados(lineaMetro, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_zonaTarificacionParadasConsecutivas(lineaMetro, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinea_lineaCircular(lineaMetro, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinea_horarioCorrecto(lineaMetro, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLinea_zonaTarificacionParadasConsecutivas(lineaMetro, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLinea_nonDescuentosSolapados(lineaMetro, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLineaMetro_paradasCorrectas(lineaMetro, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLineaMetro_paradasIniFin(lineaMetro, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLineaMetro_nonDuplicateColores(lineaMetro, diagnostics, context);
@@ -511,10 +531,11 @@ public class RedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(lineaTren, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(lineaTren, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(lineaTren, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_siguientesParadas(lineaTren, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_nonDescuentosSolapados(lineaTren, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_zonaTarificacionParadasConsecutivas(lineaTren, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinea_lineaCircular(lineaTren, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinea_horarioCorrecto(lineaTren, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLinea_zonaTarificacionParadasConsecutivas(lineaTren, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLinea_nonDescuentosSolapados(lineaTren, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLineaTren_nonDuplicateCodigoTren(lineaTren, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLineaTren_paradasIniFin(lineaTren, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLineaTren_paradasCorrectas(lineaTren, diagnostics, context);
@@ -566,10 +587,11 @@ public class RedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(lineaBus, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(lineaBus, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(lineaBus, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_siguientesParadas(lineaBus, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_nonDescuentosSolapados(lineaBus, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLinea_zonaTarificacionParadasConsecutivas(lineaBus, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinea_lineaCircular(lineaBus, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLinea_horarioCorrecto(lineaBus, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLinea_zonaTarificacionParadasConsecutivas(lineaBus, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLinea_nonDescuentosSolapados(lineaBus, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLineaBus_paradasCorrectas(lineaBus, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLineaBus_paradasIniFin(lineaBus, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLineaBus_nonDuplicateCodigoBus(lineaBus, diagnostics, context);

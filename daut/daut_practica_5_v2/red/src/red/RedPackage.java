@@ -243,13 +243,13 @@ public interface RedPackage extends EPackage {
 	int LINEA_FEATURE_COUNT = 10;
 
 	/**
-	 * The operation id for the '<em>Horario Correcto</em>' operation.
+	 * The operation id for the '<em>Non Descuentos Solapados</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP = 0;
+	int LINEA___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP = 0;
 
 	/**
 	 * The operation id for the '<em>Zona Tarificacion Paradas Consecutivas</em>' operation.
@@ -261,22 +261,31 @@ public interface RedPackage extends EPackage {
 	int LINEA___ZONA_TARIFICACION_PARADAS_CONSECUTIVAS__DIAGNOSTICCHAIN_MAP = 1;
 
 	/**
-	 * The operation id for the '<em>Non Descuentos Solapados</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP = 2;
-
-	/**
 	 * The operation id for the '<em>Linea Circular</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINEA___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP = 3;
+	int LINEA___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP = 2;
+
+	/**
+	 * The operation id for the '<em>Horario Correcto</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP = 3;
+
+	/**
+	 * The operation id for the '<em>Siguientes Paradas</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEA___SIGUIENTES_PARADAS__DIAGNOSTICCHAIN_MAP = 4;
 
 	/**
 	 * The number of operations of the '<em>Linea</em>' class.
@@ -285,7 +294,7 @@ public interface RedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINEA_OPERATION_COUNT = 4;
+	int LINEA_OPERATION_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link red.impl.LineaMetroImpl <em>Linea Metro</em>}' class.
@@ -406,13 +415,13 @@ public interface RedPackage extends EPackage {
 	int LINEA_METRO_FEATURE_COUNT = LINEA_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Horario Correcto</em>' operation.
+	 * The operation id for the '<em>Non Descuentos Solapados</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINEA_METRO___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP = LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP;
+	int LINEA_METRO___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP = LINEA___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Zona Tarificacion Paradas Consecutivas</em>' operation.
@@ -424,15 +433,6 @@ public interface RedPackage extends EPackage {
 	int LINEA_METRO___ZONA_TARIFICACION_PARADAS_CONSECUTIVAS__DIAGNOSTICCHAIN_MAP = LINEA___ZONA_TARIFICACION_PARADAS_CONSECUTIVAS__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Non Descuentos Solapados</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_METRO___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP = LINEA___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Linea Circular</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -440,6 +440,24 @@ public interface RedPackage extends EPackage {
 	 * @ordered
 	 */
 	int LINEA_METRO___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP = LINEA___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Horario Correcto</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEA_METRO___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP = LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Siguientes Paradas</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEA_METRO___SIGUIENTES_PARADAS__DIAGNOSTICCHAIN_MAP = LINEA___SIGUIENTES_PARADAS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Paradas Ini Fin</em>' operation.
@@ -596,13 +614,13 @@ public interface RedPackage extends EPackage {
 	int LINEA_TREN_FEATURE_COUNT = LINEA_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Horario Correcto</em>' operation.
+	 * The operation id for the '<em>Non Descuentos Solapados</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINEA_TREN___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP = LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP;
+	int LINEA_TREN___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP = LINEA___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Zona Tarificacion Paradas Consecutivas</em>' operation.
@@ -614,15 +632,6 @@ public interface RedPackage extends EPackage {
 	int LINEA_TREN___ZONA_TARIFICACION_PARADAS_CONSECUTIVAS__DIAGNOSTICCHAIN_MAP = LINEA___ZONA_TARIFICACION_PARADAS_CONSECUTIVAS__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Non Descuentos Solapados</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_TREN___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP = LINEA___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Linea Circular</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -630,6 +639,24 @@ public interface RedPackage extends EPackage {
 	 * @ordered
 	 */
 	int LINEA_TREN___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP = LINEA___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Horario Correcto</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEA_TREN___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP = LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Siguientes Paradas</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEA_TREN___SIGUIENTES_PARADAS__DIAGNOSTICCHAIN_MAP = LINEA___SIGUIENTES_PARADAS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Paradas Ini Fin</em>' operation.
@@ -786,13 +813,13 @@ public interface RedPackage extends EPackage {
 	int LINEA_BUS_FEATURE_COUNT = LINEA_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Horario Correcto</em>' operation.
+	 * The operation id for the '<em>Non Descuentos Solapados</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINEA_BUS___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP = LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP;
+	int LINEA_BUS___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP = LINEA___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Zona Tarificacion Paradas Consecutivas</em>' operation.
@@ -804,15 +831,6 @@ public interface RedPackage extends EPackage {
 	int LINEA_BUS___ZONA_TARIFICACION_PARADAS_CONSECUTIVAS__DIAGNOSTICCHAIN_MAP = LINEA___ZONA_TARIFICACION_PARADAS_CONSECUTIVAS__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Non Descuentos Solapados</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEA_BUS___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP = LINEA___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Linea Circular</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -820,6 +838,24 @@ public interface RedPackage extends EPackage {
 	 * @ordered
 	 */
 	int LINEA_BUS___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP = LINEA___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Horario Correcto</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEA_BUS___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP = LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Siguientes Paradas</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEA_BUS___SIGUIENTES_PARADAS__DIAGNOSTICCHAIN_MAP = LINEA___SIGUIENTES_PARADAS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Paradas Ini Fin</em>' operation.
@@ -1656,6 +1692,16 @@ public interface RedPackage extends EPackage {
 	EOperation getLinea__HorarioCorrecto__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link red.Linea#siguientesParadas(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Siguientes Paradas</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Siguientes Paradas</em>' operation.
+	 * @see red.Linea#siguientesParadas(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getLinea__SiguientesParadas__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link red.Linea#zonaTarificacionParadasConsecutivas(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Zona Tarificacion Paradas Consecutivas</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2385,6 +2431,14 @@ public interface RedPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLinea__HorarioCorrecto__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Siguientes Paradas</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LINEA___SIGUIENTES_PARADAS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLinea__SiguientesParadas__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Zona Tarificacion Paradas Consecutivas</b></em>' operation.

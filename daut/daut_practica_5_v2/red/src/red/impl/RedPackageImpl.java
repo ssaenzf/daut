@@ -376,7 +376,16 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 	 * @generated
 	 */
 	public EOperation getLinea__HorarioCorrecto__DiagnosticChain_Map() {
-		return lineaEClass.getEOperations().get(0);
+		return lineaEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLinea__SiguientesParadas__DiagnosticChain_Map() {
+		return lineaEClass.getEOperations().get(4);
 	}
 
 	/**
@@ -394,7 +403,7 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 	 * @generated
 	 */
 	public EOperation getLinea__NonDescuentosSolapados__DiagnosticChain_Map() {
-		return lineaEClass.getEOperations().get(2);
+		return lineaEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -403,7 +412,7 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 	 * @generated
 	 */
 	public EOperation getLinea__LineaCircular__DiagnosticChain_Map() {
-		return lineaEClass.getEOperations().get(3);
+		return lineaEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -911,10 +920,11 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 		createEReference(lineaEClass, LINEA__PARADA_INI);
 		createEReference(lineaEClass, LINEA__PARADA_FIN);
 		createEReference(lineaEClass, LINEA__PARADAS);
-		createEOperation(lineaEClass, LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP);
-		createEOperation(lineaEClass, LINEA___ZONA_TARIFICACION_PARADAS_CONSECUTIVAS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(lineaEClass, LINEA___NON_DESCUENTOS_SOLAPADOS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(lineaEClass, LINEA___ZONA_TARIFICACION_PARADAS_CONSECUTIVAS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(lineaEClass, LINEA___LINEA_CIRCULAR__DIAGNOSTICCHAIN_MAP);
+		createEOperation(lineaEClass, LINEA___HORARIO_CORRECTO__DIAGNOSTICCHAIN_MAP);
+		createEOperation(lineaEClass, LINEA___SIGUIENTES_PARADAS__DIAGNOSTICCHAIN_MAP);
 
 		lineaMetroEClass = createEClass(LINEA_METRO);
 		createEAttribute(lineaMetroEClass, LINEA_METRO__COLOR);
@@ -1054,7 +1064,7 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 		initEReference(getLinea_ParadaFin(), this.getParada(), null, "paradaFin", null, 1, 1, Linea.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLinea_Paradas(), this.getParada(), null, "paradas", null, 2, -1, Linea.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getLinea__HorarioCorrecto__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "horarioCorrecto", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getLinea__NonDescuentosSolapados__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "nonDescuentosSolapados", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -1072,7 +1082,7 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getLinea__NonDescuentosSolapados__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "nonDescuentosSolapados", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getLinea__LineaCircular__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "lineaCircular", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -1081,7 +1091,16 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getLinea__LineaCircular__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "lineaCircular", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getLinea__HorarioCorrecto__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "horarioCorrecto", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getLinea__SiguientesParadas__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "siguientesParadas", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -1360,7 +1379,7 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 		  (lineaEClass,
 		   source,
 		   new String[] {
-			   "constraints", "lineaCircular"
+			   "constraints", "siguientesParadas"
 		   });
 		addAnnotation
 		  (lineaMetroEClass,
@@ -1433,10 +1452,10 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 			   "body", "\n\t\t\tlineas->forAll(linea1, linea2 | \n\t\t\t\tlinea1.paradas->forAll(par1|\n\t\t\t\t\tlinea2.paradas->forAll(par2|\n\t\t\t\t\t\t(par1 = par2) \n\t\t\t\t\t\timplies (\n\t\t\t\t\t\t\tlinea2.paradas->forAll(par3|\n\t\t\t\t\t\t\t\tlinea1.paradas->forAll(par4|\n\t\t\t\t\t\t\t\t\t((par3 = par4) \n\t\t\t\t\t\t\t\t\t\tand (linea1.paradas->indexOf(par4) = 1 + linea1.paradas->indexOf(par1)) \n\t\t\t\t\t\t\t\t\t\tand (linea2.paradas->indexOf(par2) = 1 + linea2.paradas->indexOf(par3))\n\t\t\t\t\t\t\t\t\t) \n\t\t\t\t\t\t\t\t\timplies(\n\t\t\t\t\t\t\t\t\t\tlinea1.siguienteParadaDistancia->forAll(dis1|\n\t\t\t\t\t\t\t\t\t\t\t(linea1.siguienteParadaDistancia->indexOf(dis1) = linea1.paradas->indexOf(par1)) \n\t\t\t\t\t\t\t\t\t\t\timplies(\n\t\t\t\t\t\t\t\t\t\t\t\tlinea2.siguienteParadaDistancia->forAll(dis2|\n\t\t\t\t\t\t\t\t\t\t\t\t\t(linea2.siguienteParadaDistancia->indexOf(dis2) = linea2.paradas->indexOf(par2)) \n\t\t\t\t\t\t\t\t\t\t\t\t\timplies(\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tdis1 = dis2\n\t\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t)\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t)"
 		   });
 		addAnnotation
-		  (getLinea__HorarioCorrecto__DiagnosticChain_Map(),
+		  (getLinea__NonDescuentosSolapados__DiagnosticChain_Map(),
 		   source,
 		   new String[] {
-			   "body", "\n\t\t\t(horaApertura >= 0 and horaApertura <= 23) and \n\t\t\t(horaCierre >= 0 and horaCierre <= 23) and\n\t\t\t(horaApertura <> horaCierre) and (horaCierre > horaApertura)"
+			   "body", "\n\t\t\tdescuentos->forAll(d1,d2 |\n\t\t\t\tif ((d1.horaIni < d2.horaFin and d1.horaIni > d2.horaIni) or (d1.horaFin < d2.horaFin and d1.horaFin > d2.horaIni)) then false\n\t\t\t\telse true endif\n\t\t\t)"
 		   });
 		addAnnotation
 		  (getLinea__ZonaTarificacionParadasConsecutivas__DiagnosticChain_Map(),
@@ -1445,16 +1464,22 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 			   "body", "\n\t\tparadas->forAll(parada1|\n\t\t\tparadas->forAll(parada2|\n\t\t\t\t(paradas->indexOf(parada1) = 1 + paradas->indexOf(parada2)) implies (\n\t\t\t\t\t(parada1.zonatarificacion.enumeracion = parada2.zonatarificacion.enumeracion) or (parada1.zonatarificacion.enumeracion = parada2.zonatarificacion.enumeracion + 1) \n\t\t\t\t)\n\t\t\t)\n\t\t)"
 		   });
 		addAnnotation
-		  (getLinea__NonDescuentosSolapados__DiagnosticChain_Map(),
-		   source,
-		   new String[] {
-			   "body", "\n\t\t\tdescuentos->forAll(d1,d2 |\n\t\t\t\tif ((d1.horaIni < d2.horaFin and d1.horaIni > d2.horaIni) or (d1.horaFin < d2.horaFin and d1.horaFin > d2.horaIni)) then false\n\t\t\t\telse true endif\n\t\t\t)"
-		   });
-		addAnnotation
 		  (getLinea__LineaCircular__DiagnosticChain_Map(),
 		   source,
 		   new String[] {
 			   "body", "\n\t\t\tif circular = true then\n\t\t\t\tparadaFin = paradaIni and paradas->indexOf(paradaIni) = 1\n\t\t\telse \n\t\t\t\tparadaFin <> paradaIni and paradas->indexOf(paradaIni) = 1 and paradas->indexOf(paradaFin) = paradas->size()\n\t\t\tendif"
+		   });
+		addAnnotation
+		  (getLinea__HorarioCorrecto__DiagnosticChain_Map(),
+		   source,
+		   new String[] {
+			   "body", "\n\t\t\t(horaApertura >= 0 and horaApertura <= 23) and \n\t\t\t(horaCierre >= 0 and horaCierre <= 23) and\n\t\t\t(horaApertura <> horaCierre) and (horaCierre > horaApertura)"
+		   });
+		addAnnotation
+		  (getLinea__SiguientesParadas__DiagnosticChain_Map(),
+		   source,
+		   new String[] {
+			   "body", "\n\t\t\tsiguienteParadaDistancia->size() = (paradas->size() - 1) \n\t\t\tand siguienteParadaTiempo->size() = (paradas->size() - 1)"
 		   });
 		addAnnotation
 		  (getLineaMetro__ParadasIniFin__DiagnosticChain_Map(),

@@ -39,13 +39,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Linea" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="zonaTarificacionParadasConsecutivas horarioCorrecto nonDescuentosSolapados lineaCircular"/>
+      <details key="constraints" value="zonaTarificacionParadasConsecutivas horarioCorrecto nonDescuentosSolapados lineaCircular siguientesParadas"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="zonaTarificacionParadasConsecutivas" value="&#xA;&#x9;&#x9;paradas->forAll(parada1|&#xA;&#x9;&#x9;&#x9;paradas->forAll(parada2|&#xA;&#x9;&#x9;&#x9;&#x9;(paradas->indexOf(parada1) = 1 + paradas->indexOf(parada2)) implies (&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;(parada1.zonatarificacion.enumeracion = parada2.zonatarificacion.enumeracion) or (parada1.zonatarificacion.enumeracion = parada2.zonatarificacion.enumeracion + 1) &#xA;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;)"/>
       <details key="horarioCorrecto" value="&#xA;&#x9;&#x9;&#x9;(horaApertura >= 0 and horaApertura &lt;= 23) and &#xA;&#x9;&#x9;&#x9;(horaCierre >= 0 and horaCierre &lt;= 23) and&#xA;&#x9;&#x9;&#x9;(horaApertura &lt;> horaCierre) and (horaCierre > horaApertura)"/>
       <details key="nonDescuentosSolapados" value="&#xA;&#x9;&#x9;&#x9;descuentos->forAll(d1,d2 |&#xA;&#x9;&#x9;&#x9;&#x9;if ((d1.horaIni &lt; d2.horaFin and d1.horaIni > d2.horaIni) or (d1.horaFin &lt; d2.horaFin and d1.horaFin > d2.horaIni)) then false&#xA;&#x9;&#x9;&#x9;&#x9;else true endif&#xA;&#x9;&#x9;&#x9;)"/>
       <details key="lineaCircular" value="&#xA;&#x9;&#x9;&#x9;if circular = true then&#xA;&#x9;&#x9;&#x9;&#x9;paradaFin = paradaIni and paradas->indexOf(paradaIni) = 1&#xA;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;paradaFin &lt;> paradaIni and paradas->indexOf(paradaIni) = 1 and paradas->indexOf(paradaFin) = paradas->size()&#xA;&#x9;&#x9;&#x9;endif"/>
+      <details key="siguientesParadas" value="&#xA;&#x9;&#x9;&#x9;siguienteParadaDistancia->size() = (paradas->size() - 1) &#xA;&#x9;&#x9;&#x9;and siguienteParadaTiempo->size() = (paradas->size() - 1)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigo" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
