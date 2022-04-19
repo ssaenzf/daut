@@ -123,7 +123,7 @@ public interface Linea extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Siguiente Parada Tiempo</em>' attribute list.
 	 * @see red.RedPackage#getLinea_SiguienteParadaTiempo()
-	 * @model required="true" transient="true"
+	 * @model required="true"
 	 * @generated
 	 */
 	EList<Double> getSiguienteParadaTiempo();
@@ -135,7 +135,7 @@ public interface Linea extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Siguiente Parada Distancia</em>' attribute list.
 	 * @see red.RedPackage#getLinea_SiguienteParadaDistancia()
-	 * @model required="true" transient="true"
+	 * @model required="true"
 	 * @generated
 	 */
 	EList<Double> getSiguienteParadaDistancia();
