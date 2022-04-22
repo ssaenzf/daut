@@ -6,17 +6,14 @@
 
 <plugin>
 
-
  	<extension point="org.eclipse.ui.handlers">
- 	
-		<handler class="menu_contextual.Handler" commandId="red-transporte.command">
-		</handler>
-		
+		<handler class="menu_contextual.Handler" commandId="red">
+		</handler>	
 	</extension>
-	<extension point="org.eclipse.ui.menus">
 	
+	<extension point="org.eclipse.ui.menus">
 		<menuContribution allPopups="true" locationURI="popup:org.eclipse.ui.popup.any?after=additions">
-			<command commandId="red-transporte.command" label="Consultar red de transporte">
+			<command commandId="red" label="Consultar red de transporte">
 				<visibleWhen checkEnabled="false">
 					<iterate>
 						<test property="org.eclipse.core.resources.extension" value="red" />
@@ -24,7 +21,6 @@
 				</visibleWhen>
 			</command>
 		</menuContribution>
-		
 	</extension>
-
+	
 </plugin>
