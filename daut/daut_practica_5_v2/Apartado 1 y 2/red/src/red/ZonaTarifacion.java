@@ -134,7 +134,7 @@ public interface ZonaTarifacion extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tZonaTarifacion.allInstances()-&gt;isUnique(enumeracion)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tZonaTarifacion.allInstances()-&gt;isUnique(enumeracion) and enumeracion &gt; 0'"
 	 * @generated
 	 */
 	boolean nonDuplicateNum(DiagnosticChain diagnostics, Map<Object, Object> context);

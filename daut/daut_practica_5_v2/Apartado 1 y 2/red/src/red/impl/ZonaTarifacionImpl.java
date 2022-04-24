@@ -333,8 +333,8 @@ public class ZonaTarifacionImpl extends MinimalEObjectImpl.Container implements 
 			 *     then true
 			 *     else
 			 *       let
-			 *         result : Boolean[1] = ZonaTarifacion.allInstances()
-			 *         ->isUnique(enumeracion)
+			 *         result : Boolean[?] = ZonaTarifacion.allInstances()
+			 *         ->isUnique(enumeracion) and enumeracion > 0
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
 			 *     endif
@@ -352,10 +352,10 @@ public class ZonaTarifacionImpl extends MinimalEObjectImpl.Container implements 
 				final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE.evaluate(executor, RedTables.SET_CLSSid_ZonaTarifacion, TYP_red_c_c_ZonaTarifacion);
 				/*@Thrown*/ Accumulator accumulator = ValueUtil.createSetAccumulatorValue(RedTables.SET_CLSSid_ZonaTarifacion);
 				Iterator<Object> ITERATOR__1 = allInstances.iterator();
-				/*@NonInvalid*/ boolean result;
+				/*@NonInvalid*/ boolean isUnique;
 				while (true) {
 					if (!ITERATOR__1.hasNext()) {
-						result = true;
+						isUnique = true;
 						break;
 					}
 					/*@NonInvalid*/ ZonaTarifacion _1 = (ZonaTarifacion)ITERATOR__1.next();
@@ -366,11 +366,26 @@ public class ZonaTarifacionImpl extends MinimalEObjectImpl.Container implements 
 					final /*@NonInvalid*/ IntegerValue BOXED_enumeracion = ValueUtil.integerValueOf(enumeracion);
 					//
 					if (accumulator.includes(BOXED_enumeracion) == ValueUtil.TRUE_VALUE) {
-						result = false;
+						isUnique = false;
 						break;			// Abort after second find
 					}
 					else {
 						accumulator.add(BOXED_enumeracion);
+					}
+				}
+				final /*@NonInvalid*/ Boolean result;
+				if (!isUnique) {
+					result = ValueUtil.FALSE_VALUE;
+				}
+				else {
+					final /*@NonInvalid*/ int enumeracion_0 = this.getEnumeracion();
+					final /*@NonInvalid*/ IntegerValue BOXED_enumeracion_0 = ValueUtil.integerValueOf(enumeracion_0);
+					final /*@NonInvalid*/ boolean gt = OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, BOXED_enumeracion_0, RedTables.INT_0).booleanValue();
+					if (!gt) {
+						result = ValueUtil.FALSE_VALUE;
+					}
+					else {
+						result = ValueUtil.TRUE_VALUE;
 					}
 				}
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object)null, diagnostics, context, (Object)null, severity_0, result, RedTables.INT_0).booleanValue();

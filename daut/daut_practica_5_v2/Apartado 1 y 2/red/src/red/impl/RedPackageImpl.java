@@ -1593,7 +1593,7 @@ public class RedPackageImpl extends EPackageImpl implements RedPackage {
 		  (getZonaTarifacion__NonDuplicateNum__DiagnosticChain_Map(),
 		   source,
 		   new String[] {
-			   "body", "\n\t\t\tZonaTarifacion.allInstances()->isUnique(enumeracion)"
+			   "body", "\n\t\t\tZonaTarifacion.allInstances()->isUnique(enumeracion) and enumeracion > 0"
 		   });
 		addAnnotation
 		  (getZonaTarifacion__PositiveTarifaBus__DiagnosticChain_Map(),

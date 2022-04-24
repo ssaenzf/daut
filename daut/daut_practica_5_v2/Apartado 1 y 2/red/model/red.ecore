@@ -177,7 +177,7 @@
       <details key="positiveTarifaBus" value="tarifaBus > 0"/>
       <details key="positiveTarifaTren" value="tarifaTren > 0"/>
       <details key="positiveTarifaMetro" value="tarifaMetro > 0"/>
-      <details key="nonDuplicateNum" value="&#xA;&#x9;&#x9;&#x9;ZonaTarifacion.allInstances()->isUnique(enumeracion)"/>
+      <details key="nonDuplicateNum" value="&#xA;&#x9;&#x9;&#x9;ZonaTarifacion.allInstances()->isUnique(enumeracion) and enumeracion > 0"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enumeracion" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
