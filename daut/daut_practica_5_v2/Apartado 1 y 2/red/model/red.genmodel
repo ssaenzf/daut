@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/red/src" modelPluginID="red" modelName="Red" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>red.ecore</foreignModel>
+  <genPackages prefix="Red" disposableProviderFactory="true" ecorePackage="red.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="red.ecore#//Colores">
+      <genEnumLiterals ecoreEnumLiteral="red.ecore#//Colores/Rojo"/>
+      <genEnumLiterals ecoreEnumLiteral="red.ecore#//Colores/Verde"/>
+      <genEnumLiterals ecoreEnumLiteral="red.ecore#//Colores/Azul"/>
+      <genEnumLiterals ecoreEnumLiteral="red.ecore#//Colores/Amarillo"/>
+      <genEnumLiterals ecoreEnumLiteral="red.ecore#//Colores/Negro"/>
+      <genEnumLiterals ecoreEnumLiteral="red.ecore#//Colores/Blanco"/>
+      <genEnumLiterals ecoreEnumLiteral="red.ecore#//Colores/Morado"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="red.ecore#//Transbordos">
+      <genEnumLiterals ecoreEnumLiteral="red.ecore#//Transbordos/Corto"/>
+      <genEnumLiterals ecoreEnumLiteral="red.ecore#//Transbordos/Largo"/>
+      <genEnumLiterals ecoreEnumLiteral="red.ecore#//Transbordos/NoPermitido"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="red.ecore#//DiagnosticChain"/>
+    <genDataTypes ecoreDataType="red.ecore#//Map">
+      <genTypeParameters ecoreTypeParameter="red.ecore#//Map/T"/>
+      <genTypeParameters ecoreTypeParameter="red.ecore#//Map/T1"/>
+    </genDataTypes>
+    <genClasses ecoreClass="red.ecore#//RedTransporte">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference red.ecore#//RedTransporte/lineas"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference red.ecore#//RedTransporte/paradas"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference red.ecore#//RedTransporte/zonasTarifacion"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="red.ecore#//Linea">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Linea/codigo"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference red.ecore#//Linea/descuentos"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Linea/horaApertura"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Linea/horaCierre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Linea/siguienteParadaTiempo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Linea/siguienteParadaDistancia"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Linea/circular"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//Linea/paradaIni"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//Linea/paradaFin"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//Linea/paradas"/>
+    </genClasses>
+    <genClasses ecoreClass="red.ecore#//LineaMetro">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//LineaMetro/color"/>
+    </genClasses>
+    <genClasses ecoreClass="red.ecore#//LineaTren"/>
+    <genClasses ecoreClass="red.ecore#//LineaBus">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//LineaBus/isDiurna"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="red.ecore#//Parada">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Parada/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Parada/accesible"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Parada/bicicletas"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Parada/aparcamientoGrat"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Parada/transbordo"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference red.ecore#//Parada/zonatarificacion"/>
+    </genClasses>
+    <genClasses ecoreClass="red.ecore#//ParadaBus"/>
+    <genClasses ecoreClass="red.ecore#//ParadaMetro">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//ParadaMetro/aseos"/>
+    </genClasses>
+    <genClasses ecoreClass="red.ecore#//ParadaTren">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//ParadaTren/aseos"/>
+    </genClasses>
+    <genClasses ecoreClass="red.ecore#//Descuento">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Descuento/horaIni"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Descuento/horaFin"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//Descuento/descuento"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference red.ecore#//Descuento/linea"/>
+    </genClasses>
+    <genClasses ecoreClass="red.ecore#//ZonaTarifacion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//ZonaTarifacion/enumeracion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//ZonaTarifacion/tarifaBus"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//ZonaTarifacion/tarifaMetro"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute red.ecore#//ZonaTarifacion/tarifaTren"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
