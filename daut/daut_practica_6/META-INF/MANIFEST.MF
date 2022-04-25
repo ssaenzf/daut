@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: daut_practica_6
+Bundle-SymbolicName: daut_practica_6; singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Require-Bundle: org.eclipse.emf.ecore

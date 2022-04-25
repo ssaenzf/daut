@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="">
+  <eClassifiers xsi:type="ecore:EClass" name="Cuestionario">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preguntas" lowerBound="1"
+        upperBound="-1" eType="#//Pregunta" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="categorias" lowerBound="1"
+        upperBound="-1" eType="#//Categoria" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preguntaInicial" lowerBound="1"
+        eType="#//Pregunta"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preguntasFinales" lowerBound="1"
+        upperBound="-1" eType="#//Pregunta"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Pregunta">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enunciado" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="puntuacion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="penalizacion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="categoria" lowerBound="1"
+        eType="#//Categoria"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="siguientePregunta" eType="#//Pregunta"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Categoria">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dificultad" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subcategorias" upperBound="-1"
+        eType="#//Categoria" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PreguntaUnica" eSuperTypes="#//Pregunta">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="respuestas" lowerBound="2"
+        upperBound="-1" eType="#//Respuesta" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="correcta" lowerBound="1"
+        eType="#//Respuesta"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Respuesta"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RespuestaMultiple" eSuperTypes="#//Pregunta">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="respuestas" lowerBound="1"
+        upperBound="-1" eType="#//Respuesta" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="correctas" upperBound="-1"
+        eType="#//Respuesta"/>
+  </eClassifiers>
+</ecore:EPackage>
