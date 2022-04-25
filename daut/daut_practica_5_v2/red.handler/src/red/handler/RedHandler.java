@@ -1,11 +1,7 @@
 package red.handler;
 
-
-import java.awt.Window;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -19,23 +15,21 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
-
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-
 import red.Linea;
 import red.Parada;
 import red.RedTransporte;
 import red.Transbordos;
-import red.handler.CustomAreaDialog;
+
 
 public class RedHandler extends AbstractHandler {
 	
 	public ContainerParadasTiemposTransbordos buscar_ruta(ContainerParadasTiemposTransbordos container, RedTransporte modelo, Linea linea, Parada parada1, Parada parada2) {
 		List<Parada> paradas = new ArrayList<Parada>();
 		List<Parada> paradas_visitadas = new ArrayList<Parada>();
+		List<Parada> paradas_visitadas_aux = new ArrayList<Parada>();
 		Transbordos transbordo_no_permitido = Transbordos.NO_PERMITIDO;
 		List<Double> lista_tiempos = new ArrayList<Double>();
 		lista_tiempos = linea.getSiguienteParadaTiempo();
@@ -44,23 +38,27 @@ public class RedHandler extends AbstractHandler {
 		double tiempos = 0;
 		paradas = linea.getParadas();
 		int ind = paradas.indexOf(parada1);
-		paradas = paradas.subList(ind, paradas.size() - 1);
-		// Se recorre la sublista de paradas que van desde la parada 1
+		paradas = paradas.subList(ind, paradas.size());
+		// Se recorre la sublista de paradas que van desde la parada 1 hasta el final
 		Boolean encontrada = false;
+		Boolean primera_parada = true;
 		for (Parada parada : paradas) {
-			if (parada == parada2) {
-				encontrada = true;
+			if (parada == null) {
+				break;
 			}
-			paradas_visitadas.add(parada);
-			tiempos += lista_tiempos.get(ind);
-			ind += 1;
-			container.setParadas1(paradas_visitadas);
-			container.setParadas2(paradas_visitadas);
-			container.setTiempos(tiempos);
-			if (parada.getTransbordo() != transbordo_no_permitido) {
+				
+			System.out.println("Parada iterada: " + parada);
+			if (parada.getNombre().equals(parada2.getNombre())) {
+				System.out.println("Encontrada parada");
+				System.out.println(container.getParadas1());
+				encontrada = true;
+				break;
+			}
+			
+			if (parada.getTransbordo() != transbordo_no_permitido && primera_parada==false) {
 				for (Linea linea_aux: modelo.getLineas()) {
 			    	List<Parada> lista_paradas = linea_aux.getParadas();
-			    	ContainerParadasTiemposTransbordos container_aux = new ContainerParadasTiemposTransbordos(paradas_visitadas, paradas_visitadas, tiempos, container.getTransbordos()+1);
+			    	ContainerParadasTiemposTransbordos container_aux = new ContainerParadasTiemposTransbordos(container.getParadas1(), container.getParadas2(), container.getTiempos(), container.getTransbordos()+1);
 			    	if (lista_paradas.contains(parada)) {
 			    		container2 = buscar_ruta(container_aux, modelo, linea_aux, parada, parada2);
 			    	}
@@ -82,22 +80,62 @@ public class RedHandler extends AbstractHandler {
 			    	
 			    }
 			}
+			paradas_visitadas_aux = container.getParadas1();
+			if (paradas_visitadas_aux != null) {
+				paradas_visitadas_aux.add(parada);
+				paradas_visitadas = paradas_visitadas_aux;
+			}
+			else {
+				paradas_visitadas.add(parada);
+			}
+			if (paradas.size() != ind) {
+			container.setParadas1(paradas_visitadas);
+			}
+			paradas_visitadas_aux = container.getParadas2();
+			if (paradas_visitadas_aux != null) {
+				paradas_visitadas_aux.add(parada);
+				paradas_visitadas = paradas_visitadas_aux;
+			}
+			else {
+				paradas_visitadas.add(parada);
+			}
+			if (paradas.size() != ind) {
+				tiempos = container.getTiempos();
+				paradas_visitadas.add(parada);
+				container.setParadas2(paradas_visitadas);
+				if (lista_tiempos.size() == ind) {
+					break;
+				}
+				container.setTiempos(tiempos + lista_tiempos.get(ind));
+			}
+			primera_parada = false;
+			ind += 1;
 		}
 		if (encontrada != false) {
 			if (seleccion != null) {
 	    		if (seleccion.getParadas1()!=null) {
-		    		if (container.getTiempos() > seleccion.getTiempos())  {
+		    		if (container.getTiempos() < seleccion.getTiempos())  {
 		    			seleccion.setTiempos(container.getTiempos());
 		    			seleccion.setParadas1(container.getParadas1());
 		    		}
+	    		} else {
+	    			seleccion.setTiempos(container.getTiempos());
+	    			seleccion.setParadas1(container.getParadas1());
 	    		}
 		    	if (seleccion.getParadas2()!=null) {
-		    		if (seleccion.getTransbordos() > seleccion.getTransbordos())  {
+		    		if (seleccion.getTransbordos() > container.getTransbordos())  {
 		    			seleccion.setTransbordos(container.getTransbordos());
 		    			seleccion.setParadas2(container.getParadas2());
 		    		}
 		    	}
-	    	}
+		    	else {
+		    		seleccion.setTransbordos(container.getTransbordos());
+	    			seleccion.setParadas2(container.getParadas2());
+		    	}
+	    	} 
+			else {
+				seleccion = container;
+			}
 		}	
 		return seleccion;
 	}
@@ -120,39 +158,57 @@ public class RedHandler extends AbstractHandler {
 	    	texto ="La parada introducida " + nombre_parada2 + " no existe";
 	    	return texto;
 	    }
-	    if(nombre_parada1 == nombre_parada2) {
+	    if(nombre_parada1.equals(nombre_parada2)) {
 	    	texto = "Los nombres para las dos paradas coinciden " + nombre_parada1;
 	    	return texto;
 	    }
 	    for (Parada parada : paradas_posibles) {
-	    	if(parada.getNombre() == nombre_parada1) {
+	    	if(parada.getNombre().equals(nombre_parada1)) {
 	    		parada1 = parada;
+	    		System.out.println("Parada 1: " + parada1);
 	    	}
-	    	if(parada.getNombre() == nombre_parada2) {
+	    	if(parada.getNombre().equals(nombre_parada2)) {
 	    		parada2 = parada;
+	    		System.out.println("Parada 2: " + parada2);
 	    	}
 	    }
+	    ContainerParadasTiemposTransbordos seleccion = new ContainerParadasTiemposTransbordos(null, null, 10000, 10000);
 	    ContainerParadasTiemposTransbordos container = null;
 	    for (Linea linea: modelo.getLineas()) {
 	    	EList<Parada> lista_paradas = linea.getParadas();
 	    	// EL contenedor contendrá las rutas con menor distancia
 	    	container = new ContainerParadasTiemposTransbordos(null, null, 0, 0);
 	    	if (lista_paradas.contains(parada1)) {
+	    		System.out.println("Busca ruta");
 	    		container = buscar_ruta(container, modelo, linea, parada1, parada2);
 	    	}
 	    	// Comprobaciones de las mejores rutas
 	    	if (lista_paradas.contains(parada2)) {
+	    		System.out.println("Busca ruta");
 	    		container = buscar_ruta(container, modelo, linea, parada2, parada1);
 	    	}
-	    	// Comprobaciones de las mejores rutas
+	    	if (container != null) {
+	    		// Comprobaciones de las mejores rutas
+		    	if (container.getTiempos() < seleccion.getTiempos()) {
+		    		seleccion.setTiempos(container.getTiempos());
+		    		seleccion.setParadas1(container.getParadas1());
+		    	}
+		    	if (container.getTransbordos() < seleccion.getTransbordos()) {
+		    		seleccion.setTransbordos(container.getTransbordos());
+		    		seleccion.setParadas2(container.getParadas2());
+		    	}
+	    	}
 	    }
-	    texto += "Lista paradas con menor tiempo entre ambas rutas y tiempo\n";
+	    texto += "Lista paradas con menor tiempo entre ambas rutas: ";
+	    texto += container.getParadas1();
+	    texto += " Tiempo: ";
 	    texto += container.getTiempos();
 	    texto += "\n";
-	    texto += "Lista paradas con menor numero transbordo y numero de transbordos\n";
+	    texto += "Lista paradas con menor numero de transbordos: ";
 	    texto += container.getParadas2();
-	    texto += "\n";
+	    texto += " Numero de transbordos: ";
 	    texto += container.getTransbordos();
+	    texto += "\n";
 	    return texto;
 	}
 
@@ -176,21 +232,11 @@ public class RedHandler extends AbstractHandler {
 		// Obtener el objeto raíz del modelo. Sustituye RedTransporte por la clase raíz de tu meta-modelo.
 		RedTransporte modelo = (RedTransporte)(resource.getContents().get(0));
 		// Incluir el código que se pide implementar en el apartado 3
-		/**
-		MessageDialog.openInformation(HandlerUtil.getActiveWorkbenchWindowChecked(event).getShell(),
-				"Obtencion ruta más rápida y ruta con menos cambios de linea entre paradas",
-				"Por favor escriba el nombre de las 2 paradas para las que desea obtener las rutas");
-				*/
 		CustomAreaDialog dialog = new CustomAreaDialog(HandlerUtil.getActiveWorkbenchWindowChecked(event).getShell());
 		dialog.create();
 		dialog.open();
-		System.out.println(dialog.getFirstName());
-		System.out.println(dialog.getLastName());
-		/**
-		boolean result = MessageDialog.openConfirm(HandlerUtil.getActiveWorkbenchWindowChecked(event).getShell(),
-				"Obtencion ruta más rápida y ruta con menos cambios de linea entre paradas",
-				"Por favor escriba el nombre de las 2 paradas para las que desea obtener las rutas");
-				*/
+		System.out.println("Nombre parada 1: " + dialog.getFirstName());
+		System.out.println("Nombre parada 2: " + dialog.getLastName());
 		String texto = obtencionParadas(modelo, dialog.getFirstName(), dialog.getLastName());
 		MessageDialog.openInformation(HandlerUtil.getActiveWorkbenchWindowChecked(event).getShell(), "Info", texto);
 		}

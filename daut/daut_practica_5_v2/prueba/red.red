@@ -3,10 +3,25 @@
   <lineas xsi:type="red:LineaMetro" codigo="123" horaApertura="6" horaCierre="23" paradaIni="//@paradas.0" paradaFin="//@paradas.2" paradas="//@paradas.0 //@paradas.1 //@paradas.2">
     <descuentos horaIni="6" horaFin="8"/>
     <descuentos horaIni="9" horaFin="11" descuento="40"/>
+    <siguienteParadaTiempo>1.0</siguienteParadaTiempo>
+    <siguienteParadaTiempo>2.0</siguienteParadaTiempo>
+    <siguienteParadaDistancia>2.0</siguienteParadaDistancia>
+    <siguienteParadaDistancia>4.0</siguienteParadaDistancia>
   </lineas>
-  <lineas xsi:type="red:LineaMetro" codigo="456" horaApertura="6" horaCierre="20" paradaIni="//@paradas.0" paradaFin="//@paradas.2" paradas="//@paradas.0 //@paradas.1 //@paradas.2" color="Verde"/>
-  <lineas xsi:type="red:LineaBus" codigo="123" horaApertura="6" horaCierre="14" paradaIni="//@paradas.3" paradaFin="//@paradas.4" paradas="//@paradas.3 //@paradas.4" isDiurna="true"/>
-  <lineas xsi:type="red:LineaTren" codigo="5" horaApertura="7" horaCierre="18" paradaIni="//@paradas.5" paradaFin="//@paradas.6" paradas="//@paradas.5 //@paradas.6"/>
+  <lineas xsi:type="red:LineaMetro" codigo="456" horaApertura="6" horaCierre="20" paradaIni="//@paradas.0" paradaFin="//@paradas.2" paradas="//@paradas.0 //@paradas.1 //@paradas.2" color="Verde">
+    <siguienteParadaTiempo>1.0</siguienteParadaTiempo>
+    <siguienteParadaTiempo>2.0</siguienteParadaTiempo>
+    <siguienteParadaDistancia>2.0</siguienteParadaDistancia>
+    <siguienteParadaDistancia>4.0</siguienteParadaDistancia>
+  </lineas>
+  <lineas xsi:type="red:LineaBus" codigo="123" horaApertura="6" horaCierre="14" paradaIni="//@paradas.3" paradaFin="//@paradas.4" paradas="//@paradas.3 //@paradas.4" isDiurna="true">
+    <siguienteParadaTiempo>1.0</siguienteParadaTiempo>
+    <siguienteParadaDistancia>2.0</siguienteParadaDistancia>
+  </lineas>
+  <lineas xsi:type="red:LineaTren" codigo="5" horaApertura="7" horaCierre="18" paradaIni="//@paradas.5" paradaFin="//@paradas.6" paradas="//@paradas.5 //@paradas.6">
+    <siguienteParadaTiempo>1.0</siguienteParadaTiempo>
+    <siguienteParadaDistancia>2.0</siguienteParadaDistancia>
+  </lineas>
   <paradas xsi:type="red:ParadaMetro" nombre="1" zonatarificacion="//@zonasTarifacion.0"/>
   <paradas xsi:type="red:ParadaMetro" nombre="2" zonatarificacion="//@zonasTarifacion.0"/>
   <paradas xsi:type="red:ParadaMetro" nombre="3" zonatarificacion="//@zonasTarifacion.1"/>
