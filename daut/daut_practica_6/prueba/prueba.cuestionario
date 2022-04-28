@@ -1,0 +1,50 @@
+Cuestionario {
+	preguntaInicial Pregunta1
+	preguntasFinales (Pregunta2)
+	preguntas {
+		PreguntaUnica Pregunta1 {
+			enunciado "Enunciado 1"
+			puntuacion 1.2
+			penalizacion -1.3
+			categoria Categoria1
+			siguientePregunta Pregunta2
+			correcta Respuesta1
+			respuestas {
+				Respuesta Respuesta1 {
+					opcion "Opción 1"
+				},
+				Respuesta Respuesta2 {
+					opcion "Opcion2"
+				}
+			}
+		},
+		PreguntaMultiple Pregunta2 {
+			enunciado "Enunciado 2"
+			puntuacion 1.5
+			penalizacion 0.0
+			categoria Categoria2
+			correctas (Respuesta1, Respuesta2)
+			respuestas {
+				Respuesta Respuesta1 {
+					opcion "Opción 1"
+				},
+				Respuesta Respuesta2 {
+					opcion "Opción 2"
+				} 
+			}
+		}
+	}
+	categorias {
+		Categoria Categoria1 {
+			dificultad 1.0
+			subcategorias {
+				Categoria SubCategoria1 {
+					dificultad 1.0
+				}
+			}
+		}, 
+		Categoria Categoria2 {
+			dificultad 2.0
+		}
+	}
+}

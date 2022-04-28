@@ -13,25 +13,28 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cuestionario.ecore#//Cuestionario/preguntasFinales"/>
     </genClasses>
     <genClasses ecoreClass="cuestionario.ecore#//Pregunta">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cuestionario.ecore#//Pregunta/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cuestionario.ecore#//Pregunta/enunciado"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cuestionario.ecore#//Pregunta/puntuacion"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cuestionario.ecore#//Pregunta/penalizacion"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cuestionario.ecore#//Pregunta/categoria"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cuestionario.ecore#//Pregunta/respuestas"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cuestionario.ecore#//Pregunta/siguientePregunta"/>
     </genClasses>
     <genClasses ecoreClass="cuestionario.ecore#//Categoria">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cuestionario.ecore#//Categoria/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cuestionario.ecore#//Categoria/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cuestionario.ecore#//Categoria/dificultad"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cuestionario.ecore#//Categoria/subcategorias"/>
     </genClasses>
     <genClasses ecoreClass="cuestionario.ecore#//PreguntaUnica">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cuestionario.ecore#//PreguntaUnica/respuestas"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cuestionario.ecore#//PreguntaUnica/correcta"/>
     </genClasses>
-    <genClasses ecoreClass="cuestionario.ecore#//Respuesta"/>
-    <genClasses ecoreClass="cuestionario.ecore#//RespuestaMultiple">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cuestionario.ecore#//RespuestaMultiple/respuestas"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cuestionario.ecore#//RespuestaMultiple/correctas"/>
+    <genClasses ecoreClass="cuestionario.ecore#//PreguntaMultiple">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cuestionario.ecore#//PreguntaMultiple/correctas"/>
+    </genClasses>
+    <genClasses ecoreClass="cuestionario.ecore#//Respuesta">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cuestionario.ecore#//Respuesta/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cuestionario.ecore#//Respuesta/opcion"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
