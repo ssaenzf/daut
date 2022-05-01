@@ -2,6 +2,8 @@
  */
 package cuestionario;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -12,6 +14,7 @@ package cuestionario;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link cuestionario.PreguntaUnica#getRespuestas <em>Respuestas</em>}</li>
  *   <li>{@link cuestionario.PreguntaUnica#getCorrecta <em>Correcta</em>}</li>
  * </ul>
  *
@@ -20,6 +23,19 @@ package cuestionario;
  * @generated
  */
 public interface PreguntaUnica extends Pregunta {
+	/**
+	 * Returns the value of the '<em><b>Respuestas</b></em>' containment reference list.
+	 * The list contents are of type {@link cuestionario.Respuesta}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Respuestas</em>' containment reference list.
+	 * @see cuestionario.CuestionarioPackage#getPreguntaUnica_Respuestas()
+	 * @model containment="true" lower="2"
+	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
+	 * @generated
+	 */
+	EList<Respuesta> getRespuestas();
+
 	/**
 	 * Returns the value of the '<em><b>Correcta</b></em>' reference.
 	 * <!-- begin-user-doc -->

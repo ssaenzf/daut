@@ -6,12 +6,17 @@ import cuestionario.CuestionarioPackage;
 import cuestionario.PreguntaUnica;
 import cuestionario.Respuesta;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,12 +26,22 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link cuestionario.impl.PreguntaUnicaImpl#getRespuestas <em>Respuestas</em>}</li>
  *   <li>{@link cuestionario.impl.PreguntaUnicaImpl#getCorrecta <em>Correcta</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class PreguntaUnicaImpl extends PreguntaImpl implements PreguntaUnica {
+	/**
+	 * The cached value of the '{@link #getRespuestas() <em>Respuestas</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRespuestas()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Respuesta> respuestas;
 	/**
 	 * The cached value of the '{@link #getCorrecta() <em>Correcta</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -54,6 +69,18 @@ public class PreguntaUnicaImpl extends PreguntaImpl implements PreguntaUnica {
 	@Override
 	protected EClass eStaticClass() {
 		return CuestionarioPackage.Literals.PREGUNTA_UNICA;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Respuesta> getRespuestas() {
+		if (respuestas == null) {
+			respuestas = new EObjectContainmentEList<Respuesta>(Respuesta.class, this, CuestionarioPackage.PREGUNTA_UNICA__RESPUESTAS);
+		}
+		return respuestas;
 	}
 
 	/**
@@ -100,8 +127,24 @@ public class PreguntaUnicaImpl extends PreguntaImpl implements PreguntaUnica {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case CuestionarioPackage.PREGUNTA_UNICA__RESPUESTAS:
+				return ((InternalEList<?>)getRespuestas()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case CuestionarioPackage.PREGUNTA_UNICA__RESPUESTAS:
+				return getRespuestas();
 			case CuestionarioPackage.PREGUNTA_UNICA__CORRECTA:
 				if (resolve) return getCorrecta();
 				return basicGetCorrecta();
@@ -114,9 +157,14 @@ public class PreguntaUnicaImpl extends PreguntaImpl implements PreguntaUnica {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case CuestionarioPackage.PREGUNTA_UNICA__RESPUESTAS:
+				getRespuestas().clear();
+				getRespuestas().addAll((Collection<? extends Respuesta>)newValue);
+				return;
 			case CuestionarioPackage.PREGUNTA_UNICA__CORRECTA:
 				setCorrecta((Respuesta)newValue);
 				return;
@@ -132,6 +180,9 @@ public class PreguntaUnicaImpl extends PreguntaImpl implements PreguntaUnica {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case CuestionarioPackage.PREGUNTA_UNICA__RESPUESTAS:
+				getRespuestas().clear();
+				return;
 			case CuestionarioPackage.PREGUNTA_UNICA__CORRECTA:
 				setCorrecta((Respuesta)null);
 				return;
@@ -147,6 +198,8 @@ public class PreguntaUnicaImpl extends PreguntaImpl implements PreguntaUnica {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case CuestionarioPackage.PREGUNTA_UNICA__RESPUESTAS:
+				return respuestas != null && !respuestas.isEmpty();
 			case CuestionarioPackage.PREGUNTA_UNICA__CORRECTA:
 				return correcta != null;
 		}

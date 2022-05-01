@@ -232,8 +232,8 @@ public class CuestionarioPackageImpl extends EPackageImpl implements Cuestionari
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPregunta_Respuestas() {
-		return (EReference)preguntaEClass.getEStructuralFeatures().get(5);
+	public EAttribute getPregunta_IsInicial() {
+		return (EAttribute)preguntaEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -241,8 +241,17 @@ public class CuestionarioPackageImpl extends EPackageImpl implements Cuestionari
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPregunta_SiguientePregunta() {
+	public EReference getPregunta_SiguientePreguntaAcierto() {
 		return (EReference)preguntaEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPregunta_SiguientePreguntaError() {
+		return (EReference)preguntaEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -295,8 +304,17 @@ public class CuestionarioPackageImpl extends EPackageImpl implements Cuestionari
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPreguntaUnica_Correcta() {
+	public EReference getPreguntaUnica_Respuestas() {
 		return (EReference)preguntaUnicaEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPreguntaUnica_Correcta() {
+		return (EReference)preguntaUnicaEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -313,8 +331,17 @@ public class CuestionarioPackageImpl extends EPackageImpl implements Cuestionari
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPreguntaMultiple_Correctas() {
+	public EReference getPreguntaMultiple_Respuestas() {
 		return (EReference)preguntaMultipleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPreguntaMultiple_Correctas() {
+		return (EReference)preguntaMultipleEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -384,8 +411,9 @@ public class CuestionarioPackageImpl extends EPackageImpl implements Cuestionari
 		createEAttribute(preguntaEClass, PREGUNTA__PUNTUACION);
 		createEAttribute(preguntaEClass, PREGUNTA__PENALIZACION);
 		createEReference(preguntaEClass, PREGUNTA__CATEGORIA);
-		createEReference(preguntaEClass, PREGUNTA__RESPUESTAS);
-		createEReference(preguntaEClass, PREGUNTA__SIGUIENTE_PREGUNTA);
+		createEAttribute(preguntaEClass, PREGUNTA__IS_INICIAL);
+		createEReference(preguntaEClass, PREGUNTA__SIGUIENTE_PREGUNTA_ACIERTO);
+		createEReference(preguntaEClass, PREGUNTA__SIGUIENTE_PREGUNTA_ERROR);
 
 		categoriaEClass = createEClass(CATEGORIA);
 		createEAttribute(categoriaEClass, CATEGORIA__NAME);
@@ -393,9 +421,11 @@ public class CuestionarioPackageImpl extends EPackageImpl implements Cuestionari
 		createEReference(categoriaEClass, CATEGORIA__SUBCATEGORIAS);
 
 		preguntaUnicaEClass = createEClass(PREGUNTA_UNICA);
+		createEReference(preguntaUnicaEClass, PREGUNTA_UNICA__RESPUESTAS);
 		createEReference(preguntaUnicaEClass, PREGUNTA_UNICA__CORRECTA);
 
 		preguntaMultipleEClass = createEClass(PREGUNTA_MULTIPLE);
+		createEReference(preguntaMultipleEClass, PREGUNTA_MULTIPLE__RESPUESTAS);
 		createEReference(preguntaMultipleEClass, PREGUNTA_MULTIPLE__CORRECTAS);
 
 		respuestaEClass = createEClass(RESPUESTA);
@@ -447,8 +477,9 @@ public class CuestionarioPackageImpl extends EPackageImpl implements Cuestionari
 		initEAttribute(getPregunta_Puntuacion(), ecorePackage.getEDouble(), "puntuacion", null, 1, 1, Pregunta.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPregunta_Penalizacion(), ecorePackage.getEDouble(), "penalizacion", null, 1, 1, Pregunta.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPregunta_Categoria(), this.getCategoria(), null, "categoria", null, 1, 1, Pregunta.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPregunta_Respuestas(), this.getRespuesta(), null, "respuestas", null, 2, -1, Pregunta.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPregunta_SiguientePregunta(), this.getPregunta(), null, "siguientePregunta", null, 0, 1, Pregunta.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPregunta_IsInicial(), ecorePackage.getEBoolean(), "isInicial", null, 1, 1, Pregunta.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPregunta_SiguientePreguntaAcierto(), this.getPregunta(), null, "siguientePreguntaAcierto", null, 0, 1, Pregunta.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPregunta_SiguientePreguntaError(), this.getPregunta(), null, "siguientePreguntaError", null, 0, 1, Pregunta.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(categoriaEClass, Categoria.class, "Categoria", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCategoria_Name(), ecorePackage.getEString(), "name", null, 1, 1, Categoria.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -456,10 +487,12 @@ public class CuestionarioPackageImpl extends EPackageImpl implements Cuestionari
 		initEReference(getCategoria_Subcategorias(), this.getCategoria(), null, "subcategorias", null, 0, -1, Categoria.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(preguntaUnicaEClass, PreguntaUnica.class, "PreguntaUnica", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPreguntaUnica_Respuestas(), this.getRespuesta(), null, "respuestas", null, 2, -1, PreguntaUnica.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPreguntaUnica_Correcta(), this.getRespuesta(), null, "correcta", null, 1, 1, PreguntaUnica.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(preguntaMultipleEClass, PreguntaMultiple.class, "PreguntaMultiple", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPreguntaMultiple_Correctas(), this.getRespuesta(), null, "correctas", null, 1, -1, PreguntaMultiple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPreguntaMultiple_Respuestas(), this.getRespuesta(), null, "respuestas", null, 1, -1, PreguntaMultiple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPreguntaMultiple_Correctas(), this.getRespuesta(), null, "correctas", null, 0, -1, PreguntaMultiple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(respuestaEClass, Respuesta.class, "Respuesta", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRespuesta_Name(), ecorePackage.getEString(), "name", null, 1, 1, Respuesta.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -518,13 +551,19 @@ public class CuestionarioPackageImpl extends EPackageImpl implements Cuestionari
 			   "nullFree", "false"
 		   });
 		addAnnotation
-		  (getPregunta_Respuestas(),
+		  (getCategoria_Subcategorias(),
 		   source,
 		   new String[] {
 			   "nullFree", "false"
 		   });
 		addAnnotation
-		  (getCategoria_Subcategorias(),
+		  (getPreguntaUnica_Respuestas(),
+		   source,
+		   new String[] {
+			   "nullFree", "false"
+		   });
+		addAnnotation
+		  (getPreguntaMultiple_Respuestas(),
 		   source,
 		   new String[] {
 			   "nullFree", "false"

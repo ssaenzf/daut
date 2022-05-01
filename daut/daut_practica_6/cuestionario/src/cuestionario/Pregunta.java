@@ -2,8 +2,6 @@
  */
 package cuestionario;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -20,8 +18,9 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link cuestionario.Pregunta#getPuntuacion <em>Puntuacion</em>}</li>
  *   <li>{@link cuestionario.Pregunta#getPenalizacion <em>Penalizacion</em>}</li>
  *   <li>{@link cuestionario.Pregunta#getCategoria <em>Categoria</em>}</li>
- *   <li>{@link cuestionario.Pregunta#getRespuestas <em>Respuestas</em>}</li>
- *   <li>{@link cuestionario.Pregunta#getSiguientePregunta <em>Siguiente Pregunta</em>}</li>
+ *   <li>{@link cuestionario.Pregunta#isIsInicial <em>Is Inicial</em>}</li>
+ *   <li>{@link cuestionario.Pregunta#getSiguientePreguntaAcierto <em>Siguiente Pregunta Acierto</em>}</li>
+ *   <li>{@link cuestionario.Pregunta#getSiguientePreguntaError <em>Siguiente Pregunta Error</em>}</li>
  * </ul>
  *
  * @see cuestionario.CuestionarioPackage#getPregunta()
@@ -140,38 +139,69 @@ public interface Pregunta extends EObject {
 	void setCategoria(Categoria value);
 
 	/**
-	 * Returns the value of the '<em><b>Respuestas</b></em>' containment reference list.
-	 * The list contents are of type {@link cuestionario.Respuesta}.
+	 * Returns the value of the '<em><b>Is Inicial</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Respuestas</em>' containment reference list.
-	 * @see cuestionario.CuestionarioPackage#getPregunta_Respuestas()
-	 * @model containment="true" lower="2"
-	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='false'"
+	 * @return the value of the '<em>Is Inicial</em>' attribute.
+	 * @see #setIsInicial(boolean)
+	 * @see cuestionario.CuestionarioPackage#getPregunta_IsInicial()
+	 * @model required="true"
 	 * @generated
 	 */
-	EList<Respuesta> getRespuestas();
+	boolean isIsInicial();
 
 	/**
-	 * Returns the value of the '<em><b>Siguiente Pregunta</b></em>' reference.
+	 * Sets the value of the '{@link cuestionario.Pregunta#isIsInicial <em>Is Inicial</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Siguiente Pregunta</em>' reference.
-	 * @see #setSiguientePregunta(Pregunta)
-	 * @see cuestionario.CuestionarioPackage#getPregunta_SiguientePregunta()
+	 * @param value the new value of the '<em>Is Inicial</em>' attribute.
+	 * @see #isIsInicial()
+	 * @generated
+	 */
+	void setIsInicial(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Siguiente Pregunta Acierto</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Siguiente Pregunta Acierto</em>' reference.
+	 * @see #setSiguientePreguntaAcierto(Pregunta)
+	 * @see cuestionario.CuestionarioPackage#getPregunta_SiguientePreguntaAcierto()
 	 * @model
 	 * @generated
 	 */
-	Pregunta getSiguientePregunta();
+	Pregunta getSiguientePreguntaAcierto();
 
 	/**
-	 * Sets the value of the '{@link cuestionario.Pregunta#getSiguientePregunta <em>Siguiente Pregunta</em>}' reference.
+	 * Sets the value of the '{@link cuestionario.Pregunta#getSiguientePreguntaAcierto <em>Siguiente Pregunta Acierto</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Siguiente Pregunta</em>' reference.
-	 * @see #getSiguientePregunta()
+	 * @param value the new value of the '<em>Siguiente Pregunta Acierto</em>' reference.
+	 * @see #getSiguientePreguntaAcierto()
 	 * @generated
 	 */
-	void setSiguientePregunta(Pregunta value);
+	void setSiguientePreguntaAcierto(Pregunta value);
+
+	/**
+	 * Returns the value of the '<em><b>Siguiente Pregunta Error</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Siguiente Pregunta Error</em>' reference.
+	 * @see #setSiguientePreguntaError(Pregunta)
+	 * @see cuestionario.CuestionarioPackage#getPregunta_SiguientePreguntaError()
+	 * @model
+	 * @generated
+	 */
+	Pregunta getSiguientePreguntaError();
+
+	/**
+	 * Sets the value of the '{@link cuestionario.Pregunta#getSiguientePreguntaError <em>Siguiente Pregunta Error</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Siguiente Pregunta Error</em>' reference.
+	 * @see #getSiguientePreguntaError()
+	 * @generated
+	 */
+	void setSiguientePreguntaError(Pregunta value);
 
 } // Pregunta

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Cuestionario'", "'{'", "'preguntaInicial'", "'preguntasFinales'", "'('", "','", "')'", "'preguntas'", "'}'", "'categorias'", "'Categoria'", "'dificultad'", "'subcategorias'", "'-'", "'.'", "'E'", "'e'", "'Respuesta'", "'opcion'", "'PreguntaUnica'", "'enunciado'", "'puntuacion'", "'penalizacion'", "'categoria'", "'siguientePregunta'", "'correcta'", "'respuestas'", "'PreguntaMultiple'", "'correctas'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Cuestionario'", "'{'", "'preguntas'", "','", "'}'", "'categorias'", "'preguntaInicial'", "'preguntasFinales'", "'('", "')'", "'Categoria'", "'dificultad'", "'subcategorias'", "'-'", "'.'", "'E'", "'e'", "'PreguntaUnica'", "'enunciado'", "'puntuacion'", "'penalizacion'", "'categoria'", "'isInicial'", "'siguientePreguntaAcierto'", "'siguientePreguntaError'", "'respuestas'", "'correcta'", "'PreguntaMultiple'", "'correctas'", "'Respuesta'", "'opcion'"
     };
     public static final int RULE_STRING=4;
     public static final int RULE_SL_COMMENT=8;
@@ -58,6 +58,8 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
     public static final int T__23=23;
     public static final int T__24=24;
     public static final int T__25=25;
+    public static final int T__40=40;
+    public static final int T__41=41;
     public static final int T__20=20;
     public static final int T__21=21;
 
@@ -137,44 +139,44 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCuestionario"
-    // InternalCuestionario.g:71:1: ruleCuestionario returns [EObject current=null] : (otherlv_0= 'Cuestionario' otherlv_1= '{' otherlv_2= 'preguntaInicial' ( ( ruleEString ) ) otherlv_4= 'preguntasFinales' otherlv_5= '(' ( ( ruleEString ) ) (otherlv_7= ',' ( ( ruleEString ) ) )* otherlv_9= ')' otherlv_10= 'preguntas' otherlv_11= '{' ( (lv_preguntas_12_0= rulePregunta ) ) (otherlv_13= ',' ( (lv_preguntas_14_0= rulePregunta ) ) )* otherlv_15= '}' otherlv_16= 'categorias' otherlv_17= '{' ( (lv_categorias_18_0= ruleCategoria ) ) (otherlv_19= ',' ( (lv_categorias_20_0= ruleCategoria ) ) )* otherlv_21= '}' otherlv_22= '}' ) ;
+    // InternalCuestionario.g:71:1: ruleCuestionario returns [EObject current=null] : (otherlv_0= 'Cuestionario' otherlv_1= '{' otherlv_2= 'preguntas' otherlv_3= '{' ( (lv_preguntas_4_0= rulePregunta ) ) (otherlv_5= ',' ( (lv_preguntas_6_0= rulePregunta ) ) )* otherlv_7= '}' otherlv_8= 'categorias' otherlv_9= '{' ( (lv_categorias_10_0= ruleCategoria ) ) (otherlv_11= ',' ( (lv_categorias_12_0= ruleCategoria ) ) )* otherlv_13= '}' otherlv_14= 'preguntaInicial' ( ( ruleEString ) ) otherlv_16= 'preguntasFinales' otherlv_17= '(' ( ( ruleEString ) ) (otherlv_19= ',' ( ( ruleEString ) ) )* otherlv_21= ')' otherlv_22= '}' ) ;
     public final EObject ruleCuestionario() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token otherlv_1=null;
         Token otherlv_2=null;
-        Token otherlv_4=null;
+        Token otherlv_3=null;
         Token otherlv_5=null;
         Token otherlv_7=null;
+        Token otherlv_8=null;
         Token otherlv_9=null;
-        Token otherlv_10=null;
         Token otherlv_11=null;
         Token otherlv_13=null;
-        Token otherlv_15=null;
+        Token otherlv_14=null;
         Token otherlv_16=null;
         Token otherlv_17=null;
         Token otherlv_19=null;
         Token otherlv_21=null;
         Token otherlv_22=null;
-        EObject lv_preguntas_12_0 = null;
+        EObject lv_preguntas_4_0 = null;
 
-        EObject lv_preguntas_14_0 = null;
+        EObject lv_preguntas_6_0 = null;
 
-        EObject lv_categorias_18_0 = null;
+        EObject lv_categorias_10_0 = null;
 
-        EObject lv_categorias_20_0 = null;
+        EObject lv_categorias_12_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalCuestionario.g:77:2: ( (otherlv_0= 'Cuestionario' otherlv_1= '{' otherlv_2= 'preguntaInicial' ( ( ruleEString ) ) otherlv_4= 'preguntasFinales' otherlv_5= '(' ( ( ruleEString ) ) (otherlv_7= ',' ( ( ruleEString ) ) )* otherlv_9= ')' otherlv_10= 'preguntas' otherlv_11= '{' ( (lv_preguntas_12_0= rulePregunta ) ) (otherlv_13= ',' ( (lv_preguntas_14_0= rulePregunta ) ) )* otherlv_15= '}' otherlv_16= 'categorias' otherlv_17= '{' ( (lv_categorias_18_0= ruleCategoria ) ) (otherlv_19= ',' ( (lv_categorias_20_0= ruleCategoria ) ) )* otherlv_21= '}' otherlv_22= '}' ) )
-            // InternalCuestionario.g:78:2: (otherlv_0= 'Cuestionario' otherlv_1= '{' otherlv_2= 'preguntaInicial' ( ( ruleEString ) ) otherlv_4= 'preguntasFinales' otherlv_5= '(' ( ( ruleEString ) ) (otherlv_7= ',' ( ( ruleEString ) ) )* otherlv_9= ')' otherlv_10= 'preguntas' otherlv_11= '{' ( (lv_preguntas_12_0= rulePregunta ) ) (otherlv_13= ',' ( (lv_preguntas_14_0= rulePregunta ) ) )* otherlv_15= '}' otherlv_16= 'categorias' otherlv_17= '{' ( (lv_categorias_18_0= ruleCategoria ) ) (otherlv_19= ',' ( (lv_categorias_20_0= ruleCategoria ) ) )* otherlv_21= '}' otherlv_22= '}' )
+            // InternalCuestionario.g:77:2: ( (otherlv_0= 'Cuestionario' otherlv_1= '{' otherlv_2= 'preguntas' otherlv_3= '{' ( (lv_preguntas_4_0= rulePregunta ) ) (otherlv_5= ',' ( (lv_preguntas_6_0= rulePregunta ) ) )* otherlv_7= '}' otherlv_8= 'categorias' otherlv_9= '{' ( (lv_categorias_10_0= ruleCategoria ) ) (otherlv_11= ',' ( (lv_categorias_12_0= ruleCategoria ) ) )* otherlv_13= '}' otherlv_14= 'preguntaInicial' ( ( ruleEString ) ) otherlv_16= 'preguntasFinales' otherlv_17= '(' ( ( ruleEString ) ) (otherlv_19= ',' ( ( ruleEString ) ) )* otherlv_21= ')' otherlv_22= '}' ) )
+            // InternalCuestionario.g:78:2: (otherlv_0= 'Cuestionario' otherlv_1= '{' otherlv_2= 'preguntas' otherlv_3= '{' ( (lv_preguntas_4_0= rulePregunta ) ) (otherlv_5= ',' ( (lv_preguntas_6_0= rulePregunta ) ) )* otherlv_7= '}' otherlv_8= 'categorias' otherlv_9= '{' ( (lv_categorias_10_0= ruleCategoria ) ) (otherlv_11= ',' ( (lv_categorias_12_0= ruleCategoria ) ) )* otherlv_13= '}' otherlv_14= 'preguntaInicial' ( ( ruleEString ) ) otherlv_16= 'preguntasFinales' otherlv_17= '(' ( ( ruleEString ) ) (otherlv_19= ',' ( ( ruleEString ) ) )* otherlv_21= ')' otherlv_22= '}' )
             {
-            // InternalCuestionario.g:78:2: (otherlv_0= 'Cuestionario' otherlv_1= '{' otherlv_2= 'preguntaInicial' ( ( ruleEString ) ) otherlv_4= 'preguntasFinales' otherlv_5= '(' ( ( ruleEString ) ) (otherlv_7= ',' ( ( ruleEString ) ) )* otherlv_9= ')' otherlv_10= 'preguntas' otherlv_11= '{' ( (lv_preguntas_12_0= rulePregunta ) ) (otherlv_13= ',' ( (lv_preguntas_14_0= rulePregunta ) ) )* otherlv_15= '}' otherlv_16= 'categorias' otherlv_17= '{' ( (lv_categorias_18_0= ruleCategoria ) ) (otherlv_19= ',' ( (lv_categorias_20_0= ruleCategoria ) ) )* otherlv_21= '}' otherlv_22= '}' )
-            // InternalCuestionario.g:79:3: otherlv_0= 'Cuestionario' otherlv_1= '{' otherlv_2= 'preguntaInicial' ( ( ruleEString ) ) otherlv_4= 'preguntasFinales' otherlv_5= '(' ( ( ruleEString ) ) (otherlv_7= ',' ( ( ruleEString ) ) )* otherlv_9= ')' otherlv_10= 'preguntas' otherlv_11= '{' ( (lv_preguntas_12_0= rulePregunta ) ) (otherlv_13= ',' ( (lv_preguntas_14_0= rulePregunta ) ) )* otherlv_15= '}' otherlv_16= 'categorias' otherlv_17= '{' ( (lv_categorias_18_0= ruleCategoria ) ) (otherlv_19= ',' ( (lv_categorias_20_0= ruleCategoria ) ) )* otherlv_21= '}' otherlv_22= '}'
+            // InternalCuestionario.g:78:2: (otherlv_0= 'Cuestionario' otherlv_1= '{' otherlv_2= 'preguntas' otherlv_3= '{' ( (lv_preguntas_4_0= rulePregunta ) ) (otherlv_5= ',' ( (lv_preguntas_6_0= rulePregunta ) ) )* otherlv_7= '}' otherlv_8= 'categorias' otherlv_9= '{' ( (lv_categorias_10_0= ruleCategoria ) ) (otherlv_11= ',' ( (lv_categorias_12_0= ruleCategoria ) ) )* otherlv_13= '}' otherlv_14= 'preguntaInicial' ( ( ruleEString ) ) otherlv_16= 'preguntasFinales' otherlv_17= '(' ( ( ruleEString ) ) (otherlv_19= ',' ( ( ruleEString ) ) )* otherlv_21= ')' otherlv_22= '}' )
+            // InternalCuestionario.g:79:3: otherlv_0= 'Cuestionario' otherlv_1= '{' otherlv_2= 'preguntas' otherlv_3= '{' ( (lv_preguntas_4_0= rulePregunta ) ) (otherlv_5= ',' ( (lv_preguntas_6_0= rulePregunta ) ) )* otherlv_7= '}' otherlv_8= 'categorias' otherlv_9= '{' ( (lv_categorias_10_0= ruleCategoria ) ) (otherlv_11= ',' ( (lv_categorias_12_0= ruleCategoria ) ) )* otherlv_13= '}' otherlv_14= 'preguntaInicial' ( ( ruleEString ) ) otherlv_16= 'preguntasFinales' otherlv_17= '(' ( ( ruleEString ) ) (otherlv_19= ',' ( ( ruleEString ) ) )* otherlv_21= ')' otherlv_22= '}'
             {
             otherlv_0=(Token)match(input,11,FOLLOW_3); 
 
@@ -184,66 +186,37 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getCuestionarioAccess().getLeftCurlyBracketKeyword_1());
             		
-            otherlv_2=(Token)match(input,13,FOLLOW_5); 
+            otherlv_2=(Token)match(input,13,FOLLOW_3); 
 
-            			newLeafNode(otherlv_2, grammarAccess.getCuestionarioAccess().getPreguntaInicialKeyword_2());
+            			newLeafNode(otherlv_2, grammarAccess.getCuestionarioAccess().getPreguntasKeyword_2());
             		
-            // InternalCuestionario.g:91:3: ( ( ruleEString ) )
-            // InternalCuestionario.g:92:4: ( ruleEString )
+            otherlv_3=(Token)match(input,12,FOLLOW_5); 
+
+            			newLeafNode(otherlv_3, grammarAccess.getCuestionarioAccess().getLeftCurlyBracketKeyword_3());
+            		
+            // InternalCuestionario.g:95:3: ( (lv_preguntas_4_0= rulePregunta ) )
+            // InternalCuestionario.g:96:4: (lv_preguntas_4_0= rulePregunta )
             {
-            // InternalCuestionario.g:92:4: ( ruleEString )
-            // InternalCuestionario.g:93:5: ruleEString
+            // InternalCuestionario.g:96:4: (lv_preguntas_4_0= rulePregunta )
+            // InternalCuestionario.g:97:5: lv_preguntas_4_0= rulePregunta
             {
 
-            					if (current==null) {
-            						current = createModelElement(grammarAccess.getCuestionarioRule());
-            					}
-            				
-
-            					newCompositeNode(grammarAccess.getCuestionarioAccess().getPreguntaInicialPreguntaCrossReference_3_0());
+            					newCompositeNode(grammarAccess.getCuestionarioAccess().getPreguntasPreguntaParserRuleCall_4_0());
             				
             pushFollow(FOLLOW_6);
-            ruleEString();
+            lv_preguntas_4_0=rulePregunta();
 
             state._fsp--;
 
-
-            					afterParserOrEnumRuleCall();
-            				
-
-            }
-
-
-            }
-
-            otherlv_4=(Token)match(input,14,FOLLOW_7); 
-
-            			newLeafNode(otherlv_4, grammarAccess.getCuestionarioAccess().getPreguntasFinalesKeyword_4());
-            		
-            otherlv_5=(Token)match(input,15,FOLLOW_5); 
-
-            			newLeafNode(otherlv_5, grammarAccess.getCuestionarioAccess().getLeftParenthesisKeyword_5());
-            		
-            // InternalCuestionario.g:115:3: ( ( ruleEString ) )
-            // InternalCuestionario.g:116:4: ( ruleEString )
-            {
-            // InternalCuestionario.g:116:4: ( ruleEString )
-            // InternalCuestionario.g:117:5: ruleEString
-            {
 
             					if (current==null) {
-            						current = createModelElement(grammarAccess.getCuestionarioRule());
+            						current = createModelElementForParent(grammarAccess.getCuestionarioRule());
             					}
-            				
-
-            					newCompositeNode(grammarAccess.getCuestionarioAccess().getPreguntasFinalesPreguntaCrossReference_6_0());
-            				
-            pushFollow(FOLLOW_8);
-            ruleEString();
-
-            state._fsp--;
-
-
+            					add(
+            						current,
+            						"preguntas",
+            						lv_preguntas_4_0,
+            						"cuestionario.Cuestionario.Pregunta");
             					afterParserOrEnumRuleCall();
             				
 
@@ -252,30 +225,263 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalCuestionario.g:131:3: (otherlv_7= ',' ( ( ruleEString ) ) )*
+            // InternalCuestionario.g:114:3: (otherlv_5= ',' ( (lv_preguntas_6_0= rulePregunta ) ) )*
             loop1:
             do {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==16) ) {
+                if ( (LA1_0==14) ) {
                     alt1=1;
                 }
 
 
                 switch (alt1) {
             	case 1 :
-            	    // InternalCuestionario.g:132:4: otherlv_7= ',' ( ( ruleEString ) )
+            	    // InternalCuestionario.g:115:4: otherlv_5= ',' ( (lv_preguntas_6_0= rulePregunta ) )
             	    {
-            	    otherlv_7=(Token)match(input,16,FOLLOW_5); 
+            	    otherlv_5=(Token)match(input,14,FOLLOW_5); 
 
-            	    				newLeafNode(otherlv_7, grammarAccess.getCuestionarioAccess().getCommaKeyword_7_0());
+            	    				newLeafNode(otherlv_5, grammarAccess.getCuestionarioAccess().getCommaKeyword_5_0());
             	    			
-            	    // InternalCuestionario.g:136:4: ( ( ruleEString ) )
-            	    // InternalCuestionario.g:137:5: ( ruleEString )
+            	    // InternalCuestionario.g:119:4: ( (lv_preguntas_6_0= rulePregunta ) )
+            	    // InternalCuestionario.g:120:5: (lv_preguntas_6_0= rulePregunta )
             	    {
-            	    // InternalCuestionario.g:137:5: ( ruleEString )
-            	    // InternalCuestionario.g:138:6: ruleEString
+            	    // InternalCuestionario.g:120:5: (lv_preguntas_6_0= rulePregunta )
+            	    // InternalCuestionario.g:121:6: lv_preguntas_6_0= rulePregunta
+            	    {
+
+            	    						newCompositeNode(grammarAccess.getCuestionarioAccess().getPreguntasPreguntaParserRuleCall_5_1_0());
+            	    					
+            	    pushFollow(FOLLOW_6);
+            	    lv_preguntas_6_0=rulePregunta();
+
+            	    state._fsp--;
+
+
+            	    						if (current==null) {
+            	    							current = createModelElementForParent(grammarAccess.getCuestionarioRule());
+            	    						}
+            	    						add(
+            	    							current,
+            	    							"preguntas",
+            	    							lv_preguntas_6_0,
+            	    							"cuestionario.Cuestionario.Pregunta");
+            	    						afterParserOrEnumRuleCall();
+            	    					
+
+            	    }
+
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop1;
+                }
+            } while (true);
+
+            otherlv_7=(Token)match(input,15,FOLLOW_7); 
+
+            			newLeafNode(otherlv_7, grammarAccess.getCuestionarioAccess().getRightCurlyBracketKeyword_6());
+            		
+            otherlv_8=(Token)match(input,16,FOLLOW_3); 
+
+            			newLeafNode(otherlv_8, grammarAccess.getCuestionarioAccess().getCategoriasKeyword_7());
+            		
+            otherlv_9=(Token)match(input,12,FOLLOW_8); 
+
+            			newLeafNode(otherlv_9, grammarAccess.getCuestionarioAccess().getLeftCurlyBracketKeyword_8());
+            		
+            // InternalCuestionario.g:151:3: ( (lv_categorias_10_0= ruleCategoria ) )
+            // InternalCuestionario.g:152:4: (lv_categorias_10_0= ruleCategoria )
+            {
+            // InternalCuestionario.g:152:4: (lv_categorias_10_0= ruleCategoria )
+            // InternalCuestionario.g:153:5: lv_categorias_10_0= ruleCategoria
+            {
+
+            					newCompositeNode(grammarAccess.getCuestionarioAccess().getCategoriasCategoriaParserRuleCall_9_0());
+            				
+            pushFollow(FOLLOW_6);
+            lv_categorias_10_0=ruleCategoria();
+
+            state._fsp--;
+
+
+            					if (current==null) {
+            						current = createModelElementForParent(grammarAccess.getCuestionarioRule());
+            					}
+            					add(
+            						current,
+            						"categorias",
+            						lv_categorias_10_0,
+            						"cuestionario.Cuestionario.Categoria");
+            					afterParserOrEnumRuleCall();
+            				
+
+            }
+
+
+            }
+
+            // InternalCuestionario.g:170:3: (otherlv_11= ',' ( (lv_categorias_12_0= ruleCategoria ) ) )*
+            loop2:
+            do {
+                int alt2=2;
+                int LA2_0 = input.LA(1);
+
+                if ( (LA2_0==14) ) {
+                    alt2=1;
+                }
+
+
+                switch (alt2) {
+            	case 1 :
+            	    // InternalCuestionario.g:171:4: otherlv_11= ',' ( (lv_categorias_12_0= ruleCategoria ) )
+            	    {
+            	    otherlv_11=(Token)match(input,14,FOLLOW_8); 
+
+            	    				newLeafNode(otherlv_11, grammarAccess.getCuestionarioAccess().getCommaKeyword_10_0());
+            	    			
+            	    // InternalCuestionario.g:175:4: ( (lv_categorias_12_0= ruleCategoria ) )
+            	    // InternalCuestionario.g:176:5: (lv_categorias_12_0= ruleCategoria )
+            	    {
+            	    // InternalCuestionario.g:176:5: (lv_categorias_12_0= ruleCategoria )
+            	    // InternalCuestionario.g:177:6: lv_categorias_12_0= ruleCategoria
+            	    {
+
+            	    						newCompositeNode(grammarAccess.getCuestionarioAccess().getCategoriasCategoriaParserRuleCall_10_1_0());
+            	    					
+            	    pushFollow(FOLLOW_6);
+            	    lv_categorias_12_0=ruleCategoria();
+
+            	    state._fsp--;
+
+
+            	    						if (current==null) {
+            	    							current = createModelElementForParent(grammarAccess.getCuestionarioRule());
+            	    						}
+            	    						add(
+            	    							current,
+            	    							"categorias",
+            	    							lv_categorias_12_0,
+            	    							"cuestionario.Cuestionario.Categoria");
+            	    						afterParserOrEnumRuleCall();
+            	    					
+
+            	    }
+
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop2;
+                }
+            } while (true);
+
+            otherlv_13=(Token)match(input,15,FOLLOW_9); 
+
+            			newLeafNode(otherlv_13, grammarAccess.getCuestionarioAccess().getRightCurlyBracketKeyword_11());
+            		
+            otherlv_14=(Token)match(input,17,FOLLOW_10); 
+
+            			newLeafNode(otherlv_14, grammarAccess.getCuestionarioAccess().getPreguntaInicialKeyword_12());
+            		
+            // InternalCuestionario.g:203:3: ( ( ruleEString ) )
+            // InternalCuestionario.g:204:4: ( ruleEString )
+            {
+            // InternalCuestionario.g:204:4: ( ruleEString )
+            // InternalCuestionario.g:205:5: ruleEString
+            {
+
+            					if (current==null) {
+            						current = createModelElement(grammarAccess.getCuestionarioRule());
+            					}
+            				
+
+            					newCompositeNode(grammarAccess.getCuestionarioAccess().getPreguntaInicialPreguntaCrossReference_13_0());
+            				
+            pushFollow(FOLLOW_11);
+            ruleEString();
+
+            state._fsp--;
+
+
+            					afterParserOrEnumRuleCall();
+            				
+
+            }
+
+
+            }
+
+            otherlv_16=(Token)match(input,18,FOLLOW_12); 
+
+            			newLeafNode(otherlv_16, grammarAccess.getCuestionarioAccess().getPreguntasFinalesKeyword_14());
+            		
+            otherlv_17=(Token)match(input,19,FOLLOW_10); 
+
+            			newLeafNode(otherlv_17, grammarAccess.getCuestionarioAccess().getLeftParenthesisKeyword_15());
+            		
+            // InternalCuestionario.g:227:3: ( ( ruleEString ) )
+            // InternalCuestionario.g:228:4: ( ruleEString )
+            {
+            // InternalCuestionario.g:228:4: ( ruleEString )
+            // InternalCuestionario.g:229:5: ruleEString
+            {
+
+            					if (current==null) {
+            						current = createModelElement(grammarAccess.getCuestionarioRule());
+            					}
+            				
+
+            					newCompositeNode(grammarAccess.getCuestionarioAccess().getPreguntasFinalesPreguntaCrossReference_16_0());
+            				
+            pushFollow(FOLLOW_13);
+            ruleEString();
+
+            state._fsp--;
+
+
+            					afterParserOrEnumRuleCall();
+            				
+
+            }
+
+
+            }
+
+            // InternalCuestionario.g:243:3: (otherlv_19= ',' ( ( ruleEString ) ) )*
+            loop3:
+            do {
+                int alt3=2;
+                int LA3_0 = input.LA(1);
+
+                if ( (LA3_0==14) ) {
+                    alt3=1;
+                }
+
+
+                switch (alt3) {
+            	case 1 :
+            	    // InternalCuestionario.g:244:4: otherlv_19= ',' ( ( ruleEString ) )
+            	    {
+            	    otherlv_19=(Token)match(input,14,FOLLOW_10); 
+
+            	    				newLeafNode(otherlv_19, grammarAccess.getCuestionarioAccess().getCommaKeyword_17_0());
+            	    			
+            	    // InternalCuestionario.g:248:4: ( ( ruleEString ) )
+            	    // InternalCuestionario.g:249:5: ( ruleEString )
+            	    {
+            	    // InternalCuestionario.g:249:5: ( ruleEString )
+            	    // InternalCuestionario.g:250:6: ruleEString
             	    {
 
             	    						if (current==null) {
@@ -283,9 +489,9 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
             	    						}
             	    					
 
-            	    						newCompositeNode(grammarAccess.getCuestionarioAccess().getPreguntasFinalesPreguntaCrossReference_7_1_0());
+            	    						newCompositeNode(grammarAccess.getCuestionarioAccess().getPreguntasFinalesPreguntaCrossReference_17_1_0());
             	    					
-            	    pushFollow(FOLLOW_8);
+            	    pushFollow(FOLLOW_13);
             	    ruleEString();
 
             	    state._fsp--;
@@ -304,219 +510,15 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop1;
-                }
-            } while (true);
-
-            otherlv_9=(Token)match(input,17,FOLLOW_9); 
-
-            			newLeafNode(otherlv_9, grammarAccess.getCuestionarioAccess().getRightParenthesisKeyword_8());
-            		
-            otherlv_10=(Token)match(input,18,FOLLOW_3); 
-
-            			newLeafNode(otherlv_10, grammarAccess.getCuestionarioAccess().getPreguntasKeyword_9());
-            		
-            otherlv_11=(Token)match(input,12,FOLLOW_10); 
-
-            			newLeafNode(otherlv_11, grammarAccess.getCuestionarioAccess().getLeftCurlyBracketKeyword_10());
-            		
-            // InternalCuestionario.g:165:3: ( (lv_preguntas_12_0= rulePregunta ) )
-            // InternalCuestionario.g:166:4: (lv_preguntas_12_0= rulePregunta )
-            {
-            // InternalCuestionario.g:166:4: (lv_preguntas_12_0= rulePregunta )
-            // InternalCuestionario.g:167:5: lv_preguntas_12_0= rulePregunta
-            {
-
-            					newCompositeNode(grammarAccess.getCuestionarioAccess().getPreguntasPreguntaParserRuleCall_11_0());
-            				
-            pushFollow(FOLLOW_11);
-            lv_preguntas_12_0=rulePregunta();
-
-            state._fsp--;
-
-
-            					if (current==null) {
-            						current = createModelElementForParent(grammarAccess.getCuestionarioRule());
-            					}
-            					add(
-            						current,
-            						"preguntas",
-            						lv_preguntas_12_0,
-            						"cuestionario.Cuestionario.Pregunta");
-            					afterParserOrEnumRuleCall();
-            				
-
-            }
-
-
-            }
-
-            // InternalCuestionario.g:184:3: (otherlv_13= ',' ( (lv_preguntas_14_0= rulePregunta ) ) )*
-            loop2:
-            do {
-                int alt2=2;
-                int LA2_0 = input.LA(1);
-
-                if ( (LA2_0==16) ) {
-                    alt2=1;
-                }
-
-
-                switch (alt2) {
-            	case 1 :
-            	    // InternalCuestionario.g:185:4: otherlv_13= ',' ( (lv_preguntas_14_0= rulePregunta ) )
-            	    {
-            	    otherlv_13=(Token)match(input,16,FOLLOW_10); 
-
-            	    				newLeafNode(otherlv_13, grammarAccess.getCuestionarioAccess().getCommaKeyword_12_0());
-            	    			
-            	    // InternalCuestionario.g:189:4: ( (lv_preguntas_14_0= rulePregunta ) )
-            	    // InternalCuestionario.g:190:5: (lv_preguntas_14_0= rulePregunta )
-            	    {
-            	    // InternalCuestionario.g:190:5: (lv_preguntas_14_0= rulePregunta )
-            	    // InternalCuestionario.g:191:6: lv_preguntas_14_0= rulePregunta
-            	    {
-
-            	    						newCompositeNode(grammarAccess.getCuestionarioAccess().getPreguntasPreguntaParserRuleCall_12_1_0());
-            	    					
-            	    pushFollow(FOLLOW_11);
-            	    lv_preguntas_14_0=rulePregunta();
-
-            	    state._fsp--;
-
-
-            	    						if (current==null) {
-            	    							current = createModelElementForParent(grammarAccess.getCuestionarioRule());
-            	    						}
-            	    						add(
-            	    							current,
-            	    							"preguntas",
-            	    							lv_preguntas_14_0,
-            	    							"cuestionario.Cuestionario.Pregunta");
-            	    						afterParserOrEnumRuleCall();
-            	    					
-
-            	    }
-
-
-            	    }
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop2;
-                }
-            } while (true);
-
-            otherlv_15=(Token)match(input,19,FOLLOW_12); 
-
-            			newLeafNode(otherlv_15, grammarAccess.getCuestionarioAccess().getRightCurlyBracketKeyword_13());
-            		
-            otherlv_16=(Token)match(input,20,FOLLOW_3); 
-
-            			newLeafNode(otherlv_16, grammarAccess.getCuestionarioAccess().getCategoriasKeyword_14());
-            		
-            otherlv_17=(Token)match(input,12,FOLLOW_13); 
-
-            			newLeafNode(otherlv_17, grammarAccess.getCuestionarioAccess().getLeftCurlyBracketKeyword_15());
-            		
-            // InternalCuestionario.g:221:3: ( (lv_categorias_18_0= ruleCategoria ) )
-            // InternalCuestionario.g:222:4: (lv_categorias_18_0= ruleCategoria )
-            {
-            // InternalCuestionario.g:222:4: (lv_categorias_18_0= ruleCategoria )
-            // InternalCuestionario.g:223:5: lv_categorias_18_0= ruleCategoria
-            {
-
-            					newCompositeNode(grammarAccess.getCuestionarioAccess().getCategoriasCategoriaParserRuleCall_16_0());
-            				
-            pushFollow(FOLLOW_11);
-            lv_categorias_18_0=ruleCategoria();
-
-            state._fsp--;
-
-
-            					if (current==null) {
-            						current = createModelElementForParent(grammarAccess.getCuestionarioRule());
-            					}
-            					add(
-            						current,
-            						"categorias",
-            						lv_categorias_18_0,
-            						"cuestionario.Cuestionario.Categoria");
-            					afterParserOrEnumRuleCall();
-            				
-
-            }
-
-
-            }
-
-            // InternalCuestionario.g:240:3: (otherlv_19= ',' ( (lv_categorias_20_0= ruleCategoria ) ) )*
-            loop3:
-            do {
-                int alt3=2;
-                int LA3_0 = input.LA(1);
-
-                if ( (LA3_0==16) ) {
-                    alt3=1;
-                }
-
-
-                switch (alt3) {
-            	case 1 :
-            	    // InternalCuestionario.g:241:4: otherlv_19= ',' ( (lv_categorias_20_0= ruleCategoria ) )
-            	    {
-            	    otherlv_19=(Token)match(input,16,FOLLOW_13); 
-
-            	    				newLeafNode(otherlv_19, grammarAccess.getCuestionarioAccess().getCommaKeyword_17_0());
-            	    			
-            	    // InternalCuestionario.g:245:4: ( (lv_categorias_20_0= ruleCategoria ) )
-            	    // InternalCuestionario.g:246:5: (lv_categorias_20_0= ruleCategoria )
-            	    {
-            	    // InternalCuestionario.g:246:5: (lv_categorias_20_0= ruleCategoria )
-            	    // InternalCuestionario.g:247:6: lv_categorias_20_0= ruleCategoria
-            	    {
-
-            	    						newCompositeNode(grammarAccess.getCuestionarioAccess().getCategoriasCategoriaParserRuleCall_17_1_0());
-            	    					
-            	    pushFollow(FOLLOW_11);
-            	    lv_categorias_20_0=ruleCategoria();
-
-            	    state._fsp--;
-
-
-            	    						if (current==null) {
-            	    							current = createModelElementForParent(grammarAccess.getCuestionarioRule());
-            	    						}
-            	    						add(
-            	    							current,
-            	    							"categorias",
-            	    							lv_categorias_20_0,
-            	    							"cuestionario.Cuestionario.Categoria");
-            	    						afterParserOrEnumRuleCall();
-            	    					
-
-            	    }
-
-
-            	    }
-
-
-            	    }
-            	    break;
-
-            	default :
             	    break loop3;
                 }
             } while (true);
 
-            otherlv_21=(Token)match(input,19,FOLLOW_14); 
+            otherlv_21=(Token)match(input,20,FOLLOW_14); 
 
-            			newLeafNode(otherlv_21, grammarAccess.getCuestionarioAccess().getRightCurlyBracketKeyword_18());
+            			newLeafNode(otherlv_21, grammarAccess.getCuestionarioAccess().getRightParenthesisKeyword_18());
             		
-            otherlv_22=(Token)match(input,19,FOLLOW_2); 
+            otherlv_22=(Token)match(input,15,FOLLOW_2); 
 
             			newLeafNode(otherlv_22, grammarAccess.getCuestionarioAccess().getRightCurlyBracketKeyword_19());
             		
@@ -599,7 +601,7 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
             int alt4=2;
             int LA4_0 = input.LA(1);
 
-            if ( (LA4_0==30) ) {
+            if ( (LA4_0==28) ) {
                 alt4=1;
             }
             else if ( (LA4_0==38) ) {
@@ -738,7 +740,7 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
             // InternalCuestionario.g:327:2: (otherlv_0= 'Categoria' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'dificultad' ( (lv_dificultad_4_0= ruleEDouble ) ) (otherlv_5= 'subcategorias' otherlv_6= '{' ( (lv_subcategorias_7_0= ruleCategoria ) ) (otherlv_8= ',' ( (lv_subcategorias_9_0= ruleCategoria ) ) )* otherlv_10= '}' )? otherlv_11= '}' )
             // InternalCuestionario.g:328:3: otherlv_0= 'Categoria' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'dificultad' ( (lv_dificultad_4_0= ruleEDouble ) ) (otherlv_5= 'subcategorias' otherlv_6= '{' ( (lv_subcategorias_7_0= ruleCategoria ) ) (otherlv_8= ',' ( (lv_subcategorias_9_0= ruleCategoria ) ) )* otherlv_10= '}' )? otherlv_11= '}'
             {
-            otherlv_0=(Token)match(input,21,FOLLOW_5); 
+            otherlv_0=(Token)match(input,21,FOLLOW_10); 
 
             			newLeafNode(otherlv_0, grammarAccess.getCategoriaAccess().getCategoriaKeyword_0());
             		
@@ -827,7 +829,7 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
                     				newLeafNode(otherlv_5, grammarAccess.getCategoriaAccess().getSubcategoriasKeyword_5_0());
                     			
-                    otherlv_6=(Token)match(input,12,FOLLOW_13); 
+                    otherlv_6=(Token)match(input,12,FOLLOW_8); 
 
                     				newLeafNode(otherlv_6, grammarAccess.getCategoriaAccess().getLeftCurlyBracketKeyword_5_1());
                     			
@@ -840,7 +842,7 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
                     						newCompositeNode(grammarAccess.getCategoriaAccess().getSubcategoriasCategoriaParserRuleCall_5_2_0());
                     					
-                    pushFollow(FOLLOW_11);
+                    pushFollow(FOLLOW_6);
                     lv_subcategorias_7_0=ruleCategoria();
 
                     state._fsp--;
@@ -868,7 +870,7 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
                         int alt5=2;
                         int LA5_0 = input.LA(1);
 
-                        if ( (LA5_0==16) ) {
+                        if ( (LA5_0==14) ) {
                             alt5=1;
                         }
 
@@ -877,7 +879,7 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
                     	case 1 :
                     	    // InternalCuestionario.g:407:5: otherlv_8= ',' ( (lv_subcategorias_9_0= ruleCategoria ) )
                     	    {
-                    	    otherlv_8=(Token)match(input,16,FOLLOW_13); 
+                    	    otherlv_8=(Token)match(input,14,FOLLOW_8); 
 
                     	    					newLeafNode(otherlv_8, grammarAccess.getCategoriaAccess().getCommaKeyword_5_3_0());
                     	    				
@@ -890,7 +892,7 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
                     	    							newCompositeNode(grammarAccess.getCategoriaAccess().getSubcategoriasCategoriaParserRuleCall_5_3_1_0());
                     	    						
-                    	    pushFollow(FOLLOW_11);
+                    	    pushFollow(FOLLOW_6);
                     	    lv_subcategorias_9_0=ruleCategoria();
 
                     	    state._fsp--;
@@ -921,7 +923,7 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
                         }
                     } while (true);
 
-                    otherlv_10=(Token)match(input,19,FOLLOW_14); 
+                    otherlv_10=(Token)match(input,15,FOLLOW_14); 
 
                     				newLeafNode(otherlv_10, grammarAccess.getCategoriaAccess().getRightCurlyBracketKeyword_5_4());
                     			
@@ -931,7 +933,7 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_11=(Token)match(input,19,FOLLOW_2); 
+            otherlv_11=(Token)match(input,15,FOLLOW_2); 
 
             			newLeafNode(otherlv_11, grammarAccess.getCategoriaAccess().getRightCurlyBracketKeyword_6());
             		
@@ -1297,168 +1299,8 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleEDouble"
 
 
-    // $ANTLR start "entryRuleRespuesta"
-    // InternalCuestionario.g:554:1: entryRuleRespuesta returns [EObject current=null] : iv_ruleRespuesta= ruleRespuesta EOF ;
-    public final EObject entryRuleRespuesta() throws RecognitionException {
-        EObject current = null;
-
-        EObject iv_ruleRespuesta = null;
-
-
-        try {
-            // InternalCuestionario.g:554:50: (iv_ruleRespuesta= ruleRespuesta EOF )
-            // InternalCuestionario.g:555:2: iv_ruleRespuesta= ruleRespuesta EOF
-            {
-             newCompositeNode(grammarAccess.getRespuestaRule()); 
-            pushFollow(FOLLOW_1);
-            iv_ruleRespuesta=ruleRespuesta();
-
-            state._fsp--;
-
-             current =iv_ruleRespuesta; 
-            match(input,EOF,FOLLOW_2); 
-
-            }
-
-        }
-
-            catch (RecognitionException re) {
-                recover(input,re);
-                appendSkippedTokens();
-            }
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "entryRuleRespuesta"
-
-
-    // $ANTLR start "ruleRespuesta"
-    // InternalCuestionario.g:561:1: ruleRespuesta returns [EObject current=null] : (otherlv_0= 'Respuesta' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'opcion' ( (lv_opcion_4_0= ruleEString ) ) otherlv_5= '}' ) ;
-    public final EObject ruleRespuesta() throws RecognitionException {
-        EObject current = null;
-
-        Token otherlv_0=null;
-        Token otherlv_2=null;
-        Token otherlv_3=null;
-        Token otherlv_5=null;
-        AntlrDatatypeRuleToken lv_name_1_0 = null;
-
-        AntlrDatatypeRuleToken lv_opcion_4_0 = null;
-
-
-
-        	enterRule();
-
-        try {
-            // InternalCuestionario.g:567:2: ( (otherlv_0= 'Respuesta' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'opcion' ( (lv_opcion_4_0= ruleEString ) ) otherlv_5= '}' ) )
-            // InternalCuestionario.g:568:2: (otherlv_0= 'Respuesta' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'opcion' ( (lv_opcion_4_0= ruleEString ) ) otherlv_5= '}' )
-            {
-            // InternalCuestionario.g:568:2: (otherlv_0= 'Respuesta' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'opcion' ( (lv_opcion_4_0= ruleEString ) ) otherlv_5= '}' )
-            // InternalCuestionario.g:569:3: otherlv_0= 'Respuesta' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'opcion' ( (lv_opcion_4_0= ruleEString ) ) otherlv_5= '}'
-            {
-            otherlv_0=(Token)match(input,28,FOLLOW_5); 
-
-            			newLeafNode(otherlv_0, grammarAccess.getRespuestaAccess().getRespuestaKeyword_0());
-            		
-            // InternalCuestionario.g:573:3: ( (lv_name_1_0= ruleEString ) )
-            // InternalCuestionario.g:574:4: (lv_name_1_0= ruleEString )
-            {
-            // InternalCuestionario.g:574:4: (lv_name_1_0= ruleEString )
-            // InternalCuestionario.g:575:5: lv_name_1_0= ruleEString
-            {
-
-            					newCompositeNode(grammarAccess.getRespuestaAccess().getNameEStringParserRuleCall_1_0());
-            				
-            pushFollow(FOLLOW_3);
-            lv_name_1_0=ruleEString();
-
-            state._fsp--;
-
-
-            					if (current==null) {
-            						current = createModelElementForParent(grammarAccess.getRespuestaRule());
-            					}
-            					set(
-            						current,
-            						"name",
-            						lv_name_1_0,
-            						"cuestionario.Cuestionario.EString");
-            					afterParserOrEnumRuleCall();
-            				
-
-            }
-
-
-            }
-
-            otherlv_2=(Token)match(input,12,FOLLOW_23); 
-
-            			newLeafNode(otherlv_2, grammarAccess.getRespuestaAccess().getLeftCurlyBracketKeyword_2());
-            		
-            otherlv_3=(Token)match(input,29,FOLLOW_5); 
-
-            			newLeafNode(otherlv_3, grammarAccess.getRespuestaAccess().getOpcionKeyword_3());
-            		
-            // InternalCuestionario.g:600:3: ( (lv_opcion_4_0= ruleEString ) )
-            // InternalCuestionario.g:601:4: (lv_opcion_4_0= ruleEString )
-            {
-            // InternalCuestionario.g:601:4: (lv_opcion_4_0= ruleEString )
-            // InternalCuestionario.g:602:5: lv_opcion_4_0= ruleEString
-            {
-
-            					newCompositeNode(grammarAccess.getRespuestaAccess().getOpcionEStringParserRuleCall_4_0());
-            				
-            pushFollow(FOLLOW_14);
-            lv_opcion_4_0=ruleEString();
-
-            state._fsp--;
-
-
-            					if (current==null) {
-            						current = createModelElementForParent(grammarAccess.getRespuestaRule());
-            					}
-            					set(
-            						current,
-            						"opcion",
-            						lv_opcion_4_0,
-            						"cuestionario.Cuestionario.EString");
-            					afterParserOrEnumRuleCall();
-            				
-
-            }
-
-
-            }
-
-            otherlv_5=(Token)match(input,19,FOLLOW_2); 
-
-            			newLeafNode(otherlv_5, grammarAccess.getRespuestaAccess().getRightCurlyBracketKeyword_5());
-            		
-
-            }
-
-
-            }
-
-
-            	leaveRule();
-
-        }
-
-            catch (RecognitionException re) {
-                recover(input,re);
-                appendSkippedTokens();
-            }
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "ruleRespuesta"
-
-
     // $ANTLR start "entryRulePreguntaUnica"
-    // InternalCuestionario.g:627:1: entryRulePreguntaUnica returns [EObject current=null] : iv_rulePreguntaUnica= rulePreguntaUnica EOF ;
+    // InternalCuestionario.g:554:1: entryRulePreguntaUnica returns [EObject current=null] : iv_rulePreguntaUnica= rulePreguntaUnica EOF ;
     public final EObject entryRulePreguntaUnica() throws RecognitionException {
         EObject current = null;
 
@@ -1466,8 +1308,8 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalCuestionario.g:627:54: (iv_rulePreguntaUnica= rulePreguntaUnica EOF )
-            // InternalCuestionario.g:628:2: iv_rulePreguntaUnica= rulePreguntaUnica EOF
+            // InternalCuestionario.g:554:54: (iv_rulePreguntaUnica= rulePreguntaUnica EOF )
+            // InternalCuestionario.g:555:2: iv_rulePreguntaUnica= rulePreguntaUnica EOF
             {
              newCompositeNode(grammarAccess.getPreguntaUnicaRule()); 
             pushFollow(FOLLOW_1);
@@ -1494,7 +1336,7 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePreguntaUnica"
-    // InternalCuestionario.g:634:1: rulePreguntaUnica returns [EObject current=null] : (otherlv_0= 'PreguntaUnica' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) (otherlv_11= 'siguientePregunta' ( ( ruleEString ) ) )? otherlv_13= 'correcta' ( ( ruleEString ) ) otherlv_15= 'respuestas' otherlv_16= '{' ( (lv_respuestas_17_0= ruleRespuesta ) ) (otherlv_18= ',' ( (lv_respuestas_19_0= ruleRespuesta ) ) )* otherlv_20= '}' otherlv_21= '}' ) ;
+    // InternalCuestionario.g:561:1: rulePreguntaUnica returns [EObject current=null] : (otherlv_0= 'PreguntaUnica' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) ( ( (lv_isInicial_11_0= 'isInicial' ) ) otherlv_12= '(' (otherlv_13= 'siguientePreguntaAcierto' ( ( ruleEString ) ) ) otherlv_15= ',' (otherlv_16= 'siguientePreguntaError' ( ( ruleEString ) ) ) otherlv_18= ')' )? otherlv_19= 'respuestas' otherlv_20= '{' ( (lv_respuestas_21_0= ruleRespuesta ) ) (otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) ) )* otherlv_24= '}' otherlv_25= 'correcta' ( ( ruleEString ) ) otherlv_27= '}' ) ;
     public final EObject rulePreguntaUnica() throws RecognitionException {
         EObject current = null;
 
@@ -1504,13 +1346,18 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
         Token otherlv_5=null;
         Token otherlv_7=null;
         Token otherlv_9=null;
-        Token otherlv_11=null;
+        Token lv_isInicial_11_0=null;
+        Token otherlv_12=null;
         Token otherlv_13=null;
         Token otherlv_15=null;
         Token otherlv_16=null;
         Token otherlv_18=null;
+        Token otherlv_19=null;
         Token otherlv_20=null;
-        Token otherlv_21=null;
+        Token otherlv_22=null;
+        Token otherlv_24=null;
+        Token otherlv_25=null;
+        Token otherlv_27=null;
         AntlrDatatypeRuleToken lv_name_1_0 = null;
 
         AntlrDatatypeRuleToken lv_enunciado_4_0 = null;
@@ -1519,30 +1366,30 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
         AntlrDatatypeRuleToken lv_penalizacion_8_0 = null;
 
-        EObject lv_respuestas_17_0 = null;
+        EObject lv_respuestas_21_0 = null;
 
-        EObject lv_respuestas_19_0 = null;
+        EObject lv_respuestas_23_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalCuestionario.g:640:2: ( (otherlv_0= 'PreguntaUnica' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) (otherlv_11= 'siguientePregunta' ( ( ruleEString ) ) )? otherlv_13= 'correcta' ( ( ruleEString ) ) otherlv_15= 'respuestas' otherlv_16= '{' ( (lv_respuestas_17_0= ruleRespuesta ) ) (otherlv_18= ',' ( (lv_respuestas_19_0= ruleRespuesta ) ) )* otherlv_20= '}' otherlv_21= '}' ) )
-            // InternalCuestionario.g:641:2: (otherlv_0= 'PreguntaUnica' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) (otherlv_11= 'siguientePregunta' ( ( ruleEString ) ) )? otherlv_13= 'correcta' ( ( ruleEString ) ) otherlv_15= 'respuestas' otherlv_16= '{' ( (lv_respuestas_17_0= ruleRespuesta ) ) (otherlv_18= ',' ( (lv_respuestas_19_0= ruleRespuesta ) ) )* otherlv_20= '}' otherlv_21= '}' )
+            // InternalCuestionario.g:567:2: ( (otherlv_0= 'PreguntaUnica' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) ( ( (lv_isInicial_11_0= 'isInicial' ) ) otherlv_12= '(' (otherlv_13= 'siguientePreguntaAcierto' ( ( ruleEString ) ) ) otherlv_15= ',' (otherlv_16= 'siguientePreguntaError' ( ( ruleEString ) ) ) otherlv_18= ')' )? otherlv_19= 'respuestas' otherlv_20= '{' ( (lv_respuestas_21_0= ruleRespuesta ) ) (otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) ) )* otherlv_24= '}' otherlv_25= 'correcta' ( ( ruleEString ) ) otherlv_27= '}' ) )
+            // InternalCuestionario.g:568:2: (otherlv_0= 'PreguntaUnica' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) ( ( (lv_isInicial_11_0= 'isInicial' ) ) otherlv_12= '(' (otherlv_13= 'siguientePreguntaAcierto' ( ( ruleEString ) ) ) otherlv_15= ',' (otherlv_16= 'siguientePreguntaError' ( ( ruleEString ) ) ) otherlv_18= ')' )? otherlv_19= 'respuestas' otherlv_20= '{' ( (lv_respuestas_21_0= ruleRespuesta ) ) (otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) ) )* otherlv_24= '}' otherlv_25= 'correcta' ( ( ruleEString ) ) otherlv_27= '}' )
             {
-            // InternalCuestionario.g:641:2: (otherlv_0= 'PreguntaUnica' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) (otherlv_11= 'siguientePregunta' ( ( ruleEString ) ) )? otherlv_13= 'correcta' ( ( ruleEString ) ) otherlv_15= 'respuestas' otherlv_16= '{' ( (lv_respuestas_17_0= ruleRespuesta ) ) (otherlv_18= ',' ( (lv_respuestas_19_0= ruleRespuesta ) ) )* otherlv_20= '}' otherlv_21= '}' )
-            // InternalCuestionario.g:642:3: otherlv_0= 'PreguntaUnica' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) (otherlv_11= 'siguientePregunta' ( ( ruleEString ) ) )? otherlv_13= 'correcta' ( ( ruleEString ) ) otherlv_15= 'respuestas' otherlv_16= '{' ( (lv_respuestas_17_0= ruleRespuesta ) ) (otherlv_18= ',' ( (lv_respuestas_19_0= ruleRespuesta ) ) )* otherlv_20= '}' otherlv_21= '}'
+            // InternalCuestionario.g:568:2: (otherlv_0= 'PreguntaUnica' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) ( ( (lv_isInicial_11_0= 'isInicial' ) ) otherlv_12= '(' (otherlv_13= 'siguientePreguntaAcierto' ( ( ruleEString ) ) ) otherlv_15= ',' (otherlv_16= 'siguientePreguntaError' ( ( ruleEString ) ) ) otherlv_18= ')' )? otherlv_19= 'respuestas' otherlv_20= '{' ( (lv_respuestas_21_0= ruleRespuesta ) ) (otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) ) )* otherlv_24= '}' otherlv_25= 'correcta' ( ( ruleEString ) ) otherlv_27= '}' )
+            // InternalCuestionario.g:569:3: otherlv_0= 'PreguntaUnica' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) ( ( (lv_isInicial_11_0= 'isInicial' ) ) otherlv_12= '(' (otherlv_13= 'siguientePreguntaAcierto' ( ( ruleEString ) ) ) otherlv_15= ',' (otherlv_16= 'siguientePreguntaError' ( ( ruleEString ) ) ) otherlv_18= ')' )? otherlv_19= 'respuestas' otherlv_20= '{' ( (lv_respuestas_21_0= ruleRespuesta ) ) (otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) ) )* otherlv_24= '}' otherlv_25= 'correcta' ( ( ruleEString ) ) otherlv_27= '}'
             {
-            otherlv_0=(Token)match(input,30,FOLLOW_5); 
+            otherlv_0=(Token)match(input,28,FOLLOW_10); 
 
             			newLeafNode(otherlv_0, grammarAccess.getPreguntaUnicaAccess().getPreguntaUnicaKeyword_0());
             		
-            // InternalCuestionario.g:646:3: ( (lv_name_1_0= ruleEString ) )
-            // InternalCuestionario.g:647:4: (lv_name_1_0= ruleEString )
+            // InternalCuestionario.g:573:3: ( (lv_name_1_0= ruleEString ) )
+            // InternalCuestionario.g:574:4: (lv_name_1_0= ruleEString )
             {
-            // InternalCuestionario.g:647:4: (lv_name_1_0= ruleEString )
-            // InternalCuestionario.g:648:5: lv_name_1_0= ruleEString
+            // InternalCuestionario.g:574:4: (lv_name_1_0= ruleEString )
+            // InternalCuestionario.g:575:5: lv_name_1_0= ruleEString
             {
 
             					newCompositeNode(grammarAccess.getPreguntaUnicaAccess().getNameEStringParserRuleCall_1_0());
@@ -1569,24 +1416,24 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,12,FOLLOW_24); 
+            otherlv_2=(Token)match(input,12,FOLLOW_23); 
 
             			newLeafNode(otherlv_2, grammarAccess.getPreguntaUnicaAccess().getLeftCurlyBracketKeyword_2());
             		
-            otherlv_3=(Token)match(input,31,FOLLOW_5); 
+            otherlv_3=(Token)match(input,29,FOLLOW_10); 
 
             			newLeafNode(otherlv_3, grammarAccess.getPreguntaUnicaAccess().getEnunciadoKeyword_3());
             		
-            // InternalCuestionario.g:673:3: ( (lv_enunciado_4_0= ruleEString ) )
-            // InternalCuestionario.g:674:4: (lv_enunciado_4_0= ruleEString )
+            // InternalCuestionario.g:600:3: ( (lv_enunciado_4_0= ruleEString ) )
+            // InternalCuestionario.g:601:4: (lv_enunciado_4_0= ruleEString )
             {
-            // InternalCuestionario.g:674:4: (lv_enunciado_4_0= ruleEString )
-            // InternalCuestionario.g:675:5: lv_enunciado_4_0= ruleEString
+            // InternalCuestionario.g:601:4: (lv_enunciado_4_0= ruleEString )
+            // InternalCuestionario.g:602:5: lv_enunciado_4_0= ruleEString
             {
 
             					newCompositeNode(grammarAccess.getPreguntaUnicaAccess().getEnunciadoEStringParserRuleCall_4_0());
             				
-            pushFollow(FOLLOW_25);
+            pushFollow(FOLLOW_24);
             lv_enunciado_4_0=ruleEString();
 
             state._fsp--;
@@ -1608,20 +1455,20 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,32,FOLLOW_16); 
+            otherlv_5=(Token)match(input,30,FOLLOW_16); 
 
             			newLeafNode(otherlv_5, grammarAccess.getPreguntaUnicaAccess().getPuntuacionKeyword_5());
             		
-            // InternalCuestionario.g:696:3: ( (lv_puntuacion_6_0= ruleEDouble ) )
-            // InternalCuestionario.g:697:4: (lv_puntuacion_6_0= ruleEDouble )
+            // InternalCuestionario.g:623:3: ( (lv_puntuacion_6_0= ruleEDouble ) )
+            // InternalCuestionario.g:624:4: (lv_puntuacion_6_0= ruleEDouble )
             {
-            // InternalCuestionario.g:697:4: (lv_puntuacion_6_0= ruleEDouble )
-            // InternalCuestionario.g:698:5: lv_puntuacion_6_0= ruleEDouble
+            // InternalCuestionario.g:624:4: (lv_puntuacion_6_0= ruleEDouble )
+            // InternalCuestionario.g:625:5: lv_puntuacion_6_0= ruleEDouble
             {
 
             					newCompositeNode(grammarAccess.getPreguntaUnicaAccess().getPuntuacionEDoubleParserRuleCall_6_0());
             				
-            pushFollow(FOLLOW_26);
+            pushFollow(FOLLOW_25);
             lv_puntuacion_6_0=ruleEDouble();
 
             state._fsp--;
@@ -1643,20 +1490,20 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_7=(Token)match(input,33,FOLLOW_16); 
+            otherlv_7=(Token)match(input,31,FOLLOW_16); 
 
             			newLeafNode(otherlv_7, grammarAccess.getPreguntaUnicaAccess().getPenalizacionKeyword_7());
             		
-            // InternalCuestionario.g:719:3: ( (lv_penalizacion_8_0= ruleEDouble ) )
-            // InternalCuestionario.g:720:4: (lv_penalizacion_8_0= ruleEDouble )
+            // InternalCuestionario.g:646:3: ( (lv_penalizacion_8_0= ruleEDouble ) )
+            // InternalCuestionario.g:647:4: (lv_penalizacion_8_0= ruleEDouble )
             {
-            // InternalCuestionario.g:720:4: (lv_penalizacion_8_0= ruleEDouble )
-            // InternalCuestionario.g:721:5: lv_penalizacion_8_0= ruleEDouble
+            // InternalCuestionario.g:647:4: (lv_penalizacion_8_0= ruleEDouble )
+            // InternalCuestionario.g:648:5: lv_penalizacion_8_0= ruleEDouble
             {
 
             					newCompositeNode(grammarAccess.getPreguntaUnicaAccess().getPenalizacionEDoubleParserRuleCall_8_0());
             				
-            pushFollow(FOLLOW_27);
+            pushFollow(FOLLOW_26);
             lv_penalizacion_8_0=ruleEDouble();
 
             state._fsp--;
@@ -1678,15 +1525,15 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_9=(Token)match(input,34,FOLLOW_5); 
+            otherlv_9=(Token)match(input,32,FOLLOW_10); 
 
             			newLeafNode(otherlv_9, grammarAccess.getPreguntaUnicaAccess().getCategoriaKeyword_9());
             		
-            // InternalCuestionario.g:742:3: ( ( ruleEString ) )
-            // InternalCuestionario.g:743:4: ( ruleEString )
+            // InternalCuestionario.g:669:3: ( ( ruleEString ) )
+            // InternalCuestionario.g:670:4: ( ruleEString )
             {
-            // InternalCuestionario.g:743:4: ( ruleEString )
-            // InternalCuestionario.g:744:5: ruleEString
+            // InternalCuestionario.g:670:4: ( ruleEString )
+            // InternalCuestionario.g:671:5: ruleEString
             {
 
             					if (current==null) {
@@ -1696,7 +1543,7 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
             					newCompositeNode(grammarAccess.getPreguntaUnicaAccess().getCategoriaCategoriaCrossReference_10_0());
             				
-            pushFollow(FOLLOW_28);
+            pushFollow(FOLLOW_27);
             ruleEString();
 
             state._fsp--;
@@ -1710,106 +1557,152 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalCuestionario.g:758:3: (otherlv_11= 'siguientePregunta' ( ( ruleEString ) ) )?
+            // InternalCuestionario.g:685:3: ( ( (lv_isInicial_11_0= 'isInicial' ) ) otherlv_12= '(' (otherlv_13= 'siguientePreguntaAcierto' ( ( ruleEString ) ) ) otherlv_15= ',' (otherlv_16= 'siguientePreguntaError' ( ( ruleEString ) ) ) otherlv_18= ')' )?
             int alt13=2;
             int LA13_0 = input.LA(1);
 
-            if ( (LA13_0==35) ) {
+            if ( (LA13_0==33) ) {
                 alt13=1;
             }
             switch (alt13) {
                 case 1 :
-                    // InternalCuestionario.g:759:4: otherlv_11= 'siguientePregunta' ( ( ruleEString ) )
+                    // InternalCuestionario.g:686:4: ( (lv_isInicial_11_0= 'isInicial' ) ) otherlv_12= '(' (otherlv_13= 'siguientePreguntaAcierto' ( ( ruleEString ) ) ) otherlv_15= ',' (otherlv_16= 'siguientePreguntaError' ( ( ruleEString ) ) ) otherlv_18= ')'
                     {
-                    otherlv_11=(Token)match(input,35,FOLLOW_5); 
+                    // InternalCuestionario.g:686:4: ( (lv_isInicial_11_0= 'isInicial' ) )
+                    // InternalCuestionario.g:687:5: (lv_isInicial_11_0= 'isInicial' )
+                    {
+                    // InternalCuestionario.g:687:5: (lv_isInicial_11_0= 'isInicial' )
+                    // InternalCuestionario.g:688:6: lv_isInicial_11_0= 'isInicial'
+                    {
+                    lv_isInicial_11_0=(Token)match(input,33,FOLLOW_12); 
 
-                    				newLeafNode(otherlv_11, grammarAccess.getPreguntaUnicaAccess().getSiguientePreguntaKeyword_11_0());
-                    			
-                    // InternalCuestionario.g:763:4: ( ( ruleEString ) )
-                    // InternalCuestionario.g:764:5: ( ruleEString )
-                    {
-                    // InternalCuestionario.g:764:5: ( ruleEString )
-                    // InternalCuestionario.g:765:6: ruleEString
-                    {
+                    						newLeafNode(lv_isInicial_11_0, grammarAccess.getPreguntaUnicaAccess().getIsInicialIsInicialKeyword_11_0_0());
+                    					
 
                     						if (current==null) {
                     							current = createModelElement(grammarAccess.getPreguntaUnicaRule());
                     						}
+                    						setWithLastConsumed(current, "isInicial", lv_isInicial_11_0 != null, "isInicial");
                     					
 
-                    						newCompositeNode(grammarAccess.getPreguntaUnicaAccess().getSiguientePreguntaPreguntaCrossReference_11_1_0());
-                    					
+                    }
+
+
+                    }
+
+                    otherlv_12=(Token)match(input,19,FOLLOW_28); 
+
+                    				newLeafNode(otherlv_12, grammarAccess.getPreguntaUnicaAccess().getLeftParenthesisKeyword_11_1());
+                    			
+                    // InternalCuestionario.g:704:4: (otherlv_13= 'siguientePreguntaAcierto' ( ( ruleEString ) ) )
+                    // InternalCuestionario.g:705:5: otherlv_13= 'siguientePreguntaAcierto' ( ( ruleEString ) )
+                    {
+                    otherlv_13=(Token)match(input,34,FOLLOW_10); 
+
+                    					newLeafNode(otherlv_13, grammarAccess.getPreguntaUnicaAccess().getSiguientePreguntaAciertoKeyword_11_2_0());
+                    				
+                    // InternalCuestionario.g:709:5: ( ( ruleEString ) )
+                    // InternalCuestionario.g:710:6: ( ruleEString )
+                    {
+                    // InternalCuestionario.g:710:6: ( ruleEString )
+                    // InternalCuestionario.g:711:7: ruleEString
+                    {
+
+                    							if (current==null) {
+                    								current = createModelElement(grammarAccess.getPreguntaUnicaRule());
+                    							}
+                    						
+
+                    							newCompositeNode(grammarAccess.getPreguntaUnicaAccess().getSiguientePreguntaAciertoPreguntaCrossReference_11_2_1_0());
+                    						
                     pushFollow(FOLLOW_29);
                     ruleEString();
 
                     state._fsp--;
 
 
-                    						afterParserOrEnumRuleCall();
-                    					
+                    							afterParserOrEnumRuleCall();
+                    						
 
                     }
 
 
                     }
 
+
+                    }
+
+                    otherlv_15=(Token)match(input,14,FOLLOW_30); 
+
+                    				newLeafNode(otherlv_15, grammarAccess.getPreguntaUnicaAccess().getCommaKeyword_11_3());
+                    			
+                    // InternalCuestionario.g:730:4: (otherlv_16= 'siguientePreguntaError' ( ( ruleEString ) ) )
+                    // InternalCuestionario.g:731:5: otherlv_16= 'siguientePreguntaError' ( ( ruleEString ) )
+                    {
+                    otherlv_16=(Token)match(input,35,FOLLOW_10); 
+
+                    					newLeafNode(otherlv_16, grammarAccess.getPreguntaUnicaAccess().getSiguientePreguntaErrorKeyword_11_4_0());
+                    				
+                    // InternalCuestionario.g:735:5: ( ( ruleEString ) )
+                    // InternalCuestionario.g:736:6: ( ruleEString )
+                    {
+                    // InternalCuestionario.g:736:6: ( ruleEString )
+                    // InternalCuestionario.g:737:7: ruleEString
+                    {
+
+                    							if (current==null) {
+                    								current = createModelElement(grammarAccess.getPreguntaUnicaRule());
+                    							}
+                    						
+
+                    							newCompositeNode(grammarAccess.getPreguntaUnicaAccess().getSiguientePreguntaErrorPreguntaCrossReference_11_4_1_0());
+                    						
+                    pushFollow(FOLLOW_31);
+                    ruleEString();
+
+                    state._fsp--;
+
+
+                    							afterParserOrEnumRuleCall();
+                    						
+
+                    }
+
+
+                    }
+
+
+                    }
+
+                    otherlv_18=(Token)match(input,20,FOLLOW_32); 
+
+                    				newLeafNode(otherlv_18, grammarAccess.getPreguntaUnicaAccess().getRightParenthesisKeyword_11_5());
+                    			
 
                     }
                     break;
 
             }
 
-            otherlv_13=(Token)match(input,36,FOLLOW_5); 
+            otherlv_19=(Token)match(input,36,FOLLOW_3); 
 
-            			newLeafNode(otherlv_13, grammarAccess.getPreguntaUnicaAccess().getCorrectaKeyword_12());
+            			newLeafNode(otherlv_19, grammarAccess.getPreguntaUnicaAccess().getRespuestasKeyword_12());
             		
-            // InternalCuestionario.g:784:3: ( ( ruleEString ) )
-            // InternalCuestionario.g:785:4: ( ruleEString )
-            {
-            // InternalCuestionario.g:785:4: ( ruleEString )
-            // InternalCuestionario.g:786:5: ruleEString
-            {
+            otherlv_20=(Token)match(input,12,FOLLOW_33); 
 
-            					if (current==null) {
-            						current = createModelElement(grammarAccess.getPreguntaUnicaRule());
-            					}
-            				
-
-            					newCompositeNode(grammarAccess.getPreguntaUnicaAccess().getCorrectaRespuestaCrossReference_13_0());
-            				
-            pushFollow(FOLLOW_30);
-            ruleEString();
-
-            state._fsp--;
-
-
-            					afterParserOrEnumRuleCall();
-            				
-
-            }
-
-
-            }
-
-            otherlv_15=(Token)match(input,37,FOLLOW_3); 
-
-            			newLeafNode(otherlv_15, grammarAccess.getPreguntaUnicaAccess().getRespuestasKeyword_14());
+            			newLeafNode(otherlv_20, grammarAccess.getPreguntaUnicaAccess().getLeftCurlyBracketKeyword_13());
             		
-            otherlv_16=(Token)match(input,12,FOLLOW_31); 
-
-            			newLeafNode(otherlv_16, grammarAccess.getPreguntaUnicaAccess().getLeftCurlyBracketKeyword_15());
-            		
-            // InternalCuestionario.g:808:3: ( (lv_respuestas_17_0= ruleRespuesta ) )
-            // InternalCuestionario.g:809:4: (lv_respuestas_17_0= ruleRespuesta )
+            // InternalCuestionario.g:765:3: ( (lv_respuestas_21_0= ruleRespuesta ) )
+            // InternalCuestionario.g:766:4: (lv_respuestas_21_0= ruleRespuesta )
             {
-            // InternalCuestionario.g:809:4: (lv_respuestas_17_0= ruleRespuesta )
-            // InternalCuestionario.g:810:5: lv_respuestas_17_0= ruleRespuesta
+            // InternalCuestionario.g:766:4: (lv_respuestas_21_0= ruleRespuesta )
+            // InternalCuestionario.g:767:5: lv_respuestas_21_0= ruleRespuesta
             {
 
-            					newCompositeNode(grammarAccess.getPreguntaUnicaAccess().getRespuestasRespuestaParserRuleCall_16_0());
+            					newCompositeNode(grammarAccess.getPreguntaUnicaAccess().getRespuestasRespuestaParserRuleCall_14_0());
             				
-            pushFollow(FOLLOW_11);
-            lv_respuestas_17_0=ruleRespuesta();
+            pushFollow(FOLLOW_6);
+            lv_respuestas_21_0=ruleRespuesta();
 
             state._fsp--;
 
@@ -1820,7 +1713,7 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
             					add(
             						current,
             						"respuestas",
-            						lv_respuestas_17_0,
+            						lv_respuestas_21_0,
             						"cuestionario.Cuestionario.Respuesta");
             					afterParserOrEnumRuleCall();
             				
@@ -1830,36 +1723,36 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalCuestionario.g:827:3: (otherlv_18= ',' ( (lv_respuestas_19_0= ruleRespuesta ) ) )*
+            // InternalCuestionario.g:784:3: (otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) ) )*
             loop14:
             do {
                 int alt14=2;
                 int LA14_0 = input.LA(1);
 
-                if ( (LA14_0==16) ) {
+                if ( (LA14_0==14) ) {
                     alt14=1;
                 }
 
 
                 switch (alt14) {
             	case 1 :
-            	    // InternalCuestionario.g:828:4: otherlv_18= ',' ( (lv_respuestas_19_0= ruleRespuesta ) )
+            	    // InternalCuestionario.g:785:4: otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) )
             	    {
-            	    otherlv_18=(Token)match(input,16,FOLLOW_31); 
+            	    otherlv_22=(Token)match(input,14,FOLLOW_33); 
 
-            	    				newLeafNode(otherlv_18, grammarAccess.getPreguntaUnicaAccess().getCommaKeyword_17_0());
+            	    				newLeafNode(otherlv_22, grammarAccess.getPreguntaUnicaAccess().getCommaKeyword_15_0());
             	    			
-            	    // InternalCuestionario.g:832:4: ( (lv_respuestas_19_0= ruleRespuesta ) )
-            	    // InternalCuestionario.g:833:5: (lv_respuestas_19_0= ruleRespuesta )
+            	    // InternalCuestionario.g:789:4: ( (lv_respuestas_23_0= ruleRespuesta ) )
+            	    // InternalCuestionario.g:790:5: (lv_respuestas_23_0= ruleRespuesta )
             	    {
-            	    // InternalCuestionario.g:833:5: (lv_respuestas_19_0= ruleRespuesta )
-            	    // InternalCuestionario.g:834:6: lv_respuestas_19_0= ruleRespuesta
+            	    // InternalCuestionario.g:790:5: (lv_respuestas_23_0= ruleRespuesta )
+            	    // InternalCuestionario.g:791:6: lv_respuestas_23_0= ruleRespuesta
             	    {
 
-            	    						newCompositeNode(grammarAccess.getPreguntaUnicaAccess().getRespuestasRespuestaParserRuleCall_17_1_0());
+            	    						newCompositeNode(grammarAccess.getPreguntaUnicaAccess().getRespuestasRespuestaParserRuleCall_15_1_0());
             	    					
-            	    pushFollow(FOLLOW_11);
-            	    lv_respuestas_19_0=ruleRespuesta();
+            	    pushFollow(FOLLOW_6);
+            	    lv_respuestas_23_0=ruleRespuesta();
 
             	    state._fsp--;
 
@@ -1870,7 +1763,7 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
             	    						add(
             	    							current,
             	    							"respuestas",
-            	    							lv_respuestas_19_0,
+            	    							lv_respuestas_23_0,
             	    							"cuestionario.Cuestionario.Respuesta");
             	    						afterParserOrEnumRuleCall();
             	    					
@@ -1889,13 +1782,45 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            otherlv_20=(Token)match(input,19,FOLLOW_14); 
+            otherlv_24=(Token)match(input,15,FOLLOW_34); 
 
-            			newLeafNode(otherlv_20, grammarAccess.getPreguntaUnicaAccess().getRightCurlyBracketKeyword_18());
+            			newLeafNode(otherlv_24, grammarAccess.getPreguntaUnicaAccess().getRightCurlyBracketKeyword_16());
             		
-            otherlv_21=(Token)match(input,19,FOLLOW_2); 
+            otherlv_25=(Token)match(input,37,FOLLOW_10); 
 
-            			newLeafNode(otherlv_21, grammarAccess.getPreguntaUnicaAccess().getRightCurlyBracketKeyword_19());
+            			newLeafNode(otherlv_25, grammarAccess.getPreguntaUnicaAccess().getCorrectaKeyword_17());
+            		
+            // InternalCuestionario.g:817:3: ( ( ruleEString ) )
+            // InternalCuestionario.g:818:4: ( ruleEString )
+            {
+            // InternalCuestionario.g:818:4: ( ruleEString )
+            // InternalCuestionario.g:819:5: ruleEString
+            {
+
+            					if (current==null) {
+            						current = createModelElement(grammarAccess.getPreguntaUnicaRule());
+            					}
+            				
+
+            					newCompositeNode(grammarAccess.getPreguntaUnicaAccess().getCorrectaRespuestaCrossReference_18_0());
+            				
+            pushFollow(FOLLOW_14);
+            ruleEString();
+
+            state._fsp--;
+
+
+            					afterParserOrEnumRuleCall();
+            				
+
+            }
+
+
+            }
+
+            otherlv_27=(Token)match(input,15,FOLLOW_2); 
+
+            			newLeafNode(otherlv_27, grammarAccess.getPreguntaUnicaAccess().getRightCurlyBracketKeyword_19());
             		
 
             }
@@ -1920,7 +1845,7 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePreguntaMultiple"
-    // InternalCuestionario.g:864:1: entryRulePreguntaMultiple returns [EObject current=null] : iv_rulePreguntaMultiple= rulePreguntaMultiple EOF ;
+    // InternalCuestionario.g:841:1: entryRulePreguntaMultiple returns [EObject current=null] : iv_rulePreguntaMultiple= rulePreguntaMultiple EOF ;
     public final EObject entryRulePreguntaMultiple() throws RecognitionException {
         EObject current = null;
 
@@ -1928,8 +1853,8 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalCuestionario.g:864:57: (iv_rulePreguntaMultiple= rulePreguntaMultiple EOF )
-            // InternalCuestionario.g:865:2: iv_rulePreguntaMultiple= rulePreguntaMultiple EOF
+            // InternalCuestionario.g:841:57: (iv_rulePreguntaMultiple= rulePreguntaMultiple EOF )
+            // InternalCuestionario.g:842:2: iv_rulePreguntaMultiple= rulePreguntaMultiple EOF
             {
              newCompositeNode(grammarAccess.getPreguntaMultipleRule()); 
             pushFollow(FOLLOW_1);
@@ -1956,7 +1881,7 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePreguntaMultiple"
-    // InternalCuestionario.g:871:1: rulePreguntaMultiple returns [EObject current=null] : (otherlv_0= 'PreguntaMultiple' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) (otherlv_11= 'siguientePregunta' ( ( ruleEString ) ) )? otherlv_13= 'correctas' otherlv_14= '(' ( ( ruleEString ) ) (otherlv_16= ',' ( ( ruleEString ) ) )* otherlv_18= ')' otherlv_19= 'respuestas' otherlv_20= '{' ( (lv_respuestas_21_0= ruleRespuesta ) ) (otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) ) )* otherlv_24= '}' otherlv_25= '}' ) ;
+    // InternalCuestionario.g:848:1: rulePreguntaMultiple returns [EObject current=null] : (otherlv_0= 'PreguntaMultiple' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) ( ( (lv_isInicial_11_0= 'isInicial' ) ) otherlv_12= '(' (otherlv_13= 'siguientePreguntaAcierto' ( ( ruleEString ) ) ) otherlv_15= ',' (otherlv_16= 'siguientePreguntaError' ( ( ruleEString ) ) ) otherlv_18= ')' )? otherlv_19= 'respuestas' otherlv_20= '{' ( (lv_respuestas_21_0= ruleRespuesta ) ) (otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) ) )* otherlv_24= '}' (otherlv_25= 'correctas' otherlv_26= '(' ( ( ruleEString ) ) (otherlv_28= ',' ( ( ruleEString ) ) )* otherlv_30= ')' )? otherlv_31= '}' ) ;
     public final EObject rulePreguntaMultiple() throws RecognitionException {
         EObject current = null;
 
@@ -1966,9 +1891,10 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
         Token otherlv_5=null;
         Token otherlv_7=null;
         Token otherlv_9=null;
-        Token otherlv_11=null;
+        Token lv_isInicial_11_0=null;
+        Token otherlv_12=null;
         Token otherlv_13=null;
-        Token otherlv_14=null;
+        Token otherlv_15=null;
         Token otherlv_16=null;
         Token otherlv_18=null;
         Token otherlv_19=null;
@@ -1976,6 +1902,10 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
         Token otherlv_22=null;
         Token otherlv_24=null;
         Token otherlv_25=null;
+        Token otherlv_26=null;
+        Token otherlv_28=null;
+        Token otherlv_30=null;
+        Token otherlv_31=null;
         AntlrDatatypeRuleToken lv_name_1_0 = null;
 
         AntlrDatatypeRuleToken lv_enunciado_4_0 = null;
@@ -1993,21 +1923,21 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalCuestionario.g:877:2: ( (otherlv_0= 'PreguntaMultiple' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) (otherlv_11= 'siguientePregunta' ( ( ruleEString ) ) )? otherlv_13= 'correctas' otherlv_14= '(' ( ( ruleEString ) ) (otherlv_16= ',' ( ( ruleEString ) ) )* otherlv_18= ')' otherlv_19= 'respuestas' otherlv_20= '{' ( (lv_respuestas_21_0= ruleRespuesta ) ) (otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) ) )* otherlv_24= '}' otherlv_25= '}' ) )
-            // InternalCuestionario.g:878:2: (otherlv_0= 'PreguntaMultiple' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) (otherlv_11= 'siguientePregunta' ( ( ruleEString ) ) )? otherlv_13= 'correctas' otherlv_14= '(' ( ( ruleEString ) ) (otherlv_16= ',' ( ( ruleEString ) ) )* otherlv_18= ')' otherlv_19= 'respuestas' otherlv_20= '{' ( (lv_respuestas_21_0= ruleRespuesta ) ) (otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) ) )* otherlv_24= '}' otherlv_25= '}' )
+            // InternalCuestionario.g:854:2: ( (otherlv_0= 'PreguntaMultiple' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) ( ( (lv_isInicial_11_0= 'isInicial' ) ) otherlv_12= '(' (otherlv_13= 'siguientePreguntaAcierto' ( ( ruleEString ) ) ) otherlv_15= ',' (otherlv_16= 'siguientePreguntaError' ( ( ruleEString ) ) ) otherlv_18= ')' )? otherlv_19= 'respuestas' otherlv_20= '{' ( (lv_respuestas_21_0= ruleRespuesta ) ) (otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) ) )* otherlv_24= '}' (otherlv_25= 'correctas' otherlv_26= '(' ( ( ruleEString ) ) (otherlv_28= ',' ( ( ruleEString ) ) )* otherlv_30= ')' )? otherlv_31= '}' ) )
+            // InternalCuestionario.g:855:2: (otherlv_0= 'PreguntaMultiple' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) ( ( (lv_isInicial_11_0= 'isInicial' ) ) otherlv_12= '(' (otherlv_13= 'siguientePreguntaAcierto' ( ( ruleEString ) ) ) otherlv_15= ',' (otherlv_16= 'siguientePreguntaError' ( ( ruleEString ) ) ) otherlv_18= ')' )? otherlv_19= 'respuestas' otherlv_20= '{' ( (lv_respuestas_21_0= ruleRespuesta ) ) (otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) ) )* otherlv_24= '}' (otherlv_25= 'correctas' otherlv_26= '(' ( ( ruleEString ) ) (otherlv_28= ',' ( ( ruleEString ) ) )* otherlv_30= ')' )? otherlv_31= '}' )
             {
-            // InternalCuestionario.g:878:2: (otherlv_0= 'PreguntaMultiple' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) (otherlv_11= 'siguientePregunta' ( ( ruleEString ) ) )? otherlv_13= 'correctas' otherlv_14= '(' ( ( ruleEString ) ) (otherlv_16= ',' ( ( ruleEString ) ) )* otherlv_18= ')' otherlv_19= 'respuestas' otherlv_20= '{' ( (lv_respuestas_21_0= ruleRespuesta ) ) (otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) ) )* otherlv_24= '}' otherlv_25= '}' )
-            // InternalCuestionario.g:879:3: otherlv_0= 'PreguntaMultiple' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) (otherlv_11= 'siguientePregunta' ( ( ruleEString ) ) )? otherlv_13= 'correctas' otherlv_14= '(' ( ( ruleEString ) ) (otherlv_16= ',' ( ( ruleEString ) ) )* otherlv_18= ')' otherlv_19= 'respuestas' otherlv_20= '{' ( (lv_respuestas_21_0= ruleRespuesta ) ) (otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) ) )* otherlv_24= '}' otherlv_25= '}'
+            // InternalCuestionario.g:855:2: (otherlv_0= 'PreguntaMultiple' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) ( ( (lv_isInicial_11_0= 'isInicial' ) ) otherlv_12= '(' (otherlv_13= 'siguientePreguntaAcierto' ( ( ruleEString ) ) ) otherlv_15= ',' (otherlv_16= 'siguientePreguntaError' ( ( ruleEString ) ) ) otherlv_18= ')' )? otherlv_19= 'respuestas' otherlv_20= '{' ( (lv_respuestas_21_0= ruleRespuesta ) ) (otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) ) )* otherlv_24= '}' (otherlv_25= 'correctas' otherlv_26= '(' ( ( ruleEString ) ) (otherlv_28= ',' ( ( ruleEString ) ) )* otherlv_30= ')' )? otherlv_31= '}' )
+            // InternalCuestionario.g:856:3: otherlv_0= 'PreguntaMultiple' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'enunciado' ( (lv_enunciado_4_0= ruleEString ) ) otherlv_5= 'puntuacion' ( (lv_puntuacion_6_0= ruleEDouble ) ) otherlv_7= 'penalizacion' ( (lv_penalizacion_8_0= ruleEDouble ) ) otherlv_9= 'categoria' ( ( ruleEString ) ) ( ( (lv_isInicial_11_0= 'isInicial' ) ) otherlv_12= '(' (otherlv_13= 'siguientePreguntaAcierto' ( ( ruleEString ) ) ) otherlv_15= ',' (otherlv_16= 'siguientePreguntaError' ( ( ruleEString ) ) ) otherlv_18= ')' )? otherlv_19= 'respuestas' otherlv_20= '{' ( (lv_respuestas_21_0= ruleRespuesta ) ) (otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) ) )* otherlv_24= '}' (otherlv_25= 'correctas' otherlv_26= '(' ( ( ruleEString ) ) (otherlv_28= ',' ( ( ruleEString ) ) )* otherlv_30= ')' )? otherlv_31= '}'
             {
-            otherlv_0=(Token)match(input,38,FOLLOW_5); 
+            otherlv_0=(Token)match(input,38,FOLLOW_10); 
 
             			newLeafNode(otherlv_0, grammarAccess.getPreguntaMultipleAccess().getPreguntaMultipleKeyword_0());
             		
-            // InternalCuestionario.g:883:3: ( (lv_name_1_0= ruleEString ) )
-            // InternalCuestionario.g:884:4: (lv_name_1_0= ruleEString )
+            // InternalCuestionario.g:860:3: ( (lv_name_1_0= ruleEString ) )
+            // InternalCuestionario.g:861:4: (lv_name_1_0= ruleEString )
             {
-            // InternalCuestionario.g:884:4: (lv_name_1_0= ruleEString )
-            // InternalCuestionario.g:885:5: lv_name_1_0= ruleEString
+            // InternalCuestionario.g:861:4: (lv_name_1_0= ruleEString )
+            // InternalCuestionario.g:862:5: lv_name_1_0= ruleEString
             {
 
             					newCompositeNode(grammarAccess.getPreguntaMultipleAccess().getNameEStringParserRuleCall_1_0());
@@ -2034,24 +1964,24 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,12,FOLLOW_24); 
+            otherlv_2=(Token)match(input,12,FOLLOW_23); 
 
             			newLeafNode(otherlv_2, grammarAccess.getPreguntaMultipleAccess().getLeftCurlyBracketKeyword_2());
             		
-            otherlv_3=(Token)match(input,31,FOLLOW_5); 
+            otherlv_3=(Token)match(input,29,FOLLOW_10); 
 
             			newLeafNode(otherlv_3, grammarAccess.getPreguntaMultipleAccess().getEnunciadoKeyword_3());
             		
-            // InternalCuestionario.g:910:3: ( (lv_enunciado_4_0= ruleEString ) )
-            // InternalCuestionario.g:911:4: (lv_enunciado_4_0= ruleEString )
+            // InternalCuestionario.g:887:3: ( (lv_enunciado_4_0= ruleEString ) )
+            // InternalCuestionario.g:888:4: (lv_enunciado_4_0= ruleEString )
             {
-            // InternalCuestionario.g:911:4: (lv_enunciado_4_0= ruleEString )
-            // InternalCuestionario.g:912:5: lv_enunciado_4_0= ruleEString
+            // InternalCuestionario.g:888:4: (lv_enunciado_4_0= ruleEString )
+            // InternalCuestionario.g:889:5: lv_enunciado_4_0= ruleEString
             {
 
             					newCompositeNode(grammarAccess.getPreguntaMultipleAccess().getEnunciadoEStringParserRuleCall_4_0());
             				
-            pushFollow(FOLLOW_25);
+            pushFollow(FOLLOW_24);
             lv_enunciado_4_0=ruleEString();
 
             state._fsp--;
@@ -2073,20 +2003,20 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,32,FOLLOW_16); 
+            otherlv_5=(Token)match(input,30,FOLLOW_16); 
 
             			newLeafNode(otherlv_5, grammarAccess.getPreguntaMultipleAccess().getPuntuacionKeyword_5());
             		
-            // InternalCuestionario.g:933:3: ( (lv_puntuacion_6_0= ruleEDouble ) )
-            // InternalCuestionario.g:934:4: (lv_puntuacion_6_0= ruleEDouble )
+            // InternalCuestionario.g:910:3: ( (lv_puntuacion_6_0= ruleEDouble ) )
+            // InternalCuestionario.g:911:4: (lv_puntuacion_6_0= ruleEDouble )
             {
-            // InternalCuestionario.g:934:4: (lv_puntuacion_6_0= ruleEDouble )
-            // InternalCuestionario.g:935:5: lv_puntuacion_6_0= ruleEDouble
+            // InternalCuestionario.g:911:4: (lv_puntuacion_6_0= ruleEDouble )
+            // InternalCuestionario.g:912:5: lv_puntuacion_6_0= ruleEDouble
             {
 
             					newCompositeNode(grammarAccess.getPreguntaMultipleAccess().getPuntuacionEDoubleParserRuleCall_6_0());
             				
-            pushFollow(FOLLOW_26);
+            pushFollow(FOLLOW_25);
             lv_puntuacion_6_0=ruleEDouble();
 
             state._fsp--;
@@ -2108,20 +2038,20 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_7=(Token)match(input,33,FOLLOW_16); 
+            otherlv_7=(Token)match(input,31,FOLLOW_16); 
 
             			newLeafNode(otherlv_7, grammarAccess.getPreguntaMultipleAccess().getPenalizacionKeyword_7());
             		
-            // InternalCuestionario.g:956:3: ( (lv_penalizacion_8_0= ruleEDouble ) )
-            // InternalCuestionario.g:957:4: (lv_penalizacion_8_0= ruleEDouble )
+            // InternalCuestionario.g:933:3: ( (lv_penalizacion_8_0= ruleEDouble ) )
+            // InternalCuestionario.g:934:4: (lv_penalizacion_8_0= ruleEDouble )
             {
-            // InternalCuestionario.g:957:4: (lv_penalizacion_8_0= ruleEDouble )
-            // InternalCuestionario.g:958:5: lv_penalizacion_8_0= ruleEDouble
+            // InternalCuestionario.g:934:4: (lv_penalizacion_8_0= ruleEDouble )
+            // InternalCuestionario.g:935:5: lv_penalizacion_8_0= ruleEDouble
             {
 
             					newCompositeNode(grammarAccess.getPreguntaMultipleAccess().getPenalizacionEDoubleParserRuleCall_8_0());
             				
-            pushFollow(FOLLOW_27);
+            pushFollow(FOLLOW_26);
             lv_penalizacion_8_0=ruleEDouble();
 
             state._fsp--;
@@ -2143,15 +2073,15 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_9=(Token)match(input,34,FOLLOW_5); 
+            otherlv_9=(Token)match(input,32,FOLLOW_10); 
 
             			newLeafNode(otherlv_9, grammarAccess.getPreguntaMultipleAccess().getCategoriaKeyword_9());
             		
-            // InternalCuestionario.g:979:3: ( ( ruleEString ) )
-            // InternalCuestionario.g:980:4: ( ruleEString )
+            // InternalCuestionario.g:956:3: ( ( ruleEString ) )
+            // InternalCuestionario.g:957:4: ( ruleEString )
             {
-            // InternalCuestionario.g:980:4: ( ruleEString )
-            // InternalCuestionario.g:981:5: ruleEString
+            // InternalCuestionario.g:957:4: ( ruleEString )
+            // InternalCuestionario.g:958:5: ruleEString
             {
 
             					if (current==null) {
@@ -2161,7 +2091,7 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
             					newCompositeNode(grammarAccess.getPreguntaMultipleAccess().getCategoriaCategoriaCrossReference_10_0());
             				
-            pushFollow(FOLLOW_32);
+            pushFollow(FOLLOW_27);
             ruleEString();
 
             state._fsp--;
@@ -2175,169 +2105,151 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalCuestionario.g:995:3: (otherlv_11= 'siguientePregunta' ( ( ruleEString ) ) )?
+            // InternalCuestionario.g:972:3: ( ( (lv_isInicial_11_0= 'isInicial' ) ) otherlv_12= '(' (otherlv_13= 'siguientePreguntaAcierto' ( ( ruleEString ) ) ) otherlv_15= ',' (otherlv_16= 'siguientePreguntaError' ( ( ruleEString ) ) ) otherlv_18= ')' )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
-            if ( (LA15_0==35) ) {
+            if ( (LA15_0==33) ) {
                 alt15=1;
             }
             switch (alt15) {
                 case 1 :
-                    // InternalCuestionario.g:996:4: otherlv_11= 'siguientePregunta' ( ( ruleEString ) )
+                    // InternalCuestionario.g:973:4: ( (lv_isInicial_11_0= 'isInicial' ) ) otherlv_12= '(' (otherlv_13= 'siguientePreguntaAcierto' ( ( ruleEString ) ) ) otherlv_15= ',' (otherlv_16= 'siguientePreguntaError' ( ( ruleEString ) ) ) otherlv_18= ')'
                     {
-                    otherlv_11=(Token)match(input,35,FOLLOW_5); 
+                    // InternalCuestionario.g:973:4: ( (lv_isInicial_11_0= 'isInicial' ) )
+                    // InternalCuestionario.g:974:5: (lv_isInicial_11_0= 'isInicial' )
+                    {
+                    // InternalCuestionario.g:974:5: (lv_isInicial_11_0= 'isInicial' )
+                    // InternalCuestionario.g:975:6: lv_isInicial_11_0= 'isInicial'
+                    {
+                    lv_isInicial_11_0=(Token)match(input,33,FOLLOW_12); 
 
-                    				newLeafNode(otherlv_11, grammarAccess.getPreguntaMultipleAccess().getSiguientePreguntaKeyword_11_0());
-                    			
-                    // InternalCuestionario.g:1000:4: ( ( ruleEString ) )
-                    // InternalCuestionario.g:1001:5: ( ruleEString )
-                    {
-                    // InternalCuestionario.g:1001:5: ( ruleEString )
-                    // InternalCuestionario.g:1002:6: ruleEString
-                    {
+                    						newLeafNode(lv_isInicial_11_0, grammarAccess.getPreguntaMultipleAccess().getIsInicialIsInicialKeyword_11_0_0());
+                    					
 
                     						if (current==null) {
                     							current = createModelElement(grammarAccess.getPreguntaMultipleRule());
                     						}
+                    						setWithLastConsumed(current, "isInicial", lv_isInicial_11_0 != null, "isInicial");
                     					
 
-                    						newCompositeNode(grammarAccess.getPreguntaMultipleAccess().getSiguientePreguntaPreguntaCrossReference_11_1_0());
-                    					
-                    pushFollow(FOLLOW_33);
+                    }
+
+
+                    }
+
+                    otherlv_12=(Token)match(input,19,FOLLOW_28); 
+
+                    				newLeafNode(otherlv_12, grammarAccess.getPreguntaMultipleAccess().getLeftParenthesisKeyword_11_1());
+                    			
+                    // InternalCuestionario.g:991:4: (otherlv_13= 'siguientePreguntaAcierto' ( ( ruleEString ) ) )
+                    // InternalCuestionario.g:992:5: otherlv_13= 'siguientePreguntaAcierto' ( ( ruleEString ) )
+                    {
+                    otherlv_13=(Token)match(input,34,FOLLOW_10); 
+
+                    					newLeafNode(otherlv_13, grammarAccess.getPreguntaMultipleAccess().getSiguientePreguntaAciertoKeyword_11_2_0());
+                    				
+                    // InternalCuestionario.g:996:5: ( ( ruleEString ) )
+                    // InternalCuestionario.g:997:6: ( ruleEString )
+                    {
+                    // InternalCuestionario.g:997:6: ( ruleEString )
+                    // InternalCuestionario.g:998:7: ruleEString
+                    {
+
+                    							if (current==null) {
+                    								current = createModelElement(grammarAccess.getPreguntaMultipleRule());
+                    							}
+                    						
+
+                    							newCompositeNode(grammarAccess.getPreguntaMultipleAccess().getSiguientePreguntaAciertoPreguntaCrossReference_11_2_1_0());
+                    						
+                    pushFollow(FOLLOW_29);
                     ruleEString();
 
                     state._fsp--;
 
 
-                    						afterParserOrEnumRuleCall();
-                    					
+                    							afterParserOrEnumRuleCall();
+                    						
 
                     }
 
 
                     }
 
+
+                    }
+
+                    otherlv_15=(Token)match(input,14,FOLLOW_30); 
+
+                    				newLeafNode(otherlv_15, grammarAccess.getPreguntaMultipleAccess().getCommaKeyword_11_3());
+                    			
+                    // InternalCuestionario.g:1017:4: (otherlv_16= 'siguientePreguntaError' ( ( ruleEString ) ) )
+                    // InternalCuestionario.g:1018:5: otherlv_16= 'siguientePreguntaError' ( ( ruleEString ) )
+                    {
+                    otherlv_16=(Token)match(input,35,FOLLOW_10); 
+
+                    					newLeafNode(otherlv_16, grammarAccess.getPreguntaMultipleAccess().getSiguientePreguntaErrorKeyword_11_4_0());
+                    				
+                    // InternalCuestionario.g:1022:5: ( ( ruleEString ) )
+                    // InternalCuestionario.g:1023:6: ( ruleEString )
+                    {
+                    // InternalCuestionario.g:1023:6: ( ruleEString )
+                    // InternalCuestionario.g:1024:7: ruleEString
+                    {
+
+                    							if (current==null) {
+                    								current = createModelElement(grammarAccess.getPreguntaMultipleRule());
+                    							}
+                    						
+
+                    							newCompositeNode(grammarAccess.getPreguntaMultipleAccess().getSiguientePreguntaErrorPreguntaCrossReference_11_4_1_0());
+                    						
+                    pushFollow(FOLLOW_31);
+                    ruleEString();
+
+                    state._fsp--;
+
+
+                    							afterParserOrEnumRuleCall();
+                    						
+
+                    }
+
+
+                    }
+
+
+                    }
+
+                    otherlv_18=(Token)match(input,20,FOLLOW_32); 
+
+                    				newLeafNode(otherlv_18, grammarAccess.getPreguntaMultipleAccess().getRightParenthesisKeyword_11_5());
+                    			
 
                     }
                     break;
 
             }
 
-            otherlv_13=(Token)match(input,39,FOLLOW_7); 
+            otherlv_19=(Token)match(input,36,FOLLOW_3); 
 
-            			newLeafNode(otherlv_13, grammarAccess.getPreguntaMultipleAccess().getCorrectasKeyword_12());
+            			newLeafNode(otherlv_19, grammarAccess.getPreguntaMultipleAccess().getRespuestasKeyword_12());
             		
-            otherlv_14=(Token)match(input,15,FOLLOW_5); 
+            otherlv_20=(Token)match(input,12,FOLLOW_33); 
 
-            			newLeafNode(otherlv_14, grammarAccess.getPreguntaMultipleAccess().getLeftParenthesisKeyword_13());
+            			newLeafNode(otherlv_20, grammarAccess.getPreguntaMultipleAccess().getLeftCurlyBracketKeyword_13());
             		
-            // InternalCuestionario.g:1025:3: ( ( ruleEString ) )
-            // InternalCuestionario.g:1026:4: ( ruleEString )
+            // InternalCuestionario.g:1052:3: ( (lv_respuestas_21_0= ruleRespuesta ) )
+            // InternalCuestionario.g:1053:4: (lv_respuestas_21_0= ruleRespuesta )
             {
-            // InternalCuestionario.g:1026:4: ( ruleEString )
-            // InternalCuestionario.g:1027:5: ruleEString
-            {
-
-            					if (current==null) {
-            						current = createModelElement(grammarAccess.getPreguntaMultipleRule());
-            					}
-            				
-
-            					newCompositeNode(grammarAccess.getPreguntaMultipleAccess().getCorrectasRespuestaCrossReference_14_0());
-            				
-            pushFollow(FOLLOW_8);
-            ruleEString();
-
-            state._fsp--;
-
-
-            					afterParserOrEnumRuleCall();
-            				
-
-            }
-
-
-            }
-
-            // InternalCuestionario.g:1041:3: (otherlv_16= ',' ( ( ruleEString ) ) )*
-            loop16:
-            do {
-                int alt16=2;
-                int LA16_0 = input.LA(1);
-
-                if ( (LA16_0==16) ) {
-                    alt16=1;
-                }
-
-
-                switch (alt16) {
-            	case 1 :
-            	    // InternalCuestionario.g:1042:4: otherlv_16= ',' ( ( ruleEString ) )
-            	    {
-            	    otherlv_16=(Token)match(input,16,FOLLOW_5); 
-
-            	    				newLeafNode(otherlv_16, grammarAccess.getPreguntaMultipleAccess().getCommaKeyword_15_0());
-            	    			
-            	    // InternalCuestionario.g:1046:4: ( ( ruleEString ) )
-            	    // InternalCuestionario.g:1047:5: ( ruleEString )
-            	    {
-            	    // InternalCuestionario.g:1047:5: ( ruleEString )
-            	    // InternalCuestionario.g:1048:6: ruleEString
-            	    {
-
-            	    						if (current==null) {
-            	    							current = createModelElement(grammarAccess.getPreguntaMultipleRule());
-            	    						}
-            	    					
-
-            	    						newCompositeNode(grammarAccess.getPreguntaMultipleAccess().getCorrectasRespuestaCrossReference_15_1_0());
-            	    					
-            	    pushFollow(FOLLOW_8);
-            	    ruleEString();
-
-            	    state._fsp--;
-
-
-            	    						afterParserOrEnumRuleCall();
-            	    					
-
-            	    }
-
-
-            	    }
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop16;
-                }
-            } while (true);
-
-            otherlv_18=(Token)match(input,17,FOLLOW_30); 
-
-            			newLeafNode(otherlv_18, grammarAccess.getPreguntaMultipleAccess().getRightParenthesisKeyword_16());
-            		
-            otherlv_19=(Token)match(input,37,FOLLOW_3); 
-
-            			newLeafNode(otherlv_19, grammarAccess.getPreguntaMultipleAccess().getRespuestasKeyword_17());
-            		
-            otherlv_20=(Token)match(input,12,FOLLOW_31); 
-
-            			newLeafNode(otherlv_20, grammarAccess.getPreguntaMultipleAccess().getLeftCurlyBracketKeyword_18());
-            		
-            // InternalCuestionario.g:1075:3: ( (lv_respuestas_21_0= ruleRespuesta ) )
-            // InternalCuestionario.g:1076:4: (lv_respuestas_21_0= ruleRespuesta )
-            {
-            // InternalCuestionario.g:1076:4: (lv_respuestas_21_0= ruleRespuesta )
-            // InternalCuestionario.g:1077:5: lv_respuestas_21_0= ruleRespuesta
+            // InternalCuestionario.g:1053:4: (lv_respuestas_21_0= ruleRespuesta )
+            // InternalCuestionario.g:1054:5: lv_respuestas_21_0= ruleRespuesta
             {
 
-            					newCompositeNode(grammarAccess.getPreguntaMultipleAccess().getRespuestasRespuestaParserRuleCall_19_0());
+            					newCompositeNode(grammarAccess.getPreguntaMultipleAccess().getRespuestasRespuestaParserRuleCall_14_0());
             				
-            pushFollow(FOLLOW_11);
+            pushFollow(FOLLOW_6);
             lv_respuestas_21_0=ruleRespuesta();
 
             state._fsp--;
@@ -2359,35 +2271,35 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalCuestionario.g:1094:3: (otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) ) )*
-            loop17:
+            // InternalCuestionario.g:1071:3: (otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) ) )*
+            loop16:
             do {
-                int alt17=2;
-                int LA17_0 = input.LA(1);
+                int alt16=2;
+                int LA16_0 = input.LA(1);
 
-                if ( (LA17_0==16) ) {
-                    alt17=1;
+                if ( (LA16_0==14) ) {
+                    alt16=1;
                 }
 
 
-                switch (alt17) {
+                switch (alt16) {
             	case 1 :
-            	    // InternalCuestionario.g:1095:4: otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) )
+            	    // InternalCuestionario.g:1072:4: otherlv_22= ',' ( (lv_respuestas_23_0= ruleRespuesta ) )
             	    {
-            	    otherlv_22=(Token)match(input,16,FOLLOW_31); 
+            	    otherlv_22=(Token)match(input,14,FOLLOW_33); 
 
-            	    				newLeafNode(otherlv_22, grammarAccess.getPreguntaMultipleAccess().getCommaKeyword_20_0());
+            	    				newLeafNode(otherlv_22, grammarAccess.getPreguntaMultipleAccess().getCommaKeyword_15_0());
             	    			
-            	    // InternalCuestionario.g:1099:4: ( (lv_respuestas_23_0= ruleRespuesta ) )
-            	    // InternalCuestionario.g:1100:5: (lv_respuestas_23_0= ruleRespuesta )
+            	    // InternalCuestionario.g:1076:4: ( (lv_respuestas_23_0= ruleRespuesta ) )
+            	    // InternalCuestionario.g:1077:5: (lv_respuestas_23_0= ruleRespuesta )
             	    {
-            	    // InternalCuestionario.g:1100:5: (lv_respuestas_23_0= ruleRespuesta )
-            	    // InternalCuestionario.g:1101:6: lv_respuestas_23_0= ruleRespuesta
+            	    // InternalCuestionario.g:1077:5: (lv_respuestas_23_0= ruleRespuesta )
+            	    // InternalCuestionario.g:1078:6: lv_respuestas_23_0= ruleRespuesta
             	    {
 
-            	    						newCompositeNode(grammarAccess.getPreguntaMultipleAccess().getRespuestasRespuestaParserRuleCall_20_1_0());
+            	    						newCompositeNode(grammarAccess.getPreguntaMultipleAccess().getRespuestasRespuestaParserRuleCall_15_1_0());
             	    					
-            	    pushFollow(FOLLOW_11);
+            	    pushFollow(FOLLOW_6);
             	    lv_respuestas_23_0=ruleRespuesta();
 
             	    state._fsp--;
@@ -2414,17 +2326,130 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop17;
+            	    break loop16;
                 }
             } while (true);
 
-            otherlv_24=(Token)match(input,19,FOLLOW_14); 
+            otherlv_24=(Token)match(input,15,FOLLOW_35); 
 
-            			newLeafNode(otherlv_24, grammarAccess.getPreguntaMultipleAccess().getRightCurlyBracketKeyword_21());
+            			newLeafNode(otherlv_24, grammarAccess.getPreguntaMultipleAccess().getRightCurlyBracketKeyword_16());
             		
-            otherlv_25=(Token)match(input,19,FOLLOW_2); 
+            // InternalCuestionario.g:1100:3: (otherlv_25= 'correctas' otherlv_26= '(' ( ( ruleEString ) ) (otherlv_28= ',' ( ( ruleEString ) ) )* otherlv_30= ')' )?
+            int alt18=2;
+            int LA18_0 = input.LA(1);
 
-            			newLeafNode(otherlv_25, grammarAccess.getPreguntaMultipleAccess().getRightCurlyBracketKeyword_22());
+            if ( (LA18_0==39) ) {
+                alt18=1;
+            }
+            switch (alt18) {
+                case 1 :
+                    // InternalCuestionario.g:1101:4: otherlv_25= 'correctas' otherlv_26= '(' ( ( ruleEString ) ) (otherlv_28= ',' ( ( ruleEString ) ) )* otherlv_30= ')'
+                    {
+                    otherlv_25=(Token)match(input,39,FOLLOW_12); 
+
+                    				newLeafNode(otherlv_25, grammarAccess.getPreguntaMultipleAccess().getCorrectasKeyword_17_0());
+                    			
+                    otherlv_26=(Token)match(input,19,FOLLOW_10); 
+
+                    				newLeafNode(otherlv_26, grammarAccess.getPreguntaMultipleAccess().getLeftParenthesisKeyword_17_1());
+                    			
+                    // InternalCuestionario.g:1109:4: ( ( ruleEString ) )
+                    // InternalCuestionario.g:1110:5: ( ruleEString )
+                    {
+                    // InternalCuestionario.g:1110:5: ( ruleEString )
+                    // InternalCuestionario.g:1111:6: ruleEString
+                    {
+
+                    						if (current==null) {
+                    							current = createModelElement(grammarAccess.getPreguntaMultipleRule());
+                    						}
+                    					
+
+                    						newCompositeNode(grammarAccess.getPreguntaMultipleAccess().getCorrectasRespuestaCrossReference_17_2_0());
+                    					
+                    pushFollow(FOLLOW_13);
+                    ruleEString();
+
+                    state._fsp--;
+
+
+                    						afterParserOrEnumRuleCall();
+                    					
+
+                    }
+
+
+                    }
+
+                    // InternalCuestionario.g:1125:4: (otherlv_28= ',' ( ( ruleEString ) ) )*
+                    loop17:
+                    do {
+                        int alt17=2;
+                        int LA17_0 = input.LA(1);
+
+                        if ( (LA17_0==14) ) {
+                            alt17=1;
+                        }
+
+
+                        switch (alt17) {
+                    	case 1 :
+                    	    // InternalCuestionario.g:1126:5: otherlv_28= ',' ( ( ruleEString ) )
+                    	    {
+                    	    otherlv_28=(Token)match(input,14,FOLLOW_10); 
+
+                    	    					newLeafNode(otherlv_28, grammarAccess.getPreguntaMultipleAccess().getCommaKeyword_17_3_0());
+                    	    				
+                    	    // InternalCuestionario.g:1130:5: ( ( ruleEString ) )
+                    	    // InternalCuestionario.g:1131:6: ( ruleEString )
+                    	    {
+                    	    // InternalCuestionario.g:1131:6: ( ruleEString )
+                    	    // InternalCuestionario.g:1132:7: ruleEString
+                    	    {
+
+                    	    							if (current==null) {
+                    	    								current = createModelElement(grammarAccess.getPreguntaMultipleRule());
+                    	    							}
+                    	    						
+
+                    	    							newCompositeNode(grammarAccess.getPreguntaMultipleAccess().getCorrectasRespuestaCrossReference_17_3_1_0());
+                    	    						
+                    	    pushFollow(FOLLOW_13);
+                    	    ruleEString();
+
+                    	    state._fsp--;
+
+
+                    	    							afterParserOrEnumRuleCall();
+                    	    						
+
+                    	    }
+
+
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop17;
+                        }
+                    } while (true);
+
+                    otherlv_30=(Token)match(input,20,FOLLOW_14); 
+
+                    				newLeafNode(otherlv_30, grammarAccess.getPreguntaMultipleAccess().getRightParenthesisKeyword_17_4());
+                    			
+
+                    }
+                    break;
+
+            }
+
+            otherlv_31=(Token)match(input,15,FOLLOW_2); 
+
+            			newLeafNode(otherlv_31, grammarAccess.getPreguntaMultipleAccess().getRightCurlyBracketKeyword_18());
             		
 
             }
@@ -2447,6 +2472,166 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
     }
     // $ANTLR end "rulePreguntaMultiple"
 
+
+    // $ANTLR start "entryRuleRespuesta"
+    // InternalCuestionario.g:1160:1: entryRuleRespuesta returns [EObject current=null] : iv_ruleRespuesta= ruleRespuesta EOF ;
+    public final EObject entryRuleRespuesta() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleRespuesta = null;
+
+
+        try {
+            // InternalCuestionario.g:1160:50: (iv_ruleRespuesta= ruleRespuesta EOF )
+            // InternalCuestionario.g:1161:2: iv_ruleRespuesta= ruleRespuesta EOF
+            {
+             newCompositeNode(grammarAccess.getRespuestaRule()); 
+            pushFollow(FOLLOW_1);
+            iv_ruleRespuesta=ruleRespuesta();
+
+            state._fsp--;
+
+             current =iv_ruleRespuesta; 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleRespuesta"
+
+
+    // $ANTLR start "ruleRespuesta"
+    // InternalCuestionario.g:1167:1: ruleRespuesta returns [EObject current=null] : (otherlv_0= 'Respuesta' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'opcion' ( (lv_opcion_4_0= ruleEString ) ) otherlv_5= '}' ) ;
+    public final EObject ruleRespuesta() throws RecognitionException {
+        EObject current = null;
+
+        Token otherlv_0=null;
+        Token otherlv_2=null;
+        Token otherlv_3=null;
+        Token otherlv_5=null;
+        AntlrDatatypeRuleToken lv_name_1_0 = null;
+
+        AntlrDatatypeRuleToken lv_opcion_4_0 = null;
+
+
+
+        	enterRule();
+
+        try {
+            // InternalCuestionario.g:1173:2: ( (otherlv_0= 'Respuesta' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'opcion' ( (lv_opcion_4_0= ruleEString ) ) otherlv_5= '}' ) )
+            // InternalCuestionario.g:1174:2: (otherlv_0= 'Respuesta' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'opcion' ( (lv_opcion_4_0= ruleEString ) ) otherlv_5= '}' )
+            {
+            // InternalCuestionario.g:1174:2: (otherlv_0= 'Respuesta' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'opcion' ( (lv_opcion_4_0= ruleEString ) ) otherlv_5= '}' )
+            // InternalCuestionario.g:1175:3: otherlv_0= 'Respuesta' ( (lv_name_1_0= ruleEString ) ) otherlv_2= '{' otherlv_3= 'opcion' ( (lv_opcion_4_0= ruleEString ) ) otherlv_5= '}'
+            {
+            otherlv_0=(Token)match(input,40,FOLLOW_10); 
+
+            			newLeafNode(otherlv_0, grammarAccess.getRespuestaAccess().getRespuestaKeyword_0());
+            		
+            // InternalCuestionario.g:1179:3: ( (lv_name_1_0= ruleEString ) )
+            // InternalCuestionario.g:1180:4: (lv_name_1_0= ruleEString )
+            {
+            // InternalCuestionario.g:1180:4: (lv_name_1_0= ruleEString )
+            // InternalCuestionario.g:1181:5: lv_name_1_0= ruleEString
+            {
+
+            					newCompositeNode(grammarAccess.getRespuestaAccess().getNameEStringParserRuleCall_1_0());
+            				
+            pushFollow(FOLLOW_3);
+            lv_name_1_0=ruleEString();
+
+            state._fsp--;
+
+
+            					if (current==null) {
+            						current = createModelElementForParent(grammarAccess.getRespuestaRule());
+            					}
+            					set(
+            						current,
+            						"name",
+            						lv_name_1_0,
+            						"cuestionario.Cuestionario.EString");
+            					afterParserOrEnumRuleCall();
+            				
+
+            }
+
+
+            }
+
+            otherlv_2=(Token)match(input,12,FOLLOW_36); 
+
+            			newLeafNode(otherlv_2, grammarAccess.getRespuestaAccess().getLeftCurlyBracketKeyword_2());
+            		
+            otherlv_3=(Token)match(input,41,FOLLOW_10); 
+
+            			newLeafNode(otherlv_3, grammarAccess.getRespuestaAccess().getOpcionKeyword_3());
+            		
+            // InternalCuestionario.g:1206:3: ( (lv_opcion_4_0= ruleEString ) )
+            // InternalCuestionario.g:1207:4: (lv_opcion_4_0= ruleEString )
+            {
+            // InternalCuestionario.g:1207:4: (lv_opcion_4_0= ruleEString )
+            // InternalCuestionario.g:1208:5: lv_opcion_4_0= ruleEString
+            {
+
+            					newCompositeNode(grammarAccess.getRespuestaAccess().getOpcionEStringParserRuleCall_4_0());
+            				
+            pushFollow(FOLLOW_14);
+            lv_opcion_4_0=ruleEString();
+
+            state._fsp--;
+
+
+            					if (current==null) {
+            						current = createModelElementForParent(grammarAccess.getRespuestaRule());
+            					}
+            					set(
+            						current,
+            						"opcion",
+            						lv_opcion_4_0,
+            						"cuestionario.Cuestionario.EString");
+            					afterParserOrEnumRuleCall();
+            				
+
+            }
+
+
+            }
+
+            otherlv_5=(Token)match(input,15,FOLLOW_2); 
+
+            			newLeafNode(otherlv_5, grammarAccess.getRespuestaAccess().getRightCurlyBracketKeyword_5());
+            		
+
+            }
+
+
+            }
+
+
+            	leaveRule();
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleRespuesta"
+
     // Delegated rules
 
 
@@ -2456,34 +2641,37 @@ public class InternalCuestionarioParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000030000L});
-    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000004040000000L});
-    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000090000L});
-    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000004010000000L});
+    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x000000000000C000L});
+    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000104000L});
+    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000008000L});
     public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000003000040L});
-    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000880000L});
+    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000808000L});
     public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000002000040L});
     public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000002000000L});
     public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x000000000C000002L});
     public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000001000040L});
     public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000001800000000L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000008800000000L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000001200000000L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000008000008000L});
+    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000020000000000L});
 
 }

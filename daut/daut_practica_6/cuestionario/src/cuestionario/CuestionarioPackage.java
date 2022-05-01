@@ -177,22 +177,31 @@ public interface CuestionarioPackage extends EPackage {
 	int PREGUNTA__CATEGORIA = 4;
 
 	/**
-	 * The feature id for the '<em><b>Respuestas</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Is Inicial</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREGUNTA__RESPUESTAS = 5;
+	int PREGUNTA__IS_INICIAL = 5;
 
 	/**
-	 * The feature id for the '<em><b>Siguiente Pregunta</b></em>' reference.
+	 * The feature id for the '<em><b>Siguiente Pregunta Acierto</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREGUNTA__SIGUIENTE_PREGUNTA = 6;
+	int PREGUNTA__SIGUIENTE_PREGUNTA_ACIERTO = 6;
+
+	/**
+	 * The feature id for the '<em><b>Siguiente Pregunta Error</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREGUNTA__SIGUIENTE_PREGUNTA_ERROR = 7;
 
 	/**
 	 * The number of structural features of the '<em>Pregunta</em>' class.
@@ -201,7 +210,7 @@ public interface CuestionarioPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PREGUNTA_FEATURE_COUNT = 7;
+	int PREGUNTA_FEATURE_COUNT = 8;
 
 	/**
 	 * The number of operations of the '<em>Pregunta</em>' class.
@@ -323,22 +332,40 @@ public interface CuestionarioPackage extends EPackage {
 	int PREGUNTA_UNICA__CATEGORIA = PREGUNTA__CATEGORIA;
 
 	/**
+	 * The feature id for the '<em><b>Is Inicial</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREGUNTA_UNICA__IS_INICIAL = PREGUNTA__IS_INICIAL;
+
+	/**
+	 * The feature id for the '<em><b>Siguiente Pregunta Acierto</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREGUNTA_UNICA__SIGUIENTE_PREGUNTA_ACIERTO = PREGUNTA__SIGUIENTE_PREGUNTA_ACIERTO;
+
+	/**
+	 * The feature id for the '<em><b>Siguiente Pregunta Error</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREGUNTA_UNICA__SIGUIENTE_PREGUNTA_ERROR = PREGUNTA__SIGUIENTE_PREGUNTA_ERROR;
+
+	/**
 	 * The feature id for the '<em><b>Respuestas</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREGUNTA_UNICA__RESPUESTAS = PREGUNTA__RESPUESTAS;
-
-	/**
-	 * The feature id for the '<em><b>Siguiente Pregunta</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREGUNTA_UNICA__SIGUIENTE_PREGUNTA = PREGUNTA__SIGUIENTE_PREGUNTA;
+	int PREGUNTA_UNICA__RESPUESTAS = PREGUNTA_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Correcta</b></em>' reference.
@@ -347,7 +374,7 @@ public interface CuestionarioPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PREGUNTA_UNICA__CORRECTA = PREGUNTA_FEATURE_COUNT + 0;
+	int PREGUNTA_UNICA__CORRECTA = PREGUNTA_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Pregunta Unica</em>' class.
@@ -356,7 +383,7 @@ public interface CuestionarioPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PREGUNTA_UNICA_FEATURE_COUNT = PREGUNTA_FEATURE_COUNT + 1;
+	int PREGUNTA_UNICA_FEATURE_COUNT = PREGUNTA_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Pregunta Unica</em>' class.
@@ -423,22 +450,40 @@ public interface CuestionarioPackage extends EPackage {
 	int PREGUNTA_MULTIPLE__CATEGORIA = PREGUNTA__CATEGORIA;
 
 	/**
+	 * The feature id for the '<em><b>Is Inicial</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREGUNTA_MULTIPLE__IS_INICIAL = PREGUNTA__IS_INICIAL;
+
+	/**
+	 * The feature id for the '<em><b>Siguiente Pregunta Acierto</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREGUNTA_MULTIPLE__SIGUIENTE_PREGUNTA_ACIERTO = PREGUNTA__SIGUIENTE_PREGUNTA_ACIERTO;
+
+	/**
+	 * The feature id for the '<em><b>Siguiente Pregunta Error</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREGUNTA_MULTIPLE__SIGUIENTE_PREGUNTA_ERROR = PREGUNTA__SIGUIENTE_PREGUNTA_ERROR;
+
+	/**
 	 * The feature id for the '<em><b>Respuestas</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREGUNTA_MULTIPLE__RESPUESTAS = PREGUNTA__RESPUESTAS;
-
-	/**
-	 * The feature id for the '<em><b>Siguiente Pregunta</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREGUNTA_MULTIPLE__SIGUIENTE_PREGUNTA = PREGUNTA__SIGUIENTE_PREGUNTA;
+	int PREGUNTA_MULTIPLE__RESPUESTAS = PREGUNTA_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Correctas</b></em>' reference list.
@@ -447,7 +492,7 @@ public interface CuestionarioPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PREGUNTA_MULTIPLE__CORRECTAS = PREGUNTA_FEATURE_COUNT + 0;
+	int PREGUNTA_MULTIPLE__CORRECTAS = PREGUNTA_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Pregunta Multiple</em>' class.
@@ -456,7 +501,7 @@ public interface CuestionarioPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PREGUNTA_MULTIPLE_FEATURE_COUNT = PREGUNTA_FEATURE_COUNT + 1;
+	int PREGUNTA_MULTIPLE_FEATURE_COUNT = PREGUNTA_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Pregunta Multiple</em>' class.
@@ -634,26 +679,37 @@ public interface CuestionarioPackage extends EPackage {
 	EReference getPregunta_Categoria();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link cuestionario.Pregunta#getRespuestas <em>Respuestas</em>}'.
+	 * Returns the meta object for the attribute '{@link cuestionario.Pregunta#isIsInicial <em>Is Inicial</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Respuestas</em>'.
-	 * @see cuestionario.Pregunta#getRespuestas()
+	 * @return the meta object for the attribute '<em>Is Inicial</em>'.
+	 * @see cuestionario.Pregunta#isIsInicial()
 	 * @see #getPregunta()
 	 * @generated
 	 */
-	EReference getPregunta_Respuestas();
+	EAttribute getPregunta_IsInicial();
 
 	/**
-	 * Returns the meta object for the reference '{@link cuestionario.Pregunta#getSiguientePregunta <em>Siguiente Pregunta</em>}'.
+	 * Returns the meta object for the reference '{@link cuestionario.Pregunta#getSiguientePreguntaAcierto <em>Siguiente Pregunta Acierto</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Siguiente Pregunta</em>'.
-	 * @see cuestionario.Pregunta#getSiguientePregunta()
+	 * @return the meta object for the reference '<em>Siguiente Pregunta Acierto</em>'.
+	 * @see cuestionario.Pregunta#getSiguientePreguntaAcierto()
 	 * @see #getPregunta()
 	 * @generated
 	 */
-	EReference getPregunta_SiguientePregunta();
+	EReference getPregunta_SiguientePreguntaAcierto();
+
+	/**
+	 * Returns the meta object for the reference '{@link cuestionario.Pregunta#getSiguientePreguntaError <em>Siguiente Pregunta Error</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Siguiente Pregunta Error</em>'.
+	 * @see cuestionario.Pregunta#getSiguientePreguntaError()
+	 * @see #getPregunta()
+	 * @generated
+	 */
+	EReference getPregunta_SiguientePreguntaError();
 
 	/**
 	 * Returns the meta object for class '{@link cuestionario.Categoria <em>Categoria</em>}'.
@@ -709,6 +765,17 @@ public interface CuestionarioPackage extends EPackage {
 	EClass getPreguntaUnica();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link cuestionario.PreguntaUnica#getRespuestas <em>Respuestas</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Respuestas</em>'.
+	 * @see cuestionario.PreguntaUnica#getRespuestas()
+	 * @see #getPreguntaUnica()
+	 * @generated
+	 */
+	EReference getPreguntaUnica_Respuestas();
+
+	/**
 	 * Returns the meta object for the reference '{@link cuestionario.PreguntaUnica#getCorrecta <em>Correcta</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -728,6 +795,17 @@ public interface CuestionarioPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPreguntaMultiple();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link cuestionario.PreguntaMultiple#getRespuestas <em>Respuestas</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Respuestas</em>'.
+	 * @see cuestionario.PreguntaMultiple#getRespuestas()
+	 * @see #getPreguntaMultiple()
+	 * @generated
+	 */
+	EReference getPreguntaMultiple_Respuestas();
 
 	/**
 	 * Returns the meta object for the reference list '{@link cuestionario.PreguntaMultiple#getCorrectas <em>Correctas</em>}'.
@@ -888,20 +966,28 @@ public interface CuestionarioPackage extends EPackage {
 		EReference PREGUNTA__CATEGORIA = eINSTANCE.getPregunta_Categoria();
 
 		/**
-		 * The meta object literal for the '<em><b>Respuestas</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Is Inicial</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PREGUNTA__RESPUESTAS = eINSTANCE.getPregunta_Respuestas();
+		EAttribute PREGUNTA__IS_INICIAL = eINSTANCE.getPregunta_IsInicial();
 
 		/**
-		 * The meta object literal for the '<em><b>Siguiente Pregunta</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Siguiente Pregunta Acierto</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PREGUNTA__SIGUIENTE_PREGUNTA = eINSTANCE.getPregunta_SiguientePregunta();
+		EReference PREGUNTA__SIGUIENTE_PREGUNTA_ACIERTO = eINSTANCE.getPregunta_SiguientePreguntaAcierto();
+
+		/**
+		 * The meta object literal for the '<em><b>Siguiente Pregunta Error</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREGUNTA__SIGUIENTE_PREGUNTA_ERROR = eINSTANCE.getPregunta_SiguientePreguntaError();
 
 		/**
 		 * The meta object literal for the '{@link cuestionario.impl.CategoriaImpl <em>Categoria</em>}' class.
@@ -948,6 +1034,14 @@ public interface CuestionarioPackage extends EPackage {
 		EClass PREGUNTA_UNICA = eINSTANCE.getPreguntaUnica();
 
 		/**
+		 * The meta object literal for the '<em><b>Respuestas</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREGUNTA_UNICA__RESPUESTAS = eINSTANCE.getPreguntaUnica_Respuestas();
+
+		/**
 		 * The meta object literal for the '<em><b>Correcta</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -964,6 +1058,14 @@ public interface CuestionarioPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PREGUNTA_MULTIPLE = eINSTANCE.getPreguntaMultiple();
+
+		/**
+		 * The meta object literal for the '<em><b>Respuestas</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREGUNTA_MULTIPLE__RESPUESTAS = eINSTANCE.getPreguntaMultiple_Respuestas();
 
 		/**
 		 * The meta object literal for the '<em><b>Correctas</b></em>' reference list feature.

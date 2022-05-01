@@ -5,23 +5,12 @@ package cuestionario.impl;
 import cuestionario.Categoria;
 import cuestionario.CuestionarioPackage;
 import cuestionario.Pregunta;
-import cuestionario.Respuesta;
-
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,8 +25,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link cuestionario.impl.PreguntaImpl#getPuntuacion <em>Puntuacion</em>}</li>
  *   <li>{@link cuestionario.impl.PreguntaImpl#getPenalizacion <em>Penalizacion</em>}</li>
  *   <li>{@link cuestionario.impl.PreguntaImpl#getCategoria <em>Categoria</em>}</li>
- *   <li>{@link cuestionario.impl.PreguntaImpl#getRespuestas <em>Respuestas</em>}</li>
- *   <li>{@link cuestionario.impl.PreguntaImpl#getSiguientePregunta <em>Siguiente Pregunta</em>}</li>
+ *   <li>{@link cuestionario.impl.PreguntaImpl#isIsInicial <em>Is Inicial</em>}</li>
+ *   <li>{@link cuestionario.impl.PreguntaImpl#getSiguientePreguntaAcierto <em>Siguiente Pregunta Acierto</em>}</li>
+ *   <li>{@link cuestionario.impl.PreguntaImpl#getSiguientePreguntaError <em>Siguiente Pregunta Error</em>}</li>
  * </ul>
  *
  * @generated
@@ -134,24 +124,44 @@ public abstract class PreguntaImpl extends MinimalEObjectImpl.Container implemen
 	protected Categoria categoria;
 
 	/**
-	 * The cached value of the '{@link #getRespuestas() <em>Respuestas</em>}' containment reference list.
+	 * The default value of the '{@link #isIsInicial() <em>Is Inicial</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRespuestas()
+	 * @see #isIsInicial()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Respuesta> respuestas;
+	protected static final boolean IS_INICIAL_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #getSiguientePregunta() <em>Siguiente Pregunta</em>}' reference.
+	 * The cached value of the '{@link #isIsInicial() <em>Is Inicial</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSiguientePregunta()
+	 * @see #isIsInicial()
 	 * @generated
 	 * @ordered
 	 */
-	protected Pregunta siguientePregunta;
+	protected boolean isInicial = IS_INICIAL_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getSiguientePreguntaAcierto() <em>Siguiente Pregunta Acierto</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSiguientePreguntaAcierto()
+	 * @generated
+	 * @ordered
+	 */
+	protected Pregunta siguientePreguntaAcierto;
+
+	/**
+	 * The cached value of the '{@link #getSiguientePreguntaError() <em>Siguiente Pregunta Error</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSiguientePreguntaError()
+	 * @generated
+	 * @ordered
+	 */
+	protected Pregunta siguientePreguntaError;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -299,11 +309,8 @@ public abstract class PreguntaImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Respuesta> getRespuestas() {
-		if (respuestas == null) {
-			respuestas = new EObjectContainmentEList<Respuesta>(Respuesta.class, this, CuestionarioPackage.PREGUNTA__RESPUESTAS);
-		}
-		return respuestas;
+	public boolean isIsInicial() {
+		return isInicial;
 	}
 
 	/**
@@ -311,16 +318,28 @@ public abstract class PreguntaImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Pregunta getSiguientePregunta() {
-		if (siguientePregunta != null && siguientePregunta.eIsProxy()) {
-			InternalEObject oldSiguientePregunta = (InternalEObject)siguientePregunta;
-			siguientePregunta = (Pregunta)eResolveProxy(oldSiguientePregunta);
-			if (siguientePregunta != oldSiguientePregunta) {
+	public void setIsInicial(boolean newIsInicial) {
+		boolean oldIsInicial = isInicial;
+		isInicial = newIsInicial;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CuestionarioPackage.PREGUNTA__IS_INICIAL, oldIsInicial, isInicial));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Pregunta getSiguientePreguntaAcierto() {
+		if (siguientePreguntaAcierto != null && siguientePreguntaAcierto.eIsProxy()) {
+			InternalEObject oldSiguientePreguntaAcierto = (InternalEObject)siguientePreguntaAcierto;
+			siguientePreguntaAcierto = (Pregunta)eResolveProxy(oldSiguientePreguntaAcierto);
+			if (siguientePreguntaAcierto != oldSiguientePreguntaAcierto) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CuestionarioPackage.PREGUNTA__SIGUIENTE_PREGUNTA, oldSiguientePregunta, siguientePregunta));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CuestionarioPackage.PREGUNTA__SIGUIENTE_PREGUNTA_ACIERTO, oldSiguientePreguntaAcierto, siguientePreguntaAcierto));
 			}
 		}
-		return siguientePregunta;
+		return siguientePreguntaAcierto;
 	}
 
 	/**
@@ -328,8 +347,8 @@ public abstract class PreguntaImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Pregunta basicGetSiguientePregunta() {
-		return siguientePregunta;
+	public Pregunta basicGetSiguientePreguntaAcierto() {
+		return siguientePreguntaAcierto;
 	}
 
 	/**
@@ -337,11 +356,11 @@ public abstract class PreguntaImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSiguientePregunta(Pregunta newSiguientePregunta) {
-		Pregunta oldSiguientePregunta = siguientePregunta;
-		siguientePregunta = newSiguientePregunta;
+	public void setSiguientePreguntaAcierto(Pregunta newSiguientePreguntaAcierto) {
+		Pregunta oldSiguientePreguntaAcierto = siguientePreguntaAcierto;
+		siguientePreguntaAcierto = newSiguientePreguntaAcierto;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CuestionarioPackage.PREGUNTA__SIGUIENTE_PREGUNTA, oldSiguientePregunta, siguientePregunta));
+			eNotify(new ENotificationImpl(this, Notification.SET, CuestionarioPackage.PREGUNTA__SIGUIENTE_PREGUNTA_ACIERTO, oldSiguientePreguntaAcierto, siguientePreguntaAcierto));
 	}
 
 	/**
@@ -349,13 +368,37 @@ public abstract class PreguntaImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case CuestionarioPackage.PREGUNTA__RESPUESTAS:
-				return ((InternalEList<?>)getRespuestas()).basicRemove(otherEnd, msgs);
+	public Pregunta getSiguientePreguntaError() {
+		if (siguientePreguntaError != null && siguientePreguntaError.eIsProxy()) {
+			InternalEObject oldSiguientePreguntaError = (InternalEObject)siguientePreguntaError;
+			siguientePreguntaError = (Pregunta)eResolveProxy(oldSiguientePreguntaError);
+			if (siguientePreguntaError != oldSiguientePreguntaError) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CuestionarioPackage.PREGUNTA__SIGUIENTE_PREGUNTA_ERROR, oldSiguientePreguntaError, siguientePreguntaError));
+			}
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		return siguientePreguntaError;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Pregunta basicGetSiguientePreguntaError() {
+		return siguientePreguntaError;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSiguientePreguntaError(Pregunta newSiguientePreguntaError) {
+		Pregunta oldSiguientePreguntaError = siguientePreguntaError;
+		siguientePreguntaError = newSiguientePreguntaError;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CuestionarioPackage.PREGUNTA__SIGUIENTE_PREGUNTA_ERROR, oldSiguientePreguntaError, siguientePreguntaError));
 	}
 
 	/**
@@ -377,11 +420,14 @@ public abstract class PreguntaImpl extends MinimalEObjectImpl.Container implemen
 			case CuestionarioPackage.PREGUNTA__CATEGORIA:
 				if (resolve) return getCategoria();
 				return basicGetCategoria();
-			case CuestionarioPackage.PREGUNTA__RESPUESTAS:
-				return getRespuestas();
-			case CuestionarioPackage.PREGUNTA__SIGUIENTE_PREGUNTA:
-				if (resolve) return getSiguientePregunta();
-				return basicGetSiguientePregunta();
+			case CuestionarioPackage.PREGUNTA__IS_INICIAL:
+				return isIsInicial();
+			case CuestionarioPackage.PREGUNTA__SIGUIENTE_PREGUNTA_ACIERTO:
+				if (resolve) return getSiguientePreguntaAcierto();
+				return basicGetSiguientePreguntaAcierto();
+			case CuestionarioPackage.PREGUNTA__SIGUIENTE_PREGUNTA_ERROR:
+				if (resolve) return getSiguientePreguntaError();
+				return basicGetSiguientePreguntaError();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -410,12 +456,14 @@ public abstract class PreguntaImpl extends MinimalEObjectImpl.Container implemen
 			case CuestionarioPackage.PREGUNTA__CATEGORIA:
 				setCategoria((Categoria)newValue);
 				return;
-			case CuestionarioPackage.PREGUNTA__RESPUESTAS:
-				getRespuestas().clear();
-				getRespuestas().addAll((Collection<? extends Respuesta>)newValue);
+			case CuestionarioPackage.PREGUNTA__IS_INICIAL:
+				setIsInicial((Boolean)newValue);
 				return;
-			case CuestionarioPackage.PREGUNTA__SIGUIENTE_PREGUNTA:
-				setSiguientePregunta((Pregunta)newValue);
+			case CuestionarioPackage.PREGUNTA__SIGUIENTE_PREGUNTA_ACIERTO:
+				setSiguientePreguntaAcierto((Pregunta)newValue);
+				return;
+			case CuestionarioPackage.PREGUNTA__SIGUIENTE_PREGUNTA_ERROR:
+				setSiguientePreguntaError((Pregunta)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -444,11 +492,14 @@ public abstract class PreguntaImpl extends MinimalEObjectImpl.Container implemen
 			case CuestionarioPackage.PREGUNTA__CATEGORIA:
 				setCategoria((Categoria)null);
 				return;
-			case CuestionarioPackage.PREGUNTA__RESPUESTAS:
-				getRespuestas().clear();
+			case CuestionarioPackage.PREGUNTA__IS_INICIAL:
+				setIsInicial(IS_INICIAL_EDEFAULT);
 				return;
-			case CuestionarioPackage.PREGUNTA__SIGUIENTE_PREGUNTA:
-				setSiguientePregunta((Pregunta)null);
+			case CuestionarioPackage.PREGUNTA__SIGUIENTE_PREGUNTA_ACIERTO:
+				setSiguientePreguntaAcierto((Pregunta)null);
+				return;
+			case CuestionarioPackage.PREGUNTA__SIGUIENTE_PREGUNTA_ERROR:
+				setSiguientePreguntaError((Pregunta)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -472,10 +523,12 @@ public abstract class PreguntaImpl extends MinimalEObjectImpl.Container implemen
 				return penalizacion != PENALIZACION_EDEFAULT;
 			case CuestionarioPackage.PREGUNTA__CATEGORIA:
 				return categoria != null;
-			case CuestionarioPackage.PREGUNTA__RESPUESTAS:
-				return respuestas != null && !respuestas.isEmpty();
-			case CuestionarioPackage.PREGUNTA__SIGUIENTE_PREGUNTA:
-				return siguientePregunta != null;
+			case CuestionarioPackage.PREGUNTA__IS_INICIAL:
+				return isInicial != IS_INICIAL_EDEFAULT;
+			case CuestionarioPackage.PREGUNTA__SIGUIENTE_PREGUNTA_ACIERTO:
+				return siguientePreguntaAcierto != null;
+			case CuestionarioPackage.PREGUNTA__SIGUIENTE_PREGUNTA_ERROR:
+				return siguientePreguntaError != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -498,6 +551,8 @@ public abstract class PreguntaImpl extends MinimalEObjectImpl.Container implemen
 		result.append(puntuacion);
 		result.append(", penalizacion: ");
 		result.append(penalizacion);
+		result.append(", isInicial: ");
+		result.append(isInicial);
 		result.append(')');
 		return result.toString();
 	}

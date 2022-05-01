@@ -3,7 +3,6 @@
 package cuestionario.provider;
 
 
-import cuestionario.CuestionarioFactory;
 import cuestionario.CuestionarioPackage;
 import cuestionario.Pregunta;
 
@@ -14,9 +13,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -68,7 +64,9 @@ public class PreguntaItemProvider
 			addPuntuacionPropertyDescriptor(object);
 			addPenalizacionPropertyDescriptor(object);
 			addCategoriaPropertyDescriptor(object);
-			addSiguientePreguntaPropertyDescriptor(object);
+			addIsInicialPropertyDescriptor(object);
+			addSiguientePreguntaAciertoPropertyDescriptor(object);
+			addSiguientePreguntaErrorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -184,19 +182,41 @@ public class PreguntaItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Siguiente Pregunta feature.
+	 * This adds a property descriptor for the Is Inicial feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSiguientePreguntaPropertyDescriptor(Object object) {
+	protected void addIsInicialPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Pregunta_siguientePregunta_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Pregunta_siguientePregunta_feature", "_UI_Pregunta_type"),
-				 CuestionarioPackage.Literals.PREGUNTA__SIGUIENTE_PREGUNTA,
+				 getString("_UI_Pregunta_isInicial_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Pregunta_isInicial_feature", "_UI_Pregunta_type"),
+				 CuestionarioPackage.Literals.PREGUNTA__IS_INICIAL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Siguiente Pregunta Acierto feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSiguientePreguntaAciertoPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Pregunta_siguientePreguntaAcierto_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Pregunta_siguientePreguntaAcierto_feature", "_UI_Pregunta_type"),
+				 CuestionarioPackage.Literals.PREGUNTA__SIGUIENTE_PREGUNTA_ACIERTO,
 				 true,
 				 false,
 				 true,
@@ -206,33 +226,25 @@ public class PreguntaItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Siguiente Pregunta Error feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(CuestionarioPackage.Literals.PREGUNTA__RESPUESTAS);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+	protected void addSiguientePreguntaErrorPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Pregunta_siguientePreguntaError_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Pregunta_siguientePreguntaError_feature", "_UI_Pregunta_type"),
+				 CuestionarioPackage.Literals.PREGUNTA__SIGUIENTE_PREGUNTA_ERROR,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -277,10 +289,8 @@ public class PreguntaItemProvider
 			case CuestionarioPackage.PREGUNTA__ENUNCIADO:
 			case CuestionarioPackage.PREGUNTA__PUNTUACION:
 			case CuestionarioPackage.PREGUNTA__PENALIZACION:
+			case CuestionarioPackage.PREGUNTA__IS_INICIAL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case CuestionarioPackage.PREGUNTA__RESPUESTAS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -296,11 +306,6 @@ public class PreguntaItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CuestionarioPackage.Literals.PREGUNTA__RESPUESTAS,
-				 CuestionarioFactory.eINSTANCE.createRespuesta()));
 	}
 
 	/**

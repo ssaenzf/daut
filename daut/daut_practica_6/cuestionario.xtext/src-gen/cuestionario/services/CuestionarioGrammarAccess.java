@@ -28,57 +28,57 @@ public class CuestionarioGrammarAccess extends AbstractElementFinder.AbstractGra
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cCuestionarioKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cPreguntaInicialKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cPreguntaInicialAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cPreguntaInicialPreguntaCrossReference_3_0 = (CrossReference)cPreguntaInicialAssignment_3.eContents().get(0);
-		private final RuleCall cPreguntaInicialPreguntaEStringParserRuleCall_3_0_1 = (RuleCall)cPreguntaInicialPreguntaCrossReference_3_0.eContents().get(1);
-		private final Keyword cPreguntasFinalesKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Keyword cLeftParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cPreguntasFinalesAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final CrossReference cPreguntasFinalesPreguntaCrossReference_6_0 = (CrossReference)cPreguntasFinalesAssignment_6.eContents().get(0);
-		private final RuleCall cPreguntasFinalesPreguntaEStringParserRuleCall_6_0_1 = (RuleCall)cPreguntasFinalesPreguntaCrossReference_6_0.eContents().get(1);
-		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
-		private final Keyword cCommaKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
-		private final Assignment cPreguntasFinalesAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
-		private final CrossReference cPreguntasFinalesPreguntaCrossReference_7_1_0 = (CrossReference)cPreguntasFinalesAssignment_7_1.eContents().get(0);
-		private final RuleCall cPreguntasFinalesPreguntaEStringParserRuleCall_7_1_0_1 = (RuleCall)cPreguntasFinalesPreguntaCrossReference_7_1_0.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Keyword cPreguntasKeyword_9 = (Keyword)cGroup.eContents().get(9);
-		private final Keyword cLeftCurlyBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
-		private final Assignment cPreguntasAssignment_11 = (Assignment)cGroup.eContents().get(11);
-		private final RuleCall cPreguntasPreguntaParserRuleCall_11_0 = (RuleCall)cPreguntasAssignment_11.eContents().get(0);
-		private final Group cGroup_12 = (Group)cGroup.eContents().get(12);
-		private final Keyword cCommaKeyword_12_0 = (Keyword)cGroup_12.eContents().get(0);
-		private final Assignment cPreguntasAssignment_12_1 = (Assignment)cGroup_12.eContents().get(1);
-		private final RuleCall cPreguntasPreguntaParserRuleCall_12_1_0 = (RuleCall)cPreguntasAssignment_12_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_13 = (Keyword)cGroup.eContents().get(13);
-		private final Keyword cCategoriasKeyword_14 = (Keyword)cGroup.eContents().get(14);
-		private final Keyword cLeftCurlyBracketKeyword_15 = (Keyword)cGroup.eContents().get(15);
-		private final Assignment cCategoriasAssignment_16 = (Assignment)cGroup.eContents().get(16);
-		private final RuleCall cCategoriasCategoriaParserRuleCall_16_0 = (RuleCall)cCategoriasAssignment_16.eContents().get(0);
+		private final Keyword cPreguntasKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cPreguntasAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cPreguntasPreguntaParserRuleCall_4_0 = (RuleCall)cPreguntasAssignment_4.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cPreguntasAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cPreguntasPreguntaParserRuleCall_5_1_0 = (RuleCall)cPreguntasAssignment_5_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Keyword cCategoriasKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cLeftCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Assignment cCategoriasAssignment_9 = (Assignment)cGroup.eContents().get(9);
+		private final RuleCall cCategoriasCategoriaParserRuleCall_9_0 = (RuleCall)cCategoriasAssignment_9.eContents().get(0);
+		private final Group cGroup_10 = (Group)cGroup.eContents().get(10);
+		private final Keyword cCommaKeyword_10_0 = (Keyword)cGroup_10.eContents().get(0);
+		private final Assignment cCategoriasAssignment_10_1 = (Assignment)cGroup_10.eContents().get(1);
+		private final RuleCall cCategoriasCategoriaParserRuleCall_10_1_0 = (RuleCall)cCategoriasAssignment_10_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Keyword cPreguntaInicialKeyword_12 = (Keyword)cGroup.eContents().get(12);
+		private final Assignment cPreguntaInicialAssignment_13 = (Assignment)cGroup.eContents().get(13);
+		private final CrossReference cPreguntaInicialPreguntaCrossReference_13_0 = (CrossReference)cPreguntaInicialAssignment_13.eContents().get(0);
+		private final RuleCall cPreguntaInicialPreguntaEStringParserRuleCall_13_0_1 = (RuleCall)cPreguntaInicialPreguntaCrossReference_13_0.eContents().get(1);
+		private final Keyword cPreguntasFinalesKeyword_14 = (Keyword)cGroup.eContents().get(14);
+		private final Keyword cLeftParenthesisKeyword_15 = (Keyword)cGroup.eContents().get(15);
+		private final Assignment cPreguntasFinalesAssignment_16 = (Assignment)cGroup.eContents().get(16);
+		private final CrossReference cPreguntasFinalesPreguntaCrossReference_16_0 = (CrossReference)cPreguntasFinalesAssignment_16.eContents().get(0);
+		private final RuleCall cPreguntasFinalesPreguntaEStringParserRuleCall_16_0_1 = (RuleCall)cPreguntasFinalesPreguntaCrossReference_16_0.eContents().get(1);
 		private final Group cGroup_17 = (Group)cGroup.eContents().get(17);
 		private final Keyword cCommaKeyword_17_0 = (Keyword)cGroup_17.eContents().get(0);
-		private final Assignment cCategoriasAssignment_17_1 = (Assignment)cGroup_17.eContents().get(1);
-		private final RuleCall cCategoriasCategoriaParserRuleCall_17_1_0 = (RuleCall)cCategoriasAssignment_17_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_18 = (Keyword)cGroup.eContents().get(18);
+		private final Assignment cPreguntasFinalesAssignment_17_1 = (Assignment)cGroup_17.eContents().get(1);
+		private final CrossReference cPreguntasFinalesPreguntaCrossReference_17_1_0 = (CrossReference)cPreguntasFinalesAssignment_17_1.eContents().get(0);
+		private final RuleCall cPreguntasFinalesPreguntaEStringParserRuleCall_17_1_0_1 = (RuleCall)cPreguntasFinalesPreguntaCrossReference_17_1_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_18 = (Keyword)cGroup.eContents().get(18);
 		private final Keyword cRightCurlyBracketKeyword_19 = (Keyword)cGroup.eContents().get(19);
 		
 		//Cuestionario returns Cuestionario:
 		//    'Cuestionario'
 		//    '{'
-		//        'preguntaInicial' preguntaInicial=[Pregunta|EString]
-		//        'preguntasFinales' '(' preguntasFinales+=[Pregunta|EString] ( "," preguntasFinales+=[Pregunta|EString])* ')'
 		//        'preguntas' '{' preguntas+=Pregunta ( "," preguntas+=Pregunta)* '}'
 		//        'categorias' '{' categorias+=Categoria ( "," categorias+=Categoria)* '}'
+		//        'preguntaInicial' preguntaInicial=[Pregunta|EString]
+		//        'preguntasFinales' '(' preguntasFinales+=[Pregunta|EString] ( "," preguntasFinales+=[Pregunta|EString])* ')'
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'Cuestionario'
 		//'{'
-		//    'preguntaInicial' preguntaInicial=[Pregunta|EString]
-		//    'preguntasFinales' '(' preguntasFinales+=[Pregunta|EString] ( "," preguntasFinales+=[Pregunta|EString])* ')'
 		//    'preguntas' '{' preguntas+=Pregunta ( "," preguntas+=Pregunta)* '}'
 		//    'categorias' '{' categorias+=Categoria ( "," categorias+=Categoria)* '}'
+		//    'preguntaInicial' preguntaInicial=[Pregunta|EString]
+		//    'preguntasFinales' '(' preguntasFinales+=[Pregunta|EString] ( "," preguntasFinales+=[Pregunta|EString])* ')'
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
@@ -88,104 +88,104 @@ public class CuestionarioGrammarAccess extends AbstractElementFinder.AbstractGra
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
-		//'preguntaInicial'
-		public Keyword getPreguntaInicialKeyword_2() { return cPreguntaInicialKeyword_2; }
-		
-		//preguntaInicial=[Pregunta|EString]
-		public Assignment getPreguntaInicialAssignment_3() { return cPreguntaInicialAssignment_3; }
-		
-		//[Pregunta|EString]
-		public CrossReference getPreguntaInicialPreguntaCrossReference_3_0() { return cPreguntaInicialPreguntaCrossReference_3_0; }
-		
-		//EString
-		public RuleCall getPreguntaInicialPreguntaEStringParserRuleCall_3_0_1() { return cPreguntaInicialPreguntaEStringParserRuleCall_3_0_1; }
-		
-		//'preguntasFinales'
-		public Keyword getPreguntasFinalesKeyword_4() { return cPreguntasFinalesKeyword_4; }
-		
-		//'('
-		public Keyword getLeftParenthesisKeyword_5() { return cLeftParenthesisKeyword_5; }
-		
-		//preguntasFinales+=[Pregunta|EString]
-		public Assignment getPreguntasFinalesAssignment_6() { return cPreguntasFinalesAssignment_6; }
-		
-		//[Pregunta|EString]
-		public CrossReference getPreguntasFinalesPreguntaCrossReference_6_0() { return cPreguntasFinalesPreguntaCrossReference_6_0; }
-		
-		//EString
-		public RuleCall getPreguntasFinalesPreguntaEStringParserRuleCall_6_0_1() { return cPreguntasFinalesPreguntaEStringParserRuleCall_6_0_1; }
-		
-		//( "," preguntasFinales+=[Pregunta|EString])*
-		public Group getGroup_7() { return cGroup_7; }
-		
-		//","
-		public Keyword getCommaKeyword_7_0() { return cCommaKeyword_7_0; }
-		
-		//preguntasFinales+=[Pregunta|EString]
-		public Assignment getPreguntasFinalesAssignment_7_1() { return cPreguntasFinalesAssignment_7_1; }
-		
-		//[Pregunta|EString]
-		public CrossReference getPreguntasFinalesPreguntaCrossReference_7_1_0() { return cPreguntasFinalesPreguntaCrossReference_7_1_0; }
-		
-		//EString
-		public RuleCall getPreguntasFinalesPreguntaEStringParserRuleCall_7_1_0_1() { return cPreguntasFinalesPreguntaEStringParserRuleCall_7_1_0_1; }
-		
-		//')'
-		public Keyword getRightParenthesisKeyword_8() { return cRightParenthesisKeyword_8; }
-		
 		//'preguntas'
-		public Keyword getPreguntasKeyword_9() { return cPreguntasKeyword_9; }
+		public Keyword getPreguntasKeyword_2() { return cPreguntasKeyword_2; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_10() { return cLeftCurlyBracketKeyword_10; }
+		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 		
 		//preguntas+=Pregunta
-		public Assignment getPreguntasAssignment_11() { return cPreguntasAssignment_11; }
+		public Assignment getPreguntasAssignment_4() { return cPreguntasAssignment_4; }
 		
 		//Pregunta
-		public RuleCall getPreguntasPreguntaParserRuleCall_11_0() { return cPreguntasPreguntaParserRuleCall_11_0; }
+		public RuleCall getPreguntasPreguntaParserRuleCall_4_0() { return cPreguntasPreguntaParserRuleCall_4_0; }
 		
 		//( "," preguntas+=Pregunta)*
-		public Group getGroup_12() { return cGroup_12; }
+		public Group getGroup_5() { return cGroup_5; }
 		
 		//","
-		public Keyword getCommaKeyword_12_0() { return cCommaKeyword_12_0; }
+		public Keyword getCommaKeyword_5_0() { return cCommaKeyword_5_0; }
 		
 		//preguntas+=Pregunta
-		public Assignment getPreguntasAssignment_12_1() { return cPreguntasAssignment_12_1; }
+		public Assignment getPreguntasAssignment_5_1() { return cPreguntasAssignment_5_1; }
 		
 		//Pregunta
-		public RuleCall getPreguntasPreguntaParserRuleCall_12_1_0() { return cPreguntasPreguntaParserRuleCall_12_1_0; }
+		public RuleCall getPreguntasPreguntaParserRuleCall_5_1_0() { return cPreguntasPreguntaParserRuleCall_5_1_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_13() { return cRightCurlyBracketKeyword_13; }
+		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 		
 		//'categorias'
-		public Keyword getCategoriasKeyword_14() { return cCategoriasKeyword_14; }
+		public Keyword getCategoriasKeyword_7() { return cCategoriasKeyword_7; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_15() { return cLeftCurlyBracketKeyword_15; }
+		public Keyword getLeftCurlyBracketKeyword_8() { return cLeftCurlyBracketKeyword_8; }
 		
 		//categorias+=Categoria
-		public Assignment getCategoriasAssignment_16() { return cCategoriasAssignment_16; }
+		public Assignment getCategoriasAssignment_9() { return cCategoriasAssignment_9; }
 		
 		//Categoria
-		public RuleCall getCategoriasCategoriaParserRuleCall_16_0() { return cCategoriasCategoriaParserRuleCall_16_0; }
+		public RuleCall getCategoriasCategoriaParserRuleCall_9_0() { return cCategoriasCategoriaParserRuleCall_9_0; }
 		
 		//( "," categorias+=Categoria)*
+		public Group getGroup_10() { return cGroup_10; }
+		
+		//","
+		public Keyword getCommaKeyword_10_0() { return cCommaKeyword_10_0; }
+		
+		//categorias+=Categoria
+		public Assignment getCategoriasAssignment_10_1() { return cCategoriasAssignment_10_1; }
+		
+		//Categoria
+		public RuleCall getCategoriasCategoriaParserRuleCall_10_1_0() { return cCategoriasCategoriaParserRuleCall_10_1_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_11() { return cRightCurlyBracketKeyword_11; }
+		
+		//'preguntaInicial'
+		public Keyword getPreguntaInicialKeyword_12() { return cPreguntaInicialKeyword_12; }
+		
+		//preguntaInicial=[Pregunta|EString]
+		public Assignment getPreguntaInicialAssignment_13() { return cPreguntaInicialAssignment_13; }
+		
+		//[Pregunta|EString]
+		public CrossReference getPreguntaInicialPreguntaCrossReference_13_0() { return cPreguntaInicialPreguntaCrossReference_13_0; }
+		
+		//EString
+		public RuleCall getPreguntaInicialPreguntaEStringParserRuleCall_13_0_1() { return cPreguntaInicialPreguntaEStringParserRuleCall_13_0_1; }
+		
+		//'preguntasFinales'
+		public Keyword getPreguntasFinalesKeyword_14() { return cPreguntasFinalesKeyword_14; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_15() { return cLeftParenthesisKeyword_15; }
+		
+		//preguntasFinales+=[Pregunta|EString]
+		public Assignment getPreguntasFinalesAssignment_16() { return cPreguntasFinalesAssignment_16; }
+		
+		//[Pregunta|EString]
+		public CrossReference getPreguntasFinalesPreguntaCrossReference_16_0() { return cPreguntasFinalesPreguntaCrossReference_16_0; }
+		
+		//EString
+		public RuleCall getPreguntasFinalesPreguntaEStringParserRuleCall_16_0_1() { return cPreguntasFinalesPreguntaEStringParserRuleCall_16_0_1; }
+		
+		//( "," preguntasFinales+=[Pregunta|EString])*
 		public Group getGroup_17() { return cGroup_17; }
 		
 		//","
 		public Keyword getCommaKeyword_17_0() { return cCommaKeyword_17_0; }
 		
-		//categorias+=Categoria
-		public Assignment getCategoriasAssignment_17_1() { return cCategoriasAssignment_17_1; }
+		//preguntasFinales+=[Pregunta|EString]
+		public Assignment getPreguntasFinalesAssignment_17_1() { return cPreguntasFinalesAssignment_17_1; }
 		
-		//Categoria
-		public RuleCall getCategoriasCategoriaParserRuleCall_17_1_0() { return cCategoriasCategoriaParserRuleCall_17_1_0; }
+		//[Pregunta|EString]
+		public CrossReference getPreguntasFinalesPreguntaCrossReference_17_1_0() { return cPreguntasFinalesPreguntaCrossReference_17_1_0; }
 		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_18() { return cRightCurlyBracketKeyword_18; }
+		//EString
+		public RuleCall getPreguntasFinalesPreguntaEStringParserRuleCall_17_1_0_1() { return cPreguntasFinalesPreguntaEStringParserRuleCall_17_1_0_1; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_18() { return cRightParenthesisKeyword_18; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_19() { return cRightCurlyBracketKeyword_19; }
@@ -372,56 +372,24 @@ public class CuestionarioGrammarAccess extends AbstractElementFinder.AbstractGra
 		//INT
 		public RuleCall getINTTerminalRuleCall_4_2() { return cINTTerminalRuleCall_4_2; }
 	}
-	public class RespuestaElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cuestionario.Cuestionario.Respuesta");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cRespuestaKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameEStringParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cOpcionKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cOpcionAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cOpcionEStringParserRuleCall_4_0 = (RuleCall)cOpcionAssignment_4.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+	public class EBooleanElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cuestionario.Cuestionario.EBoolean");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cTrueKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cFalseKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		
-		//Respuesta returns Respuesta:
-		//    'Respuesta'
-		//    name=EString
-		//    '{'
-		//        'opcion' opcion=EString
-		//    '}';
+		//EBoolean returns ecore::EBoolean:
+		//    'true' | 'false';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Respuesta'
-		//name=EString
-		//'{'
-		//    'opcion' opcion=EString
-		//'}'
-		public Group getGroup() { return cGroup; }
+		//'true' | 'false'
+		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//'Respuesta'
-		public Keyword getRespuestaKeyword_0() { return cRespuestaKeyword_0; }
+		//'true'
+		public Keyword getTrueKeyword_0() { return cTrueKeyword_0; }
 		
-		//name=EString
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-		
-		//EString
-		public RuleCall getNameEStringParserRuleCall_1_0() { return cNameEStringParserRuleCall_1_0; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
-		
-		//'opcion'
-		public Keyword getOpcionKeyword_3() { return cOpcionKeyword_3; }
-		
-		//opcion=EString
-		public Assignment getOpcionAssignment_4() { return cOpcionAssignment_4; }
-		
-		//EString
-		public RuleCall getOpcionEStringParserRuleCall_4_0() { return cOpcionEStringParserRuleCall_4_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		//'false'
+		public Keyword getFalseKeyword_1() { return cFalseKeyword_1; }
 	}
 	public class PreguntaUnicaElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cuestionario.Cuestionario.PreguntaUnica");
@@ -444,23 +412,34 @@ public class CuestionarioGrammarAccess extends AbstractElementFinder.AbstractGra
 		private final CrossReference cCategoriaCategoriaCrossReference_10_0 = (CrossReference)cCategoriaAssignment_10.eContents().get(0);
 		private final RuleCall cCategoriaCategoriaEStringParserRuleCall_10_0_1 = (RuleCall)cCategoriaCategoriaCrossReference_10_0.eContents().get(1);
 		private final Group cGroup_11 = (Group)cGroup.eContents().get(11);
-		private final Keyword cSiguientePreguntaKeyword_11_0 = (Keyword)cGroup_11.eContents().get(0);
-		private final Assignment cSiguientePreguntaAssignment_11_1 = (Assignment)cGroup_11.eContents().get(1);
-		private final CrossReference cSiguientePreguntaPreguntaCrossReference_11_1_0 = (CrossReference)cSiguientePreguntaAssignment_11_1.eContents().get(0);
-		private final RuleCall cSiguientePreguntaPreguntaEStringParserRuleCall_11_1_0_1 = (RuleCall)cSiguientePreguntaPreguntaCrossReference_11_1_0.eContents().get(1);
-		private final Keyword cCorrectaKeyword_12 = (Keyword)cGroup.eContents().get(12);
-		private final Assignment cCorrectaAssignment_13 = (Assignment)cGroup.eContents().get(13);
-		private final CrossReference cCorrectaRespuestaCrossReference_13_0 = (CrossReference)cCorrectaAssignment_13.eContents().get(0);
-		private final RuleCall cCorrectaRespuestaEStringParserRuleCall_13_0_1 = (RuleCall)cCorrectaRespuestaCrossReference_13_0.eContents().get(1);
-		private final Keyword cRespuestasKeyword_14 = (Keyword)cGroup.eContents().get(14);
-		private final Keyword cLeftCurlyBracketKeyword_15 = (Keyword)cGroup.eContents().get(15);
-		private final Assignment cRespuestasAssignment_16 = (Assignment)cGroup.eContents().get(16);
-		private final RuleCall cRespuestasRespuestaParserRuleCall_16_0 = (RuleCall)cRespuestasAssignment_16.eContents().get(0);
-		private final Group cGroup_17 = (Group)cGroup.eContents().get(17);
-		private final Keyword cCommaKeyword_17_0 = (Keyword)cGroup_17.eContents().get(0);
-		private final Assignment cRespuestasAssignment_17_1 = (Assignment)cGroup_17.eContents().get(1);
-		private final RuleCall cRespuestasRespuestaParserRuleCall_17_1_0 = (RuleCall)cRespuestasAssignment_17_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_18 = (Keyword)cGroup.eContents().get(18);
+		private final Assignment cIsInicialAssignment_11_0 = (Assignment)cGroup_11.eContents().get(0);
+		private final Keyword cIsInicialIsInicialKeyword_11_0_0 = (Keyword)cIsInicialAssignment_11_0.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_11_1 = (Keyword)cGroup_11.eContents().get(1);
+		private final Group cGroup_11_2 = (Group)cGroup_11.eContents().get(2);
+		private final Keyword cSiguientePreguntaAciertoKeyword_11_2_0 = (Keyword)cGroup_11_2.eContents().get(0);
+		private final Assignment cSiguientePreguntaAciertoAssignment_11_2_1 = (Assignment)cGroup_11_2.eContents().get(1);
+		private final CrossReference cSiguientePreguntaAciertoPreguntaCrossReference_11_2_1_0 = (CrossReference)cSiguientePreguntaAciertoAssignment_11_2_1.eContents().get(0);
+		private final RuleCall cSiguientePreguntaAciertoPreguntaEStringParserRuleCall_11_2_1_0_1 = (RuleCall)cSiguientePreguntaAciertoPreguntaCrossReference_11_2_1_0.eContents().get(1);
+		private final Keyword cCommaKeyword_11_3 = (Keyword)cGroup_11.eContents().get(3);
+		private final Group cGroup_11_4 = (Group)cGroup_11.eContents().get(4);
+		private final Keyword cSiguientePreguntaErrorKeyword_11_4_0 = (Keyword)cGroup_11_4.eContents().get(0);
+		private final Assignment cSiguientePreguntaErrorAssignment_11_4_1 = (Assignment)cGroup_11_4.eContents().get(1);
+		private final CrossReference cSiguientePreguntaErrorPreguntaCrossReference_11_4_1_0 = (CrossReference)cSiguientePreguntaErrorAssignment_11_4_1.eContents().get(0);
+		private final RuleCall cSiguientePreguntaErrorPreguntaEStringParserRuleCall_11_4_1_0_1 = (RuleCall)cSiguientePreguntaErrorPreguntaCrossReference_11_4_1_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_11_5 = (Keyword)cGroup_11.eContents().get(5);
+		private final Keyword cRespuestasKeyword_12 = (Keyword)cGroup.eContents().get(12);
+		private final Keyword cLeftCurlyBracketKeyword_13 = (Keyword)cGroup.eContents().get(13);
+		private final Assignment cRespuestasAssignment_14 = (Assignment)cGroup.eContents().get(14);
+		private final RuleCall cRespuestasRespuestaParserRuleCall_14_0 = (RuleCall)cRespuestasAssignment_14.eContents().get(0);
+		private final Group cGroup_15 = (Group)cGroup.eContents().get(15);
+		private final Keyword cCommaKeyword_15_0 = (Keyword)cGroup_15.eContents().get(0);
+		private final Assignment cRespuestasAssignment_15_1 = (Assignment)cGroup_15.eContents().get(1);
+		private final RuleCall cRespuestasRespuestaParserRuleCall_15_1_0 = (RuleCall)cRespuestasAssignment_15_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_16 = (Keyword)cGroup.eContents().get(16);
+		private final Keyword cCorrectaKeyword_17 = (Keyword)cGroup.eContents().get(17);
+		private final Assignment cCorrectaAssignment_18 = (Assignment)cGroup.eContents().get(18);
+		private final CrossReference cCorrectaRespuestaCrossReference_18_0 = (CrossReference)cCorrectaAssignment_18.eContents().get(0);
+		private final RuleCall cCorrectaRespuestaEStringParserRuleCall_18_0_1 = (RuleCall)cCorrectaRespuestaCrossReference_18_0.eContents().get(1);
 		private final Keyword cRightCurlyBracketKeyword_19 = (Keyword)cGroup.eContents().get(19);
 		
 		//PreguntaUnica returns PreguntaUnica:
@@ -471,9 +450,14 @@ public class CuestionarioGrammarAccess extends AbstractElementFinder.AbstractGra
 		//        'puntuacion' puntuacion=EDouble
 		//        'penalizacion' penalizacion=EDouble
 		//        'categoria' categoria=[Categoria|EString]
-		//        ('siguientePregunta' siguientePregunta=[Pregunta|EString])?
-		//        'correcta' correcta=[Respuesta|EString]
+		//        ((isInicial?='isInicial')
+		//        '('
+		//        ('siguientePreguntaAcierto' siguientePreguntaAcierto=[Pregunta|EString])
+		//        (',')
+		//        ('siguientePreguntaError' siguientePreguntaError=[Pregunta|EString])
+		//        ')')?
 		//        'respuestas' '{' respuestas+=Respuesta ( "," respuestas+=Respuesta)* '}'
+		//        'correcta' correcta=[Respuesta|EString]
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -484,9 +468,14 @@ public class CuestionarioGrammarAccess extends AbstractElementFinder.AbstractGra
 		//    'puntuacion' puntuacion=EDouble
 		//    'penalizacion' penalizacion=EDouble
 		//    'categoria' categoria=[Categoria|EString]
-		//    ('siguientePregunta' siguientePregunta=[Pregunta|EString])?
-		//    'correcta' correcta=[Respuesta|EString]
+		//    ((isInicial?='isInicial')
+		//    '('
+		//    ('siguientePreguntaAcierto' siguientePreguntaAcierto=[Pregunta|EString])
+		//    (',')
+		//    ('siguientePreguntaError' siguientePreguntaError=[Pregunta|EString])
+		//    ')')?
 		//    'respuestas' '{' respuestas+=Respuesta ( "," respuestas+=Respuesta)* '}'
+		//    'correcta' correcta=[Respuesta|EString]
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
@@ -541,59 +530,97 @@ public class CuestionarioGrammarAccess extends AbstractElementFinder.AbstractGra
 		//EString
 		public RuleCall getCategoriaCategoriaEStringParserRuleCall_10_0_1() { return cCategoriaCategoriaEStringParserRuleCall_10_0_1; }
 		
-		//('siguientePregunta' siguientePregunta=[Pregunta|EString])?
+		//((isInicial?='isInicial')
+		//'('
+		//('siguientePreguntaAcierto' siguientePreguntaAcierto=[Pregunta|EString])
+		//(',')
+		//('siguientePreguntaError' siguientePreguntaError=[Pregunta|EString])
+		//')')?
 		public Group getGroup_11() { return cGroup_11; }
 		
-		//'siguientePregunta'
-		public Keyword getSiguientePreguntaKeyword_11_0() { return cSiguientePreguntaKeyword_11_0; }
+		//(isInicial?='isInicial')
+		public Assignment getIsInicialAssignment_11_0() { return cIsInicialAssignment_11_0; }
 		
-		//siguientePregunta=[Pregunta|EString]
-		public Assignment getSiguientePreguntaAssignment_11_1() { return cSiguientePreguntaAssignment_11_1; }
+		//'isInicial'
+		public Keyword getIsInicialIsInicialKeyword_11_0_0() { return cIsInicialIsInicialKeyword_11_0_0; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_11_1() { return cLeftParenthesisKeyword_11_1; }
+		
+		//('siguientePreguntaAcierto' siguientePreguntaAcierto=[Pregunta|EString])
+		public Group getGroup_11_2() { return cGroup_11_2; }
+		
+		//'siguientePreguntaAcierto'
+		public Keyword getSiguientePreguntaAciertoKeyword_11_2_0() { return cSiguientePreguntaAciertoKeyword_11_2_0; }
+		
+		//siguientePreguntaAcierto=[Pregunta|EString]
+		public Assignment getSiguientePreguntaAciertoAssignment_11_2_1() { return cSiguientePreguntaAciertoAssignment_11_2_1; }
 		
 		//[Pregunta|EString]
-		public CrossReference getSiguientePreguntaPreguntaCrossReference_11_1_0() { return cSiguientePreguntaPreguntaCrossReference_11_1_0; }
+		public CrossReference getSiguientePreguntaAciertoPreguntaCrossReference_11_2_1_0() { return cSiguientePreguntaAciertoPreguntaCrossReference_11_2_1_0; }
 		
 		//EString
-		public RuleCall getSiguientePreguntaPreguntaEStringParserRuleCall_11_1_0_1() { return cSiguientePreguntaPreguntaEStringParserRuleCall_11_1_0_1; }
+		public RuleCall getSiguientePreguntaAciertoPreguntaEStringParserRuleCall_11_2_1_0_1() { return cSiguientePreguntaAciertoPreguntaEStringParserRuleCall_11_2_1_0_1; }
 		
-		//'correcta'
-		public Keyword getCorrectaKeyword_12() { return cCorrectaKeyword_12; }
+		//(',')
+		public Keyword getCommaKeyword_11_3() { return cCommaKeyword_11_3; }
 		
-		//correcta=[Respuesta|EString]
-		public Assignment getCorrectaAssignment_13() { return cCorrectaAssignment_13; }
+		//('siguientePreguntaError' siguientePreguntaError=[Pregunta|EString])
+		public Group getGroup_11_4() { return cGroup_11_4; }
 		
-		//[Respuesta|EString]
-		public CrossReference getCorrectaRespuestaCrossReference_13_0() { return cCorrectaRespuestaCrossReference_13_0; }
+		//'siguientePreguntaError'
+		public Keyword getSiguientePreguntaErrorKeyword_11_4_0() { return cSiguientePreguntaErrorKeyword_11_4_0; }
+		
+		//siguientePreguntaError=[Pregunta|EString]
+		public Assignment getSiguientePreguntaErrorAssignment_11_4_1() { return cSiguientePreguntaErrorAssignment_11_4_1; }
+		
+		//[Pregunta|EString]
+		public CrossReference getSiguientePreguntaErrorPreguntaCrossReference_11_4_1_0() { return cSiguientePreguntaErrorPreguntaCrossReference_11_4_1_0; }
 		
 		//EString
-		public RuleCall getCorrectaRespuestaEStringParserRuleCall_13_0_1() { return cCorrectaRespuestaEStringParserRuleCall_13_0_1; }
+		public RuleCall getSiguientePreguntaErrorPreguntaEStringParserRuleCall_11_4_1_0_1() { return cSiguientePreguntaErrorPreguntaEStringParserRuleCall_11_4_1_0_1; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_11_5() { return cRightParenthesisKeyword_11_5; }
 		
 		//'respuestas'
-		public Keyword getRespuestasKeyword_14() { return cRespuestasKeyword_14; }
+		public Keyword getRespuestasKeyword_12() { return cRespuestasKeyword_12; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_15() { return cLeftCurlyBracketKeyword_15; }
+		public Keyword getLeftCurlyBracketKeyword_13() { return cLeftCurlyBracketKeyword_13; }
 		
 		//respuestas+=Respuesta
-		public Assignment getRespuestasAssignment_16() { return cRespuestasAssignment_16; }
+		public Assignment getRespuestasAssignment_14() { return cRespuestasAssignment_14; }
 		
 		//Respuesta
-		public RuleCall getRespuestasRespuestaParserRuleCall_16_0() { return cRespuestasRespuestaParserRuleCall_16_0; }
+		public RuleCall getRespuestasRespuestaParserRuleCall_14_0() { return cRespuestasRespuestaParserRuleCall_14_0; }
 		
 		//( "," respuestas+=Respuesta)*
-		public Group getGroup_17() { return cGroup_17; }
+		public Group getGroup_15() { return cGroup_15; }
 		
 		//","
-		public Keyword getCommaKeyword_17_0() { return cCommaKeyword_17_0; }
+		public Keyword getCommaKeyword_15_0() { return cCommaKeyword_15_0; }
 		
 		//respuestas+=Respuesta
-		public Assignment getRespuestasAssignment_17_1() { return cRespuestasAssignment_17_1; }
+		public Assignment getRespuestasAssignment_15_1() { return cRespuestasAssignment_15_1; }
 		
 		//Respuesta
-		public RuleCall getRespuestasRespuestaParserRuleCall_17_1_0() { return cRespuestasRespuestaParserRuleCall_17_1_0; }
+		public RuleCall getRespuestasRespuestaParserRuleCall_15_1_0() { return cRespuestasRespuestaParserRuleCall_15_1_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_18() { return cRightCurlyBracketKeyword_18; }
+		public Keyword getRightCurlyBracketKeyword_16() { return cRightCurlyBracketKeyword_16; }
+		
+		//'correcta'
+		public Keyword getCorrectaKeyword_17() { return cCorrectaKeyword_17; }
+		
+		//correcta=[Respuesta|EString]
+		public Assignment getCorrectaAssignment_18() { return cCorrectaAssignment_18; }
+		
+		//[Respuesta|EString]
+		public CrossReference getCorrectaRespuestaCrossReference_18_0() { return cCorrectaRespuestaCrossReference_18_0; }
+		
+		//EString
+		public RuleCall getCorrectaRespuestaEStringParserRuleCall_18_0_1() { return cCorrectaRespuestaEStringParserRuleCall_18_0_1; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_19() { return cRightCurlyBracketKeyword_19; }
@@ -619,31 +646,43 @@ public class CuestionarioGrammarAccess extends AbstractElementFinder.AbstractGra
 		private final CrossReference cCategoriaCategoriaCrossReference_10_0 = (CrossReference)cCategoriaAssignment_10.eContents().get(0);
 		private final RuleCall cCategoriaCategoriaEStringParserRuleCall_10_0_1 = (RuleCall)cCategoriaCategoriaCrossReference_10_0.eContents().get(1);
 		private final Group cGroup_11 = (Group)cGroup.eContents().get(11);
-		private final Keyword cSiguientePreguntaKeyword_11_0 = (Keyword)cGroup_11.eContents().get(0);
-		private final Assignment cSiguientePreguntaAssignment_11_1 = (Assignment)cGroup_11.eContents().get(1);
-		private final CrossReference cSiguientePreguntaPreguntaCrossReference_11_1_0 = (CrossReference)cSiguientePreguntaAssignment_11_1.eContents().get(0);
-		private final RuleCall cSiguientePreguntaPreguntaEStringParserRuleCall_11_1_0_1 = (RuleCall)cSiguientePreguntaPreguntaCrossReference_11_1_0.eContents().get(1);
-		private final Keyword cCorrectasKeyword_12 = (Keyword)cGroup.eContents().get(12);
-		private final Keyword cLeftParenthesisKeyword_13 = (Keyword)cGroup.eContents().get(13);
-		private final Assignment cCorrectasAssignment_14 = (Assignment)cGroup.eContents().get(14);
-		private final CrossReference cCorrectasRespuestaCrossReference_14_0 = (CrossReference)cCorrectasAssignment_14.eContents().get(0);
-		private final RuleCall cCorrectasRespuestaEStringParserRuleCall_14_0_1 = (RuleCall)cCorrectasRespuestaCrossReference_14_0.eContents().get(1);
+		private final Assignment cIsInicialAssignment_11_0 = (Assignment)cGroup_11.eContents().get(0);
+		private final Keyword cIsInicialIsInicialKeyword_11_0_0 = (Keyword)cIsInicialAssignment_11_0.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_11_1 = (Keyword)cGroup_11.eContents().get(1);
+		private final Group cGroup_11_2 = (Group)cGroup_11.eContents().get(2);
+		private final Keyword cSiguientePreguntaAciertoKeyword_11_2_0 = (Keyword)cGroup_11_2.eContents().get(0);
+		private final Assignment cSiguientePreguntaAciertoAssignment_11_2_1 = (Assignment)cGroup_11_2.eContents().get(1);
+		private final CrossReference cSiguientePreguntaAciertoPreguntaCrossReference_11_2_1_0 = (CrossReference)cSiguientePreguntaAciertoAssignment_11_2_1.eContents().get(0);
+		private final RuleCall cSiguientePreguntaAciertoPreguntaEStringParserRuleCall_11_2_1_0_1 = (RuleCall)cSiguientePreguntaAciertoPreguntaCrossReference_11_2_1_0.eContents().get(1);
+		private final Keyword cCommaKeyword_11_3 = (Keyword)cGroup_11.eContents().get(3);
+		private final Group cGroup_11_4 = (Group)cGroup_11.eContents().get(4);
+		private final Keyword cSiguientePreguntaErrorKeyword_11_4_0 = (Keyword)cGroup_11_4.eContents().get(0);
+		private final Assignment cSiguientePreguntaErrorAssignment_11_4_1 = (Assignment)cGroup_11_4.eContents().get(1);
+		private final CrossReference cSiguientePreguntaErrorPreguntaCrossReference_11_4_1_0 = (CrossReference)cSiguientePreguntaErrorAssignment_11_4_1.eContents().get(0);
+		private final RuleCall cSiguientePreguntaErrorPreguntaEStringParserRuleCall_11_4_1_0_1 = (RuleCall)cSiguientePreguntaErrorPreguntaCrossReference_11_4_1_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_11_5 = (Keyword)cGroup_11.eContents().get(5);
+		private final Keyword cRespuestasKeyword_12 = (Keyword)cGroup.eContents().get(12);
+		private final Keyword cLeftCurlyBracketKeyword_13 = (Keyword)cGroup.eContents().get(13);
+		private final Assignment cRespuestasAssignment_14 = (Assignment)cGroup.eContents().get(14);
+		private final RuleCall cRespuestasRespuestaParserRuleCall_14_0 = (RuleCall)cRespuestasAssignment_14.eContents().get(0);
 		private final Group cGroup_15 = (Group)cGroup.eContents().get(15);
 		private final Keyword cCommaKeyword_15_0 = (Keyword)cGroup_15.eContents().get(0);
-		private final Assignment cCorrectasAssignment_15_1 = (Assignment)cGroup_15.eContents().get(1);
-		private final CrossReference cCorrectasRespuestaCrossReference_15_1_0 = (CrossReference)cCorrectasAssignment_15_1.eContents().get(0);
-		private final RuleCall cCorrectasRespuestaEStringParserRuleCall_15_1_0_1 = (RuleCall)cCorrectasRespuestaCrossReference_15_1_0.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_16 = (Keyword)cGroup.eContents().get(16);
-		private final Keyword cRespuestasKeyword_17 = (Keyword)cGroup.eContents().get(17);
-		private final Keyword cLeftCurlyBracketKeyword_18 = (Keyword)cGroup.eContents().get(18);
-		private final Assignment cRespuestasAssignment_19 = (Assignment)cGroup.eContents().get(19);
-		private final RuleCall cRespuestasRespuestaParserRuleCall_19_0 = (RuleCall)cRespuestasAssignment_19.eContents().get(0);
-		private final Group cGroup_20 = (Group)cGroup.eContents().get(20);
-		private final Keyword cCommaKeyword_20_0 = (Keyword)cGroup_20.eContents().get(0);
-		private final Assignment cRespuestasAssignment_20_1 = (Assignment)cGroup_20.eContents().get(1);
-		private final RuleCall cRespuestasRespuestaParserRuleCall_20_1_0 = (RuleCall)cRespuestasAssignment_20_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_21 = (Keyword)cGroup.eContents().get(21);
-		private final Keyword cRightCurlyBracketKeyword_22 = (Keyword)cGroup.eContents().get(22);
+		private final Assignment cRespuestasAssignment_15_1 = (Assignment)cGroup_15.eContents().get(1);
+		private final RuleCall cRespuestasRespuestaParserRuleCall_15_1_0 = (RuleCall)cRespuestasAssignment_15_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_16 = (Keyword)cGroup.eContents().get(16);
+		private final Group cGroup_17 = (Group)cGroup.eContents().get(17);
+		private final Keyword cCorrectasKeyword_17_0 = (Keyword)cGroup_17.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_17_1 = (Keyword)cGroup_17.eContents().get(1);
+		private final Assignment cCorrectasAssignment_17_2 = (Assignment)cGroup_17.eContents().get(2);
+		private final CrossReference cCorrectasRespuestaCrossReference_17_2_0 = (CrossReference)cCorrectasAssignment_17_2.eContents().get(0);
+		private final RuleCall cCorrectasRespuestaEStringParserRuleCall_17_2_0_1 = (RuleCall)cCorrectasRespuestaCrossReference_17_2_0.eContents().get(1);
+		private final Group cGroup_17_3 = (Group)cGroup_17.eContents().get(3);
+		private final Keyword cCommaKeyword_17_3_0 = (Keyword)cGroup_17_3.eContents().get(0);
+		private final Assignment cCorrectasAssignment_17_3_1 = (Assignment)cGroup_17_3.eContents().get(1);
+		private final CrossReference cCorrectasRespuestaCrossReference_17_3_1_0 = (CrossReference)cCorrectasAssignment_17_3_1.eContents().get(0);
+		private final RuleCall cCorrectasRespuestaEStringParserRuleCall_17_3_1_0_1 = (RuleCall)cCorrectasRespuestaCrossReference_17_3_1_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_17_4 = (Keyword)cGroup_17.eContents().get(4);
+		private final Keyword cRightCurlyBracketKeyword_18 = (Keyword)cGroup.eContents().get(18);
 		
 		//PreguntaMultiple returns PreguntaMultiple:
 		//    'PreguntaMultiple'
@@ -653,9 +692,14 @@ public class CuestionarioGrammarAccess extends AbstractElementFinder.AbstractGra
 		//        'puntuacion' puntuacion=EDouble
 		//        'penalizacion' penalizacion=EDouble
 		//        'categoria' categoria=[Categoria|EString]
-		//        ('siguientePregunta' siguientePregunta=[Pregunta|EString])?
-		//        'correctas' '(' correctas+=[Respuesta|EString] ( "," correctas+=[Respuesta|EString])* ')'
+		//        ((isInicial?='isInicial')
+		//        '('
+		//        ('siguientePreguntaAcierto' siguientePreguntaAcierto=[Pregunta|EString])
+		//        (',')
+		//        ('siguientePreguntaError' siguientePreguntaError=[Pregunta|EString])
+		//        ')')?
 		//        'respuestas' '{' respuestas+=Respuesta ( "," respuestas+=Respuesta)* '}'
+		//        ('correctas' '(' correctas+=[Respuesta|EString] ( "," correctas+=[Respuesta|EString])* ')' )?
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -666,9 +710,14 @@ public class CuestionarioGrammarAccess extends AbstractElementFinder.AbstractGra
 		//    'puntuacion' puntuacion=EDouble
 		//    'penalizacion' penalizacion=EDouble
 		//    'categoria' categoria=[Categoria|EString]
-		//    ('siguientePregunta' siguientePregunta=[Pregunta|EString])?
-		//    'correctas' '(' correctas+=[Respuesta|EString] ( "," correctas+=[Respuesta|EString])* ')'
+		//    ((isInicial?='isInicial')
+		//    '('
+		//    ('siguientePreguntaAcierto' siguientePreguntaAcierto=[Pregunta|EString])
+		//    (',')
+		//    ('siguientePreguntaError' siguientePreguntaError=[Pregunta|EString])
+		//    ')')?
 		//    'respuestas' '{' respuestas+=Respuesta ( "," respuestas+=Respuesta)* '}'
+		//    ('correctas' '(' correctas+=[Respuesta|EString] ( "," correctas+=[Respuesta|EString])* ')' )?
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
@@ -723,83 +772,175 @@ public class CuestionarioGrammarAccess extends AbstractElementFinder.AbstractGra
 		//EString
 		public RuleCall getCategoriaCategoriaEStringParserRuleCall_10_0_1() { return cCategoriaCategoriaEStringParserRuleCall_10_0_1; }
 		
-		//('siguientePregunta' siguientePregunta=[Pregunta|EString])?
+		//((isInicial?='isInicial')
+		//'('
+		//('siguientePreguntaAcierto' siguientePreguntaAcierto=[Pregunta|EString])
+		//(',')
+		//('siguientePreguntaError' siguientePreguntaError=[Pregunta|EString])
+		//')')?
 		public Group getGroup_11() { return cGroup_11; }
 		
-		//'siguientePregunta'
-		public Keyword getSiguientePreguntaKeyword_11_0() { return cSiguientePreguntaKeyword_11_0; }
+		//(isInicial?='isInicial')
+		public Assignment getIsInicialAssignment_11_0() { return cIsInicialAssignment_11_0; }
 		
-		//siguientePregunta=[Pregunta|EString]
-		public Assignment getSiguientePreguntaAssignment_11_1() { return cSiguientePreguntaAssignment_11_1; }
-		
-		//[Pregunta|EString]
-		public CrossReference getSiguientePreguntaPreguntaCrossReference_11_1_0() { return cSiguientePreguntaPreguntaCrossReference_11_1_0; }
-		
-		//EString
-		public RuleCall getSiguientePreguntaPreguntaEStringParserRuleCall_11_1_0_1() { return cSiguientePreguntaPreguntaEStringParserRuleCall_11_1_0_1; }
-		
-		//'correctas'
-		public Keyword getCorrectasKeyword_12() { return cCorrectasKeyword_12; }
+		//'isInicial'
+		public Keyword getIsInicialIsInicialKeyword_11_0_0() { return cIsInicialIsInicialKeyword_11_0_0; }
 		
 		//'('
-		public Keyword getLeftParenthesisKeyword_13() { return cLeftParenthesisKeyword_13; }
+		public Keyword getLeftParenthesisKeyword_11_1() { return cLeftParenthesisKeyword_11_1; }
 		
-		//correctas+=[Respuesta|EString]
-		public Assignment getCorrectasAssignment_14() { return cCorrectasAssignment_14; }
+		//('siguientePreguntaAcierto' siguientePreguntaAcierto=[Pregunta|EString])
+		public Group getGroup_11_2() { return cGroup_11_2; }
 		
-		//[Respuesta|EString]
-		public CrossReference getCorrectasRespuestaCrossReference_14_0() { return cCorrectasRespuestaCrossReference_14_0; }
+		//'siguientePreguntaAcierto'
+		public Keyword getSiguientePreguntaAciertoKeyword_11_2_0() { return cSiguientePreguntaAciertoKeyword_11_2_0; }
+		
+		//siguientePreguntaAcierto=[Pregunta|EString]
+		public Assignment getSiguientePreguntaAciertoAssignment_11_2_1() { return cSiguientePreguntaAciertoAssignment_11_2_1; }
+		
+		//[Pregunta|EString]
+		public CrossReference getSiguientePreguntaAciertoPreguntaCrossReference_11_2_1_0() { return cSiguientePreguntaAciertoPreguntaCrossReference_11_2_1_0; }
 		
 		//EString
-		public RuleCall getCorrectasRespuestaEStringParserRuleCall_14_0_1() { return cCorrectasRespuestaEStringParserRuleCall_14_0_1; }
+		public RuleCall getSiguientePreguntaAciertoPreguntaEStringParserRuleCall_11_2_1_0_1() { return cSiguientePreguntaAciertoPreguntaEStringParserRuleCall_11_2_1_0_1; }
 		
-		//( "," correctas+=[Respuesta|EString])*
+		//(',')
+		public Keyword getCommaKeyword_11_3() { return cCommaKeyword_11_3; }
+		
+		//('siguientePreguntaError' siguientePreguntaError=[Pregunta|EString])
+		public Group getGroup_11_4() { return cGroup_11_4; }
+		
+		//'siguientePreguntaError'
+		public Keyword getSiguientePreguntaErrorKeyword_11_4_0() { return cSiguientePreguntaErrorKeyword_11_4_0; }
+		
+		//siguientePreguntaError=[Pregunta|EString]
+		public Assignment getSiguientePreguntaErrorAssignment_11_4_1() { return cSiguientePreguntaErrorAssignment_11_4_1; }
+		
+		//[Pregunta|EString]
+		public CrossReference getSiguientePreguntaErrorPreguntaCrossReference_11_4_1_0() { return cSiguientePreguntaErrorPreguntaCrossReference_11_4_1_0; }
+		
+		//EString
+		public RuleCall getSiguientePreguntaErrorPreguntaEStringParserRuleCall_11_4_1_0_1() { return cSiguientePreguntaErrorPreguntaEStringParserRuleCall_11_4_1_0_1; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_11_5() { return cRightParenthesisKeyword_11_5; }
+		
+		//'respuestas'
+		public Keyword getRespuestasKeyword_12() { return cRespuestasKeyword_12; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_13() { return cLeftCurlyBracketKeyword_13; }
+		
+		//respuestas+=Respuesta
+		public Assignment getRespuestasAssignment_14() { return cRespuestasAssignment_14; }
+		
+		//Respuesta
+		public RuleCall getRespuestasRespuestaParserRuleCall_14_0() { return cRespuestasRespuestaParserRuleCall_14_0; }
+		
+		//( "," respuestas+=Respuesta)*
 		public Group getGroup_15() { return cGroup_15; }
 		
 		//","
 		public Keyword getCommaKeyword_15_0() { return cCommaKeyword_15_0; }
 		
+		//respuestas+=Respuesta
+		public Assignment getRespuestasAssignment_15_1() { return cRespuestasAssignment_15_1; }
+		
+		//Respuesta
+		public RuleCall getRespuestasRespuestaParserRuleCall_15_1_0() { return cRespuestasRespuestaParserRuleCall_15_1_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_16() { return cRightCurlyBracketKeyword_16; }
+		
+		//('correctas' '(' correctas+=[Respuesta|EString] ( "," correctas+=[Respuesta|EString])* ')' )?
+		public Group getGroup_17() { return cGroup_17; }
+		
+		//'correctas'
+		public Keyword getCorrectasKeyword_17_0() { return cCorrectasKeyword_17_0; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_17_1() { return cLeftParenthesisKeyword_17_1; }
+		
 		//correctas+=[Respuesta|EString]
-		public Assignment getCorrectasAssignment_15_1() { return cCorrectasAssignment_15_1; }
+		public Assignment getCorrectasAssignment_17_2() { return cCorrectasAssignment_17_2; }
 		
 		//[Respuesta|EString]
-		public CrossReference getCorrectasRespuestaCrossReference_15_1_0() { return cCorrectasRespuestaCrossReference_15_1_0; }
+		public CrossReference getCorrectasRespuestaCrossReference_17_2_0() { return cCorrectasRespuestaCrossReference_17_2_0; }
 		
 		//EString
-		public RuleCall getCorrectasRespuestaEStringParserRuleCall_15_1_0_1() { return cCorrectasRespuestaEStringParserRuleCall_15_1_0_1; }
+		public RuleCall getCorrectasRespuestaEStringParserRuleCall_17_2_0_1() { return cCorrectasRespuestaEStringParserRuleCall_17_2_0_1; }
 		
-		//')'
-		public Keyword getRightParenthesisKeyword_16() { return cRightParenthesisKeyword_16; }
-		
-		//'respuestas'
-		public Keyword getRespuestasKeyword_17() { return cRespuestasKeyword_17; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_18() { return cLeftCurlyBracketKeyword_18; }
-		
-		//respuestas+=Respuesta
-		public Assignment getRespuestasAssignment_19() { return cRespuestasAssignment_19; }
-		
-		//Respuesta
-		public RuleCall getRespuestasRespuestaParserRuleCall_19_0() { return cRespuestasRespuestaParserRuleCall_19_0; }
-		
-		//( "," respuestas+=Respuesta)*
-		public Group getGroup_20() { return cGroup_20; }
+		//( "," correctas+=[Respuesta|EString])*
+		public Group getGroup_17_3() { return cGroup_17_3; }
 		
 		//","
-		public Keyword getCommaKeyword_20_0() { return cCommaKeyword_20_0; }
+		public Keyword getCommaKeyword_17_3_0() { return cCommaKeyword_17_3_0; }
 		
-		//respuestas+=Respuesta
-		public Assignment getRespuestasAssignment_20_1() { return cRespuestasAssignment_20_1; }
+		//correctas+=[Respuesta|EString]
+		public Assignment getCorrectasAssignment_17_3_1() { return cCorrectasAssignment_17_3_1; }
 		
-		//Respuesta
-		public RuleCall getRespuestasRespuestaParserRuleCall_20_1_0() { return cRespuestasRespuestaParserRuleCall_20_1_0; }
+		//[Respuesta|EString]
+		public CrossReference getCorrectasRespuestaCrossReference_17_3_1_0() { return cCorrectasRespuestaCrossReference_17_3_1_0; }
+		
+		//EString
+		public RuleCall getCorrectasRespuestaEStringParserRuleCall_17_3_1_0_1() { return cCorrectasRespuestaEStringParserRuleCall_17_3_1_0_1; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_17_4() { return cRightParenthesisKeyword_17_4; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_21() { return cRightCurlyBracketKeyword_21; }
+		public Keyword getRightCurlyBracketKeyword_18() { return cRightCurlyBracketKeyword_18; }
+	}
+	public class RespuestaElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cuestionario.Cuestionario.Respuesta");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cRespuestaKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameEStringParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cOpcionKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cOpcionAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cOpcionEStringParserRuleCall_4_0 = (RuleCall)cOpcionAssignment_4.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		
+		//Respuesta returns Respuesta:
+		//    'Respuesta'
+		//    name=EString
+		//    '{'
+		//        'opcion' opcion=EString
+		//    '}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'Respuesta'
+		//name=EString
+		//'{'
+		//    'opcion' opcion=EString
+		//'}'
+		public Group getGroup() { return cGroup; }
+		
+		//'Respuesta'
+		public Keyword getRespuestaKeyword_0() { return cRespuestaKeyword_0; }
+		
+		//name=EString
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//EString
+		public RuleCall getNameEStringParserRuleCall_1_0() { return cNameEStringParserRuleCall_1_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		
+		//'opcion'
+		public Keyword getOpcionKeyword_3() { return cOpcionKeyword_3; }
+		
+		//opcion=EString
+		public Assignment getOpcionAssignment_4() { return cOpcionAssignment_4; }
+		
+		//EString
+		public RuleCall getOpcionEStringParserRuleCall_4_0() { return cOpcionEStringParserRuleCall_4_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_22() { return cRightCurlyBracketKeyword_22; }
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
 	}
 	
 	
@@ -808,9 +949,10 @@ public class CuestionarioGrammarAccess extends AbstractElementFinder.AbstractGra
 	private final CategoriaElements pCategoria;
 	private final EStringElements pEString;
 	private final EDoubleElements pEDouble;
-	private final RespuestaElements pRespuesta;
+	private final EBooleanElements pEBoolean;
 	private final PreguntaUnicaElements pPreguntaUnica;
 	private final PreguntaMultipleElements pPreguntaMultiple;
+	private final RespuestaElements pRespuesta;
 	
 	private final Grammar grammar;
 	
@@ -826,9 +968,10 @@ public class CuestionarioGrammarAccess extends AbstractElementFinder.AbstractGra
 		this.pCategoria = new CategoriaElements();
 		this.pEString = new EStringElements();
 		this.pEDouble = new EDoubleElements();
-		this.pRespuesta = new RespuestaElements();
+		this.pEBoolean = new EBooleanElements();
 		this.pPreguntaUnica = new PreguntaUnicaElements();
 		this.pPreguntaMultiple = new PreguntaMultipleElements();
+		this.pRespuesta = new RespuestaElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -861,10 +1004,10 @@ public class CuestionarioGrammarAccess extends AbstractElementFinder.AbstractGra
 	//Cuestionario returns Cuestionario:
 	//    'Cuestionario'
 	//    '{'
-	//        'preguntaInicial' preguntaInicial=[Pregunta|EString]
-	//        'preguntasFinales' '(' preguntasFinales+=[Pregunta|EString] ( "," preguntasFinales+=[Pregunta|EString])* ')'
 	//        'preguntas' '{' preguntas+=Pregunta ( "," preguntas+=Pregunta)* '}'
 	//        'categorias' '{' categorias+=Categoria ( "," categorias+=Categoria)* '}'
+	//        'preguntaInicial' preguntaInicial=[Pregunta|EString]
+	//        'preguntasFinales' '(' preguntasFinales+=[Pregunta|EString] ( "," preguntasFinales+=[Pregunta|EString])* ')'
 	//    '}';
 	public CuestionarioElements getCuestionarioAccess() {
 		return pCuestionario;
@@ -919,18 +1062,14 @@ public class CuestionarioGrammarAccess extends AbstractElementFinder.AbstractGra
 		return getEDoubleAccess().getRule();
 	}
 	
-	//Respuesta returns Respuesta:
-	//    'Respuesta'
-	//    name=EString
-	//    '{'
-	//        'opcion' opcion=EString
-	//    '}';
-	public RespuestaElements getRespuestaAccess() {
-		return pRespuesta;
+	//EBoolean returns ecore::EBoolean:
+	//    'true' | 'false';
+	public EBooleanElements getEBooleanAccess() {
+		return pEBoolean;
 	}
 	
-	public ParserRule getRespuestaRule() {
-		return getRespuestaAccess().getRule();
+	public ParserRule getEBooleanRule() {
+		return getEBooleanAccess().getRule();
 	}
 	
 	//PreguntaUnica returns PreguntaUnica:
@@ -941,9 +1080,14 @@ public class CuestionarioGrammarAccess extends AbstractElementFinder.AbstractGra
 	//        'puntuacion' puntuacion=EDouble
 	//        'penalizacion' penalizacion=EDouble
 	//        'categoria' categoria=[Categoria|EString]
-	//        ('siguientePregunta' siguientePregunta=[Pregunta|EString])?
-	//        'correcta' correcta=[Respuesta|EString]
+	//        ((isInicial?='isInicial')
+	//        '('
+	//        ('siguientePreguntaAcierto' siguientePreguntaAcierto=[Pregunta|EString])
+	//        (',')
+	//        ('siguientePreguntaError' siguientePreguntaError=[Pregunta|EString])
+	//        ')')?
 	//        'respuestas' '{' respuestas+=Respuesta ( "," respuestas+=Respuesta)* '}'
+	//        'correcta' correcta=[Respuesta|EString]
 	//    '}';
 	public PreguntaUnicaElements getPreguntaUnicaAccess() {
 		return pPreguntaUnica;
@@ -961,9 +1105,14 @@ public class CuestionarioGrammarAccess extends AbstractElementFinder.AbstractGra
 	//        'puntuacion' puntuacion=EDouble
 	//        'penalizacion' penalizacion=EDouble
 	//        'categoria' categoria=[Categoria|EString]
-	//        ('siguientePregunta' siguientePregunta=[Pregunta|EString])?
-	//        'correctas' '(' correctas+=[Respuesta|EString] ( "," correctas+=[Respuesta|EString])* ')'
+	//        ((isInicial?='isInicial')
+	//        '('
+	//        ('siguientePreguntaAcierto' siguientePreguntaAcierto=[Pregunta|EString])
+	//        (',')
+	//        ('siguientePreguntaError' siguientePreguntaError=[Pregunta|EString])
+	//        ')')?
 	//        'respuestas' '{' respuestas+=Respuesta ( "," respuestas+=Respuesta)* '}'
+	//        ('correctas' '(' correctas+=[Respuesta|EString] ( "," correctas+=[Respuesta|EString])* ')' )?
 	//    '}';
 	public PreguntaMultipleElements getPreguntaMultipleAccess() {
 		return pPreguntaMultiple;
@@ -971,6 +1120,20 @@ public class CuestionarioGrammarAccess extends AbstractElementFinder.AbstractGra
 	
 	public ParserRule getPreguntaMultipleRule() {
 		return getPreguntaMultipleAccess().getRule();
+	}
+	
+	//Respuesta returns Respuesta:
+	//    'Respuesta'
+	//    name=EString
+	//    '{'
+	//        'opcion' opcion=EString
+	//    '}';
+	public RespuestaElements getRespuestaAccess() {
+		return pRespuesta;
+	}
+	
+	public ParserRule getRespuestaRule() {
+		return getRespuestaAccess().getRule();
 	}
 	
 	//terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;

@@ -1,50 +1,40 @@
-Cuestionario {
-	preguntaInicial Pregunta1
-	preguntasFinales (Pregunta2)
+Cuestionario { 
 	preguntas {
-		PreguntaUnica Pregunta1 {
-			enunciado "Enunciado 1"
+		PreguntaMultiple Pregunta1{
+			enunciado Enun1
 			puntuacion 1.2
-			penalizacion -1.3
+			penalizacion 0.3
 			categoria Categoria1
-			siguientePregunta Pregunta2
-			correcta Respuesta1
 			respuestas {
-				Respuesta Respuesta1 {
-					opcion "Opción 1"
-				},
-				Respuesta Respuesta2 {
-					opcion "Opcion2"
+				Respuesta Res1 {
+					opcion Op
 				}
 			}
-		},
-		PreguntaMultiple Pregunta2 {
-			enunciado "Enunciado 2"
-			puntuacion 1.5
-			penalizacion 0.0
-			categoria Categoria2
-			correctas (Respuesta1, Respuesta2)
+			correctas (Res1)
+		}, 
+		PreguntaUnica Pregunta2 {
+			enunciado Enun2
+			puntuacion 1.3
+			penalizacion 1.2
+			categoria Categoria1
+			isInicial (siguientePreguntaAcierto Pregunta1 , siguientePreguntaError Pregunta2)
 			respuestas {
-				Respuesta Respuesta1 {
-					opcion "Opción 1"
+				Respuesta Res1 {
+					opcion Op
 				},
-				Respuesta Respuesta2 {
-					opcion "Opción 2"
-				} 
+				Respuesta Res2 {
+					opcion op
+				}
 			}
+			correcta Res2
 		}
 	}
 	categorias {
-		Categoria Categoria1 {
-			dificultad 1.0
-			subcategorias {
-				Categoria SubCategoria1 {
-					dificultad 1.0
-				}
-			}
-		}, 
-		Categoria Categoria2 {
+		Categoria Categoria1 
+		{
 			dificultad 2.0
 		}
 	}
+	preguntaInicial Pregunta2
+	preguntasFinales (Pregunta1)
 }

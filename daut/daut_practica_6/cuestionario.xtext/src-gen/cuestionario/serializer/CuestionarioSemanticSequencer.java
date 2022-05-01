@@ -77,13 +77,13 @@ public class CuestionarioSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *
 	 * Constraint:
 	 *     (
-	 *         preguntaInicial=[Pregunta|EString] 
-	 *         preguntasFinales+=[Pregunta|EString] 
-	 *         preguntasFinales+=[Pregunta|EString]* 
 	 *         preguntas+=Pregunta 
 	 *         preguntas+=Pregunta* 
 	 *         categorias+=Categoria 
-	 *         categorias+=Categoria*
+	 *         categorias+=Categoria* 
+	 *         preguntaInicial=[Pregunta|EString] 
+	 *         preguntasFinales+=[Pregunta|EString] 
+	 *         preguntasFinales+=[Pregunta|EString]*
 	 *     )
 	 * </pre>
 	 */
@@ -105,11 +105,10 @@ public class CuestionarioSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         puntuacion=EDouble 
 	 *         penalizacion=EDouble 
 	 *         categoria=[Categoria|EString] 
-	 *         siguientePregunta=[Pregunta|EString]? 
-	 *         correctas+=[Respuesta|EString] 
-	 *         correctas+=[Respuesta|EString]* 
+	 *         (isInicial?='isInicial' siguientePreguntaAcierto=[Pregunta|EString] siguientePreguntaError=[Pregunta|EString])? 
 	 *         respuestas+=Respuesta 
-	 *         respuestas+=Respuesta*
+	 *         respuestas+=Respuesta* 
+	 *         (correctas+=[Respuesta|EString] correctas+=[Respuesta|EString]*)?
 	 *     )
 	 * </pre>
 	 */
@@ -131,10 +130,10 @@ public class CuestionarioSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *         puntuacion=EDouble 
 	 *         penalizacion=EDouble 
 	 *         categoria=[Categoria|EString] 
-	 *         siguientePregunta=[Pregunta|EString]? 
-	 *         correcta=[Respuesta|EString] 
+	 *         (isInicial?='isInicial' siguientePreguntaAcierto=[Pregunta|EString] siguientePreguntaError=[Pregunta|EString])? 
 	 *         respuestas+=Respuesta 
-	 *         respuestas+=Respuesta*
+	 *         respuestas+=Respuesta* 
+	 *         correcta=[Respuesta|EString]
 	 *     )
 	 * </pre>
 	 */
