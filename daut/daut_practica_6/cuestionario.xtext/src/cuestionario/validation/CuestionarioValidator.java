@@ -3,6 +3,13 @@
  */
 package cuestionario.validation;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.eclipse.xtext.validation.Check;
+
+import cuestionario.*;
 
 /**
  * This class contains custom validation rules. 
@@ -10,16 +17,154 @@ package cuestionario.validation;
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 public class CuestionarioValidator extends AbstractCuestionarioValidator {
+		
+	@Check
+	public void penalizacionValor (Pregunta preg) {
+		if (preg.getPenalizacion() > 0)
+			warning("Penalización incorrecta, debe ser menor o igual a 0",
+			CuestionarioPackage.Literals.PREGUNTA__PENALIZACION,
+			"penalizacionValor");
+	}
 	
-//	public static final String INVALID_NAME = "invalidName";
-//
-//	@Check
-//	public void checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.getName().charAt(0))) {
-//			warning("Name should start with a capital",
-//					CuestionarioPackage.Literals.GREETING__NAME,
-//					INVALID_NAME);
-//		}
-//	}
+	@Check
+	public void penalizacionIncorrecta (Cuestionario cuest) {
+		double pen = cuest.getPreguntas().get(0).getPenalizacion();
+		for (Pregunta preg: cuest.getPreguntas()) {
+			if (preg.getPenalizacion() != pen)
+				warning("Penalización incorrecta, todas las penalizaciones deben ser iguales",
+						CuestionarioPackage.Literals.CUESTIONARIO__PREGUNTAS,
+						"penalizacionIncorrecta");
+		}
+	}
+	
+	@Check
+	public void puntuacionValor (Pregunta preg) {
+		if (preg.getPuntuacion() <= 0)
+			warning("Puntación incorrecta, debe ser mayor que 0",
+			CuestionarioPackage.Literals.PREGUNTA__PUNTUACION,
+			"puntuacionValor");
+	}
+	
+	@Check
+	public void nombresDuplicados(Cuestionario cuest) {
+		List<Categoria> categorias = cuest.getCategorias();
+		Set<String> nombres = new HashSet<String>();
+		for (Categoria c : categorias) {
+			if (!nombres.add(c.getName()))
+				warning("Nombres de categorías duplicados",
+						CuestionarioPackage.Literals.CUESTIONARIO__CATEGORIAS,
+				  "nombresDuplicados");
+			for (Categoria sub : c.getSubcategorias()) {
+				if (!nombres.add(sub.getName()))
+					warning("Nombres de categorías duplicados",
+							CuestionarioPackage.Literals.CUESTIONARIO__CATEGORIAS,
+					  "nombresDuplicados");
+			}
+		}
+	}
+	
+	@Check
+	public void dificultadValor (Categoria cat) {
+		if (cat.getDificultad() <= 0)
+			warning("Dificultad incorrecta, debe ser mayor que 0",
+			CuestionarioPackage.Literals.CATEGORIA__DIFICULTAD,
+			"dificultadValor");
+	}
+	
+	@Check
+	public void dificultadIncorrecta (Categoria cat) {
+		double dif = cat.getDificultad();
+		for (Categoria c: cat.getSubcategorias()) {
+			if (c.getDificultad() != dif)
+				warning("Dificultad de subcategoria incorrecta",
+						CuestionarioPackage.Literals.CATEGORIA__SUBCATEGORIAS,
+						"dificultadIncorrecta");
+		}
+	}
+	
+	@Check
+	public void categoriaPregunta (Pregunta preg) {
+		if (!preg.getCategoria().getSubcategorias().isEmpty())
+			warning("Categoría incorrecta, contiene subcategorías",
+			CuestionarioPackage.Literals.PREGUNTA__CATEGORIA,
+			"categoriaPregunta");
+	}
+	
+	@Check
+	public void preguntaCategoria (Cuestionario cuest) {
+		for (Categoria c: cuest.getCategorias()) {
+			this.busquedaRecursiva(c, cuest);
+		}
+	}
+	
+	private void busquedaRecursiva(Categoria c, Cuestionario cuest) {
+		if (c.getSubcategorias().isEmpty()) {
+			this.existsPreg(c, cuest);
+			return;
+		} else {
+			for (Categoria cat: c.getSubcategorias())
+				this.busquedaRecursiva(cat, cuest);
+		}
+	}
+	
+	private void existsPreg(Categoria c, Cuestionario cuest) {
+		boolean encontrado = false;
+		for (Pregunta p: cuest.getPreguntas())
+			if (p.getCategoria() == c)
+				encontrado = true;
+		
+		if (!encontrado)
+			warning("No todas las categorías tienen pregunta",
+					CuestionarioPackage.Literals.CUESTIONARIO__CATEGORIAS,
+					"preguntaCategoria");
+	}
+	
+	@Check
+	public void preguntasNombresDuplicadas(Cuestionario cuest) {
+		Set<String> nombres = new HashSet<String>();
+		for (Pregunta p : cuest.getPreguntas())
+			if (!nombres.add(p.getName()))
+				warning("Nombre preguntas duplicadas",
+						CuestionarioPackage.Literals.CUESTIONARIO__PREGUNTAS,
+						"preguntasNombresDuplicadas");
+	}
+	
+	@Check
+	public void preguntasFinalesDuplicadas(Cuestionario cuest) {
+		Set<String> nombres = new HashSet<String>();
+		for (Pregunta p : cuest.getPreguntasFinales())
+			if (!nombres.add(p.getName()))
+				warning("Preguntas finales duplicadas",
+						CuestionarioPackage.Literals.CUESTIONARIO__PREGUNTAS_FINALES,
+						"preguntasFinalesDuplicadas");
+	}
+	
+	@Check
+	public void correctasDuplicadas(PreguntaMultiple p) {
+		Set<String> nombres = new HashSet<String>();
+		for (Respuesta r: p.getCorrectas())
+			if (!nombres.add(r.getName()))
+				warning("Respuestas correctas duplicadas",
+						CuestionarioPackage.Literals.PREGUNTA_MULTIPLE__CORRECTAS,
+						"respuestasCorrectasDuplicadas");
+	}
+	
+	@Check
+	public void respuestasDuplicadas(Pregunta p) {
+		Set<String> nombres = new HashSet<String>();
+		if (p instanceof PreguntaUnica) {
+			for (Respuesta r: ((PreguntaUnica)p).getRespuestas())
+				if (!nombres.add(r.getName()))
+					warning("Respuestas duplicadas",
+							CuestionarioPackage.Literals.PREGUNTA_UNICA__RESPUESTAS,
+							"respuestasDuplicadas");
+		} else {
+			for (Respuesta r: ((PreguntaMultiple)p).getRespuestas())
+				if (!nombres.add(r.getName()))
+					warning("Respuestas duplicadas",
+							CuestionarioPackage.Literals.PREGUNTA_MULTIPLE__RESPUESTAS,
+							"respuestasDuplicadas");
+		}
+	}
 	
 }
