@@ -6,12 +6,10 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 Cuestionario returns Cuestionario:
 	'Cuestionario'
-	'{'
-		'preguntas' '{' preguntas+=Pregunta ( "," preguntas+=Pregunta)* '}' 
-		'categorias' '{' categorias+=Categoria ( "," categorias+=Categoria)* '}' 
-		'preguntaInicial' preguntaInicial=[Pregunta|EString]
-		'preguntasFinales' '(' preguntasFinales+=[Pregunta|EString] ( "," preguntasFinales+=[Pregunta|EString])* ')' 
-	'}';
+		'Preguntas:' preguntas+=Pregunta ( "," preguntas+=Pregunta)*
+		'Categorias:' categorias+=Categoria ( "," categorias+=Categoria)*
+		'Inicial:' preguntaInicial=[Pregunta|EString]
+		'Finales:' preguntasFinales+=[Pregunta|EString] ( "," preguntasFinales+=[Pregunta|EString])* ;
 
 Pregunta returns Pregunta:
 	PreguntaUnica | PreguntaMultiple;
@@ -19,11 +17,11 @@ Pregunta returns Pregunta:
 
 
 Categoria returns Categoria:
-	'Categoria'
+	'categoria'
 	name=EString
 	'{'
 		'dificultad' dificultad=EDouble
-		('subcategorias' '{' subcategorias+=Categoria ( "," subcategorias+=Categoria)* '}' )?
+		('SubCategorias:' subcategorias+=Categoria ( "," subcategorias+=Categoria)*)?
 	'}';
 
 EString returns ecore::EString:
@@ -36,44 +34,40 @@ EBoolean returns ecore::EBoolean:
 	'true' | 'false';
 
 PreguntaUnica returns PreguntaUnica:
-	'PreguntaUnica'
+	'pregUnica'
 	name=EString
 	'{'
-		'enunciado' enunciado=EString
-		'puntuacion' puntuacion=EDouble
-		'penalizacion' penalizacion=EDouble
-		'categoria' categoria=[Categoria|EString]
+		'Enunciado:' enunciado=EString
+		'Respuestas' '{' respuestas+=Respuesta ( "," respuestas+=Respuesta)* '}' 
+		'Puntuacion:' puntuacion=EDouble
+		'Penalizacion:' penalizacion=EDouble
+		'Categoria:' categoria=[Categoria|EString]
+		'Correcta:' correcta=[Respuesta|EString]
 		((isInicial?='isInicial')
 		'('
-		('siguientePreguntaAcierto' siguientePreguntaAcierto=[Pregunta|EString])
+		('siguientePreguntaAcierto:' siguientePreguntaAcierto=[Pregunta|EString])
 		(',')
-		('siguientePreguntaError' siguientePreguntaError=[Pregunta|EString])
+		('siguientePreguntaError:' siguientePreguntaError=[Pregunta|EString])
 		')')?
-		'respuestas' '{' respuestas+=Respuesta ( "," respuestas+=Respuesta)* '}' 
-		'correcta' correcta=[Respuesta|EString]
 	'}';
 
 PreguntaMultiple returns PreguntaMultiple:
-	'PreguntaMultiple'
+	'pregMultiple'
 	name=EString
 	'{'
-		'enunciado' enunciado=EString
-		'puntuacion' puntuacion=EDouble
-		'penalizacion' penalizacion=EDouble
-		'categoria' categoria=[Categoria|EString]
+		'Enunciado:' enunciado=EString
+		'Respuestas' '{' respuestas+=Respuesta ( "," respuestas+=Respuesta)* '}' 
+		'Puntuacion:' puntuacion=EDouble
+		'Penalizacion:' penalizacion=EDouble
+		'Categoria:' categoria=[Categoria|EString]
+		('Correctas:' correctas+=[Respuesta|EString] ( "," correctas+=[Respuesta|EString])*)?
 		((isInicial?='isInicial')
 		'('
-		('siguientePreguntaAcierto' siguientePreguntaAcierto=[Pregunta|EString])
+		('siguientePreguntaAcierto:' siguientePreguntaAcierto=[Pregunta|EString])
 		(',')
-		('siguientePreguntaError' siguientePreguntaError=[Pregunta|EString])
+		('siguientePreguntaError:' siguientePreguntaError=[Pregunta|EString])
 		')')?
-		'respuestas' '{' respuestas+=Respuesta ( "," respuestas+=Respuesta)* '}' 
-		('correctas' '(' correctas+=[Respuesta|EString] ( "," correctas+=[Respuesta|EString])* ')' )?
 	'}';
 
 Respuesta returns Respuesta:
-	'Respuesta'
-	name=EString
-	'{'
-		'opcion' opcion=EString
-	'}';
+	name=EString ':' opcion=EString;

@@ -1,0 +1,33 @@
+Cuestionario
+ Preguntas: 
+	pregMultiple Preg1 {
+		Enunciado: "Enunciado 1"
+		Respuestas {
+			"Respuesta 1" : "Res1",
+			"Respuesta 2" : "Res2"
+		}
+		Puntuacion: 1.0
+		Penalizacion: 0.5
+		Categoria: Categoria1
+		Correctas: "Respuesta 1", "Respuesta 2"
+		isInicial (siguientePreguntaAcierto: Preg2, siguientePreguntaError: Preg1)
+	},
+	pregUnica Preg2 {
+		Enunciado: "Enunciado 2"
+		Respuestas {
+			"Respuesta 1" : "Res1",
+			"Respuesta 2" : "Res2"
+		}
+		Puntuacion: 0.5
+		Penalizacion: 0.3
+		Categoria: Categoria1
+		Correcta: "Respuesta 1"
+	}
+	
+Categorias:
+ categoria Categoria1 {
+ 	dificultad 1.5
+ }
+
+Inicial: Preg1
+Finales: Preg2

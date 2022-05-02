@@ -102,13 +102,13 @@ public class CuestionarioSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *     (
 	 *         name=EString 
 	 *         enunciado=EString 
+	 *         respuestas+=Respuesta 
+	 *         respuestas+=Respuesta* 
 	 *         puntuacion=EDouble 
 	 *         penalizacion=EDouble 
 	 *         categoria=[Categoria|EString] 
-	 *         (isInicial?='isInicial' siguientePreguntaAcierto=[Pregunta|EString] siguientePreguntaError=[Pregunta|EString])? 
-	 *         respuestas+=Respuesta 
-	 *         respuestas+=Respuesta* 
-	 *         (correctas+=[Respuesta|EString] correctas+=[Respuesta|EString]*)?
+	 *         (correctas+=[Respuesta|EString] correctas+=[Respuesta|EString]*)? 
+	 *         (isInicial?='isInicial' siguientePreguntaAcierto=[Pregunta|EString] siguientePreguntaError=[Pregunta|EString])?
 	 *     )
 	 * </pre>
 	 */
@@ -127,13 +127,13 @@ public class CuestionarioSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *     (
 	 *         name=EString 
 	 *         enunciado=EString 
+	 *         respuestas+=Respuesta 
+	 *         respuestas+=Respuesta* 
 	 *         puntuacion=EDouble 
 	 *         penalizacion=EDouble 
 	 *         categoria=[Categoria|EString] 
-	 *         (isInicial?='isInicial' siguientePreguntaAcierto=[Pregunta|EString] siguientePreguntaError=[Pregunta|EString])? 
-	 *         respuestas+=Respuesta 
-	 *         respuestas+=Respuesta* 
-	 *         correcta=[Respuesta|EString]
+	 *         correcta=[Respuesta|EString] 
+	 *         (isInicial?='isInicial' siguientePreguntaAcierto=[Pregunta|EString] siguientePreguntaError=[Pregunta|EString])?
 	 *     )
 	 * </pre>
 	 */
@@ -159,8 +159,8 @@ public class CuestionarioSemanticSequencer extends AbstractDelegatingSemanticSeq
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CuestionarioPackage.Literals.RESPUESTA__OPCION));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRespuestaAccess().getNameEStringParserRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getRespuestaAccess().getOpcionEStringParserRuleCall_4_0(), semanticObject.getOpcion());
+		feeder.accept(grammarAccess.getRespuestaAccess().getNameEStringParserRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getRespuestaAccess().getOpcionEStringParserRuleCall_2_0(), semanticObject.getOpcion());
 		feeder.finish();
 	}
 	
