@@ -167,4 +167,23 @@ public class CuestionarioValidator extends AbstractCuestionarioValidator {
 		}
 	}
 	
+	@Check
+	public void categoriaInicial(Cuestionario cuest) {
+		Pregunta p = cuest.getPreguntaInicial();
+		Categoria c = p.getCategoria();
+		
+		List<Categoria> categorias = cuest.getCategorias();
+		double minDif = Double.MAX_VALUE;
+		
+		for (Categoria cat: categorias) {
+			if (cat.getDificultad() < minDif)
+				minDif = cat.getDificultad();
+		}
+		
+		if (c.getDificultad() != minDif)
+			warning("La categoría debe ser de menor dificultad",
+					CuestionarioPackage.Literals.CUESTIONARIO__PREGUNTA_INICIAL,
+					"categoriaInicial");
+	}
+	
 }
