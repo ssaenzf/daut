@@ -3,11 +3,20 @@
  */
 package cuestionario.generator;
 
+import com.google.common.base.Objects;
+import com.google.common.collect.Iterators;
+import cuestionario.Pregunta;
+import cuestionario.PreguntaMultiple;
+import cuestionario.PreguntaUnica;
+import cuestionario.Respuesta;
+import java.util.List;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 
 /**
  * Generates code from your model files on save.
@@ -19,6 +28,14 @@ public class CuestionarioGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     fsa.generateFile("main/Main.java", this.generarMain());
+    fsa.generateFile("gui/GuiCuestionario.java", this.generarGUICuestionario(IteratorExtensions.<Pregunta>toList(Iterators.<Pregunta>filter(resource.getAllContents(), Pregunta.class))));
+    List<Pregunta> _list = IteratorExtensions.<Pregunta>toList(Iterators.<Pregunta>filter(resource.getAllContents(), Pregunta.class));
+    for (final Pregunta preg : _list) {
+      String _name = preg.getName();
+      String _plus = ("gui/Panel" + _name);
+      String _plus_1 = (_plus + ".java");
+      fsa.generateFile(_plus_1, this.generarPanelPregunta(preg));
+    }
   }
   
   public CharSequence generarMain() {
@@ -39,6 +56,537 @@ public class CuestionarioGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("questionnaire.mostrarCuestionario();");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence generarGUICuestionario(final List<Pregunta> preguntas) {
+    CharSequence _xblockexpression = null;
+    {
+      int i = 0;
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("package gui;");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("import java.awt.CardLayout;");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("import javax.swing.JFrame;");
+      _builder.newLine();
+      _builder.append("import javax.swing.JPanel;");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("@SuppressWarnings(\"serial\")");
+      _builder.newLine();
+      _builder.append("public class GuiCuestionario extends JFrame {");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.newLine();
+      {
+        for(final Pregunta pregunta : preguntas) {
+          _builder.append("\t");
+          _builder.append("public final static String PANEL_");
+          String _replace = pregunta.getName().toUpperCase().replace(" ", "");
+          _builder.append(_replace, "\t");
+          _builder.append(" = \"");
+          _builder.append(i = (i + 1), "\t");
+          _builder.append("\";");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _builder.append("\t");
+      _builder.append("private JPanel     panel  = new JPanel();");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("private CardLayout layout = new CardLayout();");
+      _builder.newLine();
+      {
+        for(final Pregunta pregunta_1 : preguntas) {
+          _builder.append("\t");
+          _builder.append("private Panel");
+          String _replace_1 = pregunta_1.getName().replace(" ", "");
+          _builder.append(_replace_1, "\t");
+          _builder.append(" ");
+          String _replace_2 = pregunta_1.getName().toLowerCase().replace(" ", "");
+          _builder.append(_replace_2, "\t");
+          _builder.append(";");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _builder.append("\t");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("public GuiCuestionario () {");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.newLine();
+      {
+        for(final Pregunta pregunta_2 : preguntas) {
+          _builder.append("\t\t");
+          String _replace_3 = pregunta_2.getName().toLowerCase().replace(" ", "");
+          _builder.append(_replace_3, "\t\t");
+          _builder.append(" = new Panel");
+          String _name = pregunta_2.getName();
+          _builder.append(_name, "\t\t");
+          _builder.append("(this);");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _builder.append("\t\t");
+      _builder.append("panel.setLayout(layout);");
+      _builder.newLine();
+      {
+        for(final Pregunta pregunta_3 : preguntas) {
+          _builder.append("\t\t");
+          _builder.append("panel.add(");
+          String _replace_4 = pregunta_3.getName().toLowerCase().replace(" ", "");
+          _builder.append(_replace_4, "\t\t");
+          _builder.append(", PANEL_");
+          String _replace_5 = pregunta_3.getName().toUpperCase().replace(" ", "");
+          _builder.append(_replace_5, "\t\t");
+          _builder.append(");");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _builder.append("\t\t");
+      _builder.append("getContentPane().add(panel);");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append("// mostrar primera pregunta");
+      _builder.newLine();
+      {
+        for(final Pregunta pregunta_4 : preguntas) {
+          {
+            boolean _isIsInicial = pregunta_4.isIsInicial();
+            if (_isIsInicial) {
+              _builder.append("\t\t");
+              _builder.append("this.mostrarPregunta(PANEL_");
+              String _replace_6 = pregunta_4.getName().toUpperCase().replace(" ", "");
+              _builder.append(_replace_6, "\t\t");
+              _builder.append(");");
+              _builder.newLineIfNotEmpty();
+            }
+          }
+        }
+      }
+      _builder.append("\t");
+      _builder.append("}");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("/**");
+      _builder.newLine();
+      _builder.append("\t ");
+      _builder.append("* muestra cuestionario");
+      _builder.newLine();
+      _builder.append("\t ");
+      _builder.append("*/");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("public void mostrarCuestionario () {");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append("this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append("this.pack();");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append("this.setVisible(true);");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("}");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("/**");
+      _builder.newLine();
+      _builder.append("\t ");
+      _builder.append("* muestra pregunta del cuestionario");
+      _builder.newLine();
+      _builder.append("\t ");
+      _builder.append("*/");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("public void mostrarPregunta (String pregunta) {");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append("layout.show(panel, pregunta);");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("}");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
+      _builder.newLine();
+      _xblockexpression = _builder;
+    }
+    return _xblockexpression;
+  }
+  
+  public CharSequence generarPanelPregunta(final Pregunta pregunta) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package gui;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("import java.awt.BorderLayout;");
+    _builder.newLine();
+    _builder.append("import java.awt.GridBagConstraints;");
+    _builder.newLine();
+    _builder.append("import java.awt.GridBagLayout;");
+    _builder.newLine();
+    _builder.append("import java.awt.event.ActionEvent;");
+    _builder.newLine();
+    _builder.append("import java.awt.event.ActionListener;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("import javax.swing.JButton;");
+    _builder.newLine();
+    {
+      if ((pregunta instanceof PreguntaUnica)) {
+        _builder.append("import javax.swing.JRadioButton;");
+        _builder.newLine();
+      } else {
+        _builder.append("import javax.swing.JCheckBox;");
+        _builder.newLine();
+      }
+    }
+    _builder.append("import javax.swing.JLabel;");
+    _builder.newLine();
+    _builder.append("import javax.swing.JPanel;");
+    _builder.newLine();
+    _builder.append("import javax.swing.border.EmptyBorder;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("@SuppressWarnings(\"serial\")");
+    _builder.newLine();
+    _builder.append("public class Panel");
+    String _replace = pregunta.getName().replace(" ", "");
+    _builder.append(_replace);
+    _builder.append(" extends JPanel {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    {
+      if ((pregunta instanceof PreguntaUnica)) {
+        {
+          EList<Respuesta> _respuestas = ((PreguntaUnica)pregunta).getRespuestas();
+          for(final Respuesta resp : _respuestas) {
+            _builder.append("\t");
+            _builder.append("private JRadioButton ");
+            String _replace_1 = resp.getName().toLowerCase().replace(" ", "");
+            _builder.append(_replace_1, "\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      } else {
+        if ((pregunta instanceof PreguntaMultiple)) {
+          {
+            EList<Respuesta> _respuestas_1 = ((PreguntaMultiple)pregunta).getRespuestas();
+            for(final Respuesta resp_1 : _respuestas_1) {
+              _builder.append("\t");
+              _builder.append("private JCheckBox ");
+              String _replace_2 = resp_1.getName().toLowerCase().replace(" ", "");
+              _builder.append(_replace_2, "\t");
+              _builder.append(";");
+              _builder.newLineIfNotEmpty();
+            }
+          }
+        }
+      }
+    }
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private boolean respondida = false;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public Panel");
+    String _replace_3 = pregunta.getName().replace(" ", "");
+    _builder.append(_replace_3, "\t");
+    _builder.append(" (GuiCuestionario gui) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.setLayout(new BorderLayout());");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.setBorder(new EmptyBorder(10,10,10,10));");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("// categoria");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.add(new JLabel(\"");
+    String _name = pregunta.getCategoria().getName();
+    _builder.append(_name, "\t\t");
+    _builder.append("\"), BorderLayout.NORTH);");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("// pregunta");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("JPanel panelPregunta = new JPanel(new GridBagLayout());");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("panelPregunta.setBorder(new EmptyBorder(20,0,20,0));");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("GridBagConstraints c = new GridBagConstraints();");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("c.anchor = GridBagConstraints.WEST;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("c.fill   = GridBagConstraints.HORIZONTAL; ");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("c.gridy  = 0;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("panelPregunta.add(new JLabel(\"");
+    String _enunciado = pregunta.getEnunciado();
+    _builder.append(_enunciado, "\t\t");
+    _builder.append("\"), c);");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("// opciones");
+    _builder.newLine();
+    {
+      if ((pregunta instanceof PreguntaUnica)) {
+        {
+          EList<Respuesta> _respuestas_2 = ((PreguntaUnica)pregunta).getRespuestas();
+          for(final Respuesta resp_2 : _respuestas_2) {
+            _builder.append("\t\t");
+            String _replace_4 = resp_2.getName().toLowerCase().replace(" ", "");
+            _builder.append(_replace_4, "\t\t");
+            _builder.append(" = new JRadioButton(\"");
+            String _opcion = resp_2.getOpcion();
+            _builder.append(_opcion, "\t\t");
+            _builder.append("\");");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t");
+            _builder.append("c.gridly++;  panelPregunta.add(");
+            String _replace_5 = resp_2.getName().toLowerCase().replace(" ", "");
+            _builder.append(_replace_5, "\t\t");
+            _builder.append(", c);");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      } else {
+        if ((pregunta instanceof PreguntaMultiple)) {
+          {
+            EList<Respuesta> _respuestas_3 = ((PreguntaMultiple)pregunta).getRespuestas();
+            for(final Respuesta resp_3 : _respuestas_3) {
+              _builder.append("\t\t");
+              String _replace_6 = resp_3.getName().toLowerCase().replace(" ", "");
+              _builder.append(_replace_6, "\t\t");
+              _builder.append(" = new JCheckBox(\"");
+              String _opcion_1 = resp_3.getOpcion();
+              _builder.append(_opcion_1, "\t\t");
+              _builder.append("\");");
+              _builder.newLineIfNotEmpty();
+              _builder.append("\t\t");
+              _builder.append("c.gridly++;  panelPregunta.add(");
+              String _replace_7 = resp_3.getName().toLowerCase().replace(" ", "");
+              _builder.append(_replace_7, "\t\t");
+              _builder.append(", c);");
+              _builder.newLineIfNotEmpty();
+            }
+          }
+        }
+      }
+    }
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.add(panelPregunta, BorderLayout.WEST);");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("// boton siguiente");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("JButton button = new JButton(\"Siguiente\");");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("button.addActionListener(new ActionListener() {");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("@Override");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("public void actionPerformed(ActionEvent e) {");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("respondida = true;");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("if (isRespuestaCorrecta()) ");
+    _builder.newLine();
+    {
+      boolean _isIsInicial = pregunta.isIsInicial();
+      if (_isIsInicial) {
+        _builder.append("\t\t\t\t");
+        _builder.append("gui.mostrarPregunta(GuiCuestionario.PANEL_");
+        String _replace_8 = pregunta.getSiguientePreguntaAcierto().getName().toUpperCase().replace(" ", "");
+        _builder.append(_replace_8, "\t\t\t\t");
+        _builder.append("); // respuesta correcta");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t\t\t");
+        _builder.append("else ");
+        _builder.newLine();
+        _builder.append("\t\t\t\t");
+        _builder.append("gui.mostrarPregunta(GuiCuestionario.PANEL_PANEL_");
+        String _replace_9 = pregunta.getSiguientePreguntaError().getName().toUpperCase().replace(" ", "");
+        _builder.append(_replace_9, "\t\t\t\t");
+        _builder.append("); // respuesta incorrecta");
+        _builder.newLineIfNotEmpty();
+      } else {
+        _builder.append("\t\t\t\t");
+        _builder.append("// Faltan asignar las siguientes preguntas a las finales");
+        _builder.newLine();
+      }
+    }
+    _builder.append("\t\t\t");
+    _builder.append("}\t\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("});");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.add(button, BorderLayout.SOUTH); ");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public boolean isPreguntaRespondida() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return respondida;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public boolean isRespuestaCorrecta() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return");
+    _builder.newLine();
+    {
+      if ((pregunta instanceof PreguntaUnica)) {
+        _builder.append("\t\t");
+        Respuesta r = ((PreguntaUnica)pregunta).getCorrecta();
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t");
+        EList<Respuesta> _respuestas_4 = ((PreguntaUnica)pregunta).getRespuestas();
+        int _size = ((PreguntaUnica)pregunta).getRespuestas().size();
+        int _minus = (_size - 1);
+        Respuesta last = _respuestas_4.get(_minus);
+        _builder.newLineIfNotEmpty();
+        {
+          EList<Respuesta> _respuestas_5 = ((PreguntaUnica)pregunta).getRespuestas();
+          for(final Respuesta resp_4 : _respuestas_5) {
+            {
+              boolean _equals = Objects.equal(resp_4, r);
+              if (_equals) {
+                _builder.append("\t\t");
+                String _replace_10 = resp_4.getName().toLowerCase().replace(" ", "");
+                _builder.append(_replace_10, "\t\t");
+                _builder.append(".isSelected() ");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                _builder.append("!");
+                String _replace_11 = resp_4.getName().toLowerCase().replace(" ", "");
+                _builder.append(_replace_11, "\t\t");
+                _builder.append(".isSelected() ");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+            {
+              boolean _notEquals = (!Objects.equal(resp_4, last));
+              if (_notEquals) {
+                _builder.append("\t\t");
+                _builder.append("&&");
+                _builder.newLine();
+              }
+            }
+          }
+        }
+      } else {
+        if ((pregunta instanceof PreguntaMultiple)) {
+          _builder.append("\t\t");
+          EList<Respuesta> r_1 = ((PreguntaMultiple)pregunta).getCorrectas();
+          _builder.newLineIfNotEmpty();
+          _builder.append("\t\t");
+          EList<Respuesta> _respuestas_6 = ((PreguntaMultiple)pregunta).getRespuestas();
+          int _size_1 = ((PreguntaMultiple)pregunta).getRespuestas().size();
+          int _minus_1 = (_size_1 - 1);
+          Respuesta last_1 = _respuestas_6.get(_minus_1);
+          _builder.newLineIfNotEmpty();
+          {
+            EList<Respuesta> _respuestas_7 = ((PreguntaMultiple)pregunta).getRespuestas();
+            for(final Respuesta resp_5 : _respuestas_7) {
+              {
+                boolean _contains = r_1.contains(resp_5);
+                if (_contains) {
+                  _builder.append("\t\t");
+                  String _replace_12 = resp_5.getName().toLowerCase().replace(" ", "");
+                  _builder.append(_replace_12, "\t\t");
+                  _builder.append(".isSelected() ");
+                  _builder.newLineIfNotEmpty();
+                } else {
+                  _builder.append("\t\t");
+                  _builder.append("!");
+                  String _replace_13 = resp_5.getName().toLowerCase().replace(" ", "");
+                  _builder.append(_replace_13, "\t\t");
+                  _builder.append(".isSelected() ");
+                  _builder.newLineIfNotEmpty();
+                }
+              }
+              {
+                boolean _notEquals_1 = (!Objects.equal(resp_5, last_1));
+                if (_notEquals_1) {
+                  _builder.append("\t\t");
+                  _builder.append("&&");
+                  _builder.newLine();
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    _builder.append("\t\t");
+    _builder.append(";\t");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("}");
