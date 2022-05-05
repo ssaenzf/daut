@@ -4,6 +4,7 @@
 package cuestionario.generator;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
@@ -17,5 +18,33 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 public class CuestionarioGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    fsa.generateFile("main/Main.java", this.generarMain());
+  }
+  
+  public CharSequence generarMain() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package main;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("import gui.GuiCuestionario;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public class Main {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public static void main(String[] args) {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("GuiCuestionario questionnaire = new GuiCuestionario();");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("questionnaire.mostrarCuestionario();");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
   }
 }

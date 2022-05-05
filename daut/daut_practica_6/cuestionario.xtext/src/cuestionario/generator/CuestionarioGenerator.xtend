@@ -16,10 +16,22 @@ import org.eclipse.xtext.generator.IGeneratorContext
 class CuestionarioGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
+		fsa.generateFile("main/Main.java", generarMain());
 	}
+	
+	def generarMain() {
+		'''
+			package main;
+			
+			import gui.GuiCuestionario;
+			
+			public class Main {
+				public static void main(String[] args) {
+					GuiCuestionario questionnaire = new GuiCuestionario();
+					questionnaire.mostrarCuestionario();
+				}
+			}
+		'''
+	}
+	
 }
