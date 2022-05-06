@@ -5,6 +5,7 @@ package cuestionario.generator;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterators;
+import cuestionario.Categoria;
 import cuestionario.Pregunta;
 import cuestionario.PreguntaMultiple;
 import cuestionario.PreguntaUnica;
@@ -29,6 +30,7 @@ public class CuestionarioGenerator extends AbstractGenerator {
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     fsa.generateFile("main/Main.java", this.generarMain());
     fsa.generateFile("gui/GuiCuestionario.java", this.generarGUICuestionario(IteratorExtensions.<Pregunta>toList(Iterators.<Pregunta>filter(resource.getAllContents(), Pregunta.class))));
+    fsa.generateFile("gui/PanelResultado.java", this.generarPanelResultado(IteratorExtensions.<Pregunta>toList(Iterators.<Pregunta>filter(resource.getAllContents(), Pregunta.class)), IteratorExtensions.<Categoria>toList(Iterators.<Categoria>filter(resource.getAllContents(), Categoria.class))));
     List<Pregunta> _list = IteratorExtensions.<Pregunta>toList(Iterators.<Pregunta>filter(resource.getAllContents(), Pregunta.class));
     for (final Pregunta preg : _list) {
       String _name = preg.getName();
@@ -590,6 +592,201 @@ public class CuestionarioGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("}");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence generarPanelResultado(final List<Pregunta> preguntas, final List<Categoria> categorias) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package gui;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("import java.awt.GridLayout;");
+    _builder.newLine();
+    _builder.append("import java.awt.event.ActionEvent;");
+    _builder.newLine();
+    _builder.append("import java.awt.event.ActionListener;");
+    _builder.newLine();
+    _builder.append("import java.util.Arrays;");
+    _builder.newLine();
+    _builder.append("import java.util.LinkedHashMap;");
+    _builder.newLine();
+    _builder.append("import java.util.List;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("import javax.swing.JButton;");
+    _builder.newLine();
+    _builder.append("import javax.swing.JLabel;");
+    _builder.newLine();
+    _builder.append("import javax.swing.JPanel;");
+    _builder.newLine();
+    _builder.append("import javax.swing.border.EmptyBorder;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("@SuppressWarnings(\"serial\")");
+    _builder.newLine();
+    _builder.append("public class PanelResultado extends JPanel {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public PanelResultado(GuiCuestionario gui) {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.setLayout(new GridLayout(-1,1));");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.setBorder(new EmptyBorder(10,10,10,10));");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("// Solo categorías sin subcategorías");
+    _builder.newLine();
+    {
+      for(final Categoria c : categorias) {
+        {
+          int _size = c.getSubcategorias().size();
+          boolean _equals = (_size == 0);
+          if (_equals) {
+            _builder.append("\t\t");
+            int pos = categorias.indexOf(c);
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t");
+            _builder.append("int categoria");
+            _builder.append((pos + 1), "\t\t");
+            _builder.append("_ok = 0, categoria");
+            _builder.append((pos + 1), "\t\t");
+            _builder.append("_nok = 0;");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    _builder.append("\t\t");
+    _builder.newLine();
+    {
+      for(final Pregunta p : preguntas) {
+        _builder.append("\t\t");
+        Categoria c_1 = p.getCategoria();
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t");
+        int pos_1 = categorias.indexOf(c_1);
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t");
+        _builder.append("if (gui.isPreguntaRespondida(GuiCuestionario.PANEL_");
+        String _replace = p.getName().toUpperCase().replace(" ", "");
+        _builder.append(_replace, "\t\t");
+        _builder.append(")) {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t");
+        _builder.append("\t");
+        _builder.append("if (gui.isRespuestaCorrecta(GuiCuestionario.PANEL_");
+        String _replace_1 = p.getName().toUpperCase().replace(" ", "");
+        _builder.append(_replace_1, "\t\t\t");
+        _builder.append(")) ");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t");
+        _builder.append("\t\t ");
+        _builder.append("categoria");
+        _builder.append((pos_1 + 1), "\t\t\t\t ");
+        _builder.append("_ok++;");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t");
+        _builder.append("\t");
+        _builder.append("else categoria");
+        _builder.append((pos_1 + 1), "\t\t\t");
+        _builder.append("_nok++;");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t");
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("LinkedHashMap<String, List<Integer>> map = new LinkedHashMap<String, List<Integer>>();");
+    _builder.newLine();
+    _builder.append("\t\t");
+    int j = 0;
+    _builder.newLineIfNotEmpty();
+    {
+      for(final Categoria c_2 : categorias) {
+        {
+          int _size_1 = c_2.getSubcategorias().size();
+          boolean _equals_1 = (_size_1 == 0);
+          if (_equals_1) {
+            _builder.append("\t\t");
+            _builder.append("this.add(new JLabel(\"");
+            String _name = c_2.getName();
+            _builder.append(_name, "\t\t");
+            _builder.append("\"));");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t");
+            _builder.append("this.add(new JLabel(\"   - Correctas:   \"+categoria");
+            _builder.append(j = (j + 1), "\t\t");
+            _builder.append("_ok));");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t");
+            _builder.append("this.add(new JLabel(\"   - Incorrectas: \"+categoria");
+            _builder.append(j, "\t\t");
+            _builder.append("_nok));");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t");
+            _builder.append("List<Integer> lista = Arrays.asList(categoria");
+            _builder.append(j, "\t\t");
+            _builder.append("_ok, categoria");
+            _builder.append(j, "\t\t");
+            _builder.append("_nok);");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t");
+            _builder.append("map.put(");
+            _builder.append(c_2, "\t\t");
+            _builder.append(", lista)");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.add(new JLabel(\"Nota: \"+  getResultado(map));");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("JButton button = new JButton(\"Cerrar\");");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("button.addActionListener(new ActionListener() {");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("@Override");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("public void actionPerformed(ActionEvent e) {");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("gui.setVisible(false);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("gui.dispose();\t\t");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("});");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.add(button);");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}\t\t\t");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();

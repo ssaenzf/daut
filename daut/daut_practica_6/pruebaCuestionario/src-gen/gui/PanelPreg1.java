@@ -53,7 +53,8 @@ public class PanelPreg1 extends JPanel {
 				respondida = true;
 				if (isRespuestaCorrecta()) 
 				gui.mostrarPregunta(GuiCuestionario.PANEL_PREG2); // respuesta correcta
-				else gui.mostrarPregunta(GuiCuestionario.PANEL_PANEL_PREG3); // respuesta incorrecta
+				else 
+				gui.mostrarPregunta(GuiCuestionario.PANEL_PANEL_PREG3); // respuesta incorrecta
 			}			
 		});
 		this.add(button, BorderLayout.SOUTH); 

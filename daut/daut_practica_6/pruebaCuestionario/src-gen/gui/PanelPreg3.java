@@ -52,6 +52,7 @@ public class PanelPreg3 extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				respondida = true;
 				if (isRespuestaCorrecta()) 
+				// Faltan asignar las siguientes preguntas a las finales
 			}			
 		});
 		this.add(button, BorderLayout.SOUTH); 
