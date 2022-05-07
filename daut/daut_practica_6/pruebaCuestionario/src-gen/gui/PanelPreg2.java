@@ -39,9 +39,9 @@ public class PanelPreg2 extends JPanel {
 		
 		// opciones
 		respuesta1 = new JRadioButton("Res1");
-		c.gridly++;  panelPregunta.add(respuesta1, c);
+		c.gridy++;  panelPregunta.add(respuesta1, c);
 		respuesta2 = new JRadioButton("Res2");
-		c.gridly++;  panelPregunta.add(respuesta2, c);
+		c.gridy++;  panelPregunta.add(respuesta2, c);
 		
 		this.add(panelPregunta, BorderLayout.WEST);
 		
@@ -51,8 +51,19 @@ public class PanelPreg2 extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				respondida = true;
-				if (isRespuestaCorrecta()) 
-				// Faltan asignar las siguientes preguntas a las finales
+				if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG1)){
+					gui.mostrarPregunta(GuiCuestionario.PANEL_PREG1);
+					return;
+				}
+				if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG3)){
+					gui.mostrarPregunta(GuiCuestionario.PANEL_PREG3);
+					return;
+				}
+				if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG4)){
+					gui.mostrarPregunta(GuiCuestionario.PANEL_PREG4);
+					return;
+				}
+				gui.mostrarResultado();
 			}			
 		});
 		this.add(button, BorderLayout.SOUTH); 

@@ -47,10 +47,40 @@ public class GuiCuestionario extends JFrame {
 	}
 	
 	/**
+	 * devuelve si la pregunta se ha respondido 
+	 */
+	public boolean isPreguntaRespondida (String pregunta) {
+		if (pregunta.equals(PANEL_PREG1)) return preg1.isPreguntaRespondida();
+		if (pregunta.equals(PANEL_PREG2)) return preg2.isPreguntaRespondida();
+		if (pregunta.equals(PANEL_PREG3)) return preg3.isPreguntaRespondida();
+		if (pregunta.equals(PANEL_PREG4)) return preg4.isPreguntaRespondida();
+		return false;
+	}
+	
+	/**
+	 * devuelve si la pregunta se ha respondido correctamente 
+	 */
+	public boolean isRespuestaCorrecta (String pregunta) {
+		if (pregunta.equals(PANEL_PREG1)) return preg1.isRespuestaCorrecta();
+		if (pregunta.equals(PANEL_PREG2)) return preg2.isRespuestaCorrecta();
+		if (pregunta.equals(PANEL_PREG3)) return preg3.isRespuestaCorrecta();
+		if (pregunta.equals(PANEL_PREG4)) return preg4.isRespuestaCorrecta();
+		return false;
+	}
+	
+	/**
 	 * muestra pregunta del cuestionario
 	 */
 	public void mostrarPregunta (String pregunta) {
 		layout.show(panel, pregunta);
 	}
+	
+	/**
+	 * muestra resultado del cuestionario
+	 */
+	public void mostrarResultado () {
+		panel.add(new PanelResultado(this), "resultado");
+		layout.show(panel, "resultado");
+	}	
 }
 

@@ -12,8 +12,6 @@ import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import cuestionario.PreguntaMultiple
 import cuestionario.Categoria
-import java.util.LinkedHashMap
-import java.util.ArrayList
 
 /**
  * Generates code from your model files on save.
@@ -27,7 +25,7 @@ class CuestionarioGenerator extends AbstractGenerator {
 		fsa.generateFile("gui/GuiCuestionario.java", generarGUICuestionario(resource.allContents.filter(Pregunta).toList))
 		fsa.generateFile("gui/PanelResultado.java", generarPanelResultado(resource.allContents.filter(Pregunta).toList, resource.allContents.filter(Categoria).toList))
 		for (preg : resource.allContents.filter(Pregunta).toList) {
-			fsa.generateFile("gui/Panel" + preg.getName() + ".java", generarPanelPregunta(preg));
+			fsa.generateFile("gui/Panel" + preg.getName() + ".java", generarPanelPregunta(preg, resource.allContents.filter(Pregunta).toList));
 		}
 	}
 	
@@ -98,17 +96,45 @@ class CuestionarioGenerator extends AbstractGenerator {
 				}
 				
 				/**
+				 * devuelve si la pregunta se ha respondido 
+				 */
+				public boolean isPreguntaRespondida (String pregunta) {
+					«FOR pregunta : preguntas»
+						if (pregunta.equals(PANEL_«pregunta.getName().toUpperCase().replace(" ","")»)) return «pregunta.getName().toLowerCase().replace(" ","")».isPreguntaRespondida();
+					«ENDFOR»
+					return false;
+				}
+				
+				/**
+				 * devuelve si la pregunta se ha respondido correctamente 
+				 */
+				public boolean isRespuestaCorrecta (String pregunta) {
+					«FOR pregunta : preguntas»
+						if (pregunta.equals(PANEL_«pregunta.getName().toUpperCase().replace(" ","")»)) return «pregunta.getName().toLowerCase().replace(" ","")».isRespuestaCorrecta();
+					«ENDFOR»
+					return false;
+				}
+				
+				/**
 				 * muestra pregunta del cuestionario
 				 */
 				public void mostrarPregunta (String pregunta) {
 					layout.show(panel, pregunta);
 				}
+				
+				/**
+				 * muestra resultado del cuestionario
+				 */
+				public void mostrarResultado () {
+					panel.add(new PanelResultado(this), "resultado");
+					layout.show(panel, "resultado");
+				}	
 			}
 			
 		'''
 	}
 	
-	def generarPanelPregunta(Pregunta pregunta) {
+	def generarPanelPregunta(Pregunta pregunta, List<Pregunta> preguntas) {
 		'''
 		package gui;
 		
@@ -164,12 +190,12 @@ class CuestionarioGenerator extends AbstractGenerator {
 				«IF pregunta instanceof PreguntaUnica»
 					«FOR resp: pregunta.getRespuestas()»
 						«resp.getName().toLowerCase().replace(" ","")» = new JRadioButton("«resp.getOpcion()»");
-						c.gridly++;  panelPregunta.add(«resp.getName().toLowerCase().replace(" ","")», c);
+						c.gridy++;  panelPregunta.add(«resp.getName().toLowerCase().replace(" ","")», c);
 					«ENDFOR»
 				«ELSEIF pregunta instanceof PreguntaMultiple»
 					«FOR resp: pregunta.getRespuestas()»
 						«resp.getName().toLowerCase().replace(" ","")» = new JCheckBox("«resp.getOpcion()»");
-						c.gridly++;  panelPregunta.add(«resp.getName().toLowerCase().replace(" ","")», c);
+						c.gridy++;  panelPregunta.add(«resp.getName().toLowerCase().replace(" ","")», c);
 					«ENDFOR»
 				«ENDIF»
 				
@@ -181,13 +207,21 @@ class CuestionarioGenerator extends AbstractGenerator {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						respondida = true;
-						if (isRespuestaCorrecta()) 
 						«IF pregunta.isInicial»
+						if (isRespuestaCorrecta()) 
 						 	gui.mostrarPregunta(GuiCuestionario.PANEL_«pregunta.getSiguientePreguntaAcierto().getName().toUpperCase().replace(" ","")»); // respuesta correcta
-						 	else 
-						 	gui.mostrarPregunta(GuiCuestionario.PANEL_PANEL_«pregunta.getSiguientePreguntaError.getName().toUpperCase().replace(" ","")»); // respuesta incorrecta
+						else 
+						 	gui.mostrarPregunta(GuiCuestionario.PANEL_«pregunta.getSiguientePreguntaError.getName().toUpperCase().replace(" ","")»); // respuesta incorrecta
 						«ELSE»
-							// Faltan asignar las siguientes preguntas a las finales
+							«FOR p: preguntas»
+								«IF pregunta.getName() != p.getName()»
+									if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_«p.getName().toUpperCase().replace(" ","")»)){
+										gui.mostrarPregunta(GuiCuestionario.PANEL_«p.getName().toUpperCase().replace(" ","")»);
+										return;
+									}
+								«ENDIF»
+							«ENDFOR»
+							gui.mostrarResultado();
 						«ENDIF»
 					}			
 				});
@@ -240,9 +274,6 @@ class CuestionarioGenerator extends AbstractGenerator {
 		import java.awt.GridLayout;
 		import java.awt.event.ActionEvent;
 		import java.awt.event.ActionListener;
-		import java.util.Arrays;
-		import java.util.LinkedHashMap;
-		import java.util.List;
 		
 		import javax.swing.JButton;
 		import javax.swing.JLabel;
@@ -252,7 +283,10 @@ class CuestionarioGenerator extends AbstractGenerator {
 		@SuppressWarnings("serial")
 		public class PanelResultado extends JPanel {
 			
-			public PanelResultado(GuiCuestionario gui) {
+			private GuiCuestionario gui = null;
+				
+				public PanelResultado(GuiCuestionario gui) {
+				this.gui = gui;
 				this.setLayout(new GridLayout(-1,1));
 				this.setBorder(new EmptyBorder(10,10,10,10));
 				
@@ -274,19 +308,16 @@ class CuestionarioGenerator extends AbstractGenerator {
 					}
 				«ENDFOR»
 				
-				LinkedHashMap<String, List<Integer>> map = new LinkedHashMap<String, List<Integer>>();
-				«var j = 0»
 				«FOR c: categorias»
+					«var pos = categorias.indexOf(c)»
 					«IF c.getSubcategorias().size == 0»
 					this.add(new JLabel("«c.getName()»"));
-					this.add(new JLabel("   - Correctas:   "+categoria«j = j + 1»_ok));
-					this.add(new JLabel("   - Incorrectas: "+categoria«j»_nok));
-					List<Integer> lista = Arrays.asList(categoria«j»_ok, categoria«j»_nok);
-					map.put(«c», lista)
+					this.add(new JLabel("   - Correctas:   "+categoria«pos + 1»_ok));
+					this.add(new JLabel("   - Incorrectas: "+categoria«pos + 1»_nok));
 					«ENDIF»
 				«ENDFOR»
 				
-				this.add(new JLabel("Nota: "+  getResultado(map));
+				this.add(new JLabel("Nota: "+ getResultado()));
 				
 				JButton button = new JButton("Cerrar");
 				button.addActionListener(new ActionListener() {
@@ -297,6 +328,18 @@ class CuestionarioGenerator extends AbstractGenerator {
 					}
 				});
 				this.add(button);
+			}
+			
+			private double getResultado() {
+				double resultado = 0.0;
+				«FOR p: preguntas»
+					if (gui.isRespuestaCorrecta(GuiCuestionario.PANEL_«p.getName().toUpperCase().replace(" ","")»)) {
+						resultado += «p.puntuacion»;
+					} else {
+						resultado += «p.penalizacion»;
+					}		
+				«ENDFOR»
+				return resultado;
 			}			
 		}
 		'''

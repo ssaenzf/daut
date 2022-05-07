@@ -39,9 +39,9 @@ public class PanelPreg1 extends JPanel {
 		
 		// opciones
 		respuesta1 = new JCheckBox("Res1");
-		c.gridly++;  panelPregunta.add(respuesta1, c);
+		c.gridy++;  panelPregunta.add(respuesta1, c);
 		respuesta2 = new JCheckBox("Res2");
-		c.gridly++;  panelPregunta.add(respuesta2, c);
+		c.gridy++;  panelPregunta.add(respuesta2, c);
 		
 		this.add(panelPregunta, BorderLayout.WEST);
 		
@@ -52,9 +52,9 @@ public class PanelPreg1 extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				respondida = true;
 				if (isRespuestaCorrecta()) 
-				gui.mostrarPregunta(GuiCuestionario.PANEL_PREG2); // respuesta correcta
+				 	gui.mostrarPregunta(GuiCuestionario.PANEL_PREG2); // respuesta correcta
 				else 
-				gui.mostrarPregunta(GuiCuestionario.PANEL_PANEL_PREG3); // respuesta incorrecta
+				 	gui.mostrarPregunta(GuiCuestionario.PANEL_PREG3); // respuesta incorrecta
 			}			
 		});
 		this.add(button, BorderLayout.SOUTH); 
