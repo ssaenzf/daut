@@ -41,6 +41,7 @@ public class GuiCuestionario extends JFrame {
 	 */
 	
 	public void mostrarCuestionario () {
+		this.setTitle("Cuestionario");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.pack();
 		this.setVisible(true);

@@ -197,6 +197,9 @@ public class CuestionarioGenerator extends AbstractGenerator {
       _builder.append("public void mostrarCuestionario () {");
       _builder.newLine();
       _builder.append("\t\t");
+      _builder.append("this.setTitle(\"Cuestionario\");");
+      _builder.newLine();
+      _builder.append("\t\t");
       _builder.append("this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);");
       _builder.newLine();
       _builder.append("\t\t");
