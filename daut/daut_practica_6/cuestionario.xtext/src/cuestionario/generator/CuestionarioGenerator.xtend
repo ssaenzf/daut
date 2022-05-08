@@ -147,6 +147,7 @@ class CuestionarioGenerator extends AbstractGenerator {
 		
 		import javax.swing.JButton;
 		«IF pregunta instanceof PreguntaUnica»
+			import javax.swing.ButtonGroup;
 			import javax.swing.JRadioButton;
 		«ELSE»
 			import javax.swing.JCheckBox;
@@ -189,9 +190,11 @@ class CuestionarioGenerator extends AbstractGenerator {
 				
 				// opciones
 				«IF pregunta instanceof PreguntaUnica»
+					ButtonGroup group = new ButtonGroup();
 					«FOR resp: pregunta.getRespuestas()»
 						«resp.getName().toLowerCase().replace(" ","")» = new JRadioButton("«resp.getOpcion()»");
 						c.gridy++;  panelPregunta.add(«resp.getName().toLowerCase().replace(" ","")», c);
+						group.add(«resp.getName().toLowerCase().replace(" ","")»);
 					«ENDFOR»
 				«ELSEIF pregunta instanceof PreguntaMultiple»
 					«FOR resp: pregunta.getRespuestas()»

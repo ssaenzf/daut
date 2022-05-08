@@ -348,6 +348,8 @@ public class CuestionarioGenerator extends AbstractGenerator {
     _builder.newLine();
     {
       if ((pregunta instanceof PreguntaUnica)) {
+        _builder.append("import javax.swing.ButtonGroup;");
+        _builder.newLine();
         _builder.append("import javax.swing.JRadioButton;");
         _builder.newLine();
       } else {
@@ -468,6 +470,9 @@ public class CuestionarioGenerator extends AbstractGenerator {
     _builder.newLine();
     {
       if ((pregunta instanceof PreguntaUnica)) {
+        _builder.append("\t\t");
+        _builder.append("ButtonGroup group = new ButtonGroup();");
+        _builder.newLine();
         {
           EList<Respuesta> _respuestas_2 = ((PreguntaUnica)pregunta).getRespuestas();
           for(final Respuesta resp_2 : _respuestas_2) {
@@ -485,6 +490,12 @@ public class CuestionarioGenerator extends AbstractGenerator {
             _builder.append(_replace_5, "\t\t");
             _builder.append(", c);");
             _builder.newLineIfNotEmpty();
+            _builder.append("\t\t");
+            _builder.append("group.add(");
+            String _replace_6 = resp_2.getName().toLowerCase().replace(" ", "");
+            _builder.append(_replace_6, "\t\t");
+            _builder.append(");");
+            _builder.newLineIfNotEmpty();
           }
         }
       } else {
@@ -493,8 +504,8 @@ public class CuestionarioGenerator extends AbstractGenerator {
             EList<Respuesta> _respuestas_3 = ((PreguntaMultiple)pregunta).getRespuestas();
             for(final Respuesta resp_3 : _respuestas_3) {
               _builder.append("\t\t");
-              String _replace_6 = resp_3.getName().toLowerCase().replace(" ", "");
-              _builder.append(_replace_6, "\t\t");
+              String _replace_7 = resp_3.getName().toLowerCase().replace(" ", "");
+              _builder.append(_replace_7, "\t\t");
               _builder.append(" = new JCheckBox(\"");
               String _opcion_1 = resp_3.getOpcion();
               _builder.append(_opcion_1, "\t\t");
@@ -502,8 +513,8 @@ public class CuestionarioGenerator extends AbstractGenerator {
               _builder.newLineIfNotEmpty();
               _builder.append("\t\t");
               _builder.append("c.gridy++;  panelPregunta.add(");
-              String _replace_7 = resp_3.getName().toLowerCase().replace(" ", "");
-              _builder.append(_replace_7, "\t\t");
+              String _replace_8 = resp_3.getName().toLowerCase().replace(" ", "");
+              _builder.append(_replace_8, "\t\t");
               _builder.append(", c);");
               _builder.newLineIfNotEmpty();
             }
@@ -545,8 +556,8 @@ public class CuestionarioGenerator extends AbstractGenerator {
         _builder.append("\t\t\t\t");
         _builder.append(" \t");
         _builder.append("gui.mostrarPregunta(GuiCuestionario.PANEL_");
-        String _replace_8 = pregunta.getSiguientePreguntaAcierto().getName().toUpperCase().replace(" ", "");
-        _builder.append(_replace_8, "\t\t\t\t \t");
+        String _replace_9 = pregunta.getSiguientePreguntaAcierto().getName().toUpperCase().replace(" ", "");
+        _builder.append(_replace_9, "\t\t\t\t \t");
         _builder.append("); // respuesta correcta");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t\t\t");
@@ -555,8 +566,8 @@ public class CuestionarioGenerator extends AbstractGenerator {
         _builder.append("\t\t\t\t");
         _builder.append(" \t");
         _builder.append("gui.mostrarPregunta(GuiCuestionario.PANEL_");
-        String _replace_9 = pregunta.getSiguientePreguntaError().getName().toUpperCase().replace(" ", "");
-        _builder.append(_replace_9, "\t\t\t\t \t");
+        String _replace_10 = pregunta.getSiguientePreguntaError().getName().toUpperCase().replace(" ", "");
+        _builder.append(_replace_10, "\t\t\t\t \t");
         _builder.append("); // respuesta incorrecta");
         _builder.newLineIfNotEmpty();
       } else {
@@ -569,15 +580,15 @@ public class CuestionarioGenerator extends AbstractGenerator {
               if (_notEquals) {
                 _builder.append("\t\t\t\t");
                 _builder.append("if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_");
-                String _replace_10 = p.getName().toUpperCase().replace(" ", "");
-                _builder.append(_replace_10, "\t\t\t\t");
+                String _replace_11 = p.getName().toUpperCase().replace(" ", "");
+                _builder.append(_replace_11, "\t\t\t\t");
                 _builder.append(")){");
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t\t\t\t");
                 _builder.append("\t");
                 _builder.append("gui.mostrarPregunta(GuiCuestionario.PANEL_");
-                String _replace_11 = p.getName().toUpperCase().replace(" ", "");
-                _builder.append(_replace_11, "\t\t\t\t\t");
+                String _replace_12 = p.getName().toUpperCase().replace(" ", "");
+                _builder.append(_replace_12, "\t\t\t\t\t");
                 _builder.append(");");
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t\t\t\t");
@@ -645,15 +656,15 @@ public class CuestionarioGenerator extends AbstractGenerator {
               boolean _equals = Objects.equal(resp_4, r);
               if (_equals) {
                 _builder.append("\t\t");
-                String _replace_12 = resp_4.getName().toLowerCase().replace(" ", "");
-                _builder.append(_replace_12, "\t\t");
+                String _replace_13 = resp_4.getName().toLowerCase().replace(" ", "");
+                _builder.append(_replace_13, "\t\t");
                 _builder.append(".isSelected() ");
                 _builder.newLineIfNotEmpty();
               } else {
                 _builder.append("\t\t");
                 _builder.append("!");
-                String _replace_13 = resp_4.getName().toLowerCase().replace(" ", "");
-                _builder.append(_replace_13, "\t\t");
+                String _replace_14 = resp_4.getName().toLowerCase().replace(" ", "");
+                _builder.append(_replace_14, "\t\t");
                 _builder.append(".isSelected() ");
                 _builder.newLineIfNotEmpty();
               }
@@ -686,15 +697,15 @@ public class CuestionarioGenerator extends AbstractGenerator {
                 boolean _contains = r_1.contains(resp_5);
                 if (_contains) {
                   _builder.append("\t\t");
-                  String _replace_14 = resp_5.getName().toLowerCase().replace(" ", "");
-                  _builder.append(_replace_14, "\t\t");
+                  String _replace_15 = resp_5.getName().toLowerCase().replace(" ", "");
+                  _builder.append(_replace_15, "\t\t");
                   _builder.append(".isSelected() ");
                   _builder.newLineIfNotEmpty();
                 } else {
                   _builder.append("\t\t");
                   _builder.append("!");
-                  String _replace_15 = resp_5.getName().toLowerCase().replace(" ", "");
-                  _builder.append(_replace_15, "\t\t");
+                  String _replace_16 = resp_5.getName().toLowerCase().replace(" ", "");
+                  _builder.append(_replace_16, "\t\t");
                   _builder.append(".isSelected() ");
                   _builder.newLineIfNotEmpty();
                 }

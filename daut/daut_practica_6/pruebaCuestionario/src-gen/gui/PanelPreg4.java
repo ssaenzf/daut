@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -38,10 +39,13 @@ public class PanelPreg4 extends JPanel {
 		panelPregunta.add(new JLabel("Enunciado 4"), c);
 		
 		// opciones
+		ButtonGroup group = new ButtonGroup();
 		respuesta1 = new JRadioButton("Res1");
 		c.gridy++;  panelPregunta.add(respuesta1, c);
+		group.add(respuesta1);
 		respuesta2 = new JRadioButton("Res2");
 		c.gridy++;  panelPregunta.add(respuesta2, c);
+		group.add(respuesta2);
 		
 		this.add(panelPregunta, BorderLayout.WEST);
 		
