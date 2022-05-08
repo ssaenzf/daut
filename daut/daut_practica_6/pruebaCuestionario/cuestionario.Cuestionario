@@ -9,7 +9,6 @@ Cuestionario
 		Puntuacion: 1.0
 		Penalizacion: -0.5
 		Categoria: "Categoria1.Categoria4"
-		Correctas: "Respuesta 1", "Respuesta 2"
 		isInicial (siguientePreguntaAcierto: Preg2, siguientePreguntaError: Preg3)
 	},
 	pregUnica Preg2 {

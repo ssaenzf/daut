@@ -37,8 +37,8 @@ class CuestionarioGenerator extends AbstractGenerator {
 			
 			public class Main {
 				public static void main(String[] args) {
-					GuiCuestionario questionnaire = new GuiCuestionario();
-					questionnaire.mostrarCuestionario();
+					GuiCuestionario cuest = new GuiCuestionario();
+					cuest.mostrarCuestionario();
 				}
 			}
 		'''

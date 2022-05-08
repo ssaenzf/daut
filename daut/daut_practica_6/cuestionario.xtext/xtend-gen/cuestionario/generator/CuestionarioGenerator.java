@@ -54,10 +54,10 @@ public class CuestionarioGenerator extends AbstractGenerator {
     _builder.append("public static void main(String[] args) {");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("GuiCuestionario questionnaire = new GuiCuestionario();");
+    _builder.append("GuiCuestionario cuest = new GuiCuestionario();");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("questionnaire.mostrarCuestionario();");
+    _builder.append("cuest.mostrarCuestionario();");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("}");

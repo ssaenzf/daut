@@ -66,9 +66,9 @@ public class PanelPreg1 extends JPanel {
 	
 	public boolean isRespuestaCorrecta() {
 		return
-		respuesta1.isSelected() 
+		!respuesta1.isSelected() 
 		&&
-		respuesta2.isSelected() 
+		!respuesta2.isSelected() 
 		;	
 	}
 }
