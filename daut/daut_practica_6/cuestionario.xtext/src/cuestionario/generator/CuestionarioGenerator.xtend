@@ -12,6 +12,7 @@ import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import cuestionario.PreguntaMultiple
 import cuestionario.Categoria
+import cuestionario.Cuestionario
 
 /**
  * Generates code from your model files on save.
@@ -20,12 +21,14 @@ import cuestionario.Categoria
  */
 class CuestionarioGenerator extends AbstractGenerator {
 
-	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		fsa.generateFile("main/Main.java", generarMain());
-		fsa.generateFile("gui/GuiCuestionario.java", generarGUICuestionario(resource.allContents.filter(Pregunta).toList))
-		fsa.generateFile("gui/PanelResultado.java", generarPanelResultado(resource.allContents.filter(Pregunta).toList, resource.allContents.filter(Categoria).toList))
-		for (preg : resource.allContents.filter(Pregunta).toList) {
-			fsa.generateFile("gui/Panel" + preg.getName() + ".java", generarPanelPregunta(preg, resource.allContents.filter(Pregunta).toList));
+	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {		
+		for (cuest : resource.allContents.toIterable.filter(Cuestionario)) {
+			fsa.generateFile("main/Main.java", generarMain());
+			fsa.generateFile("gui/GuiCuestionario.java", generarGUICuestionario(resource.allContents.filter(Pregunta).toList))
+			fsa.generateFile("gui/PanelResultado.java", generarPanelResultado(resource.allContents.filter(Pregunta).toList, resource.allContents.filter(Categoria).toList))
+			for (preg : resource.allContents.filter(Pregunta).toList) {
+				fsa.generateFile("gui/Panel" + preg.getName() + ".java", generarPanelPregunta(preg, resource.allContents.filter(Pregunta).toList, cuest));
+			}
 		}
 	}
 	
@@ -135,7 +138,7 @@ class CuestionarioGenerator extends AbstractGenerator {
 		'''
 	}
 	
-	def generarPanelPregunta(Pregunta pregunta, List<Pregunta> preguntas) {
+	def generarPanelPregunta(Pregunta pregunta, List<Pregunta> preguntas, Cuestionario cuest) {
 		'''
 		package gui;
 		
@@ -214,11 +217,29 @@ class CuestionarioGenerator extends AbstractGenerator {
 						«IF pregunta.isInicial»
 						if (isRespuestaCorrecta()) 
 						 	gui.mostrarPregunta(GuiCuestionario.PANEL_«pregunta.getSiguientePreguntaAcierto().getName().toUpperCase().replace(" ","")»); // respuesta correcta
-						else 
+						else {
 						 	gui.mostrarPregunta(GuiCuestionario.PANEL_«pregunta.getSiguientePreguntaError.getName().toUpperCase().replace(" ","")»); // respuesta incorrecta
+							«IF pregunta.getSiguientePreguntaError.getName() == pregunta.name»
+							«IF pregunta instanceof PreguntaUnica»
+							«FOR resp: pregunta.respuestas»
+							«resp.getName().toLowerCase().replace(" ","")».setSelected(false);
+							«ENDFOR»
+							«ELSEIF pregunta instanceof PreguntaMultiple»
+							«FOR resp: pregunta.respuestas»
+							«resp.getName().toLowerCase().replace(" ","")».setSelected(false);
+							«ENDFOR»
+							«ENDIF»
+							respondida = false;
+							«ENDIF»
+						}
+						«ELSEIF cuest.preguntasFinales.contains(pregunta)»
+							gui.mostrarResultado();
 						«ELSE»
+						«var categoria = pregunta.categoria»
+						«var dificultad = categoria.dificultad»
+						if (isRespuestaCorrecta()) {
 							«FOR p: preguntas»
-								«IF pregunta.getName() != p.getName()»
+								«IF pregunta.getName() != p.getName() && p.categoria.dificultad >= dificultad && categoria.name != p.categoria.name»
 									if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_«p.getName().toUpperCase().replace(" ","")»)){
 										gui.mostrarPregunta(GuiCuestionario.PANEL_«p.getName().toUpperCase().replace(" ","")»);
 										return;
@@ -226,6 +247,29 @@ class CuestionarioGenerator extends AbstractGenerator {
 								«ENDIF»
 							«ENDFOR»
 							gui.mostrarResultado();
+						} else {
+							«FOR p: preguntas»
+							«IF categoria.name == p.categoria.name»
+							if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_«p.getName().toUpperCase().replace(" ","")»)){
+								gui.mostrarPregunta(GuiCuestionario.PANEL_«p.getName().toUpperCase().replace(" ","")»);
+								«IF p.name == pregunta.name»
+								«IF pregunta instanceof PreguntaUnica»
+								«FOR resp: pregunta.respuestas»
+								«resp.getName().toLowerCase().replace(" ","")».setSelected(false);
+								«ENDFOR»
+								«ELSEIF pregunta instanceof PreguntaMultiple»
+								«FOR resp: pregunta.respuestas»
+								«resp.getName().toLowerCase().replace(" ","")».setSelected(false);
+								«ENDFOR»
+								«ENDIF»
+								respondida = false;
+								«ENDIF»
+								return;
+							}
+							«ENDIF»
+							«ENDFOR»
+							gui.mostrarResultado();
+						}
 						«ENDIF»
 					}			
 				});

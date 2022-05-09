@@ -9,7 +9,7 @@ Cuestionario
 		Puntuacion: 1.0
 		Penalizacion: -0.5
 		Categoria: "Categoria1.Categoria4"
-		isInicial (siguientePreguntaAcierto: Preg2, siguientePreguntaError: Preg3)
+		isInicial (siguientePreguntaAcierto: Preg2, siguientePreguntaError: Preg1)
 	},
 	pregUnica Preg2 {
 		Enunciado: "Enunciado 2"
@@ -42,7 +42,7 @@ Cuestionario
 		Puntuacion: 0.5
 		Penalizacion: -0.5
 		Categoria: "Categoria3"
-		Correcta: "Respuesta 1"	
+		Correcta: "Respuesta 1"
 	}
 	
 Categorias:
@@ -57,8 +57,8 @@ Categorias:
  	dificultad 2.0
  },
  categoria Categoria3 {
- 	dificultad 2.0
+ 	dificultad 2.5
  }
 
 Inicial: Preg1
-Finales: Preg2, Preg3, Preg4
+Finales: Preg4

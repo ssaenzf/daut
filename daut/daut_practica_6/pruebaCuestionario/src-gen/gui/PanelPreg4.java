@@ -55,18 +55,6 @@ public class PanelPreg4 extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				respondida = true;
-				if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG1)){
-					gui.mostrarPregunta(GuiCuestionario.PANEL_PREG1);
-					return;
-				}
-				if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG2)){
-					gui.mostrarPregunta(GuiCuestionario.PANEL_PREG2);
-					return;
-				}
-				if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG3)){
-					gui.mostrarPregunta(GuiCuestionario.PANEL_PREG3);
-					return;
-				}
 				gui.mostrarResultado();
 			}			
 		});

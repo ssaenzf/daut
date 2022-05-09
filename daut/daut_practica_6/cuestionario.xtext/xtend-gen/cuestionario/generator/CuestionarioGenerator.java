@@ -4,14 +4,17 @@
 package cuestionario.generator;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
 import cuestionario.Categoria;
+import cuestionario.Cuestionario;
 import cuestionario.Pregunta;
 import cuestionario.PreguntaMultiple;
 import cuestionario.PreguntaUnica;
 import cuestionario.Respuesta;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
@@ -28,15 +31,20 @@ import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 public class CuestionarioGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    fsa.generateFile("main/Main.java", this.generarMain());
-    fsa.generateFile("gui/GuiCuestionario.java", this.generarGUICuestionario(IteratorExtensions.<Pregunta>toList(Iterators.<Pregunta>filter(resource.getAllContents(), Pregunta.class))));
-    fsa.generateFile("gui/PanelResultado.java", this.generarPanelResultado(IteratorExtensions.<Pregunta>toList(Iterators.<Pregunta>filter(resource.getAllContents(), Pregunta.class)), IteratorExtensions.<Categoria>toList(Iterators.<Categoria>filter(resource.getAllContents(), Categoria.class))));
-    List<Pregunta> _list = IteratorExtensions.<Pregunta>toList(Iterators.<Pregunta>filter(resource.getAllContents(), Pregunta.class));
-    for (final Pregunta preg : _list) {
-      String _name = preg.getName();
-      String _plus = ("gui/Panel" + _name);
-      String _plus_1 = (_plus + ".java");
-      fsa.generateFile(_plus_1, this.generarPanelPregunta(preg, IteratorExtensions.<Pregunta>toList(Iterators.<Pregunta>filter(resource.getAllContents(), Pregunta.class))));
+    Iterable<Cuestionario> _filter = Iterables.<Cuestionario>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Cuestionario.class);
+    for (final Cuestionario cuest : _filter) {
+      {
+        fsa.generateFile("main/Main.java", this.generarMain());
+        fsa.generateFile("gui/GuiCuestionario.java", this.generarGUICuestionario(IteratorExtensions.<Pregunta>toList(Iterators.<Pregunta>filter(resource.getAllContents(), Pregunta.class))));
+        fsa.generateFile("gui/PanelResultado.java", this.generarPanelResultado(IteratorExtensions.<Pregunta>toList(Iterators.<Pregunta>filter(resource.getAllContents(), Pregunta.class)), IteratorExtensions.<Categoria>toList(Iterators.<Categoria>filter(resource.getAllContents(), Categoria.class))));
+        List<Pregunta> _list = IteratorExtensions.<Pregunta>toList(Iterators.<Pregunta>filter(resource.getAllContents(), Pregunta.class));
+        for (final Pregunta preg : _list) {
+          String _name = preg.getName();
+          String _plus = ("gui/Panel" + _name);
+          String _plus_1 = (_plus + ".java");
+          fsa.generateFile(_plus_1, this.generarPanelPregunta(preg, IteratorExtensions.<Pregunta>toList(Iterators.<Pregunta>filter(resource.getAllContents(), Pregunta.class)), cuest));
+        }
+      }
     }
   }
   
@@ -328,7 +336,7 @@ public class CuestionarioGenerator extends AbstractGenerator {
     return _xblockexpression;
   }
   
-  public CharSequence generarPanelPregunta(final Pregunta pregunta, final List<Pregunta> preguntas) {
+  public CharSequence generarPanelPregunta(final Pregunta pregunta, final List<Pregunta> preguntas, final Cuestionario cuest) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package gui;");
     _builder.newLine();
@@ -561,7 +569,7 @@ public class CuestionarioGenerator extends AbstractGenerator {
         _builder.append("); // respuesta correcta");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t\t\t");
-        _builder.append("else ");
+        _builder.append("else {");
         _builder.newLine();
         _builder.append("\t\t\t\t");
         _builder.append(" \t");
@@ -570,41 +578,190 @@ public class CuestionarioGenerator extends AbstractGenerator {
         _builder.append(_replace_10, "\t\t\t\t \t");
         _builder.append("); // respuesta incorrecta");
         _builder.newLineIfNotEmpty();
-      } else {
         {
-          for(final Pregunta p : preguntas) {
+          String _name_1 = pregunta.getSiguientePreguntaError().getName();
+          String _name_2 = pregunta.getName();
+          boolean _equals = Objects.equal(_name_1, _name_2);
+          if (_equals) {
             {
-              String _name_1 = pregunta.getName();
-              String _name_2 = p.getName();
-              boolean _notEquals = (!Objects.equal(_name_1, _name_2));
-              if (_notEquals) {
-                _builder.append("\t\t\t\t");
-                _builder.append("if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_");
-                String _replace_11 = p.getName().toUpperCase().replace(" ", "");
-                _builder.append(_replace_11, "\t\t\t\t");
-                _builder.append(")){");
-                _builder.newLineIfNotEmpty();
-                _builder.append("\t\t\t\t");
-                _builder.append("\t");
-                _builder.append("gui.mostrarPregunta(GuiCuestionario.PANEL_");
-                String _replace_12 = p.getName().toUpperCase().replace(" ", "");
-                _builder.append(_replace_12, "\t\t\t\t\t");
-                _builder.append(");");
-                _builder.newLineIfNotEmpty();
-                _builder.append("\t\t\t\t");
-                _builder.append("\t");
-                _builder.append("return;");
-                _builder.newLine();
-                _builder.append("\t\t\t\t");
-                _builder.append("}");
-                _builder.newLine();
+              if ((pregunta instanceof PreguntaUnica)) {
+                {
+                  EList<Respuesta> _respuestas_4 = ((PreguntaUnica)pregunta).getRespuestas();
+                  for(final Respuesta resp_4 : _respuestas_4) {
+                    _builder.append("\t\t\t\t");
+                    _builder.append("\t");
+                    String _replace_11 = resp_4.getName().toLowerCase().replace(" ", "");
+                    _builder.append(_replace_11, "\t\t\t\t\t");
+                    _builder.append(".setSelected(false);");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+              } else {
+                if ((pregunta instanceof PreguntaMultiple)) {
+                  {
+                    EList<Respuesta> _respuestas_5 = ((PreguntaMultiple)pregunta).getRespuestas();
+                    for(final Respuesta resp_5 : _respuestas_5) {
+                      _builder.append("\t\t\t\t");
+                      _builder.append("\t");
+                      String _replace_12 = resp_5.getName().toLowerCase().replace(" ", "");
+                      _builder.append(_replace_12, "\t\t\t\t\t");
+                      _builder.append(".setSelected(false);");
+                      _builder.newLineIfNotEmpty();
+                    }
+                  }
+                }
               }
             }
+            _builder.append("\t\t\t\t");
+            _builder.append("\t");
+            _builder.append("respondida = false;");
+            _builder.newLine();
           }
         }
         _builder.append("\t\t\t\t");
-        _builder.append("gui.mostrarResultado();");
+        _builder.append("}");
         _builder.newLine();
+      } else {
+        boolean _contains = cuest.getPreguntasFinales().contains(pregunta);
+        if (_contains) {
+          _builder.append("\t\t\t\t");
+          _builder.append("gui.mostrarResultado();");
+          _builder.newLine();
+        } else {
+          _builder.append("\t\t\t\t");
+          Categoria categoria = pregunta.getCategoria();
+          _builder.newLineIfNotEmpty();
+          _builder.append("\t\t\t\t");
+          double dificultad = categoria.getDificultad();
+          _builder.newLineIfNotEmpty();
+          _builder.append("\t\t\t\t");
+          _builder.append("if (isRespuestaCorrecta()) {");
+          _builder.newLine();
+          {
+            for(final Pregunta p : preguntas) {
+              {
+                if ((((!Objects.equal(pregunta.getName(), p.getName())) && (p.getCategoria().getDificultad() >= dificultad)) && (!Objects.equal(categoria.getName(), p.getCategoria().getName())))) {
+                  _builder.append("\t\t\t\t");
+                  _builder.append("\t");
+                  _builder.append("if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_");
+                  String _replace_13 = p.getName().toUpperCase().replace(" ", "");
+                  _builder.append(_replace_13, "\t\t\t\t\t");
+                  _builder.append(")){");
+                  _builder.newLineIfNotEmpty();
+                  _builder.append("\t\t\t\t");
+                  _builder.append("\t");
+                  _builder.append("\t");
+                  _builder.append("gui.mostrarPregunta(GuiCuestionario.PANEL_");
+                  String _replace_14 = p.getName().toUpperCase().replace(" ", "");
+                  _builder.append(_replace_14, "\t\t\t\t\t\t");
+                  _builder.append(");");
+                  _builder.newLineIfNotEmpty();
+                  _builder.append("\t\t\t\t");
+                  _builder.append("\t");
+                  _builder.append("\t");
+                  _builder.append("return;");
+                  _builder.newLine();
+                  _builder.append("\t\t\t\t");
+                  _builder.append("\t");
+                  _builder.append("}");
+                  _builder.newLine();
+                }
+              }
+            }
+          }
+          _builder.append("\t\t\t\t");
+          _builder.append("\t");
+          _builder.append("gui.mostrarResultado();");
+          _builder.newLine();
+          _builder.append("\t\t\t\t");
+          _builder.append("} else {");
+          _builder.newLine();
+          {
+            for(final Pregunta p_1 : preguntas) {
+              {
+                String _name_3 = categoria.getName();
+                String _name_4 = p_1.getCategoria().getName();
+                boolean _equals_1 = Objects.equal(_name_3, _name_4);
+                if (_equals_1) {
+                  _builder.append("\t\t\t\t");
+                  _builder.append("\t");
+                  _builder.append("if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_");
+                  String _replace_15 = p_1.getName().toUpperCase().replace(" ", "");
+                  _builder.append(_replace_15, "\t\t\t\t\t");
+                  _builder.append(")){");
+                  _builder.newLineIfNotEmpty();
+                  _builder.append("\t\t\t\t");
+                  _builder.append("\t");
+                  _builder.append("\t");
+                  _builder.append("gui.mostrarPregunta(GuiCuestionario.PANEL_");
+                  String _replace_16 = p_1.getName().toUpperCase().replace(" ", "");
+                  _builder.append(_replace_16, "\t\t\t\t\t\t");
+                  _builder.append(");");
+                  _builder.newLineIfNotEmpty();
+                  {
+                    String _name_5 = p_1.getName();
+                    String _name_6 = pregunta.getName();
+                    boolean _equals_2 = Objects.equal(_name_5, _name_6);
+                    if (_equals_2) {
+                      {
+                        if ((pregunta instanceof PreguntaUnica)) {
+                          {
+                            EList<Respuesta> _respuestas_6 = ((PreguntaUnica)pregunta).getRespuestas();
+                            for(final Respuesta resp_6 : _respuestas_6) {
+                              _builder.append("\t\t\t\t");
+                              _builder.append("\t");
+                              _builder.append("\t");
+                              String _replace_17 = resp_6.getName().toLowerCase().replace(" ", "");
+                              _builder.append(_replace_17, "\t\t\t\t\t\t");
+                              _builder.append(".setSelected(false);");
+                              _builder.newLineIfNotEmpty();
+                            }
+                          }
+                        } else {
+                          if ((pregunta instanceof PreguntaMultiple)) {
+                            {
+                              EList<Respuesta> _respuestas_7 = ((PreguntaMultiple)pregunta).getRespuestas();
+                              for(final Respuesta resp_7 : _respuestas_7) {
+                                _builder.append("\t\t\t\t");
+                                _builder.append("\t");
+                                _builder.append("\t");
+                                String _replace_18 = resp_7.getName().toLowerCase().replace(" ", "");
+                                _builder.append(_replace_18, "\t\t\t\t\t\t");
+                                _builder.append(".setSelected(false);");
+                                _builder.newLineIfNotEmpty();
+                              }
+                            }
+                          }
+                        }
+                      }
+                      _builder.append("\t\t\t\t");
+                      _builder.append("\t");
+                      _builder.append("\t");
+                      _builder.append("respondida = false;");
+                      _builder.newLine();
+                    }
+                  }
+                  _builder.append("\t\t\t\t");
+                  _builder.append("\t");
+                  _builder.append("\t");
+                  _builder.append("return;");
+                  _builder.newLine();
+                  _builder.append("\t\t\t\t");
+                  _builder.append("\t");
+                  _builder.append("}");
+                  _builder.newLine();
+                }
+              }
+            }
+          }
+          _builder.append("\t\t\t\t");
+          _builder.append("\t");
+          _builder.append("gui.mostrarResultado();");
+          _builder.newLine();
+          _builder.append("\t\t\t\t");
+          _builder.append("}");
+          _builder.newLine();
+        }
       }
     }
     _builder.append("\t\t\t");
@@ -644,34 +801,34 @@ public class CuestionarioGenerator extends AbstractGenerator {
         Respuesta r = ((PreguntaUnica)pregunta).getCorrecta();
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
-        EList<Respuesta> _respuestas_4 = ((PreguntaUnica)pregunta).getRespuestas();
+        EList<Respuesta> _respuestas_8 = ((PreguntaUnica)pregunta).getRespuestas();
         int _size = ((PreguntaUnica)pregunta).getRespuestas().size();
         int _minus = (_size - 1);
-        Respuesta last = _respuestas_4.get(_minus);
+        Respuesta last = _respuestas_8.get(_minus);
         _builder.newLineIfNotEmpty();
         {
-          EList<Respuesta> _respuestas_5 = ((PreguntaUnica)pregunta).getRespuestas();
-          for(final Respuesta resp_4 : _respuestas_5) {
+          EList<Respuesta> _respuestas_9 = ((PreguntaUnica)pregunta).getRespuestas();
+          for(final Respuesta resp_8 : _respuestas_9) {
             {
-              boolean _equals = Objects.equal(resp_4, r);
-              if (_equals) {
+              boolean _equals_3 = Objects.equal(resp_8, r);
+              if (_equals_3) {
                 _builder.append("\t\t");
-                String _replace_13 = resp_4.getName().toLowerCase().replace(" ", "");
-                _builder.append(_replace_13, "\t\t");
+                String _replace_19 = resp_8.getName().toLowerCase().replace(" ", "");
+                _builder.append(_replace_19, "\t\t");
                 _builder.append(".isSelected() ");
                 _builder.newLineIfNotEmpty();
               } else {
                 _builder.append("\t\t");
                 _builder.append("!");
-                String _replace_14 = resp_4.getName().toLowerCase().replace(" ", "");
-                _builder.append(_replace_14, "\t\t");
+                String _replace_20 = resp_8.getName().toLowerCase().replace(" ", "");
+                _builder.append(_replace_20, "\t\t");
                 _builder.append(".isSelected() ");
                 _builder.newLineIfNotEmpty();
               }
             }
             {
-              boolean _notEquals_1 = (!Objects.equal(resp_4, last));
-              if (_notEquals_1) {
+              boolean _notEquals = (!Objects.equal(resp_8, last));
+              if (_notEquals) {
                 _builder.append("\t\t");
                 _builder.append("&&");
                 _builder.newLine();
@@ -685,34 +842,34 @@ public class CuestionarioGenerator extends AbstractGenerator {
           EList<Respuesta> r_1 = ((PreguntaMultiple)pregunta).getCorrectas();
           _builder.newLineIfNotEmpty();
           _builder.append("\t\t");
-          EList<Respuesta> _respuestas_6 = ((PreguntaMultiple)pregunta).getRespuestas();
+          EList<Respuesta> _respuestas_10 = ((PreguntaMultiple)pregunta).getRespuestas();
           int _size_1 = ((PreguntaMultiple)pregunta).getRespuestas().size();
           int _minus_1 = (_size_1 - 1);
-          Respuesta last_1 = _respuestas_6.get(_minus_1);
+          Respuesta last_1 = _respuestas_10.get(_minus_1);
           _builder.newLineIfNotEmpty();
           {
-            EList<Respuesta> _respuestas_7 = ((PreguntaMultiple)pregunta).getRespuestas();
-            for(final Respuesta resp_5 : _respuestas_7) {
+            EList<Respuesta> _respuestas_11 = ((PreguntaMultiple)pregunta).getRespuestas();
+            for(final Respuesta resp_9 : _respuestas_11) {
               {
-                boolean _contains = r_1.contains(resp_5);
-                if (_contains) {
+                boolean _contains_1 = r_1.contains(resp_9);
+                if (_contains_1) {
                   _builder.append("\t\t");
-                  String _replace_15 = resp_5.getName().toLowerCase().replace(" ", "");
-                  _builder.append(_replace_15, "\t\t");
+                  String _replace_21 = resp_9.getName().toLowerCase().replace(" ", "");
+                  _builder.append(_replace_21, "\t\t");
                   _builder.append(".isSelected() ");
                   _builder.newLineIfNotEmpty();
                 } else {
                   _builder.append("\t\t");
                   _builder.append("!");
-                  String _replace_16 = resp_5.getName().toLowerCase().replace(" ", "");
-                  _builder.append(_replace_16, "\t\t");
+                  String _replace_22 = resp_9.getName().toLowerCase().replace(" ", "");
+                  _builder.append(_replace_22, "\t\t");
                   _builder.append(".isSelected() ");
                   _builder.newLineIfNotEmpty();
                 }
               }
               {
-                boolean _notEquals_2 = (!Objects.equal(resp_5, last_1));
-                if (_notEquals_2) {
+                boolean _notEquals_1 = (!Objects.equal(resp_9, last_1));
+                if (_notEquals_1) {
                   _builder.append("\t\t");
                   _builder.append("&&");
                   _builder.newLine();

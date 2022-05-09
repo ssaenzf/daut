@@ -55,19 +55,30 @@ public class PanelPreg3 extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				respondida = true;
-				if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG1)){
-					gui.mostrarPregunta(GuiCuestionario.PANEL_PREG1);
-					return;
+				if (isRespuestaCorrecta()) {
+					if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG2)){
+						gui.mostrarPregunta(GuiCuestionario.PANEL_PREG2);
+						return;
+					}
+					if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG4)){
+						gui.mostrarPregunta(GuiCuestionario.PANEL_PREG4);
+						return;
+					}
+					gui.mostrarResultado();
+				} else {
+					if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG1)){
+						gui.mostrarPregunta(GuiCuestionario.PANEL_PREG1);
+						return;
+					}
+					if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG3)){
+						gui.mostrarPregunta(GuiCuestionario.PANEL_PREG3);
+						respuesta1.setSelected(false);
+						respuesta2.setSelected(false);
+						respondida = false;
+						return;
+					}
+					gui.mostrarResultado();
 				}
-				if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG2)){
-					gui.mostrarPregunta(GuiCuestionario.PANEL_PREG2);
-					return;
-				}
-				if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG4)){
-					gui.mostrarPregunta(GuiCuestionario.PANEL_PREG4);
-					return;
-				}
-				gui.mostrarResultado();
 			}			
 		});
 		this.add(button, BorderLayout.SOUTH); 
