@@ -69,6 +69,10 @@ public class PanelPreg2 extends JPanel {
 						respondida = false;
 						return;
 					}
+					if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG3)){
+						gui.mostrarPregunta(GuiCuestionario.PANEL_PREG3);
+						return;
+					}
 					gui.mostrarResultado();
 				}
 			}			

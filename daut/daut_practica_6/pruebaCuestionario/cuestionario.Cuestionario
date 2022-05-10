@@ -30,14 +30,16 @@ Cuestionario
 		}
 		Puntuacion: 0.5
 		Penalizacion: -0.5
-		Categoria: "Categoria1.Categoria4"
+		Categoria: Categoria2
 		Correcta: "Respuesta 1"	
 	},
 	pregUnica Preg4 {
 		Enunciado: "Enunciado 4"
 		Respuestas {
 			"Respuesta 1" : "Res1",
-			"Respuesta 2" : "Res2"
+			"Respuesta 2" : "Res2",
+			"Respuesta 3" : "Res3",
+			"Respuesta 4" : "Res4"
 		}
 		Puntuacion: 0.5
 		Penalizacion: -0.5

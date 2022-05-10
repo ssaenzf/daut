@@ -27,7 +27,7 @@ public class PanelPreg3 extends JPanel {
 		this.setBorder(new EmptyBorder(10,10,10,10));
 		
 		// categoria
-		this.add(new JLabel("Categoria4"), BorderLayout.NORTH);
+		this.add(new JLabel("Categoria2"), BorderLayout.NORTH);
 		
 		// pregunta
 		JPanel panelPregunta = new JPanel(new GridBagLayout());
@@ -56,18 +56,14 @@ public class PanelPreg3 extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				respondida = true;
 				if (isRespuestaCorrecta()) {
-					if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG2)){
-						gui.mostrarPregunta(GuiCuestionario.PANEL_PREG2);
-						return;
-					}
 					if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG4)){
 						gui.mostrarPregunta(GuiCuestionario.PANEL_PREG4);
 						return;
 					}
 					gui.mostrarResultado();
 				} else {
-					if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG1)){
-						gui.mostrarPregunta(GuiCuestionario.PANEL_PREG1);
+					if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG2)){
+						gui.mostrarPregunta(GuiCuestionario.PANEL_PREG2);
 						return;
 					}
 					if (!gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG3)){

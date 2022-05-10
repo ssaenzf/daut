@@ -18,6 +18,8 @@ public class PanelPreg4 extends JPanel {
 	
 	private JRadioButton respuesta1;
 	private JRadioButton respuesta2;
+	private JRadioButton respuesta3;
+	private JRadioButton respuesta4;
 	
 	private boolean respondida = false;
 	
@@ -46,6 +48,12 @@ public class PanelPreg4 extends JPanel {
 		respuesta2 = new JRadioButton("Res2");
 		c.gridy++;  panelPregunta.add(respuesta2, c);
 		group.add(respuesta2);
+		respuesta3 = new JRadioButton("Res3");
+		c.gridy++;  panelPregunta.add(respuesta3, c);
+		group.add(respuesta3);
+		respuesta4 = new JRadioButton("Res4");
+		c.gridy++;  panelPregunta.add(respuesta4, c);
+		group.add(respuesta4);
 		
 		this.add(panelPregunta, BorderLayout.WEST);
 		
@@ -70,6 +78,10 @@ public class PanelPreg4 extends JPanel {
 		respuesta1.isSelected() 
 		&&
 		!respuesta2.isSelected() 
+		&&
+		!respuesta3.isSelected() 
+		&&
+		!respuesta4.isSelected() 
 		;	
 	}
 }

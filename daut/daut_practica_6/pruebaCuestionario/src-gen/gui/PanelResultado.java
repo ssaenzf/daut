@@ -36,8 +36,8 @@ public class PanelResultado extends JPanel {
 		}
 		if (gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG3)) {
 			if (gui.isRespuestaCorrecta(GuiCuestionario.PANEL_PREG3)) 
-				 categoria2_ok++;
-			else categoria2_nok++;
+				 categoria3_ok++;
+			else categoria3_nok++;
 		}
 		if (gui.isPreguntaRespondida(GuiCuestionario.PANEL_PREG4)) {
 			if (gui.isRespuestaCorrecta(GuiCuestionario.PANEL_PREG4)) 
